@@ -10,6 +10,7 @@ usuarios.elementos = {
 //Al pulsar en nuevo usuario
 $("#btn-add-user").click(function(){	
 	$("#form-add-usuario :input").val('');
+	$("#form-add-usuario :input").attr('placeholder','');
 	$(usuarios.elementos.button.val('Guardar'));
 });
 
@@ -22,11 +23,11 @@ $("#form-add-usuario").submit(function(event){
 	var action = "addUsuario";
 	var usuarioId = 0;
 
-	if(data.button.val() == "Actulizar")
+	if(data.button.val() == "Actualizar")
 		forUpdate = true;
 
 	if(usuarios.validaDatosUsuario(data,forUpdate)){					
-		if(forUpdate === true){
+		if(forUpdate == true){
 			action = "updateUsuario";
 			usuarioId = $("#usuarioId").val();
 		}
@@ -82,6 +83,26 @@ usuarios.editUser = function(userId){
 	});
 };
 
+usuarios.deleteUser = function(usuarioId){
+	var c= confirm('Estás seguro de esto?');
+	if(c){
+		$.ajax({
+			type: "post",
+			url: "ajax.php",
+			data: {
+				action: "deleteUsuario",
+				usuarioId: usuarioId
+			},
+			success: function(result){
+				if(result.status == "error")
+					utilerias.displayErrorMessage($("#errores"),result.message);
+				else
+					location.reload();
+			}
+		});
+	}
+}
+
 
 usuarios.validaDatosUsuario = function(data,forUpdate){
 	var valid = true;
@@ -95,10 +116,10 @@ usuarios.validaDatosUsuario = function(data,forUpdate){
 		utilerias.displayErrorMessage(error,"<br>El nombre de usuario es requerido");
 	}
 
-	if(forUpdate === true){
+	if(forUpdate == true){
 		if(data.password.val() != data.password_conf.val()){
 			valid = false;
-			utilerias.displayErrorMessage($("errores"),"No coinciden los password");
+			utilerias.displayErrorMessage(error,"No coinciden los password");
 		}
 
 	} else{

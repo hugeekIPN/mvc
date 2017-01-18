@@ -36,6 +36,16 @@ switch ($action) {
         echo json_encode($usuario->getUsuario());
         break;
 
+    case 'updateUsuario':
+        $usuario = new usuarioscontroller($_POST['usuarioId']);
+        echo json_encode($usuario->updateUsuario($_POST));
+        break;
+
+    case 'deleteUsuario':
+        $usuario = new usuariosController($_POST['usuarioId']);
+        echo json_encode($usuario->deleteUsuario($_POST));
+        break;
+
 	default:		
 		break;
 }

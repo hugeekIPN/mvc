@@ -42,7 +42,7 @@ class UsuariosController {
             $this->model->nuevoUsuario($postData);
             $result = array(
                 "status"=> "success",
-                "msg" => "Registro exitoso"
+                "message" => "Registro exitoso"
             );
         }
         
@@ -60,26 +60,90 @@ class UsuariosController {
 
     public function updateUsuario($data) 
     {
+        $errors = $this->validaDatosUpdate($data);
+
+        if(count ($errors) > 0){
+            $message = implode("<br />", $errors);
+            $result = array(
+                "status" => "error",
+                "message" => $message
+                );
+        }else{
+            $currentUser = $this->model->getUsuario($this->userId);
+            $newData = array();
+
+            if($currentUser['username'] != $data['username'])
+                $newData['username'] = $data['username'];
+
+            if($data['password'])
+                if($currentUser['password'] !=
+                    $data['password'])
+                    $newData['password'] = $data['password'];
+
+            if($newData){
+                $this->model->updateUsuario($newData, $this->userId);
+            }
+
+            $result = array(
+                "status" => "success",
+                "message" => "Registro Actualizado"
+                );
+        }
+
+        return $result;
 	 
     }
 
 
     public function deleteUsuario() 
-    {
-    	$this->model->deleteUsuario($this->userId);        
-        return true;
+    {   
+            	        
+        if(! $this->model->getUsuario($this->userId))
+            return array(
+                "status" => "error",
+                "message" => "El usuario no existe");
+
+        $this->model->deleteUsuario($this->userId);
+        return array(
+            "status" => "success",
+            "message" => "Operaci&oacute;n completada");
+
     }
 
     private function validaDatos($data){
         $errors = array();
         $username = $data['username'];
         $password = $data['password'];
+        $password_confirm = $data['password_confirm'];
         if($this->esVacio($username))
             $errors[] = "Nombre de usuario requerido";
         if($this->esVacio($password))
             $errors[] = "Password es requerido";
 
-        if($data['password']!= $data['password_confirm'])
+        if($password != $password_confirm)
+            $errors[] = "Los password deben ser iguales";
+
+        return $errors;
+
+    }
+
+    private function validaDatosUpdate($data){
+        $id = $data['usuarioId'];
+        $username = $data['username'];
+        $password = $data['password'];
+        $password_confirm = $data['password_confirm'];
+        $errors = array();
+
+        //validamos que exista el id del usuario
+        if($this->model->getUsuario($this->userId) ==null){
+            $errors[] = "No existe el usuario";
+            return $errors;
+        }
+
+        if($this->esVacio($username))
+            $errors[] = "Nombre de usuario requerido";
+
+        if($password != $password_confirm)
             $errors[] = "Los password deben ser iguales";
 
         return $errors;

@@ -14,7 +14,7 @@
 			<td><?php echo $user['usuarioId'] ?></td>
 			<td><?php echo $user['username'] ?></td>
 			<td><button onclick="usuarios.editUser(<?php echo $user['usuarioId']; ?>);">Editar</button></td>
-			<td><button>Eliminar</button></td>
+			<td><button onclick="usuarios.deleteUser(<?php echo $user['usuarioId'] ?>);">Eliminar</button></td>
 		</tr>
 	<?php endforeach; ?>
 	
@@ -29,7 +29,7 @@
 <button id="btn-add-user">Nuevo Usuario</button>
 <div id="errores"></div>
 <form id="form-add-usuario">
-	<input type="hidden" name="idUsuario" id="idUsuario">
+	<input type="hidden" name="usuarioId" id="usuarioId">
 	<label for="username">Nombre de usuario</label>
 	<input type="text" name="username" id="username">
 	<label for="password">Password</label>
