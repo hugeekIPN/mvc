@@ -69,6 +69,18 @@ class m_usuarios{
         
         return true;
     }
+
+    /**
+    * Obtiene todos los usuarios de la base de datos
+    **/
+    public function getAllUsers(){
+        $query = "SELECT * from usuarios ORDER BY usuarioId DESC";
+        $result = $this->db->select($query, array());
+        if(count($result)>0)
+            return $result;
+        else
+            return null;
+    }
 }
 
 ?>

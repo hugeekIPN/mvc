@@ -8,7 +8,7 @@ class SessionController {
         
         $cookieParams = session_get_cookie_params();
         session_set_cookie_params(
-            300, 
+            3600, 
             $cookieParams["path"], 
             $cookieParams["domain"], 
             SESSION_SECURE, 

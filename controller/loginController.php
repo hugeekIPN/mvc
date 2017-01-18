@@ -40,6 +40,7 @@ include_once("model/m_login.php");
 
 	        $logged=false;
 	        
+	        //revisamos credenciales en bd
 	        $valida=$this->model->valida($username, $password);
 	       	   
 	        if(count($valida) == 1) 

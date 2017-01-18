@@ -1,1 +1,1 @@
-<h1>Bienvenido <?php echo $usuario ?></h1>
+ <h1>Bienvenido <?php echo $usuario ?></h1>

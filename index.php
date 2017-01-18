@@ -18,6 +18,10 @@ $option=isset($_REQUEST['op']) ?  $_REQUEST['op']: null;
       $login->logout();
     break;
 
+    case 'users':
+    	$user->index();
+    break;
+
     default:    
         $login->index();
     break;

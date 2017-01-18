@@ -26,6 +26,16 @@ switch ($action) {
             ));
 		break;
 
+    case 'addUsuario':
+        $usuario = new usuariosController(null);
+        echo json_encode($usuario->nuevoUsuario($_POST));
+        break;
+
+    case 'getUsuario':
+        $usuario = new usuarioscontroller($_POST['userId']);
+        echo json_encode($usuario->getUsuario());
+        break;
+
 	default:		
 		break;
 }
