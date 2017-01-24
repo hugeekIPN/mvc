@@ -62,7 +62,11 @@
   			</li>
 		</ul>
 	</div>	
-	
+	<footer>
+		<p><strong>Copyright Fundación Telmex 2017</strong></p>
+		<p><small>Todos los Derechos Reservados</small></p>
+
+	</footer>
 </body>
 <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
  	<script> 

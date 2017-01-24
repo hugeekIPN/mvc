@@ -4,31 +4,48 @@
 
 	    <div class="navbar-header col-md-4 ">
 	      <ul class="nav navazul">
-	      	<li class="col-xs-4">
-		      	<a href="#">
+	      	<li class="col-xs-4 dropdown">
+		      	<a href="#" class="dropbtn2">
 					<img src="iconos/Recurso 1.png" alt="Consulta">
 		      		<p>Consulta</p>
 		      	</a>
+		      	<ul class="nav dropdown-content2">
+			        <li><a href="">Especies</a></li>
+		    			<li><a href="#">Eventos</a></li>
+		    			<li><a href="#">Proveedores/Donatarios</a></li>
+		    			<li><a href="#">Usuarios</a></li>
+		    			<li><a href="#">Cuentas</a></li>
+		    			<li><a href="#">Años</a></li>
+		    			<li><a href="#">Programas</a></li>
+			    </ul>
 	      	</li>
 	      	<li class="col-xs-4 dropdown">
-		      	<a href="#"  class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown">
+		      	<a href="#"  class="dropbtn2" >
 					<img src="iconos/Recurso 2.png" alt="Captura">
 		      		<p>Captura</p>
 		      	</a>
-		      	<ul class="dropdown-menu menu-hover">
-			        <li><a href="#">Mi Cuenta</a></li>
-			        <li class="divider"></li>
-			        <li><a href="#">Cambiar Email</a></li>
-			        <li><a href="#">Cambiar Password</a></li>
-			        <li class="divider"></li>
-			        <li><a href="#">Logout</a></li>
+		      	<ul class="nav dropdown-content2">
+			        <li><a href="#">Apoyos</a></li>
+		    			<li><a href="#">Gastos</a></li>
+		    			<li><a href="#">Programas</a></li>
 			    </ul>
 	      	</li>
-	      	<li class="col-xs-4">
-		      	<a href="#">
+	      	<li class="col-xs-4 dropdown">
+		      	<a href="#" class="dropbtn2">
 					<img src="iconos/Recurso 3.png" alt="Reportes">
 		      		<p>Reportes</p>
 		      	</a>
+		      	<ul class=" nav dropdown-content2">
+			       <li><a href="#">Proveedores/Donatarios</a></li>
+		    			<li><a href="#">Eventos</a></li>
+		    			<li><a href="#">Recurrente Provedor</a></li>
+		    			<li><a href="#">Recurrente Donatario</a></li>
+		    			<li><a href="#">Captura Diaria</a></li>
+		    			<li><a href="#">Apoyo por Donatario</a></li>
+		    			<li><a href="#">Apoyo por Proveedor</a></li>
+		    			<li><a href="#">Apoyo por Evento</a></li>
+		    			<li><a href="#">Evento por Programa</a></li>
+			    </ul>
 	      	</li>
 	      	
 	      </ul>
