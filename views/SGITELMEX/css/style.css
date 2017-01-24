@@ -14,6 +14,34 @@ src: url(../fonts/helveticamm/HelveticaLTStd-Light.otf);
 font-family: fundacion-th;
 src: url(../fonts/helveticamm/HelveticaLTStd-Th.otf);
 }
+@font-face {
+font-family: fundacion-comp;
+src: url(../fonts/helveticamm/HelveticaLTStd-Comp.otf);
+}
+@font-face {
+font-family: fundacion-bc;
+src: url(../fonts/helveticamm/HelveticaLTStd-BoldCond.otf);
+}
+@font-face {
+font-family: fundacion-lc;
+src: url(../fonts/helveticamm/HelveticaLTStd-LightCond.otf);
+}
+@font-face {
+font-family: fundacion-ob;
+src: url(../fonts/helveticamm/HelveticaLTStd-Obl.otf);
+}
+@font-face {
+font-family: fundacion-r;
+src: url(../fonts/helveticamm/HelveticaLTStd-Roman.otf);
+}
+@font-face {
+font-family: fundacion-uc;
+src: url(../fonts/helveticamm/HelveticaLTStd-UltraComp.otf);
+}
+@font-face {
+font-family: fundacion-mdcn;
+src: url(../fonts/helveticamm/HelveticaNeueLTStd-MdCn.otf);
+}
 
 /*=====BARRA LATERAL SCROLL======*/
 ::-webkit-scrollbar {
@@ -300,16 +328,152 @@ body{
 		}
 		div.izq{
 			border-right: 1px solid #0090d6;
-			height: 450px;
+			height: 460px;
 		}
-			div.izq div.registros div.cont{
-				overflow: hidden;
-				height: 250px;
-				overflow-y: scroll; 
+			div.izq div.registros{
+				margin-left: -50px; 
 			}
-		div.registros{
+				/*div.izq div.registros div.cont{
+					overflow: hidden;
+					height: 310px;
+					overflow-y: scroll; 
+				}*/
+				div.izq div.registros div.cont table td{
+					border: none;
+				}
+					div.izq div.registros div.cont table td a{
+						text-decoration:none;
+					}
+				
+			div.der{
+				
+			}
+		div.container div.der div.datos{
+			line-height: 5px;
+		}
+			div.container div.der div.datos div.datos-bancarios h3{
+				margin-top: 20px;
+			}
+			div.container div.der div.datos div.datos-generales h3{
+				margin-top: 90px;
+			}
+			div.container div.der div.datos div.datos-bancarios p.id-datos,div.datos-generales p.id-datos{
+				padding-bottom: 10px;
+			}
+				div.container div.der div.datos div.datos-bancarios p.id{
+					font-family: fundacion-b;
+					font-size:28px ;
+					color: #0090d6;
+					margin-top: 20px;
+					margin-bottom: 15px;
 
+				}
+		div.container div.der div.iconos{
+			float: right;
+			text-align: center;
 		}
-			div.registros div.cont table tr{
-				border-bottom: 1px solid #0090d6;
+			div.container div.der div.iconos section{
+				margin-top: 20px;
 			}
+				div.iconos section a{text-decoration:none;}
+				div.der div.datos div p.id-datos{
+					font-family: fundacion-mdcn;
+					font-size:16px;
+				}
+				div.der div.datos div p.nombre{
+					line-height: 15px;
+				}
+				div.der div.datos div h3{
+					font-family: fundacion-comp;
+					color: #0090d6;
+				}
+	div.der div.datos2 div.datos-bancarios{
+		top:120px;
+	}
+		div.datos2 div.datos-bancarios p {
+			font-family: fundacion-l;
+			padding-top: 5px;
+		}
+		div.datos2 div.datos-bancarios p:nth-child(1) {
+			font-size: 18px;
+			font-family: fundacion-b;
+		}
+		div.datos2 div.datos-bancarios p:nth-child(2) {
+			font-family: fundacion-mdcn;
+			color: #0090d6;
+			margin-top: 20px;
+			margin-bottom: 20px;
+			font-size: 32px;
+		}
+		div.datos2 div.datos-bancarios p:nth-child(3) {
+			font-size: 20px;
+			font-family: fundacion-b;
+		}
+		div.datos2 div.datos-bancarios p:nth-child(4) {
+			font-size: 22px;
+		}
+		div.datos2 div.datos-bancarios p:nth-child(5) {
+			font-size: 20px;
+		}
+/*=====CAPTURA APOYOS======*/
+	div.captura-apoyos{
+		margin-top: 25px;
+	}
+
+	.dropbtn {
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    background: none;
+    font-size: 20px;
+	} 
+		
+		.dropdown {
+		    position: relative;
+		    display: inline-block;
+		    float: right;
+		    font-family: fundacion-l;
+		}
+
+			.dropdown-content {
+			    display: none;
+			    position: absolute;
+			    -webkit-transition: all 2s linear 1s;
+			       -moz-transition: all 2s linear 1s;
+			        -ms-transition: all 2s linear 1s;
+			         -o-transition: all 2s linear 1s;
+			            transition: all 2s linear 1s;
+
+			}
+			.dropdown-content a {
+			    color: black;
+			    padding: 2px 16px;
+			    text-decoration: none;
+			    display: block;
+			    text-align: center;
+			}
+			.dropdown-content a:hover {font-size: 20px;}
+			.dropdown:hover .dropdown-content {
+			    display: block;
+
+			}
+		div.form-der div.col-md-8 div.form-group {
+			text-align: center;
+			font-family: fundacion-l;
+		} 
+			
+			div.form-der div.col-md-8 div.form-group p{
+				font-family: fundacion-l;
+				font-size: 18px;
+				margin:5px 0 40px 0;
+
+			}
+			div.form-der div.col-md-8 div.form-group img.img1{
+				margin-top: 100px;	
+				text-align: center;
+			} div.form-der div.col-md-8 div.form-group a:hover{
+				font-size: 50px;
+			}
+
+	

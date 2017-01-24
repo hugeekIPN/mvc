@@ -10,15 +10,23 @@
 		      		<p>Consulta</p>
 		      	</a>
 	      	</li>
-	      	<li class="col-xs-4">
-		      	<a href="#">
-					<img src="iconos/Recurso 2.png" alt="Consulta">
+	      	<li class="col-xs-4 dropdown">
+		      	<a href="#"  class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown">
+					<img src="iconos/Recurso 2.png" alt="Captura">
 		      		<p>Captura</p>
 		      	</a>
+		      	<ul class="dropdown-menu menu-hover">
+			        <li><a href="#">Mi Cuenta</a></li>
+			        <li class="divider"></li>
+			        <li><a href="#">Cambiar Email</a></li>
+			        <li><a href="#">Cambiar Password</a></li>
+			        <li class="divider"></li>
+			        <li><a href="#">Logout</a></li>
+			    </ul>
 	      	</li>
 	      	<li class="col-xs-4">
 		      	<a href="#">
-					<img src="iconos/Recurso 3.png" alt="Consulta">
+					<img src="iconos/Recurso 3.png" alt="Reportes">
 		      		<p>Reportes</p>
 		      	</a>
 	      	</li>

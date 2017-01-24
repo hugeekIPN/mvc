@@ -9,6 +9,34 @@
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 	<!--  Importa los JavaScript-->
     <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="DataTables/datatables.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+	<script type="text/javascript" src="DataTables/datatables.js"></script>
+	<script>
+	 	$(document).ready(function(){
+		    $('#example').DataTable();
+		});
+	</script>
+	<script>
+		function edicion() {
+	    currentState = estado.isContentEditable;
+	    newState = !currentState;
+	    estado.contentEditable = newState;
+	    oCurrentValue.innerText = newState;
+	    newState==false ? editext.innerText="Editar" :
+	        editext.innerText="Editando"
+	}
+	</script>
+	<script>
+	$(function () {
+   
+	    $('.dropdown-toggle').dropdownHover(options);
+	});
+	});
+		
+	</script>
+	
+	
  	
 </head>
 <body>
