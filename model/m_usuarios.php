@@ -63,7 +63,7 @@ class m_usuarios{
     * @param userId - el id del usuario a eliminar
     * @return true si logra insertarlo
     **/
-    public function deleteUsuario($userId)
+    public function deleteUsuario($userId)  /// update Estado = eliminado
     {    
         $this->db->delete("usuarios", "usuarioId = :id", array( "id" => $userId ));        
         
