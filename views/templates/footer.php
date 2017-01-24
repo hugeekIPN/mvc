@@ -1,5 +1,5 @@
 	<footer>
-		<p>Aqui va el footer</p>		
+		<p>Derechos reservados ©TIN 2017  </p>		
 	</footer>
 
 	<!-- fin de body -->

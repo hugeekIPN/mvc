@@ -18,6 +18,11 @@ class UsuariosController {
 	{
         $login = new loginController();
         if($login->_isLoggedIn()){
+            
+							
+				$usuario = sessionController::get("username");	
+            
+            
             $users = $this->model->getAllUsers();     
             require_once("views/templates/header.php");
             require_once("views/usuarios.php");
