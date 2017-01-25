@@ -51,6 +51,47 @@ class UsuariosController {
         }
 	}
     
+       public function especie()
+	{
+        $login = new loginController();
+        if($login->_isLoggedIn()){
+            
+							
+				$usuario = sessionController::get("username");	
+            
+            
+            $users = $this->model->getAllUsers();
+            
+            require_once("views/templates/header.php");
+            require_once("views/templates/nav.php");
+            require_once("views/especie.php");
+            require_once("views/templates/footer.php");
+        }else{
+            require_once("views/login.php");
+        }
+	}
+    
+       public function cap_apoyos()
+	{
+        $login = new loginController();
+        if($login->_isLoggedIn()){
+            
+							
+				$usuario = sessionController::get("username");	
+            
+            
+            $users = $this->model->getAllUsers();
+            
+            require_once("views/templates/header.php");
+            require_once("views/templates/nav.php");
+            
+            require_once("views/captura-apoyos.php");
+           // require_once("views/templates/footer.php");
+        }else{
+            require_once("views/login.php");
+        }
+	}
+    
     public function nuevoUsuario($postData){
         $result = array();
         $errors = $this->validaDatos($postData);

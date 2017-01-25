@@ -64,7 +64,7 @@
 			      	</a>
 		      	</li>
 		      	<li class="col-xs-4">
-			      	<a href="#" class="salir">
+			      	<a href="index.php?op=logout" class="salir">
 						<img src="assets/iconos/Recurso6.png" alt="Salir">
 			      		<p>Salir</p>
 			      	</a>

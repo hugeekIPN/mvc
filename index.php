@@ -25,7 +25,15 @@ $option=isset($_REQUEST['op']) ?  $_REQUEST['op']: null;
     case 'proveedores':
         $user->proveedores();
     break;
-
+          
+    case 'especie':
+        $user->especie();
+    break;
+    
+    case 'cap_apoyos':
+        $user->cap_apoyos();
+    break;
+          
     default:    
         $login->index();
     break;

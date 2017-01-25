@@ -1,6 +1,3 @@
-
-<?php include_once('nav.php');?>
-
 <div class="container col-md-12 captura-apoyos">
 	<div class="form-izq col-md-4">
 		<form method="post" >
@@ -206,9 +203,8 @@
 					</small>
 		  		</p>	
 		    </a>
-		  </div>
 		</div>
 
 	</div>
 </div>
-</div>
+
