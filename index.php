@@ -21,6 +21,10 @@ $option=isset($_REQUEST['op']) ?  $_REQUEST['op']: null;
     case 'users':
     	$user->index();
     break;
+    
+    case 'proveedores':
+        $user->proveedores();
+    break;
 
     default:    
         $login->index();
