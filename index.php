@@ -33,10 +33,16 @@ $option=isset($_REQUEST['op']) ?  $_REQUEST['op']: null;
     case 'cap_apoyos':
         $user->cap_apoyos();
     break;
+
+    case 'eventos':
+        $user->eventos();
+        break;
           
     default:    
         $login->index();
     break;
+
+
   }
 
 ?>
