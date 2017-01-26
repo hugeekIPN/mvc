@@ -7,10 +7,11 @@ sessionController::startSession();
 
 if(empty($_SERVER['HTTP_X_REQUESTED_WITH']) || strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) != 'xmlhttprequest') 
     die("Valió barriga Sr...!");
-
+/*
 $url = parse_url( isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : '');
 if( !isset( $url['host']) || ($url['host'] != $_SERVER['SERVER_NAME']))
     die("Valió barriga Sr...!");
+*/
 
 $action = $_POST['action'];
 

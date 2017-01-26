@@ -1,10 +1,10 @@
+
 	<footer>
-		<p>Derechos reservados ©TIN 2017  </p>		
+		<p><strong>Copyright Fundación Telmex 2017</strong></p>
+		<p><small>Todos los Derechos Reservados</small></p>
+
 	</footer>
-
-	<!-- fin de body -->
-
-	<script type="text/javascript" src="js/utilerias.js"></script>            
+    <script type="text/javascript" src="js/utilerias.js"></script>            
 	<script type="text/javascript" src="js/usuarios.js"></script>
-	</body>
-</html>
+</body>
+</html>	

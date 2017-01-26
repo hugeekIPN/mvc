@@ -1,6 +1,3 @@
-
-<?php include_once('nav.php');?>
-
 <div class="container col-md-12 captura-apoyos">
 	<div class="form-izq col-md-4">
 		<form method="post" >
@@ -61,6 +58,7 @@
 		  <div class="form-group col-md-12">
 		  	<label for="select1">Descripción del Apoyo:</label>
 		    <textarea class="form-control" rows="2" placeholder="Descripción del Apoyo"></textarea>
+			</select>
 		  </div>
 
 		</form>
@@ -82,6 +80,7 @@
 		  <div class="form-group col-md-12">
 		    <label for="exampleInputEmail1">Observaciones</label>
 		    <textarea class="form-control" rows="2" placeholder="Descripción del Apoyo"></textarea>
+			</select>
 		  </div>
 		  <div class="form-group col-md-12">
 		    <label for="exampleInputEmail1">Referencia:</label>
@@ -204,9 +203,8 @@
 					</small>
 		  		</p>	
 		    </a>
-		  </div>
 		</div>
+
 	</div>
 </div>
 
-<?php include_once('footer.php');?>
