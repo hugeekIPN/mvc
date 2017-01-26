@@ -191,6 +191,11 @@ body{
 			button.salir{
 				background: #CE3433;
 			}
+			button.ayuda:hover,button.salir:hover{
+				-webkit-box-shadow: 1px 2px 7px -1px rgba(50, 50, 50, 0.71);
+							-moz-box-shadow:1px 2px 7px -1px rgba(50, 50, 50, 0.71);
+							box-shadow:1px 2px 7px -1px rgba(50, 50, 50, 0.71); 
+			}
 
 	/*tiras de los menús*/
 		div.container{
@@ -234,16 +239,31 @@ body{
 						text-align: center;
 
 					}
-						ul.consulta li:nth-child(3) {
-							font-size: 13px;
+						ul.consulta,ul.captura,ul.reportes{
+							padding-right: 0px !important;
+							-webkit-box-shadow: 1px 2px 7px -1px rgba(50, 50, 50, 0.71);
+							-moz-box-shadow:1px 2px 7px -1px rgba(50, 50, 50, 0.71);
+							box-shadow:1px 2px 7px -1px rgba(50, 50, 50, 0.71); 
+
 						}
-					ul.consulta li,ul.captura li, ul.reportes li{
+						ul.consulta li,ul.captura li, ul.reportes li{
 						border-bottom: 1px solid #0090D2;
-						padding: 7px 0px;
+						
 					}
 						ul li:last-child{
 							border-bottom: none;
 						}
+					ul.consulta li a,ul.captura li a, ul.reportes li a{
+						width: 100%;
+						margin:0px;
+						padding: 15px 0px;
+					}
+					ul.consulta li a:hover,ul.captura li a:hover, ul.reportes li a:hover{
+						width: 100%;
+						background: #0090D6;
+						color: white;
+
+					}
 					ul.captura{
 						background: #dbdbdb;
 						position: absolute;
@@ -260,20 +280,19 @@ body{
 						width: 166px;
 						text-align: center;
 					}
-						ul.reportes li:nth-child(1),ul.reportes li:nth-child(3),ul.reportes li:nth-child(4),ul.reportes li:nth-child(6),ul.reportes li:nth-child(7),ul.reportes li:nth-child(9){
-							font-size: 12px;
-						}
+						
 /*=====NAV=====*/
 		nav.menu{
 		background: #0090D2;
 		z-index: -2;
 		}
 
-			ul.nav li{
+			ul.navazul li{
 				text-align: center;
 				padding-bottom: -10px;
 				margin-top: 2px;
 			}
+			ul.navazul li a:hover,ul.nav-right:nth-child(1) a:hover{background: #004B9C;}
 			ul.nav li a p{
 				color: white;
 
