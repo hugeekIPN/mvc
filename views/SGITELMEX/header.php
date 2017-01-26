@@ -31,9 +31,7 @@
 	$(function () {
    
 	    $('.dropdown-toggle').dropdownHover(options);
-	});
-	});
-		
+	});		
 	</script>
 	
 	

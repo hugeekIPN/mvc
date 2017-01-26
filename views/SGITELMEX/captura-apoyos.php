@@ -61,7 +61,6 @@
 		  <div class="form-group col-md-12">
 		  	<label for="select1">Descripción del Apoyo:</label>
 		    <textarea class="form-control" rows="2" placeholder="Descripción del Apoyo"></textarea>
-			</select>
 		  </div>
 
 		</form>
@@ -83,7 +82,6 @@
 		  <div class="form-group col-md-12">
 		    <label for="exampleInputEmail1">Observaciones</label>
 		    <textarea class="form-control" rows="2" placeholder="Descripción del Apoyo"></textarea>
-			</select>
 		  </div>
 		  <div class="form-group col-md-12">
 		    <label for="exampleInputEmail1">Referencia:</label>
@@ -208,7 +206,7 @@
 		    </a>
 		  </div>
 		</div>
-
 	</div>
 </div>
-</div>
+
+<?php include_once('footer.php');?>
