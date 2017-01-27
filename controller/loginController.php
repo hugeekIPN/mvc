@@ -45,8 +45,8 @@ include_once("model/m_login.php");
 	       	   
 	        if(count($valida) == 1) 
 	        {	 
-		            sessionController::set("usuarioId", $valida[0]['usuarioId']);	            
-		            sessionController::set("username", $valida[0]['username']);	            
+		            sessionController::set("usuarioId", $valida[0]['id_usuario']);	            
+		            sessionController::set("username", $valida[0]['email']);	            
 		            
 		            $logged=true;	           
 	        }

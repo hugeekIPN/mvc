@@ -34,7 +34,7 @@ class m_usuarios{
     public function nuevoUsuario($data)
     {             
         $this->db->insert('usuarios',  array (
-            'username'         => $data['username'],  
+            'email'         => $data['username'],  
             'password'       => $data['password']
         ));
         
