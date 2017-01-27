@@ -29,11 +29,11 @@
 	}
 	</script>
 	<script>
-	$(function () {
+	// $(function () {
    
-	    $('.dropdown-toggle').dropdownHover(options);
-	});
-	});
+	//     $('.dropdown-toggle').dropdownHover(options);
+	// });
+	// });
 		
 	</script>
 	
