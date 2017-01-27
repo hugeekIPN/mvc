@@ -42,7 +42,7 @@ class UsuariosController {
             
             
             $users = $this->model->getAllUsers();
-             require_once("views/templates/header.php");
+            require_once("views/templates/header.php");
             require_once("views/templates/nav.php");
             require_once("views/proveedores.php");
             require_once("views/templates/footer.php");
@@ -97,7 +97,7 @@ class UsuariosController {
         $errors = $this->validaDatos($postData);
 
         if(count($errors) > 0 ){
-            $message = implode("<br />", $errors);
+            $message = implode("<br>", $errors);
 
             $result = array(
                 "status" => "error",
