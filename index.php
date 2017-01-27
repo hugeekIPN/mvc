@@ -37,6 +37,9 @@ $option=isset($_REQUEST['op']) ?  $_REQUEST['op']: null;
     case 'eventos':
         $user->eventos();
         break;
+    case 'programas':
+        $user->programas();
+        break;
           
     default:    
         $login->index();
