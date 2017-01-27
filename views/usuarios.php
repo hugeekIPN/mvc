@@ -11,10 +11,10 @@
 
 	<?php foreach ($users as $user): ?>
 		<tr>
-			<td><?php echo $user['usuarioId'] ?></td>
-			<td><?php echo $user['username'] ?></td>
-			<td><button onclick="usuarios.editUser(<?php echo $user['usuarioId']; ?>);">Editar</button></td>
-			<td><button onclick="usuarios.deleteUser(<?php echo $user['usuarioId'] ?>);">Eliminar</button></td>
+			<td><?php echo $user['id_usuario'] ?></td>
+			<td><?php echo $user['email'] ?></td>
+			<td><button onclick="usuarios.editUser(<?php echo $user['id_usuario']; ?>);">Editar</button></td>
+			<td><button onclick="usuarios.deleteUser(<?php echo $user['id_usuario'] ?>);">Eliminar</button></td>
 		</tr>
 	<?php endforeach; ?>
 	

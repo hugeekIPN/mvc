@@ -4,7 +4,8 @@
 		<p><small>Todos los Derechos Reservados</small></p>
 
 	</footer>
-    <script type="text/javascript" src="js/utilerias.js"></script>            
 	<script type="text/javascript" src="js/usuarios.js"></script>
+    <script type="text/javascript" src="js/utilerias.js"></script>            
+	
 </body>
 </html>	

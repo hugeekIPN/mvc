@@ -17,7 +17,7 @@ class m_usuarios{
     public function getUsuario($userId) 
     {
         $result = $this->db->select(
-                    "SELECT * FROM usuarios WHERE usuarioId = :id",
+                    "SELECT * FROM usuarios WHERE id_usuario = :id",
                     array ("id" => $userId)
                   );
         if ( count($result) > 0 )
@@ -74,7 +74,7 @@ class m_usuarios{
     * Obtiene todos los usuarios de la base de datos
     **/
     public function getAllUsers(){
-        $query = "SELECT * from usuarios ORDER BY usuarioId DESC";
+        $query = "SELECT * from usuarios ORDER BY id_usuario DESC";
         $result = $this->db->select($query, array());
         if(count($result)>0)
             return $result;
