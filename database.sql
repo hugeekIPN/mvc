@@ -6,11 +6,26 @@ CREATE TABLE IF NOT EXISTS usuarios(
  	password varchar(10) NOT NULL
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
-
 INSERT INTO usuarios(username,password) VALUES('usuario','inseguro');
 
 --
 
+/***############################### 
+ESTE ES EL QUESIRVE PARA USUARIOS
+###################################*/
+
+
+DROP TABLE IF EXISTS usuarios;
+CREATE TABLE IF NOT EXISTS  usuarios (
+  `id_usuario` INT NOT NULL AUTO_INCREMENT,
+  `email` VARCHAR(45) NULL,
+  `password` VARCHAR(45) NOT NULL,
+  `estado` INT DEFAULT 0,
+  PRIMARY KEY (`id_usuario`));
+
+INSERT INTO usuarios(email,password) VALUES("mail","inseguro");
+
+/*########################################*/
 
 
 
