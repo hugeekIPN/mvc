@@ -53,7 +53,7 @@ class Proveedores extends
 	}
 
 
-	public function updateUsuario($data,$idProveedor)
+	public function updateProveedor($data,$idProveedor)
 	{
 		$this->db->update(
 			"proveedores",

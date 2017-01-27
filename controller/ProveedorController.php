@@ -60,6 +60,97 @@ class ProveedorController
 		return $result;
 	}
 
+	public function getProveedor(){
+		return $this->model->getProveedor($this->idProveedor);
+	}
+
+	public function updateProveedor($data){
+		$result = array();
+		$errors = $this->validaDatos($postData);
+
+		if($errors){
+			$message = implode("<br>", $errors);
+
+			$result = array(
+				"status" => "error",
+				"message" => $message );
+		}else{
+			$currentProveedor = $this->model->getProveedor($this->idProveedor);
+
+			$newData = array();
+
+			if($currentProveedor['razon_social']!=$data['razon_social'])
+				$newData['razon_social']=$data['razon_social'];
+
+			if($currentProveedor['referencia'] != $data['referencia'])
+				$newData['referencia'] = $data['referencia'];
+
+			if($currentProveedor['cuenta'] != $data['cuenta'])
+				$newData['cuenta'] = $data['cuenta'];
+
+			if($currentProveedor['banco'] != $data['banco'])
+				$newData['banco'] = $data['banco'];
+
+			if($currentProveedor['sucursal'] != $data['sucursal'])
+				$newData['sucursal'] = $data['sucursal'];
+
+			if($currentProveedor['plaza'] != $data['plaza'])
+				$newData['plaza'] = $data['plaza'];
+
+			if($currentProveedor['rfc'] != $data['rfc'])
+				$newData['rfc'] = $data['rfc'];
+
+			if($currentProveedor['telefono'] != $data['telefono'])
+				$newData['telefono'] = $data['telefono'];
+
+			if($currentProveedor['calle'] != $data['calle'])
+				$newData['calle'] = $data['calle'];
+
+			if($currentProveedor['colonia'] != $data['colonia'])
+				$newData['colonia'] = $data['colonia'];
+
+			if($currentProveedor['cp'] != $data['cp'])
+				$newData['cp'] = $data['cp'];
+
+			if($currentProveedor['delegacion'] != $data['delegacion'])
+				$newData['delegacion'] = $data['delegacion'];
+
+			if($currentProveedor['pais'] != $data['pais'])
+				$newData['pais'] = $data['pais'];
+
+			if($currentProveedor['entidad'] != $data['entidad'])
+				$newData['entidad'] = $data['entidad'];
+
+			if($currentProveedor['tipo'] != $data['tipo'])
+				$newData['tipo'] = $data['tipo'];
+
+			if($currentProveedor['contacto'] != $data['contacto'])
+				$newData['contacto'] = $data['contacto'];
+
+			if($currentProveedor['correo_contacto'] != $data['correo_contacto'])
+				$newData['correo_contacto'] = $data['correo_contacto'];
+
+			if($newData){
+				$this->model->updateProveedor($newData, $this->idProveedor);
+			}
+
+			$result = array(
+				"status" => "success",
+				"message" => "Registro actualizado");
+		}
+
+		return $result;
+	}
+
+
+	/**
+	* FALTA VALIDAR RELACIONES
+	**/
+	public function deleteProveedor(){
+		 $this->model->deleteProveedor($this->idProveedor);        
+        return true;
+	}
+
 
 	private function validaDatos($data){
 		$errors = array();
@@ -110,6 +201,8 @@ class ProveedorController
 		return $errors;
 
 	}
+
+
 
 
 	/**
