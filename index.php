@@ -26,7 +26,7 @@ $option=isset($_REQUEST['op']) ?  $_REQUEST['op']: null;
         $user->proveedores();
     break;
           
-    case 'especie':
+    case 'especies':
         $user->especie();
     break;
     
