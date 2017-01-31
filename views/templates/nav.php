@@ -9,14 +9,12 @@
 		      		<p>Consulta</p>
 		      	</a>
 		      	<ul class="nav dropdown-content2">
-			        <li><a href="">Especies</a></li>
-		    			<li><a href="#">Eventos</a></li>
+			        	<li><a href="">Especies</a></li>
 		    			<li><a href="#">Proveedores/Donatarios</a></li>
-		    			<li><a href="#">Usuarios</a></li>
-		    			<li><a href="#">Cuentas</a></li>
-		    			<li><a href="#">Años</a></li>
+		    			<li><a href="index.php?op=users">Usuarios</a></li>
 		    			<li><a href="#">Programas</a></li>
-			    </ul>
+		    			<li><a href="#">Subprogramas</a></li>
+		    			<li><a href="#">Eventos</a></li>			    </ul>
 	      	</li>
 	      	<li class="col-xs-4 dropdown">
 		      	<a href="#"  class="dropbtn2" >
@@ -26,7 +24,6 @@
 		      	<ul class="nav dropdown-content2">
 			        <li><a href="#">Apoyos</a></li>
 		    			<li><a href="#">Gastos</a></li>
-		    			<li><a href="#">Programas</a></li>
 			    </ul>
 	      	</li>
 	      	<li class="col-xs-4 dropdown">

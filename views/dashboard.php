@@ -10,12 +10,12 @@
 		  		</div>
 		  		<ul class="col-xs-2 nav nav-bar consulta">
 		    			<li><a href="">Especies</a></li>
-		    			<li><a href="#">Eventos</a></li>
 		    			<li><a href="#">Proveedores/Donatarios</a></li>
 		    			<li><a href="index.php?op=users">Usuarios</a></li>
-		    			<li><a href="#">Cuentas</a></li>
-		    			<li><a href="#">Años</a></li>
 		    			<li><a href="#">Programas</a></li>
+		    			<li><a href="#">Subprogramas</a></li>
+		    			<li><a href="#">Eventos</a></li>
+		    			
 		    		</ul>
 	  		</li>
 	  		<li>
@@ -27,9 +27,7 @@
 		  		</div>
 		  		<ul class="col-xs-2 nav nav-bar captura">
 		    			<li><a href="#">Apoyos</a></li>
-		    			<li><a href="#">Gastos</a></li>
-		    			<li><a href="#">Programas</a></li>
-		    			
+		    			<li><a href="#">Gastos</a></li>		    			
 		    		</ul>
 	  		</li>
 	  		<li>

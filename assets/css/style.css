@@ -292,11 +292,12 @@ body{
 				padding-bottom: -10px;
 				margin-top: 2px;
 			}
-			ul.navazul li a:hover,ul.nav-right:nth-child(1) a:hover{background: #004B9C;}
+			ul.navazul li a:hover,ul.nav-right:nth-child(1) a:hover{background: #004B9C;color: white;}
 			ul.nav li a p{
 				color: white;
 
 			}
+
 			div.titulo p{
 				color: white;
 				font-size: 32px;
@@ -401,8 +402,12 @@ body{
 			div.der{
 				
 			}
-		div.container div.der div.datos{
-			line-height: 5px;
+			div.container div.der div.datos div.datos-bancarios p{
+				line-height: 12px;
+			}
+		div.container div.der div.datos div.datos-bancarios p:nth-child(2){
+			line-height: 25px;
+		
 		}
 			div.container div.der div.datos div.datos-bancarios h3{
 				margin-top: 20px;
@@ -434,7 +439,6 @@ body{
 					font-size:16px;
 				}
 				div.der div.datos div p.nombre{
-					line-height: 15px;
 				}
 				div.der div.datos div h3{
 					font-family: fundacion-comp;
@@ -555,3 +559,10 @@ body{
 			font-family: fundacion-b;
 			font-size: 16px;
 		}
+
+/*=====menu despegable nuevo=====*/
+
+	div.iconos section.nuevo a img{
+		width: 35px;
+
+	}
