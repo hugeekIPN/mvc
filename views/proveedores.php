@@ -82,6 +82,7 @@
 				<form action="" id="Proveedores">
 					<div class="form-group has-warning">
 					  <label class="control-label" for="inputIDProveedores">ID:</label>
+					  <?php echo "hola" ?>
 					  <input disabled required type="text" class="form-control" id="inputIDProveedores">
 					</div>
 					<div class="form-group">
