@@ -25,6 +25,7 @@ class UsuariosController {
             
             $users = $this->model->getAllUsers();     
             require_once("views/templates/header.php");
+            require_once("views/templates/nav.php");
             require_once("views/usuarios.php");
             require_once("views/templates/footer.php");
         }else{
