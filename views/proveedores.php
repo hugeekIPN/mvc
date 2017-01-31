@@ -79,49 +79,85 @@
 	<div class="form-group col-md-6 der">
 		<div class="datos col-md-10">
 			<div class="datos-bancarios col-md-6" >
-				<p ><small><strong>ID</strong></small></p>
-				<p class="id-datos id " id="estado"><strong>12345</strong></p>
-				<p><small><strong>Nombre:</strong></small></p>
-				<p class="id-datos nombre"><strong>3M México SA de CV  </strong></p>	
-				<h3>Datos Bancarios</h3>
-				<br>
-				<p><small><strong>RFC:</strong></small></p>
-				<p class="id-datos"><strong>CARS741209G54</strong></p>
-				<p><small><strong>Cuenta:</strong></small></p>
-				<p class="id-datos"><strong>1234567890</strong></p>
-				<p><small><strong>Banco:</strong></small></p>
-				<p class="id-datos"><strong>Inbursa</strong></p>
-				<p><small><strong>Sucursal:</strong></small></p>
-				<p class="id-datos"><strong>123</strong></p>
-				<p><small><strong>Plaza:</strong></small></p>
-				<p class="id-datos"><strong>Carso</strong></p>
-				<p><small><strong>Referencia:</strong></small></p>
-				<p class="id-datos"><strong>Museo Soumaya</strong></p>
+				<form action="" id="Proveedores">
+					<div class="form-group has-warning">
+					  <label class="control-label" for="inputIDProveedores">ID:</label>
+					  <input disabled required type="text" class="form-control" id="inputIDProveedores">
+					</div>
+					<div class="form-group">
+					  <label class="control-label" for="inputNombreProveedores">Nombre:</label>
+					  <input required type="text" class="form-control" id="inputNombreProveedores">
+					</div>
+					<h3>Datos Bancarios</h3>
+					<div class="form-group">
+					  <label class="control-label" for="inputRFCProveedores">RFC:</label>
+					  <input required type="text" class="form-control" id="inputRFCProveedores">
+					</div>
+					<div class="form-group has-warning">
+					  <label class="control-label" for="inputCuentaProveedores">Cuenta:</label>
+					  <input required type="text" class="form-control" id="inputCuentaProveedores">
+					</div>
+					<div class="form-group has-warning">
+					  <label class="control-label" for="inputBancoProveedores">Banco:</label>
+					  <input required type="text" class="form-control" id="inputBancoProveedores">
+					</div>
+					<div class="form-group has-warning">
+					  <label class="control-label" for="inputSucursalProveedores">Sucursal:</label>
+					  <input required type="text" class="form-control" id="inputSucursalProveedores">
+					</div>
+					
+					<div class="form-group has-warning">
+					  <label class="control-label" for="inputReferenciaProveedores">Referencia:</label>
+					  <input  type="text" class="form-control" id="inputReferenciaProveedores">
+					</div>
 
+				</form>
 
 			</div>
 			<div class="datos-generales col-md-6" >
 					
 				<h3>Datos Generales</h3>
-				<br>
-				<p><small><strong>Calle y Número:</strong></small></p>
-				<p class="id-datos"><strong>123</strong></p>
-				<p><small><strong>Delegación/Municipio:</strong></small></p>
-				<p class="id-datos"><strong>erf sd</strong></p>
-				<p><small><strong>País:</strong></small></p>
-				<p class="id-datos"><strong>México</strong></p>
-				<p><small><strong>Estado:</strong></small></p>
-				<p class="id-datos"><strong>México</strong></p>
-				<p><small><strong>Código Postal:</strong></small></p>
-				<p class="id-datos"><strong>12345</strong></p>
-				<p><small><strong>Contacto:</strong></small></p>
-				<p class="id-datos"><strong>Contacto@contacto.com</strong></p>
-				<p><small><strong>Número:</strong></small></p>
-				<p class="id-datos"><strong>556654323</strong></p>
+				<form action="" id="Proveedores2">
+					<div class="form-group has-warning">
+					  <label class="control-label" for="inputCalleYNumeroProveedores">Calle y Número:</label>
+					  <input required type="text" class="form-control" id="inputIDProveedores">
+					</div>
+					<div class="form-group">
+					  <label class="control-label" for="inputDelegacionYMunicipioProveedores">Delegacion Y Municipio:</label>
+					  <input required type="text" class="form-control" id="inputDelegacionYMunicipioProveedores">
+					</div>
+					<div class="form-group">
+					  <label class="control-label" for="inputPaisProveedores">País:</label>
+					  <input required type="text" class="form-control" id="inputPaisProveedores">
+					</div>
+					<div class="form-group has-warning">
+					  <label class="control-label" for="inputEstadoProveedores">Estado:</label>
+					  <input required type="text" class="form-control" id="inputEstadoProveedores">
+					</div>
+					<div class="form-group has-warning">
+					  <label class="control-label" for="inputCodigoPostalProveedores">Código Postal:</label>
+					  <input required type="text" class="form-control" id="inputCodigoPostalProveedores">
+					</div>
+					<div class="form-group has-warning">
+					  <label class="control-label" for="inputContactoProveedores">Contacto:</label>
+					  <input required type="text" class="form-control" id="inputContactoProveedores" placeholder="usuario@fundacion.com">
+					</div>
+					<div class="form-group has-warning">
+					  <label class="control-label" for="inputNumeroProveedores">Número:</label>
+					  <input  type="text" class="form-control" id="inputNumeroProveedores">
+					</div>
+
+				</form>
 
 			</div>
 		</div>
 		<div class="iconos col-md-2">
+			<section class="nuevo">
+				<a href="#"  >
+					<img src="assets/iconos/Recurso 11.png" alt="Editar">
+					<small >Nuevo</small>
+				</a>
+			</section>
 			<section >
 				<a href="#" id="editext" onclick="edicion()">
 					<img src="assets/iconos/Recurso 7.png" alt="Editar">

@@ -77,16 +77,34 @@
 	<div class="form-group col-md-6 der">
 		<div class="datos datos2 col-md-10">
 			<div class="datos-bancarios col-md-10" >
-				<p ><small><strong>No. De Especie:</strong></small></p>
-				<p  id="estado"><strong>12345</strong></p>
-				<p><small><strong>Descripción:</strong></small></p>
-				<p><strong>052  </strong></p>	
-				<p><small>Botella de agua 1 galón</small></p>
+			<form action="" id="Especie">
+					<div class="form-group has-warning">
+					  <label class="control-label" for="inputIDEspecie">ID:</label>
+					  <input required type="text" class="form-control" id="inputIDEspecie">
+					</div>
+					<div class="form-group">
+					  <label class="control-label" for="inputNombreEspecie">Nombre:</label>
+					  <input required type="text" class="form-control" id="inputNombreEspecie">
+					</div>
+					<div class="form-group">
+					  <label class="control-label" for="inputDescripcionEspecie">Descripción:</label>
+					  <textarea  class="form-control" id="inputDescripcionEspecie" cols="2" ></textarea>
+					</div>
+					
+
+				</form>
+				
 
 			</div>
 			
 		</div>
 		<div class="iconos col-md-2">
+			<section class="nuevo">
+				<a href="#"  >
+					<img src="assets/iconos/Recurso 11.png" alt="Editar">
+					<small >Nuevo</small>
+				</a>
+			</section>
 			<section >
 				<a href="#" id="editext" onclick="edicion()">
 					<img src="assets/iconos/Recurso 7.png" alt="Editar">

@@ -118,17 +118,30 @@
 	<div class="form-group col-md-6 der ">
 		<div class="datos datos2 col-md-10 eventos">
 			<div class="datos-bancarios col-md-10 evento" >
-				<p class="strong"><small><strong>ID de Evento:</strong></small></p>
-				<p  class="estado"><strong>1234534433  </strong></p>
-				<p class="strong"><small><strong>Nombre del Evento:</strong></small></p>
-				<p  class="estado"><strong>Bicicletas para todos</strong></p>
-				<p class="strong"><strong>Descripción:</strong></p>
-				<p ><strong>Bicicletas para todos es un evento del programa blabla  </strong></p>	
-				<p class="strong"><strong>Programa: </strong></p>
-				<p><small>Ayuda a un ciudadado </small></p>
-				<p class="strong"><strong>Subprograma: </strong></p>
-				<p><small>todos reciben ayuda </small></p>	
+				
+				<form action="" id="eventos">
+					<div class="form-group has-warning">
+					  <label class="control-label" for="inputIDEventos">ID:</label>
+					  <input required type="text" class="form-control" id="inputIDEventos">
+					</div>
+					<div class="form-group">
+					  <label class="control-label" for="inputNombreEventos">Nombre:</label>
+					  <input required type="text" class="form-control" id="inputNombreEventos">
+					</div>
+					<div class="form-group">
+					  <label class="control-label" for="inputDescripcionEventos">Descripción:</label>
+					  <textarea  class="form-control" id="inputDescripcionEventos" cols="2" ></textarea>
+					</div>
+					<div class="form-group">
+					  <label class="control-label" for="inputProgramaEventos">Programa:</label>
+					  <input required type="text" class="form-control" id="inputProgramaEventos">
+					</div>
+					<div class="form-group has-warning">
+					  <label class="control-label" for="inputProgramaEventos">Subprograma:</label>
+					  <input required type="text" class="form-control" id="inputProgramaEventos">
+					</div>
 
+				</form>
 			</div>
 			
 		</div>

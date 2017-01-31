@@ -38,15 +38,24 @@
 		
 	</div>
 	<div class="form-group col-md-6 der">
-		<div class="datos datos2 col-md-10">
-			<div class="datos-bancarios col-md-10" >
-				<p ><small><strong>No. de Programa:</strong></small></p>
-				<p  id="estado"><strong>12345</strong></p>
-				<p class="strong"><small>Nombre del Programa:</small></p>
-				<p>Lorem ipsum dolor sit amet.</p>
-				<p class="strong"><small><strong>Descripción:</strong></small></p>
-				<p class="des">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit voluptas beatae aut, minima commodi fugiat non, blanditiis et ad consectetur ducimus, quisquam aliquid excepturi, nam distinctio nisi voluptatibus rem qui.</p>	
+		<div class="datos datos2 col-md-10 eventos">
+			<div class="datos-bancarios col-md-10 evento" >
 				
+				<form action="" id="programas">
+					<div class="form-group has-warning">
+					  <label class="control-label" for="inputIDProgramas">ID:</label>
+					  <input required type="text" class="form-control" id="inputIDProgramas">
+					</div>
+					<div class="form-group">
+					  <label class="control-label" for="inputNombreProgramas">Nombre:</label>
+					  <input required type="text" class="form-control" id="inputNombreProgramas">
+					</div>
+					<div class="form-group">
+					  <label class="control-label" for="inputDescripcionProgramas">Descripción:</label>
+					  <textarea  class="form-control" id="inputDescripcionProgramas" cols="2" ></textarea>
+					</div>
+
+				</form>
 
 			</div>
 			

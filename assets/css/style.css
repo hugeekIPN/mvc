@@ -413,7 +413,7 @@ body{
 				margin-top: 20px;
 			}
 			div.container div.der div.datos div.datos-generales h3{
-				margin-top: 90px;
+				margin-top: 10px;
 			}
 			div.container div.der div.datos div.datos-bancarios p.id-datos,div.datos-generales p.id-datos{
 				padding-bottom: 10px;
@@ -450,7 +450,7 @@ body{
 	div. der div.eventos div.datos-bancarios{
 		top: -50px !important;
 	}
-		div.datos2 div.datos-bancarios p {
+		/*div.datos2 div.datos-bancarios p {
 			font-family: fundacion-l;
 			padding-top: 5px;
 		}
@@ -484,7 +484,7 @@ body{
 		div.der div.datos2 div.datos-bancarios p.des{
 			line-height: 19px !important;
 			text-align: justify;
-		}
+		}*/
 		div.der div.eventos div.evento{
 			top:0 !important;
 		}
@@ -582,4 +582,7 @@ body{
 	div.iconos section.nuevo a img{
 		width: 35px;
 
+	}
+	div.der div.datos div form div.form-group label{
+		font-family: fundacion-l;
 	}
