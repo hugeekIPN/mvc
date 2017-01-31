@@ -8,35 +8,15 @@
 	<link rel="stylesheet" type="text/css" href="assets/css/bootstrap.css">
 	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
 	<!--  Importa los JavaScript-->
-    <script type="text/javascript" src="assets/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="assets/DataTables/datatables.css">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>	
+    <script type="text/javascript" src="assets/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="assets/DataTables/datatables.js"></script>
 	<script>
 	 	$(document).ready(function(){
 		    $('#example').DataTable();
 		});
-	</script>
-	<script>
-		function edicion() {
-	    currentState = estado.isContentEditable;
-	    newState = !currentState;
-	    estado.contentEditable = newState;
-	    oCurrentValue.innerText = newState;
-	    newState==false ? editext.innerText="Editar" :
-	        editext.innerText="Editando"
-	}
-	</script>
-	<script>
-	$(function () {
-   
-	    $('.dropdown-toggle').dropdownHover(options);
-	});
-	});
-		
-	</script>
-	
-	
+	</script>	
  	
 </head>
 <body>
