@@ -403,10 +403,10 @@ body{
 				
 			}
 			div.container div.der div.datos div.datos-bancarios p{
-				line-height: 12px;
+				line-height: 14px;
 			}
 		div.container div.der div.datos div.datos-bancarios p:nth-child(2){
-			line-height: 25px;
+			line-height: 28px;
 		
 		}
 			div.container div.der div.datos div.datos-bancarios h3{
@@ -447,6 +447,9 @@ body{
 	div.der div.datos2 div.datos-bancarios{
 		top:120px;
 	}
+	div. der div.eventos div.datos-bancarios{
+		top: -50px !important;
+	}
 		div.datos2 div.datos-bancarios p {
 			font-family: fundacion-l;
 			padding-top: 5px;
@@ -458,8 +461,8 @@ body{
 		div.datos2 div.datos-bancarios p:nth-child(2) {
 			font-family: fundacion-mdcn;
 			color: #0090d6;
-			margin-top: 20px;
-			margin-bottom: 20px;
+			margin-top: 10px;
+			margin-bottom: 10px;
 			font-size: 32px;
 		}
 		div.datos2 div.datos-bancarios p:nth-child(3) {
@@ -472,9 +475,23 @@ body{
 		div.datos2 div.datos-bancarios p:nth-child(5) {
 			font-size: 20px;
 		}
-/*=====CAPTURA APOYOS======*/
+		
+		div.der div.eventos div p.strong{
+			font-family: fundacion-b;
+			font-size: 16px;
+			margin-top: 8px;
+		}
+		div.der div.datos2 div.datos-bancarios p.des{
+			line-height: 19px !important;
+			text-align: justify;
+		}
+		div.der div.eventos div.evento{
+			top:0 !important;
+		}
+		/*=====CAPTURA APOYOS======*/
 	div.captura-apoyos{
 		margin-top: 25px;
+
 	}
 
 	.dropbtn {

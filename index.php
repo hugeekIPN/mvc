@@ -40,6 +40,9 @@ $option=isset($_REQUEST['op']) ?  $_REQUEST['op']: null;
     case 'programas':
         $user->programas();
         break;
+    case 'subprogramas':
+        $user->subprogramas();
+        break;
           
     default:    
         $login->index();

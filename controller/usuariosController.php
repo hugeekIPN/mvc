@@ -197,6 +197,25 @@ class UsuariosController {
         }
 
     }
+    public function subprogramas(){
+        $login = new loginController();
+        if($login->_isLoggedIn()){
+            
+                            
+        $usuario = sessionController::get("username");  
+            
+            
+            $users = $this->model->getAllUsers();
+
+            require_once("views/templates/header.php");
+            require_once("views/templates/nav.php");
+            require_once("views/subprogramas.php");
+            require_once("views/templates/footer.php");
+        }else{
+            require_once("views/login.php");
+        }
+
+    }
 
 
     public function deleteUsuario() 

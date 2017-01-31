@@ -14,60 +14,23 @@
 					   <thead>
 					      <tr>
 					      	 <th>ID</th>
-					         <th>Especie</th>
+					         <th>Nombre del Programa</th>
 					      </tr>
 					   </thead>
 					   <tbody>
 					       <tr>
-					      	 <td><a href="#">056</a></td>
-					         <td><a href="#" >Agua botella 1 galón</a></td>
+					      	 <td><a href="#">231</a></td>
+					         <td><a href="#" >Cuidemos el medio ambiente</a></td>
 					      </tr>
 					       <tr>
-					      	 <td><a href="#">056</a></td>
-					         <td><a href="#" >Agua botella 1 galón</a></td>
+					      	 <td><a href="#">29</a></td>
+					         <td><a href="#" >Ayuda a un amigo</a></td>
 					      </tr>
 					       <tr>
-					      	 <td><a href="#">056</a></td>
-					         <td><a href="#" >Agua botella 1 galón</a></td>
+					      	 <td><a href="#">03</a></td>
+					         <td><a href="#">Otro programa</a></td>
 					      </tr>
-					       <tr>
-					      	 <td><a href="#">056</a></td>
-					         <td><a href="#" >Agua botella 1 galón</a></td>
-					      </tr>
-					       <tr>
-					      	 <td><a href="#">056</a></td>
-					         <td><a href="#" >Agua botella 1 galón</a></td>
-					      </tr>
-					       <tr>
-					      	 <td><a href="#">056</a></td>
-					         <td><a href="#" >Agua botella 1 galón</a></td>
-					      </tr>
-					       <tr>
-					      	 <td><a href="#">056</a></td>
-					         <td><a href="#" >Agua botella 1 galón</a></td>
-					      </tr>
-					       <tr>
-					      	 <td><a href="#">056</a></td>
-					         <td><a href="#" >Agua botella 1 galón</a></td>
-					      </tr>
-					       <tr>
-					      	 <td><a href="#">056</a></td>
-					         <td><a href="#" >Agua botella 1 galón</a></td>
-					      </tr>
-					       <tr>
-					      	 <td><a href="#">056</a></td>
-					         <td><a href="#" >Agua botella 1 galón</a></td>
-					      </tr>
-					       <tr>
-					      	 <td><a href="#">056</a></td>
-					         <td><a href="#" >Agua botella 1 galón</a></td>
-					      </tr>
-					       <tr>
-					      	 <td><a href="#">056</a></td>
-					         <td><a href="#" >Agua botella 1 galón</a></td>
-					      </tr>
-
-					      
+					      					      
 					   </tbody>
 					</table>
 	        	</div>
@@ -77,16 +40,24 @@
 	<div class="form-group col-md-6 der">
 		<div class="datos datos2 col-md-10">
 			<div class="datos-bancarios col-md-10" >
-				<p ><small><strong>No. De Especie:</strong></small></p>
+				<p ><small><strong>No. de Programa:</strong></small></p>
 				<p  id="estado"><strong>12345</strong></p>
-				<p><small><strong>Descripción:</strong></small></p>
-				<p><strong>052  </strong></p>	
-				<p><small>Botella de agua 1 galón</small></p>
+				<p class="strong"><small>Nombre del Programa:</small></p>
+				<p>Lorem ipsum dolor sit amet.</p>
+				<p class="strong"><small><strong>Descripción:</strong></small></p>
+				<p class="des">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit voluptas beatae aut, minima commodi fugiat non, blanditiis et ad consectetur ducimus, quisquam aliquid excepturi, nam distinctio nisi voluptatibus rem qui.</p>	
+				
 
 			</div>
 			
 		</div>
 		<div class="iconos col-md-2">
+			<section class="nuevo">
+				<a href="#"  >
+					<img src="assets/iconos/Recurso 11.png" alt="Editar">
+					<small >Nuevo</small>
+				</a>
+			</section>
 			<section >
 				<a href="#" id="editext" onclick="edicion()">
 					<img src="assets/iconos/Recurso 7.png" alt="Editar">
