@@ -77,67 +77,67 @@ class ApoyoGastoController
 
 			$newData = array();
 
-			if($currentProveedor['apoyo-gasto']!=$data['apoyo_gasto'])
+			if($currentApoyo['apoyo-gasto']!=$data['apoyo_gasto'])
 				$newData['apoyo_gasto']=$data['apoyo_gasto'];
 
-			if($currentProveedor['especies_id_especie'] != $data['especies_id_especie'])
+			if($currentApoyo['especies_id_especie'] != $data['especies_id_especie'])
 				$newData['especies_id_especie'] = $data['especies_id_especie'];
 
-			if($currentProveedor['anio'] != $data['anio'])
+			if($currentApoyo['anio'] != $data['anio'])
 				$newData['anio'] = $data['anio'];
 
-			if($currentProveedor['folio'] != $data['folio'])
+			if($currentApoyo['folio'] != $data['folio'])
 				$newData['folio'] = $data['folio'];
 
-			if($currentProveedor['tipo'] != $data['tipo'])
+			if($currentApoyo['tipo'] != $data['tipo'])
 				$newData['tipo'] = $data['tipo'];
 
-			if($currentProveedor['cantidad'] != $data['cantidad'])
+			if($currentApoyo['cantidad'] != $data['cantidad'])
 				$newData['cantidad'] = $data['cantidad'];
 
-			if($currentProveedor['unidad'] != $data['unidad'])
+			if($currentApoyo['unidad'] != $data['unidad'])
 				$newData['unidad'] = $data['unidad'];
 
-			if($currentProveedor['pais'] != $data['pais'])
+			if($currentApoyo['pais'] != $data['pais'])
 				$newData['pais'] = $data['pais'];
 
-			if($currentProveedor['entidad'] != $data['entidad'])
+			if($currentApoyo['entidad'] != $data['entidad'])
 				$newData['entidad'] = $data['entidad'];
 
-			if($currentProveedor['descripcion'] != $data['descripcion'])
+			if($currentApoyo['descripcion'] != $data['descripcion'])
 				$newData['descripcion'] = $data['descripcion'];
 
-			if($currentProveedor['moneda'] != $data['moneda'])
+			if($currentApoyo['moneda'] != $data['moneda'])
 				$newData['moneda'] = $data['moneda'];
 
-			if($currentProveedor['tipo_cambio'] != $data['tipo_cambio'])
+			if($currentApoyo['tipo_cambio'] != $data['tipo_cambio'])
 				$newData['tipo_cambio'] = $data['tipo_cambio'];
 
-			if($currentProveedor['fcambio'] != $data['fcambio'])
+			if($currentApoyo['fcambio'] != $data['fcambio'])
 				$newData['fcambio'] = $data['fcambio'];
 
-			if($currentProveedor['freferencia'] != $data['freferencia'])
+			if($currentApoyo['freferencia'] != $data['freferencia'])
 				$newData['freferencia'] = $data['freferencia'];
 
-			if($currentProveedor['fcaptura'] != $data['fcaptura'])
+			if($currentApoyo['fcaptura'] != $data['fcaptura'])
 				$newData['fcaptura'] = $data['fcaptura'];
 
-			if($currentProveedor['observaciones'] != $data['observaciones'])
+			if($currentApoyo['observaciones'] != $data['observaciones'])
 				$newData['obsevaciones'] = $data['observaciones'];
 
-			if($currentProveedor['frecuencia'] != $data['frecuencia'])
+			if($currentApoyo['frecuencia'] != $data['frecuencia'])
 				$newData['frecuencia'] = $data['frecuencia'];
 
-                if($currentProveedor['eventos_id_evento'] != $data['eventos_id_eventos'])
+                if($currentApoyo['eventos_id_evento'] != $data['eventos_id_eventos'])
 				$newData['eventos_id_eventos'] = $data['eventos_id_evento'];
 
-                if($currentProveedor['estado'] != $data['estado'])
+                if($currentApoyo['estado'] != $data['estado'])
 				$newData['estado'] = $data['estado'];
 
-                if($currentProveedor['fecha_creacion'] != $data['fecha_creacion'])
+                if($currentApoyo['fecha_creacion'] != $data['fecha_creacion'])
 				$newData['fecha_creacion'] = $data['fecha_creacion'];
 
-                if($currentProveedor['ultima_modificacion'] != $data['ultima_modificacion'])
+                if($currentApoyo['ultima_modificacion'] != $data['ultima_modificacion'])
 				$newData['ultima_modificacion'] = $data['ultim_modificacion'];
 
 			if($newData){
