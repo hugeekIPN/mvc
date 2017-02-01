@@ -17,6 +17,7 @@
 		    $('#example').DataTable();
 		});
 	</script>	
+	
  	
 </head>
 <body>

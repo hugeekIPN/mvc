@@ -124,6 +124,10 @@
 					  <label class="control-label" for="inputIDEventos">ID:</label>
 					  <input required type="text" class="form-control" id="inputIDEventos">
 					</div>
+					<div class="form-group has-warning">
+					  <label class="control-label" for="inputIDSubEventos">ID Subprograma:</label>
+					  <input required type="text" class="form-control" id="inputIDSubEventos">
+					</div>
 					<div class="form-group">
 					  <label class="control-label" for="inputNombreEventos">Nombre:</label>
 					  <input required type="text" class="form-control" id="inputNombreEventos">
@@ -132,14 +136,41 @@
 					  <label class="control-label" for="inputDescripcionEventos">Descripción:</label>
 					  <textarea  class="form-control" id="inputDescripcionEventos" cols="2" ></textarea>
 					</div>
-					<div class="form-group">
-					  <label class="control-label" for="inputProgramaEventos">Programa:</label>
-					  <input required type="text" class="form-control" id="inputProgramaEventos">
+					<div class="col-md-12">
+						<div class="col-md-6">
+							<div class="form-group">
+							  <label class="control-label" for="inputPaisEventos">País:</label>
+							  <input  class="form-control" id="inputPaisEventos"  ></input>
+							</div>
+							<div class="form-group">
+							  <label class="control-label" for="inputCiudadEventos">Ciudad:</label>
+							  <input type="text"  class="form-control" id="inputCiudadEventos" ></input>
+							</div>
+							<div class="form-group">
+							  <label class="control-label" for="inputEntidadEventos">Entidad:</label>
+							  <select class="form-control" id="inputEntidadEventos" >
+							  	<option value="uno">México</option>
+							  </select> 
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="form-group">
+							  <label class="control-label" for="inputEstadoEventos">Estado:</label>
+							  <select class="form-control" id="inputEntidadEventos" >
+									  	<option value="uno">México</option>
+									  	<option value="uno">Mérida</option>
+									  	<option value="uno">Guanajuato</option>
+									  	<option value="uno">Michoacán</option>
+									  </select> 
+							</div>
+							<div class="form-group">
+							  <label class="control-label" for="inputFechaCreacionEventos">Fecha de Creación:</label>
+							  <input type="date-time" class="form-control" id="inputFechaCreacionEventos" " placeholder="dd/mm/aaaa" ></input>
+							</div>
+						</div>
 					</div>
-					<div class="form-group has-warning">
-					  <label class="control-label" for="inputProgramaEventos">Subprograma:</label>
-					  <input required type="text" class="form-control" id="inputProgramaEventos">
-					</div>
+					
+					
 
 				</form>
 			</div>
