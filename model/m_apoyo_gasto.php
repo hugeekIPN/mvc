@@ -33,8 +33,8 @@ class m_apoyo_gasto{
     **/
     public function nuevoApoyoGasto($data)
     {             
-        $this->db->insert('usuarios',  array (
-            'apoyo_gasto'         => $data['apoyo_gasto'],  
+        $this->db->insert('apoyos_gastos',  array (
+            'apoyo_gasto'         => $data['apoyo-gasto'],  
             'especies_id_especie'         => $data['especies_id_especie'], 
             'anio'         => $data['anio'], 
             'folio'         => $data['folio'], 
@@ -42,7 +42,7 @@ class m_apoyo_gasto{
             'cantidad'         => $data['cantidad'], 
             'unidad'         => $data['unidad'], 
             'pais'         => $data['pais'], 
-            'estado'         => $data['estado'], 
+            'entidad'         => $data['entidad'], 
             'descripcion'         => $data['descripcion'], 
             'moneda'         => $data['moneda'], 
             'tipo_cambio'         => $data['tipo_cambio'], 
@@ -52,7 +52,9 @@ class m_apoyo_gasto{
             'observaciones'         => $data['observaciones'], 
             'frecuencia'         => $data['frecuencia'], 
             'eventos'         => $data['eventos'], 
-            'estado'         => $data['estado']
+            'estado'         => $data['estado'],
+            'fecha_creacion'         => $data['fecha_creacion'],
+            'ultima_modificacion'         => $data['ultima_modificacion']
         ));
         
        return true;       
