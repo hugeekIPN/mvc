@@ -35,9 +35,7 @@ class m_especie{
     {             
         $this->db->insert('especies',  array (
             'descripcion'    => $data['descripcion'],
-            'estado'         => $data['estado'],
-            'fecha_creacion'         => $data['fecha_creacion'],
-            'ultima_modificacion'         => $data['ultima_modificacion']        
+            'estado'         => $data['estado']      
         ));
         
        return true;       
