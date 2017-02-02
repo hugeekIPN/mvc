@@ -48,7 +48,10 @@ class Proveedores extends
 				'entidad'			=> $data['entidad'],
 				'tipo'				=> $data['tipo'],
 				'contacto'			=> $data['contacto'],
-				'correo_contacto'	=> $data['correo_contacto']
+				'correo_contacto'	=> $data['correo_contacto'],
+				'estado'         => $data['estado'], 
+				'fecha_creacion'         => $data['fecha_creacion'],
+            	'ultima_modificacion'         => $data['ultima_modificacion']  
 				));
 	}
 
