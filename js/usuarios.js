@@ -3,6 +3,7 @@ var usuarios = {};
 usuarios.elementos = {
 	username : $("#username"),
     userId : $("#usuarioId"),
+    email : $("#email"),
 	password : $("#password"),
 	password_conf : $("#password-confirm"),
 	button : $("#btn-submit")
@@ -47,6 +48,7 @@ $("#form-add-usuario").submit(function(event){
 			data: {
 				usuarioId : usuarioId,
 				username : data.username.val(),
+                email: data.email.val(),
 				password : data.password.val(),
 				password_confirm : data.password_conf.val(),
 				action : action

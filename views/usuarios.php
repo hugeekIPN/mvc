@@ -44,6 +44,8 @@
                 <input type="hidden" name="usuarioId" id="usuarioId">
                 <label for="username">Nombre de usuario</label>
                 <input type="text" class="form-control" name="username" id="username" value="">
+                <label for="username">Email</label>
+                <input type="text" class="form-control" name="email" id="email" value="">
                 <label for="password">Password</label>
                 <input type="password" class="form-control" name="password" id="password" value="">
                 <label for="password-confirm">Confirmar password</label>
@@ -86,25 +88,6 @@
                                                                        
                                                                        
 <!-- estilo con datatable de bootstrap -->
-
-<table>
-	<tr>
-		<th>Id</th>
-		<th>Nombre de usuario</th>
-		<th>Acci&oacute;n</th>
-		<th>Acci&oacute;n</th>
-	</tr>
-
-	<?php foreach ($users as $user): ?>
-		<tr>
-			<td><?php echo $user['id_usuario'] ?></td>
-			<td><?php echo $user['email'] ?></td>
-			<td><button onclick="usuarios.editUser(<?php echo $user['id_usuario']; ?>);">Editar</button></td>
-			<td><button onclick="usuarios.deleteUser(<?php echo $user['id_usuario'] ?>);">Eliminar</button></td>
-		</tr>
-	<?php endforeach; ?>
-	
-</table>
 
 
 
