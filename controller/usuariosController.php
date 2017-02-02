@@ -137,8 +137,8 @@ class UsuariosController {
             $currentUser = $this->model->getUsuario($this->userId);
             $newData = array();
 
-            if($currentUser['username'] != $data['username'])
-                $newData['username'] = $data['username'];
+            if($currentUser['nombre'] != $data['username'])
+                $newData['nombre'] = $data['username'];
 
             if($data['password'])
                 if($currentUser['password'] !=
@@ -237,6 +237,7 @@ class UsuariosController {
         $errors = array();
         $username = $data['username'];
         $password = $data['password'];
+        $email = $data['email'];
         $password_confirm = $data['password_confirm'];
         if($this->esVacio($username))
             $errors[] = "Nombre de usuario requerido";
@@ -246,6 +247,9 @@ class UsuariosController {
         if($password != $password_confirm)
             $errors[] = "Los password deben ser iguales";
 
+        if ($email && !filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            $errors[] = "Formato de correo no válido";
+        }
         return $errors;
 
     }
