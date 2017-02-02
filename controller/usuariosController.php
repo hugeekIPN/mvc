@@ -241,15 +241,20 @@ class UsuariosController {
         $password_confirm = $data['password_confirm'];
         if($this->esVacio($username))
             $errors[] = "Nombre de usuario requerido";
+
+        if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            if($this->model->getUsuarioEmail($email))
+                $errors[] = "El correo ya ha sido registrado";            
+        }else{
+            $errors[] = "Formato de correo no válido";
+        }
+
         if($this->esVacio($password))
             $errors[] = "Password es requerido";
 
         if($password != $password_confirm)
             $errors[] = "Los password deben ser iguales";
 
-        if ($email && !filter_var($email, FILTER_VALIDATE_EMAIL)) {
-            $errors[] = "Formato de correo no válido";
-        }
         return $errors;
 
     }
@@ -257,6 +262,7 @@ class UsuariosController {
     private function validaDatosUpdate($data){
         $id = $data['usuarioId'];
         $username = $data['username'];
+        $email = $data['email'];
         $password = $data['password'];
         $password_confirm = $data['password_confirm'];
         $errors = array();
@@ -266,6 +272,18 @@ class UsuariosController {
             $errors[] = "No existe el usuario";
             return $errors;
         }
+
+        //validamos que no exista el email en la base de datos
+        $anotherUser = $this->model->getUsuarioEmail($email);
+        if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            if($anotherUser && $anotherUser['id_usuario'] != $this->userId){
+                $errors[] = "El correo ya ha sido registrado";
+            }
+        
+        }else{
+            $errors[] = "Formato de correo no válido";
+        }
+
 
         if($this->esVacio($username))
             $errors[] = "Nombre de usuario requerido";

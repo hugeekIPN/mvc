@@ -27,6 +27,23 @@ class m_usuarios{
     }
 
     /**
+    * Obtiene un usuario por correo electrónico.
+    * 
+    **/
+    public function getUsuarioEmail($email){
+        $result = $this->db->select(
+            "SELECT * FROM usuarios WHERE email = :email",
+            array("email"=> $email));
+
+        if($result){
+            return $result[0];
+        }else{
+            return null;
+        }
+
+    }
+
+    /**
     * Guarda un nuevo usuario
     * @param Arreglo con los datos del usuario
     * @return true si logra guardar los datos
