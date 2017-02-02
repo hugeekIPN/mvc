@@ -11,7 +11,8 @@ usuarios.elementos = {
     email : $("#email"),
 	password : $("#password"),
 	password_conf : $("#password-confirm"),
-	button : $("#btn-add-user")
+	button : $("#btn-add-user"),
+
 };
 
 
@@ -36,7 +37,8 @@ usuarios.addUser = function (editMode) {
        
         if ( editMode ) {
             action = "updateUsuario";
-            usaurioId = $("#usuarioId").val();
+            usuarioId = $("#usuarioId").val();
+
         }      
 
         $.ajax({
@@ -64,59 +66,32 @@ usuarios.addUser = function (editMode) {
 };
 
 
-
-//Capturar formulario para agregar o editar un usuario
-$("#form-add-usuario").submit(function(event){
-	event.preventDefault();
-	var data = usuarios.elementos;
-	var forUpdate = false;
-	var action = "addUsuario";
-	var usuarioId = 0;
-
-	if(data.button.val() == "Actualizar"){
-		forUpdate = true;
-    }
-
-	if(usuarios.validaDatosUsuario(data,forUpdate)){					
-		if(forUpdate == true){
-			action = "updateUsuario";
-			usuarioId = $("#usuarioId").val();
-		}
-
-		$.ajax({
-			type: "POST",
-			url: "ajax.php",
-			dataType: "json",
-			data: {
-				usuarioId : usuarioId,
-				username : data.username.val(),
-                email: data.email.val(),
-				password : data.password.val(),
-				password_confirm : data.password_conf.val(),
-				action : action
-				},
-			success: function(result){
-				if(result.status == "error"){
-					utilerias.displayErrorServerMessage($("#mensajes-server"),result.message);
-				}else {
-					
-				}
-			}
-		});			
-		
-	}
-
-});
-
+/**
+* Funcion cuando se pulse el boton editar. 
+* En este caso se muestra un formulario con los datos
+**/
 usuarios.editUser = function(){
-    event.preventDefault();
 	var data = usuarios.elementos;
     var userId= data.userId.val();
-	data.button.attr('value','Actualizar');
-	utilerias.removeErrorMessages();
 
-	$("#usuarioId").val(userId);
-    $("#form-add-usuario :input").removeAttr('readonly', 'readonly');
+    //mostramos el boton de agregar nuevo usuario
+    data.button.show();
+
+    //ocultamos el boton editar
+    $("#btn-edit-user").hide();
+
+    //activamos el de acutalizar
+	var update_button = $("#btn-update-user");
+	update_button.show();
+	update_button.attr('onclick','usuarios.updateUsuario()');
+
+	//mostramos el formulario
+	$("#cont-formulario").show();
+
+	//ocultamos datos de visualizacion
+	$("#datos-usuario").hide();
+
+	utilerias.removeErrorMessages();
 	
     if(userId >0){
     $.ajax({
@@ -130,6 +105,7 @@ usuarios.editUser = function(){
 			var res = JSON.parse(result);
 
 			data.username.val(res.nombre);
+			data.email.val(res.email);
 			data.password.val(res.password);
 			data.password_conf.val(res.password);
 
@@ -141,13 +117,29 @@ usuarios.editUser = function(){
 };
 
 
-usuarios.verUser = function(userId){
-	var data = usuarios.elementos;
-	data.button.attr('value','Actualizar');
-	utilerias.removeErrorMessages();
+/**
+* Funcion que llama a agregar nuevo usuario, con modalidad de actualizacion
+**/
+usuarios.updateUsuario = function () {
+    usuarios.addUser(true);
+};
 
-	$("#usuarioId").val(userId);
-    $("#form-add-usuario :input").attr('readonly', 'readonly');
+
+/**
+* Funcion que permite ver los datos de un usuario, como texto plano
+**/
+usuarios.verUser = function(userId){
+
+	//ocultamos el boton de acutalizar
+	var update_button = $("#btn-update-user");
+	update_button.hide();
+
+	$("#btn-delete-user").show();
+
+
+
+	utilerias.removeErrorMessages();
+	$("#usuarioId").val(userId);	
 	
     $.ajax({
 		type: "POST",
@@ -159,15 +151,35 @@ usuarios.verUser = function(userId){
 		success: function(result){
 			var res = JSON.parse(result);
 
-			data.username.val(res.nombre);
-			data.password.val(res.password);
-			data.password_conf.val(res.password);
-            data.email.val(res.email);
-			data.password.attr('placeholder', 'Deje en blanco si no desea cambiarlo');
-			data.password_conf.attr('placeholder','Deje en blanco si no desea cambiarlo');
+			//ocultamos formulario
+			$("#cont-formulario").hide();
+
+			//asignamos los valores a visualizar
+			$("#vista-id").text(res.id_usuario);
+			$("#vista-nombre").text(res.nombre);
+			$("#vista-correo").text(res.email);
+
+			//mostramos los datos en el contenedor
+			$("#datos-usuario").show();
+
+			//cambiamos a visible el boton editar
+			$("#btn-edit-user").show();
 		}
 	});
 };
+
+
+/**
+* Visualiza un formulario para insertar un usuario
+**/
+usuarios.verFormularioVacio = function(){
+	location.reload();
+
+	//activamos opcion para guardar
+	var save_button = $("#btn-update-user");
+	save_button.show();
+	update_button.attr('onclick','usuarios.addUser()');
+}
 
 usuarios.deleteUser = function(){
     var data = usuarios.elementos;
@@ -189,7 +201,7 @@ usuarios.deleteUser = function(){
 			}
 		});
 	}
-}
+};
 
 
 /**
@@ -211,7 +223,7 @@ usuarios.validaDatosUsuario = function(data,forUpdate){
 		valid = false;
 		utilerias.displayErrorMessage(data.email,"El correo es requerido");
 	}else{
-		if(!usuarios.mailValido){
+		if(!usuarios.mailValido(data.email.val())){
 			valid = false;
 			utilerias.displayErrorMessage(data.email,"Formato de correo no válido")
 		}
@@ -238,6 +250,19 @@ usuarios.validaDatosUsuario = function(data,forUpdate){
 
 	return valid;
 
+};
+
+/**
+* Funcion para validar mail
+* Tomado de http://www.w3schools.com/js/tryit.asp?filename=tryjs_form_validate_email
+**/
+usuarios.mailValido = function(email){
+    var atpos = email.indexOf("@");
+    var dotpos = email.lastIndexOf(".");
+    if (atpos<1 || dotpos<atpos+2 || dotpos+2>=email.length) {        
+        return false;
+	}
+	return true;
 };
 
 
@@ -279,14 +304,4 @@ function validar(){
 }
 
 
-/**
-* Funcion para validar mail
-* Tomado de http://www.w3schools.com/js/tryit.asp?filename=tryjs_form_validate_email
-**/
-usuarios.mailValido = function(email){
-    var atpos = email.indexOf("@");
-    var dotpos = email.lastIndexOf(".");
-    if (atpos<1 || dotpos<atpos+2 || dotpos+2>=email.length) {        
-        return false;
-	}
-}
+

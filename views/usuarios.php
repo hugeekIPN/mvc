@@ -25,9 +25,9 @@
 	    			</thead>
 	    			<tbody>
 	    				<?php foreach ($users as $user): ?>
-	    					<tr>
-	    						<td><a href="#"><?php echo $user['id_usuario'] ?></a></td>
-	    						<td><a href="#" onclick="usuarios.verUser(<?php echo $user['id_usuario']; ?>);"><?php echo $user['email'] ?></a></td>
+	    					<tr onclick="usuarios.verUser(<?php echo $user['id_usuario']; ?>);">
+	    						<td><?php echo $user['id_usuario'] ?></td>
+	    						<td><?php echo $user['email'] ?></td>
 	    					</tr>
 	    				<?php endforeach; ?>
 	    			</tbody>
@@ -42,64 +42,84 @@
 	<!-- conenedor derecho -->
 	<div class="form-group col-md-6 der">
 
-		<!-- contenedor datos usuario -->
-		<div class="datos col-md-10">
-			<h3>Datos Generales</h3>  
-			
-			<!-- para errores del back  -->
-			<div class="input">
-				<div id="mensajes-server"></div>
-			</div>          
+		<!-- contenedor formulario y datos de usuario -->
+		<div class="datos col-md-10" id="cont-datos">
 
-			<form id="formulario-usuario">
-				<input type="hidden" name="usuarioId" id="usuarioId">
-				
-				<div class="input form-group">
-					<label for="username">Nombre de usuario</label>
-					<input type="text" class="form-control" name="username" id="username" value="">
-				</div>
+			<!-- formulario -->
+			<div id="cont-formulario">
+				<h3>Datos Generales</h3>  
 
-				<div class="input form-group">
-					<label for="email">Email</label>
-					<input type="text" class="form-control" name="email" id="email" value="">
-				</div>
+				<!-- para errores del back  -->
+				<div class="input">
+					<div id="mensajes-server"></div>
+				</div>          
 
-				<div class="input form-group">
-					<label for="password">Password</label>
-					<input type="password" class="form-control" name="password" id="password" value="">
-				</div class="form-group">
+				<form id="formulario-usuario">
+					<input type="hidden" name="usuarioId" id="usuarioId">
 
-				<div class=" input form-group">
-					<label for="password-confirm">Confirmar password</label>
-					<input type="password" class="form-control" name="password-confirm" id="password-confirm" value="">
-				</div>
+					<div class="input form-group">
+						<label for="username">Nombre de usuario</label>
+						<input type="text" class="form-control" name="username" id="username" value="">
+					</div>
 
-			</form>
+					<div class="input form-group">
+						<label for="email">Email</label>
+						<input type="text" class="form-control" name="email" id="email" value="">
+					</div>
+
+					<div class="input form-group">
+						<label for="password">Password</label>
+						<input type="password" class="form-control" name="password" id="password" value="">
+					</div class="form-group">
+
+					<div class=" input form-group">
+						<label for="password-confirm">Confirmar password</label>
+						<input type="password" class="form-control" name="password-confirm" id="password-confirm" value="">
+					</div>
+
+				</form>
+
+			</div>
+			<!-- fin formulario -->
+
+			<!-- contenedor para visualizar datos de usuario -->
+			<div hidden id="datos-usuario" >
+				<p ><strong>ID</strong></p>
+				<p class="id-datos id " id="vista-id"><strong></strong></p>
+
+				<p>Nombre</p>
+				<p id="vista-nombre"></p>
+
+				<p>Correo</p>
+				<p id="vista-correo"></p>
+			</div>
+			<!-- fin contenedor para visualizar datos de usuario -->
+
 		</div>
-		<!-- fin contenedor datos usuario -->		
+		<!-- fin contenedor datos y formulario de usuario -->		
 
 		<!-- iconos editar,nuevo, eliminar -->
 		<div class="iconos col-md-2">
 			<section class="nuevo">
-				<button id="btn-add-user" onclick="usuarios.addUser();">
+				<button id="btn-add-user" onclick="usuarios.verFormularioVacio();">
 					<img src="assets/iconos/Recurso 11.png" alt="Agregar un usuario nuevo">
-					<small >Agregar</small>
+					<small >Nuevo</small>
 				</button>
 			</section>
-			<section hidden>
-				<button onclick="usuarios.editUser();">
+			<section >
+				<button hidden onclick="usuarios.editUser();" id="btn-edit-user">
 					<img src="assets/iconos/Recurso 7.png" alt="Editar">
 					<small >Editar</small>
 				</button>
 			</section>
 			<section >
-				<button id="btn-submit" type="submit">
+				<button  id="btn-update-user" type="submit" onclick="usuarios.addUser();">
 					<img src="assets/iconos/Recurso 8.png" alt="Guardar">
 					<small>Guardar</small>
 				</button>
 			</section>
 			<section >
-				<button onclick="usuarios.deleteUser();">
+				<button hidden onclick="usuarios.deleteUser();" id="btn-delete-user">
 					<img src="assets/iconos/Recurso 9.png" alt="Borrar">
 					<small>Borrar</small>
 				</button>
@@ -113,8 +133,3 @@
 <!-- fin contenedor principal -->
 
 
-<!-- contenedor para visualizar datos de usuario -->
-<div hidden>
-
-</div>
-<!-- fin contenedor para visualizar datos de usuario -->

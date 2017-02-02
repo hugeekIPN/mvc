@@ -267,8 +267,10 @@ class UsuariosController {
         $password_confirm = $data['password_confirm'];
         $errors = array();
 
+        $currentUser = $this->model->getUsuario($this->userId);
+
         //validamos que exista el id del usuario
-        if($this->model->getUsuario($this->userId) ==null){
+        if(!$currentUser){
             $errors[] = "No existe el usuario";
             return $errors;
         }
