@@ -31,6 +31,7 @@ class m_usuarios{
     * @param Arreglo con los datos del usuario
     * @return true si logra guardar los datos
     **/
+    
     public function nuevoUsuario($data)
     {             
         $this->db->insert('usuarios',  array (
@@ -51,7 +52,7 @@ class m_usuarios{
     {    
         $this->db->update("usuarios", 
                     $updateData, 
-                    "usuarioId = :id",
+                    "id_usuario = :id",
                     array( "id" => $userId )
                );
 
@@ -65,7 +66,7 @@ class m_usuarios{
     **/
     public function deleteUsuario($userId)  /// update Estado = eliminado
     {    
-        $this->db->delete("usuarios", "usuarioId = :id", array( "id" => $userId ));        
+        $this->db->delete("usuarios", "id_usuario = :id", array( "id" => $userId ));        
         
         return true;
     }

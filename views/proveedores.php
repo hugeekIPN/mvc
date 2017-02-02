@@ -153,8 +153,13 @@
 		</div>
 		<div class="iconos col-md-2">
 			<section class="nuevo">
+<<<<<<< HEAD
+				<a href="#"  >
+					<img src="assets/iconos/Recurso 11.png" alt="Nuevo">
+=======
 				<button >
 					<img src="assets/iconos/Recurso 11.png" alt="Editar">
+>>>>>>> 0ef7f7fc08e7468b1b0b4ad9c099883ed4120207
 					<small >Nuevo</small>
 				</button>
 			</section>

@@ -2,6 +2,7 @@ var usuarios = {};
 
 usuarios.elementos = {
 	username : $("#username"),
+    userId : $("#usuarioId"),
 	password : $("#password"),
 	password_conf : $("#password-confirm"),
 	button : $("#btn-submit")
@@ -11,9 +12,15 @@ usuarios.elementos = {
 $("#btn-add-user").click(function(){	
 	$("#form-add-usuario :input").val('');
 	$("#form-add-usuario :input").attr('placeholder','');
+    $("#form-add-usuario :input").removeAttr('readonly', 'readonly');
 	$(usuarios.elementos.button.val('Guardar'));
 });
 
+$("#btn-edit-user").click(function(){	
+    $("#form-add-usuario :input").removeAttr("readonly");
+	$("#form-add-usuario :input").attr('placeholder','');
+	$(usuarios.elementos.button.val('Actualizar'));
+});
 
 //Capturar formulario para agregar o editar un usuario
 $("#form-add-usuario").submit(function(event){
@@ -23,8 +30,9 @@ $("#form-add-usuario").submit(function(event){
 	var action = "addUsuario";
 	var usuarioId = 0;
 
-	if(data.button.val() == "Actualizar")
+	if(data.button.val() == "Actualizar"){
 		forUpdate = true;
+    }
 
 	if(usuarios.validaDatosUsuario(data,forUpdate)){					
 		if(forUpdate == true){
@@ -56,14 +64,17 @@ $("#form-add-usuario").submit(function(event){
 
 });
 
-usuarios.editUser = function(userId){
+usuarios.editUser = function(){
 	var data = usuarios.elementos;
+    var userId= data.userId.val();
 	data.button.attr('value','Actualizar');
 	utilerias.removeErrorMessages();
 
 	$("#usuarioId").val(userId);
-
-	$.ajax({
+    $("#form-add-usuario :input").removeAttr('readonly', 'readonly');
+	
+    if(userId >0){
+    $.ajax({
 		type: "POST",
 		url: "ajax.php",
 		data: {
@@ -73,7 +84,37 @@ usuarios.editUser = function(userId){
 		success: function(result){
 			var res = JSON.parse(result);
 
-			data.username.val(res.username);
+			data.username.val(res.nombre);
+			data.password.val(res.password);
+			data.password_conf.val(res.password);
+
+			data.password.attr('placeholder', 'Deje en blanco si no desea cambiarlo');
+			data.password_conf.attr('placeholder','Deje en blanco si no desea cambiarlo');
+		}
+	});
+        }
+};
+
+
+usuarios.verUser = function(userId){
+	var data = usuarios.elementos;
+	data.button.attr('value','Actualizar');
+	utilerias.removeErrorMessages();
+
+	$("#usuarioId").val(userId);
+    $("#form-add-usuario :input").attr('readonly', 'readonly');
+	
+    $.ajax({
+		type: "POST",
+		url: "ajax.php",
+		data: {
+			action: "getUsuario",
+			userId: userId
+		},
+		success: function(result){
+			var res = JSON.parse(result);
+
+			data.username.val(res.nombre);
 			data.password.val(res.password);
 			data.password_conf.val(res.password);
 
@@ -83,7 +124,9 @@ usuarios.editUser = function(userId){
 	});
 };
 
-usuarios.deleteUser = function(usuarioId){
+usuarios.deleteUser = function(){
+    var data = usuarios.elementos;
+    var userId= data.userId.val();
 	var c= confirm('Estás seguro de esto?');
 	if(c){
 		$.ajax({
@@ -91,7 +134,7 @@ usuarios.deleteUser = function(usuarioId){
 			url: "ajax.php",
 			data: {
 				action: "deleteUsuario",
-				usuarioId: usuarioId
+				usuarioId: userId
 			},
 			success: function(result){
 				if(result.status == "error")
