@@ -32,15 +32,13 @@
 	</div>
 	<div class="form-group col-md-6 der">
 		<div class="datos col-md-10">
-			<div class="datos-bancarios col-md-6" >
-				<p ><small><strong>ID</strong></small></p>
-				<p class="id-datos id " id="estado"><strong><?php echo $user['id_usuario'] ?></strong></p>
-				<p><small><strong>Nombre:</strong></small></p>
-				<p class="id-datos nombre"><strong><?php echo $user['nombre'] ?></strong></p>	
-				<h3>Datos Generales</h3>
-				<br>
-                                          
-            <form id="form-add-usuario">
+         <form id="form-add-usuario">
+               <div class="form-group has-warning">
+                  <label class="control-label" for="inputIDusuarios">ID:</label>
+                  <input required type="text" class="form-control" id="usuarioId">
+                </div>
+                <h3>Datos Generales</h3>            
+                <div id="errores"></div>
                 <input type="hidden" name="usuarioId" id="usuarioId">
                 <label for="username">Nombre de usuario</label>
                 <input type="text" class="form-control" name="username" id="username" value="">
@@ -50,11 +48,8 @@
                 <input type="password" class="form-control" name="password" id="password" value="">
                 <label for="password-confirm">Confirmar password</label>
                 <input type="password" class="form-control" name="password-confirm" id="password-confirm" value="">
-                   
-                                                                    
-                                                                    
-
-			</div>
+                                                               
+                                                                  
 		</div>
 		<div class="iconos col-md-2">
 			<section class="nuevo">
@@ -81,7 +76,8 @@
 					<small>Borrar</small>
 				<button>
 			</section>
-           </form>
+        
+                </form>         
 		</div>
 	</div>
 </div>

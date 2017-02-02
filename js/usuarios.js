@@ -17,7 +17,8 @@ $("#btn-add-user").click(function(){
 	$(usuarios.elementos.button.val('Guardar'));
 });
 
-$("#btn-edit-user").click(function(){	
+$("#btn-edit-user").click(function(){
+    
     $("#form-add-usuario :input").removeAttr("readonly");
 	$("#form-add-usuario :input").attr('placeholder','');
 	$(usuarios.elementos.button.val('Actualizar'));
@@ -57,7 +58,7 @@ $("#form-add-usuario").submit(function(event){
 				if(result.status == "error"){
 					utilerias.displayErrorMessage($("#errores"),result.message);
 				}else {
-					location.reload();
+					
 				}
 			}
 		});			
@@ -67,6 +68,7 @@ $("#form-add-usuario").submit(function(event){
 });
 
 usuarios.editUser = function(){
+    event.preventDefault();
 	var data = usuarios.elementos;
     var userId= data.userId.val();
 	data.button.attr('value','Actualizar');
@@ -119,7 +121,7 @@ usuarios.verUser = function(userId){
 			data.username.val(res.nombre);
 			data.password.val(res.password);
 			data.password_conf.val(res.password);
-
+            data.email.val(res.email);
 			data.password.attr('placeholder', 'Deje en blanco si no desea cambiarlo');
 			data.password_conf.attr('placeholder','Deje en blanco si no desea cambiarlo');
 		}
