@@ -265,7 +265,7 @@ usuarios.mailValido = function(email){
 	return true;
 };
 
-
+/**
 function inicio(){
 	$("span.help-block").hide();
 	$("#btnvalidar").click(function(){
@@ -304,4 +304,4 @@ function validar(){
 }
 
 
-
+**/
