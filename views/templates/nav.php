@@ -5,32 +5,6 @@
 	      <ul class="nav navazul">
 	      	<li class="col-xs-4 dropdown">
 		      	<a href="#" class="dropbtn2">
-					<img src="assets/iconos/Recurso 1.png" alt="Consulta">
-		      		<p>Consulta</p>
-		      	</a>
-		      	<ul class="nav dropdown-content2">
-			        <li><a href="index.php?op=especies">Especies</a></li>
-		    			
-		    			<li><a href="index.php?op=proveedores">Proveedores/Donatarios</a></li>
-		    			<li><a href="index.php?op=users">Usuarios</a></li>   			
-		    			<li><a href="index.php?op=programas">Programas</a></li>
-		    			<li><a href="index.php?op=subprogramas">Subprogramas</a></li>
-		    			<li><a href="index.php?op=eventos">Eventos</a></li>
-			    </ul>
-	      	</li>
-	      	<li class="col-xs-4 dropdown">
-		      	<a href="#"  class="dropbtn2" >
-					<img src="assets/iconos/Recurso 2.png" alt="Captura">
-		      		<p>Captura</p>
-		      	</a>
-		      	<ul class="nav dropdown-content2">
-			        <li><a href="#">Apoyos</a></li>
-		    			<li><a href="#">Gastos</a></li>
-		    			
-			    </ul>
-	      	</li>
-	      	<li class="col-xs-4 dropdown">
-		      	<a href="#" class="dropbtn2">
 					<img src="assets/iconos/Recurso 3.png" alt="Reportes">
 		      		<p>Reportes</p>
 		      	</a>
@@ -46,7 +20,32 @@
 		    			<li><a href="#">Evento por Programa</a></li>
 			    </ul>
 	      	</li>
-	      	
+	      	<li class="col-xs-4 dropdown">
+		      	<a href="#"  class="dropbtn2" >
+					<img src="assets/iconos/Recurso 2.png" alt="Captura">
+		      		<p>Captura</p>
+		      	</a>
+		      	<ul class="nav dropdown-content2">
+			        <li><a href="#">Apoyos</a></li>
+		    			<li><a href="#">Gastos</a></li>
+		    			
+			    </ul>
+	      	</li>
+	      	<li class="col-xs-4 dropdown">
+		      	<a href="#" class="dropbtn2">
+					<img src="assets/iconos/Recurso 1.png" alt="Consulta">
+		      		<p>Consulta</p>
+		      	</a>
+		      	<ul class="nav dropdown-content2">
+			        <li><a href="index.php?op=especies">Especies</a></li>
+		    			
+		    			<li><a href="index.php?op=proveedores">Proveedores/Donatarios</a></li>
+		    			<li><a href="index.php?op=users">Usuarios</a></li>   			
+		    			<li><a href="index.php?op=programas">Programas</a></li>
+		    			<li><a href="index.php?op=subprogramas">Subprogramas</a></li>
+		    			<li><a href="index.php?op=eventos">Eventos</a></li>
+			    </ul>
+	      	</li>
 	      </ul>
 	    </div>
 
