@@ -148,7 +148,7 @@ function inicio(){
 }
 
 function validar(){
-	var valor = document.getElementById("texto").value;
+	var valor = document.getElementById("inputIDEventos").value;
 	if( valor == null || valor.length == 0 || /^\s+$/.test(valor) ) {
 		$("#iconotexto").remove();
 		$("#inputIDEventos").parent().parent().attr("class"," has-warning has-feedback");
