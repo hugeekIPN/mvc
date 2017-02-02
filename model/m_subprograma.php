@@ -37,7 +37,9 @@ class m_subprograma{
             'programas_id_programa'         => $data['programas_id_programa'], 
             'nombre'         => $data['nombre'],  
             'descripcion'    => $data['descripcion'],
-            'estado'         => $data['estado']      
+            'estado'         => $data['estado'],
+            'fecha_creacion'         => $data['fecha_creacion'],
+            'ultima_modificacion'         => $data['ultima_modificacion']        
         ));
         
        return true;       

@@ -40,7 +40,9 @@ class m_evento{
             'pais'    => $data['pais'],
             'ciudad'    => $data['ciudad'],
             'entidad'    => $data['entidad'],
-            'estado'    => $data['estado']
+            'estado'    => $data['estado'],
+            'fecha_creacion'         => $data['fecha_creacion'],
+            'ultima_modificacion'         => $data['ultima_modificacion']  
         ));
         
        return true;       
