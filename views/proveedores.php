@@ -154,7 +154,7 @@
 		<div class="iconos col-md-2">
 			<section class="nuevo">
 				<a href="#"  >
-					<img src="assets/iconos/Recurso 11.png" alt="Editar">
+					<img src="assets/iconos/Recurso 11.png" alt="Nuevo">
 					<small >Nuevo</small>
 				</a>
 			</section>
