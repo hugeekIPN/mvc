@@ -138,3 +138,36 @@ usuarios.validaDatosUsuario = function(data,forUpdate){
 	return valid;
 
 };
+
+$(document).on("ready",inicio);
+
+function inicio(){
+	$("span.help-block").hide();
+	
+	$("#inputIDEventos").keyup(validar);
+}
+
+function validar(){
+	var valor = document.getElementById("texto").value;
+	if( valor == null || valor.length == 0 || /^\s+$/.test(valor) ) {
+		$("#iconotexto").remove();
+		$("#inputIDEventos").parent().parent().attr("class"," has-warning has-feedback");
+		$("#inputIDEventos").parent().children("span").text("Debe ingresar algun caracter").show();
+		$("#inputIDEventos").parent().append("<span id='iconotexto' class='glyphicon glyphicon-remove form-control-feedback'></span>");
+	  	return false;
+	}
+	else if( isNaN(valor) ) {
+		$("#iconotexto").remove();
+		$("#inputIDEventos").parent().parent().attr("class"," has-warning has-feedback");
+		$("#inputIDEventos").parent().children("span").text("Debe ingresar caracteres numericos").show();
+		$("#inputIDEventos").parent().append("<span id='iconotexto' class='glyphicon glyphicon-remove form-control-feedback'></span>");
+		return false;
+	}
+	else{
+		$("#iconotexto").remove();
+		$("#inputIDEventos").parent().parent().attr("class"," has-success has-feedback");
+		$("#inputIDEventos").parent().children("span").text("").hide();
+		$("#inputIDEventos").parent().append("<span id='iconotexto' class='glyphicon glyphicon-ok form-control-feedback'></span>");
+		return true;
+	}
+}

@@ -82,7 +82,7 @@
 				<form action="" id="Proveedores">
 					<div class="form-group has-warning">
 					  <label class="control-label" for="inputIDProveedores">ID:</label>
-					  <input disabled required type="text" class="form-control" id="inputIDProveedores">
+					  <input required type="text" class="form-control" id="inputIDProveedores">
 					</div>
 					<div class="form-group">
 					  <label class="control-label" for="inputNombreProveedores">Nombre:</label>
@@ -153,28 +153,28 @@
 		</div>
 		<div class="iconos col-md-2">
 			<section class="nuevo">
-				<a href="#"  >
+				<button >
 					<img src="assets/iconos/Recurso 11.png" alt="Editar">
 					<small >Nuevo</small>
-				</a>
+				</button>
 			</section>
 			<section >
-				<a href="#" id="editext" onclick="edicion()">
+				<button >
 					<img src="assets/iconos/Recurso 7.png" alt="Editar">
 					<small >Editar</small>
-				</a>
+				</button>
 			</section>
 			<section >
-				<a href="#">
+				<button  >
 					<img src="assets/iconos/Recurso 8.png" alt="Guardar">
 					<small>Guardar</small>
-				</a>
+				</button>
 			</section>
 			<section >
-				<a href="#">
+				<button>
 					<img src="assets/iconos/Recurso 9.png" alt="Borrar">
 					<small>Borrar</small>
-				</a>
+				</button>
 			</section>
 			
 		</div>

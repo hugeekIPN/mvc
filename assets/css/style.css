@@ -431,9 +431,18 @@ body{
 			text-align: center;
 		}
 			div.container div.der div.iconos section{
-				margin-top: 20px;
+				margin-top: 10px;
 			}
-				div.iconos section a{text-decoration:none;}
+				div.iconos section button{
+					text-decoration:none;
+					background: none;
+					border:none;
+					padding: 5px;
+
+				}div.iconos section button:hover {
+					background: rgba(0,0,0,.1);
+					border-radius: 10px;
+				}
 				div.der div.datos div p.id-datos{
 					font-family: fundacion-mdcn;
 					font-size:16px;
@@ -579,7 +588,7 @@ body{
 
 /*=====menu despegable nuevo=====*/
 
-	div.iconos section.nuevo a img{
+	div.iconos section.nuevo button img{
 		width: 35px;
 
 	}
