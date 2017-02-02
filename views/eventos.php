@@ -191,7 +191,7 @@
 				</button>
 			</section>
 			<section >
-				<button  >
+				<button id="btnvalidar" value="Validar">
 					<img src="assets/iconos/Recurso 8.png" alt="Guardar">
 					<small>Guardar</small>
 				</button>
