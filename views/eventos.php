@@ -10,7 +10,8 @@
 	        </div>
 	        <div class="col-md-12 registros">
 	        	<div class="cont">
-					<table id="example" class="display" cellspacing="0" width="100%"" class="table-hover">
+					<table id="example" class="display" cellspacing="0" width="100%"" class="table-hover">                                                                               
+                                                                                                         
 					   <thead>
 					      <tr>
 					      	 <th>ID</th>
@@ -19,96 +20,16 @@
 					      </tr>
 					   </thead>
 					   <tbody>
-					       <tr>
-					      	 <td><a href="#">056</a></td>
-					         <td><a href="#" >Bicicletas  para todos </a></td>
-					         <td><a href="">BIMEX</a></td>
+                              
+                <?php foreach ($eventos as $evento): ?>
+	    					
+	                                          
+					       <tr onclick="eventos.verEvento(<?php echo $evento['id_evento']; ?>);">
+					      	 <td><?php echo $evento['id_evento'] ?></td>
+					         <td><a href="#" ><?php echo $evento['nombre'] ?> </a></td>
+					         <td><a href=""><?php echo $evento['subprogramas_idsubprogramas'] ?> </a></td>
 					      </tr>
-					       <tr>
-					      	 <td><a href="#">032</a></td>
-					         <td><a href="#" >Unidos por la salud</a></td>
-					         <td><a href="#">Sector salud</a></td>
-					      </tr>
-					      <tr>
-					      	 <td><a href="#">056</a></td>
-					         <td><a href="#" >Bicicletas  para todos </a></td>
-					         <td><a href="">BIMEX</a></td>
-					      </tr>
-					       <tr>
-					      	 <td><a href="#">032</a></td>
-					         <td><a href="#" >Unidos por la salud</a></td>
-					         <td><a href="#">Sector salud</a></td>
-					      </tr>
-					      <tr>
-					      	 <td><a href="#">056</a></td>
-					         <td><a href="#" >Bicicletas  para todos </a></td>
-					         <td><a href="">BIMEX</a></td>
-					      </tr>
-					       <tr>
-					      	 <td><a href="#">032</a></td>
-					         <td><a href="#" >Unidos por la salud</a></td>
-					         <td><a href="#">Sector salud</a></td>
-					      </tr>
-					      <tr>
-					      	 <td><a href="#">056</a></td>
-					         <td><a href="#" >Bicicletas  para todos </a></td>
-					         <td><a href="">BIMEX</a></td>
-					      </tr>
-					       <tr>
-					      	 <td><a href="#">032</a></td>
-					         <td><a href="#" >Unidos por la salud</a></td>
-					         <td><a href="#">Sector salud</a></td>
-					      </tr>
-					      <tr>
-					      	 <td><a href="#">056</a></td>
-					         <td><a href="#" >Bicicletas  para todos </a></td>
-					         <td><a href="">BIMEX</a></td>
-					      </tr>
-					       <tr>
-					      	 <td><a href="#">032</a></td>
-					         <td><a href="#" >Unidos por la salud</a></td>
-					         <td><a href="#">Sector salud</a></td>
-					      </tr>
-					      <tr>
-					      	 <td><a href="#">056</a></td>
-					         <td><a href="#" >Bicicletas  para todos </a></td>
-					         <td><a href="">BIMEX</a></td>
-					      </tr>
-					       <tr>
-					      	 <td><a href="#">032</a></td>
-					         <td><a href="#" >Unidos por la salud</a></td>
-					         <td><a href="#">Sector salud</a></td>
-					      </tr>
-					      <tr>
-					      	 <td><a href="#">056</a></td>
-					         <td><a href="#" >Bicicletas  para todos </a></td>
-					         <td><a href="">BIMEX</a></td>
-					      </tr>
-					       <tr>
-					      	 <td><a href="#">032</a></td>
-					         <td><a href="#" >Unidos por la salud</a></td>
-					         <td><a href="#">Sector salud</a></td>
-					      </tr>
-					      <tr>
-					      	 <td><a href="#">056</a></td>
-					         <td><a href="#" >Bicicletas  para todos </a></td>
-					         <td><a href="">BIMEX</a></td>
-					      </tr>
-					       <tr>
-					      	 <td><a href="#">032</a></td>
-					         <td><a href="#" >Unidos por la salud</a></td>
-					         <td><a href="#">Sector salud</a></td>
-					      </tr>
-					      <tr>
-					      	 <td><a href="#">056</a></td>
-					         <td><a href="#" >Bicicletas  para todos </a></td>
-					         <td><a href="">BIMEX</a></td>
-					      </tr>
-					       <tr>
-					      	 <td><a href="#">032</a></td>
-					         <td><a href="#" >Unidos por la salud</a></td>
-					         <td><a href="#">Sector salud</a></td>
-					      </tr>
+                        <?php endforeach; ?>
 					   </tbody>
 					</table>
 	        	</div>
@@ -175,23 +96,36 @@
 
 				</form>
 			</div>
+            <!-- contenedor para visualizar datos de usuario -->
+			<div hidden id="datos-evento" >
+				<p ><strong>ID</strong></p>
+				<p class="id-datos id " id="vista-id"><strong></strong></p>
+
+				<p>Nombre</p>
+				<p id="vista-nombre"></p>
+
+				<p>Correo</p>
+				<p id="vista-desc"></p>
+			</div>
+			<!-- fin contenedor para visualizar datos de usuario -->
+
 			
 		</div>
 		<div class="iconos col-md-2">
 			<section class="nuevo">
-				<button >
+				<button id="btn-add-evento" onclick="eventos.verFormularioVacio();" >
 					<img src="assets/iconos/Recurso 11.png" alt="Editar">
 					<small >Nuevo</small>
 				</button>
 			</section>
 			<section >
-				<button >
+				<button hidden onclick="eventos.editEvento();" id="btn-edit-evento">
 					<img src="assets/iconos/Recurso 7.png" alt="Editar">
 					<small >Editar</small>
 				</button>
 			</section>
 			<section >
-				<button id="btnvalidar" value="Validar">
+				<button id="btn-update-evento" type="submit" onclick="usuarios.addUser();">
 					<img src="assets/iconos/Recurso 8.png" alt="Guardar">
 					<small>Guardar</small>
 				</button>

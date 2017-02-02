@@ -25,7 +25,7 @@
 	    			</thead>
 	    			<tbody>
 	    				<?php foreach ($users as $user): ?>
-	    					<tr onclick="usuarios.verUser(<?php echo $user['id_usuario']; ?>);">
+	    					<tr onclick="usuarios.verUser(<?php echo $user['id_usuario']; ?>);" >
 	    						<td><?php echo $user['id_usuario'] ?></td>
 	    						<td><?php echo $user['email'] ?></td>
 	    					</tr>
