@@ -59,6 +59,7 @@ usuarios.addUser = function (editMode) {
 				}else {
 					$("#formulario-usuario :input").val('');
 					utilerias.displaySuccessMessage($("#mensajes-server"),result.message);
+					location.reload();
 				}
 			}
 		});		
