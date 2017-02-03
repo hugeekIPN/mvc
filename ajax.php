@@ -59,7 +59,11 @@ switch ($action) {
         break;
      case 'updateEvento':
         $evento = new eventoController($_POST['eventoId']);
-        echo json_encode($evento->updateEvento());
+        echo json_encode($evento->updateEvento($_POST));
+        break;
+     case 'deleteEvento':
+        $evento = new eventoController($_POST['eventoId']);
+        echo json_encode($evento->deleteEvento($_POST));
         break;
 
 	default:		

@@ -100,12 +100,23 @@
 			<div hidden id="datos-evento" >
 				<p ><strong>ID</strong></p>
 				<p class="id-datos id " id="vista-id"><strong></strong></p>
-
+                <p>Subprograma</p>
+				<p id="vista-subProgId"></p>
 				<p>Nombre</p>
 				<p id="vista-nombre"></p>
-
-				<p>Correo</p>
+                
+				<p>Descripción</p>
 				<p id="vista-desc"></p>
+                <p>Pais</p>
+				<p id="vista-pais"></p>
+                <p>Ciudad</p>
+				<p id="vista-ciudad"></p>
+                <p>Estado</p>
+				<p id="vista-entidad"></p>
+                <p>Entidad</p>
+				<p id="vista-estado"></p>
+                <p>Fecha:</p>
+				<p id="vista-fecha"></p>
 			</div>
 			<!-- fin contenedor para visualizar datos de usuario -->
 
@@ -131,7 +142,7 @@
 				</button>
 			</section>
 			<section >
-				<button>
+				<button id="btn-delete-evento" onclick="eventos.deleteEvento();">
 					<img src="assets/iconos/Recurso 9.png" alt="Borrar">
 					<small>Borrar</small>
 				</button>

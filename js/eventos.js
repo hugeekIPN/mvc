@@ -9,7 +9,7 @@ eventos.elementos = {
 	nombre : $("#inputNombreEventos"),
     eventoId : $("#inputIDEventos"),
     subProgId : $("#inputIDSubEventos"),
-    eventoDesc : $("#inpuDescripcionEventos"),
+    eventoDesc : $("#inputDescripcionEventos"),
 	pais : $("#inputPaisEventos"),
 	ciudad : $("#inputCiudadEventos"),
     entidad : $("#inputEntidadEventos"),
@@ -47,10 +47,16 @@ eventos.verEvento = function (eventoId){
 			$("#vista-id").text(res.id_evento);
 			$("#vista-nombre").text(res.nombre);
 			$("#vista-desc").text(res.descripcion);
-
+            $("#vista-subProgId").text(res.subprogramas_idsubprogramas);
+			$("#vista-pais").text(res.pais);
+			$("#vista-ciudad").text(res.ciudad);
+            if(res.estado=="1")
+			     $("#vista-estado").text("México");
+		    $("#vista-entidad").text(res.entidad);
+			$("#vista-fecha").text(res.fecha_creacion);
+            
 			//mostramos los datos en el contenedor
 			$("#datos-evento").show();
-
 			//cambiamos a visible el boton editar
 			$("#btn-edit-evento").show();
 		}
@@ -62,18 +68,18 @@ eventos.addEvento = function (editMode) {
     var modal = $("#modal-add-edit-evento");
     var btn   = $("#btn-add-evento");
     var action = "addEvento";
-    var usuarioId = 0;
+    var eventoId = 0;
     var forUpdate = false;
 
     if ( editMode == true)
         forUpdate = true;
 
-    if ( usuarios.validaDatosEvento(data, forUpdate) ) {
+    if ( eventos.validaDatosEvento(data, forUpdate) ) {
 
        
         if ( editMode ) {
             action = "updateEvento";
-            eventoId = $("#eventoId").val();
+            eventoId = $("#inputIDEventos").val();
 
         }      
 
@@ -110,7 +116,7 @@ eventos.editEvento = function(){
 
     //mostramos el boton de agregar nuevo usuario
     data.button.show();
-
+  $("#datos-evento").hide();
     //ocultamos el boton editar
     $("#btn-edit-user").hide();
 
@@ -120,14 +126,13 @@ eventos.editEvento = function(){
 	update_button.attr('onclick','eventos.updateEvento()');
 
 	//mostramos el formulario
-	$("#cont-formulario").show();
+	$("#eventos").show();
 
 	//ocultamos datos de visualizacion
 	$("#datos-usuario").hide();
 
 	utilerias.removeErrorMessages();
 	
-    if(userId >0){
     $.ajax({
 		type: "POST",
 		url: "ajax.php",
@@ -137,12 +142,20 @@ eventos.editEvento = function(){
 		},
 		success: function(result){
 			var res = JSON.parse(result);
-
+            
+            data.eventoId.val(res.id_evento);
 			data.nombre.val(res.nombre);
-			data.eventoDesc.val(res.eventoDesc);
+            data.subProgId.val(res.subprogramas_idsubprogramas);
+            data.eventoDesc.val(res.descripcion);
+			data.pais.val(res.pais);
+			data.ciudad.val(res.ciudad);
+            if(res.entidad=="1")
+			     data.entidad.val("uno");
+			data.estado.val(res.estado);
+			data.fechaEvento.val(res.fecha_creacion);
 		}
 	});
-        }
+        
 };
 
 
@@ -150,7 +163,7 @@ eventos.editEvento = function(){
 * Funcion que llama a agregar nuevo usuario, con modalidad de actualizacion
 **/
 eventos.updateEvento = function () {
-    eventos.addEvento(true);
+    eventos.updateEvento(true);
 };
 
 
@@ -173,7 +186,7 @@ eventos.deleteEvento = function(){
 			url: "ajax.php",
 			data: {
 				action: "deleteEvento",
-				usuarioId: eventoId
+				eventoId: eventoId
 			},
 			success: function(result){
 				if(result.status == "error")
