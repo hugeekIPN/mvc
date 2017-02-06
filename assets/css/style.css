@@ -595,3 +595,7 @@ body{
 	div.der div.datos div form div.form-group label{
 		font-family: fundacion-l;
 	}
+	div#datos-usuario p{
+		margin-top: 20px;
+		
+	}

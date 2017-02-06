@@ -84,6 +84,8 @@
 
 			<!-- contenedor para visualizar datos de usuario -->
 			<div hidden id="datos-usuario" >
+				<h3>Datos Generales</h3> 
+				
 				<p ><strong>ID</strong></p>
 				<p class="id-datos id " id="vista-id"><strong></strong></p>
 
