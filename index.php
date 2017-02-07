@@ -5,10 +5,13 @@ ini_set('display_errors', 1);
 require_once("controller/sessionController.php");
 require_once("controller/loginController.php");
 require_once("controller/usuariosController.php");
+require_once("controller/eventoController.php");
 
 sessionController::startSession(); 
 $login        = new loginController();
 $user         = new usuariosController(sessionController::get("usuarioId"));
+
+$evento   = new eventoController("1");
 
 $option=isset($_REQUEST['op']) ?  $_REQUEST['op']: null;
 
@@ -35,7 +38,7 @@ $option=isset($_REQUEST['op']) ?  $_REQUEST['op']: null;
     break;
 
     case 'eventos':
-        $user->eventos();
+        $evento->index();
         break;
     case 'programas':
         $user->programas();

@@ -26,11 +26,9 @@ class EventoController
 			$usuario = sessionController::get('username');
 
 			$eventos = $this->model->getAllEventos();
-
-			require_once("views/templates/header.php");
-
+            require_once("views/templates/header.php");
 			require_once("views/templates/nav.php");
-            require_once("views/eventos.php");// Cual es?
+            require_once("views/eventos.php");// Cual es? 
             require_once("views/templates/footer.php");
 		}else{
 			require_once("views/login.php");
@@ -127,10 +125,10 @@ class EventoController
 	}
 
 
-	private function validaDatos($data){
+	/* private function validaDatos($data){
 		$errors = array();
 
-		$subprogramas_isSubprogramas		=> $data['subprogramas_isSubprogramas'];
+		$subprogramas_idsubprogramas  => $data['subprogramas_idsubprogramas'];
 		$fecha		=> $data['fecha'];
 		$descripcion			=> $data['descripcion'];
 		$pais 				=> $data['pais'];
@@ -141,7 +139,7 @@ class EventoController
         $ultima_modificacion 				=> $data['ultima_modificacion'];
 		
 
-		if ($this->esVacio($subprogramas_isSubprogramas)) {
+		if ($this->esVacio($subprogramas_idsubprogramas)) {
 			$errors[] = "Descripción no puede ser vacío";
 		}
         if ($this->esVacio($fecha)) {
@@ -166,7 +164,7 @@ class EventoController
 			$errors[] = "Ultima modificación no puede ser vacío";
 		}
         
-       
+       */
         
 
 		// Las validaciones son en caso de que se proporcionen. Hay que definirlo.
@@ -188,9 +186,8 @@ class EventoController
 
 		//if($correo_contacto && !filter_var($correo_contacto, FILTER_VALIDATE_EMAIL)){
 		//	$errors[] "Formato de correo de contacto incorrecto";
-		//}
+		// return $errors; }
 
-		return $errors;
 
 	}
 
@@ -199,7 +196,7 @@ class EventoController
 
 	/**
 	* Verifica si un arreglo o un string es vacio
-	**/
+	
 	private function esVacio($in){
         if(is_array($in))
             return empty($in);
@@ -207,5 +204,4 @@ class EventoController
             return true;
         else 
             return false;        
-	}
-}
+	}**/

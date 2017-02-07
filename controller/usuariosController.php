@@ -2,6 +2,7 @@
 include_once("sessionController.php");
 include_once("loginController.php");
 include_once("model/m_usuarios.php");
+include_once("model/m_evento.php");
 
 class UsuariosController {
 
@@ -12,7 +13,8 @@ class UsuariosController {
 		 $this->userId = $userId;
          $this->model = new m_usuarios();
     } 
-	
+    
+    
     
 	public function index()
 	{
@@ -168,6 +170,8 @@ class UsuariosController {
             
             
             $users = $this->model->getAllUsers();
+            
+            $eventos = $this->modelEvento->getAllEventos();
 
             require_once("views/templates/header.php");
             require_once("views/templates/nav.php");
@@ -178,6 +182,7 @@ class UsuariosController {
         }
 
     }
+    
     public function programas(){
         $login = new loginController();
         if($login->_isLoggedIn()){

@@ -16,7 +16,7 @@
 	    </div>
 	    <div class="col-md-12 registros">
 	    	<div class="cont">
-	    		<table id="example" class="display" cellspacing="0" width="100%"" class="table-hover">
+	    		<table id="example" class="display" cellspacing="0" class="table-hover">
 	    			<thead>
 	    				<tr>
 	    					<th>ID</th>
@@ -25,7 +25,7 @@
 	    			</thead>
 	    			<tbody>
 	    				<?php foreach ($users as $user): ?>
-	    					<tr onclick="usuarios.verUser(<?php echo $user['id_usuario']; ?>);">
+	    					<tr onclick="usuarios.verUser(<?php echo $user['id_usuario']; ?>);" >
 	    						<td><?php echo $user['id_usuario'] ?></td>
 	    						<td><?php echo $user['email'] ?></td>
 	    					</tr>
