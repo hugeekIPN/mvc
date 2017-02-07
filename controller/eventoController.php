@@ -37,7 +37,7 @@ class EventoController
 
 	public function nuevoEvento($postData){
 		$result = array();
-		$errors = $this->validaDatos($postData);
+		$errors = false; //$this->validaDatos($postData);
 
 		if($errors){
 			$message = implode("<br>", $errors);
@@ -62,7 +62,7 @@ class EventoController
 
 	public function updateEvento($data){
 		$result = array();
-		$errors = $this->validaDatos($postData);
+		$errors = false; //$this->validaDatos($postData);
 
 		if($errors){
 			$message = implode("<br>", $errors);
@@ -71,10 +71,10 @@ class EventoController
 				"status" => "error",
 				"message" => $message );
 		}else{
-			$currentEvento = $this->model->getEvento($this->idEvento);
+			//$currentEvento = $this->model->getEvento($this->idEvento);
 
-			$newData = array();
-
+			// $newData = array();
+            /*
 			if($currentEvento['subprogramas_isSubprogramas']!=$data['subprogramas_isSubprogramas'])
 				$newData['subprogramas_isSubprogramas']=$data['subprogramas_isSubprogramas'];
 
@@ -96,20 +96,22 @@ class EventoController
             if($currentEvento['estado'] != $data['estado'])
 				$newData['estado'] = $data['estado'];
 
-            if($currentEvento['fecha_creacion'] != $data['fecha_creacion'])
+           if($currentEvento['fecha_creacion'] != $data['fecha_creacion'])
 				$newData['fecha_creacion'] = $data['fecha_creacion'];
 
             if($currentEvento['ultima_modificacion'] != $data['ultima_modificacion'])
 				$newData['ultima_modificacion'] = $data['ultima_modificacion'];
-
+            */
 	     
-			if($newData){
-				$this->model->updateEvento($newData, $this->idEvento);
+			if($data){
+				 $message = $this->model->updateEvento($data, $this->idEvento);
+                
+                	$result = array(
+				"status" => "success",
+				"message" => $message);
 			}
 
-			$result = array(
-				"status" => "success",
-				"message" => "Registro actualizado");
+		
 		}
 
 		return $result;

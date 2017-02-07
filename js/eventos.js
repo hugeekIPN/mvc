@@ -13,9 +13,8 @@ eventos.elementos = {
 	pais : $("#inputPaisEventos"),
 	ciudad : $("#inputCiudadEventos"),
     entidad : $("#inputEntidadEventos"),
-    estado : $("#inputEstadoEventos"),
     fechaEvento : $("#inputFechaCreacionEventos"),
-	 button : $("#btn-add-evento"),
+	 button : $("#btn-update-evento"),
 };
 
 eventos.verEvento = function (eventoId){
@@ -64,7 +63,7 @@ eventos.verEvento = function (eventoId){
 };
 
 eventos.addEvento = function (editMode) {
-    var data  = usuarios.elementos;
+    var data  = eventos.elementos;
     var modal = $("#modal-add-edit-evento");
     var btn   = $("#btn-add-evento");
     var action = "addEvento";
@@ -88,9 +87,15 @@ eventos.addEvento = function (editMode) {
 			url: "ajax.php",
 			dataType: "json",
 			data: {
-				eventoId : eventoId,
+				id_evento : eventoId,
 				nombre : data.nombre.val(),
-                eventoDesc : data.eventoDesc.val(),
+                subprogramas_idsubprogramas : data.subProgId.val(),
+                descripcion : data.eventoDesc.val(),
+                fecha_creacion: data.fechaEvento.val(),
+                pais: data.pais.val(),
+                ciudad: data.ciudad.val(),
+                entidad: data.entidad.val(),
+                estado: "1",
 				action : action
 				},
 			success: function(result){
@@ -151,7 +156,6 @@ eventos.editEvento = function(){
 			data.ciudad.val(res.ciudad);
             if(res.entidad=="1")
 			     data.entidad.val("uno");
-			data.estado.val(res.estado);
 			data.fechaEvento.val(res.fecha_creacion);
 		}
 	});
@@ -163,7 +167,7 @@ eventos.editEvento = function(){
 * Funcion que llama a agregar nuevo usuario, con modalidad de actualizacion
 **/
 eventos.updateEvento = function () {
-    eventos.updateEvento(true);
+    eventos.addEvento(true);
 };
 
 
@@ -206,14 +210,14 @@ eventos.deleteEvento = function(){
 eventos.validaDatosEvento = function(data,forUpdate){
 	var valid = true;
 	var msg = "";
-
+/*
 	utilerias.removeErrorMessages();
 
 	if($.trim(data.nombre.val())==""){
 		valid = false;
 		utilerias.displayErrorMessage(data.nombre,"El nombre de usuario es requerido");
 	}
-
+*/
 	return valid;
 
 };
