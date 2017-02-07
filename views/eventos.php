@@ -20,15 +20,12 @@
 					      </tr>
 					   </thead>
 					   <tbody>
-                              
-                <?php foreach ($eventos as $evento): ?>
-	    					
-	                                          
+                        <?php foreach ($eventos as $evento): ?>                    
 					       <tr onclick="eventos.verEvento(<?php echo $evento['id_evento']; ?>);">
 					      	 <td><?php echo $evento['id_evento'] ?></td>
 					         <td><a href="#" ><?php echo $evento['nombre'] ?> </a></td>
 					         <td><a href=""><?php echo $evento['subprogramas_idsubprogramas'] ?> </a></td>
-					      </tr>
+                            </tr>
                         <?php endforeach; ?>
 					   </tbody>
 					</table>
@@ -68,16 +65,16 @@
 							  <label class="control-label" for="inputCiudadEventos">Ciudad:</label>
 							  <input type="text"  class="form-control" id="inputCiudadEventos" ></input>
 							</div>
-							<div class="form-group">
+							<!-- div class="form-group">
 							  <label class="control-label" for="inputEntidadEventos">Entidad:</label>
 							  <select class="form-control" id="inputEntidadEventos" >
 							  	<option value="uno">México</option>
 							  </select> 
-							</div>
+							</div -->
 						</div>
 						<div class="col-md-6">
 							<div class="form-group">
-							  <label class="control-label" for="inputEstadoEventos">Estado:</label>
+							  <label class="control-label" for="inputEntidadEventos">Estado:</label>
 							  <select class="form-control" id="inputEntidadEventos" >
 									  	<option value="uno">México</option>
 									  	<option value="uno">Mérida</option>
@@ -86,8 +83,7 @@
 									  </select> 
 							</div>
 							<div class="form-group">
-							  <label class="control-label" for="inputFechaCreacionEventos">Fecha de Creación:</label>
-							  <input type="date-time" class="form-control" id="inputFechaCreacionEventos" " placeholder="dd/mm/aaaa" ></input>
+							  <input type="hidden" class="form-control" id="inputFechaCreacionEventos" " value="<?php echo date("Y-m-d H:i:s"); ?>" ></input>
 							</div>
 						</div>
 					</div>
@@ -136,7 +132,7 @@
 				</button>
 			</section>
 			<section >
-				<button id="btn-update-evento" type="submit" onclick="usuarios.addUser();">
+				<button id="btn-update-evento" type="submit" onclick="eventos.addEvento();">
 					<img src="assets/iconos/Recurso 8.png" alt="Guardar">
 					<small>Guardar</small>
 				</button>
