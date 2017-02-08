@@ -394,9 +394,12 @@ body{
 				}*/
 				div.izq div.registros div.cont table td{
 					border: none;
+					cursor: pointer;
 				}
 					div.izq div.registros div.cont table td a{
 						text-decoration:none;
+						cursor: pointer;
+						font-family: fundacion-l;
 					}
 				
 			div.der{
@@ -598,4 +601,8 @@ body{
 	div#datos-usuario p{
 		margin-top: 20px;
 		
+	}
+	#vista-id{
+		font-family: fundacion-comp;
+		color: #0090d6;
 	}
