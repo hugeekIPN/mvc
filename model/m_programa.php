@@ -36,9 +36,8 @@ class m_programa{
         $this->db->insert('programas',  array (
             'nombre'         => $data['nombre'],  
             'descripcion'    => $data['descripcion'],
-            'estado'         => $data['estado'],
-            'fecha_creacion'         => $data['fecha_creacion'],
-            'ultima_modificacion'         => $data['ultima_modificacion']        
+            'fecha_creacion' => date("Y-m-d H:i:s"),
+            'ultima_modificacion' => date("Y-m-d H:i:s")
         ));
         
        return true;       

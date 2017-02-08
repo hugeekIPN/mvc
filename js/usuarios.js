@@ -23,7 +23,6 @@ usuarios.elementos = {
 **/
 usuarios.addUser = function (editMode) {
     var data  = usuarios.elementos;
-    var modal = $("#modal-add-edit-user");
     var btn   = $("#btn-add-user");
     var action = "addUsuario";
     var usuarioId = 0;

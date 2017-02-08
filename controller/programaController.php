@@ -7,7 +7,7 @@ include_once("model/m_programa.php");
 /**
 * 
 */
-class ProgramaController
+class programaController
 {
 	private $idPrograma;
 	public $model;
@@ -15,7 +15,7 @@ class ProgramaController
 	public function __construct($idPrograma)
 	{
 		$this->idPrograma = $idPrograma;
-		$this->model = new m_Programa;
+		$this->model = new m_programa();
 	}
 
 	public function index(){
@@ -40,7 +40,7 @@ class ProgramaController
 	public function nuevoPrograma($postData){
 		$result = array();
 		$errors = $this->validaDatos($postData);
-
+		
 		if($errors){
 			$message = implode("<br>", $errors);
 
@@ -118,51 +118,17 @@ class ProgramaController
 	private function validaDatos($data){
 		$errors = array();
 
-        $nombe		=> $data['nombre'];
-		$descripcion		=> $data['descripcion'];
-		$estado		=> $data['estado'];
-		$fecha_creacion			=> $data['fecha_creacion'];
-		$utima_modificacion 				=> $data['ultima_modificacion'];
+        $nombre		= $data['nombre'];
+		$descripcion		= $data['descripcion'];
+
 		
 
-        if ($this->esVacio($nombe)) {
+        if ($this->esVacio($nombre)) {
 			$errors[] = "Nombre no puede ser vacío";
 		}
 		if ($this->esVacio($descripcion)) {
 			$errors[] = "Descripción no puede ser vacío";
 		}
-        if ($this->esVacio($estado)) {
-			$errors[] = "Estado no puede ser vacío";
-		}
-        if ($this->esVacio($fecha_modificacion)) {
-			$errors[] = "Fecha de creación no puede ser vacío";
-		}
-        if ($this->esVacio($ultima_modificacion)) {
-			$errors[] = "Ultima modificación no puede ser vacío";
-		}
-       
-        
-
-		// Las validaciones son en caso de que se proporcionen. Hay que definirlo.
-		//if ($rfc && (strlen($rfc) != 12))  {
-		//	$errors[] = "Formato de rfc no válido";
-		//}
-
-		//if($telefono && !preg_match("/^[0-9]{10}$/", $telefono)){
-		//	$errors[] = "Formtao de teléfono no válido";
-		//}
-
-		//if($cp && !preg_match("/^[0-9]{5}$/", subject)){
-		//	$errors[] = "Formato de cp no válido";
-		//}
-
-		//if($tipo && !($tipo == 1 || $tipo == 2)){
-		//	$errors[] = "Tipo de proveedor no válido";
-		//}
-
-		//if($correo_contacto && !filter_var($correo_contacto, FILTER_VALIDATE_EMAIL)){
-		//	$errors[] "Formato de correo de contacto incorrecto";
-		//}
 
 		return $errors;
 
