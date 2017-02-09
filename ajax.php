@@ -84,7 +84,29 @@ switch ($action) {
     case 'deletePrograma':
         $programa = new programaController($_POST['idPrograma']);
         echo json_encode($programa->deletePrograma($_POST));
-        break;           
+        break;   
+
+    // CRUD SUBPROGRAMAS
+    case 'addSubprograma':
+       $programa = new programaController(null);
+       echo json_encode($programa->nuevoPrograma($_POST));
+       break; 
+
+    case 'getSubPrograma':
+        $programa = new programaController($_POST['idSubPrograma']);
+        echo json_encode($programa->getPrograma());
+        break; 
+
+    case 'updateSubPrograma':
+        $programa = new programaController($_POST['idSubPrograma']);
+        echo json_encode($programa->updatePrograma($_POST));
+        break;    
+
+    case 'deleteSubPrograma':
+        $programa = new programaController($_POST['idSubPrograma']);
+        echo json_encode($programa->deletePrograma($_POST));
+        break;         
+    // FIN CRUD SUBPROGRAMAS
 
 	default:		
 		break;

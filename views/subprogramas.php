@@ -14,120 +14,91 @@
 					   <thead>
 					      <tr>
 					      	 <th>ID</th>
-					         <th>Nombre del Subprograma</th>
+					         <th>Nombre</th>
 					      </tr>
 					   </thead>
 					   <tbody>
-					       <tr>
-					      	 <td><a href="#">60</a></td>
-					         <td><a href="#" >Bicicletas para los atletas</a></td>
-					      </tr>
-					      <tr>
-					      	 <td><a href="#">21</a></td>
-					         <td><a href="#" >Dibujando sonrisas</a></td>
-					      </tr>
-					       <tr>
-					      	 <td><a href="#">60</a></td>
-					         <td><a href="#" >Bicicletas para los atletas</a></td>
-					      </tr>
-					      <tr>
-					      	 <td><a href="#">21</a></td>
-					         <td><a href="#" >Dibujando sonrisas</a></td>
-					      </tr>
-					       <tr>
-					      	 <td><a href="#">60</a></td>
-					         <td><a href="#" >Bicicletas para los atletas</a></td>
-					      </tr>
-					      <tr>
-					      	 <td><a href="#">21</a></td>
-					         <td><a href="#" >Dibujando sonrisas</a></td>
-					      </tr>
-					       <tr>
-					      	 <td><a href="#">60</a></td>
-					         <td><a href="#" >Bicicletas para los atletas</a></td>
-					      </tr>
-					      <tr>
-					      	 <td><a href="#">21</a></td>
-					         <td><a href="#" >Dibujando sonrisas</a></td>
-					      </tr>
-					       <tr>
-					      	 <td><a href="#">60</a></td>
-					         <td><a href="#" >Bicicletas para los atletas</a></td>
-					      </tr>
-					      <tr>
-					      	 <td><a href="#">21</a></td>
-					         <td><a href="#" >Dibujando sonrisas</a></td>
-					      </tr>
-					       <tr>
-					      	 <td><a href="#">60</a></td>
-					         <td><a href="#" >Bicicletas para los atletas</a></td>
-					      </tr>
-					      <tr>
-					      	 <td><a href="#">21</a></td>
-					         <td><a href="#" >Dibujando sonrisas</a></td>
-					      </tr>
-					       <tr>
-					      	 <td><a href="#">60</a></td>
-					         <td><a href="#" >Bicicletas para los atletas</a></td>
-					      </tr>
-					      <tr>
-					      	 <td><a href="#">21</a></td>
-					         <td><a href="#" >Dibujando sonrisas</a></td>
-					      </tr>
-					      
+					   		<?php foreach ($programas as $programa): ?>
+					   		<tr onclick="programas.verPrograma(<?php echo $programa['id_programa']; ?>);">
+					   			<td> <?php echo $programa['id_programa']; ?>
+					   			</td>
+
+					   			<td>
+					   				<?php echo $programa['nombre']; ?>
+					   			</td>
+					   		</tr>	
+					   		<?php endforeach ?>
 					   </tbody>
 					</table>
 	        	</div>
 	        </div>
 		
 	</div>
-	<div class="form-group col-md-6 der ">
+
+	<!-- contenedor derecho -->
+	<div class="form-group col-md-6 der">
+
+		<!-- contenedor formulario y visualizacion de datos en texto plano  -->
 		<div class="datos datos2 col-md-10 eventos">
-			<div class="datos-bancarios col-md-10 evento" >
-				<form action="" id="subprogramas">
-					<div class="form-group has-warning">
-					  <label class="control-label" for="inputIDSubprogramas">ID:</label>
-					  <input required type="text" class="form-control" id="inputIDSubprogramas">
+			
+
+				<div class="input">
+					<div id="mensajes-server"></div>
+				</div>
+				
+				<!-- formulario -->
+				<form id="formulario-programas">
+					<input type="hidden" name="id-programa" id="id-programa">
+
+					<div class="input form-group">
+					  <label class="control-label" for="inputNombreProgramas">Nombre:</label>
+					  <input required type="text" class="form-control" id="inputNombreProgramas">
 					</div>
-					<div class="form-group">
-					  <label class="control-label" for="inputNombreSubprogramas">Nombre:</label>
-					  <input required type="text" class="form-control" id="inputNombreSubprogramas">
-					</div>
-					<div class="form-group">
-					  <label class="control-label" for="inputDescripcionSubprogramas">Descripción:</label>
-					  <textarea  class="form-control" id="inputDescripcionSubprogramas" cols="2" ></textarea>
-					</div>
-					<div class="form-group has-warning">
-					  <label class="control-label" for="inputProgramaSubprogramas">Programa:</label>
-					  <input required type="text" class="form-control" id="inputProgramaSubprogramas">
+					<div class="input form-group">
+					  <label class="control-label" for="inputDescripcionProgramas">Descripción:</label>
+					  <textarea  class="form-control" id="inputDescripcionProgramas" cols="2" ></textarea>
 					</div>
 
 				</form>
-				
-			</div>
-			
+				<!-- fin formulario -->
+
+				<!-- datos a mostrar en texto plano -->
+				<div hidden id="datos-programas">
+					<p><strong>ID</strong></p>		
+					<p class="id-datos id" id="view-id-programa"></p>
+
+					<p>Nombre</p>	
+					<p id="view-nombre-programa"></p>
+
+					<p>Descripcion</p>
+					<p id="view-descripcion-programa"></p>
+				</div>
+				<!-- fin datos a mostrar para programas -->					
 		</div>
+		<!-- fin contenedor formulario y datos -->
+
+		<!-- contenedor iconos -->
 		<div class="iconos col-md-2">
 			<section class="nuevo">
-				<button >
+				<button id="btn-add-programa" onclick="location.reload();">
 					<img src="assets/iconos/Recurso 11.png" alt="Editar">
 					<small >Nuevo</small>
 				</button>
 			</section>
 			<section >
-				<button >
+				<button onclick="programas.editPrograma();" hidden id="btn-edit">
 					<img src="assets/iconos/Recurso 7.png" alt="Editar">
 					<small >Editar</small>
 				</button>
 			</section>
 			<section >
-				<button  >
+				<button id="btn-save" onclick="programas.add();"  >
 					<img src="assets/iconos/Recurso 8.png" alt="Guardar">
 					<small>Guardar</small>
 				</button>
 			</section>
 			<section >
-				<button>
+				<button onclick="programas.deletePrograma();" hidden id="btn-delete">
 					<img src="assets/iconos/Recurso 9.png" alt="Borrar">
 					<small>Borrar</small>
 				</button>
@@ -136,40 +107,3 @@
 		</div>
 	</div>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
