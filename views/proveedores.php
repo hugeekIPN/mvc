@@ -1,5 +1,4 @@
 
-
 <div class="container container-proveedor "onload="oCurrentValue.innerText = estado.isContentEditable;">
 	<div class="form-group col-md-6 izq">
 	        <div class="col-md-8 ">
@@ -20,56 +19,14 @@
 					      </tr>
 					   </thead>
 					   <tbody>
-					      <tr>
-					      	 <td><a href="#">1</a></td>
-					         <td><a href="#" >3M México SA de CV</a></td>
-					      </tr>
-					      <tr>
-					      	 <td><a href="#">1</a></td>
-					         <td><a href="#">Acer Computer SA de CV</a></td>
-					      </tr>
-					      <tr>
-					       	 <td><a href="#">1</a></td>
-					         <td><a href="#">Samu</a></td>
-					      </tr>
-					      <tr>
-					       	 <td><a href="#">1</a></td>
-					         <td><a href="#">Academia Méxicana de Cirugía Academia Méxicana Academia Méxicana de Cirugía</a></td>
-					      </tr>
-					      <tr>
-					       	 <td><a href="#">1</a></td>
-					         <td><a href="#">Aurrera</a></td>
-					      </tr>
-					      <tr>
-					       	 <td><a href="#">1</a></td>
-					         <td><a href="#">Telmex</a></td>
-					      </tr>
-					      <tr>
-					       	 <td><a href="#">1</a></td>
-					         <td><a href="#">Pakatsy</a></td>
-					      </tr>
-					      <tr>
-					       	 <td><a href="#">1</a></td>
-					         <td><a href="#">Azu</a></td>
-					      </tr>
-					      <tr>
-					       	 <td><a href="#">1</a></td>
-					         <td><a href="#">Fundación</a></td>
-					      </tr>
-					      <tr>
-					       	 <td><a href="#">1</a></td>
-					         <td><a href="#">CTIN</a></td>
-					      </tr>
-					      <tr>
-					       	 <td><a href="#">1</a></td>
-					         <td><a href="#">TELCEL</a></td>
-					      </tr>
-					      <tr>
-					       	 <td><a href="#">1</a></td>
-					         <td><a href="#">yo</a></td>
-					      </tr>
-					     
-					      
+                                                                                                         
+                         <?php foreach ($proveedores as $proveedor): ?>
+					      <tr onclick="Proveedores.verProveedor(<?php echo $proveedor['id_proveedor']; ?>);">
+					      	 <td><?php echo $proveedor['id_proveedor'] ?></td>
+					         <td><?php echo $proveedor['razon_social'] ?></td>
+					      </tr>	             
+                         <?php endforeach; ?>                 
+                                             
 					   </tbody>
 					</table>
 	        	</div>
@@ -85,8 +42,8 @@
 					  <input required type="text" class="form-control" id="inputIDProveedores">
 					</div>
 					<div class="form-group">
-					  <label class="control-label" for="inputNombreProveedores">Nombre:</label>
-					  <input required type="text" class="form-control" id="inputNombreProveedores">
+					  <label class="control-label" for="inputRazonProveedores">Razón Social:</label>
+					  <input required type="text" class="form-control" id="inputRazonProveedores">
 					</div>
 					<h3>Datos Bancarios</h3>
 					<div class="form-group">
@@ -110,17 +67,35 @@
 					  <label class="control-label" for="inputReferenciaProveedores">Referencia:</label>
 					  <input  type="text" class="form-control" id="inputReferenciaProveedores">
 					</div>
-
+                                                                                              
 				</form>
-
+                 
+                <div hidden id="vista-datos" >
+                    <p ><strong>ID</strong></p>
+                    <p class="id-datos id" id="vista-id"><strong></strong></p>
+                    <p>Razón social</p>
+                    <p id="razon"></p>
+                    <p>Datos Bancarios</p>
+                    <p>RFC</p>
+                    <p id="vista-rfc"></p>
+                    <p>Cuenta</p>            
+                    <p id="vista-cuenta"></p>
+                    <p>Banco</p>
+                    <p id="vista-banco"></p>
+                    <p>Sucursal</p>
+                    <p id="vista-sucursal"></p>
+                    <p>Referencia</p>
+                    <p id="vista-referencia"></p>
+			     </div>         
+                                            
 			</div>
 			<div class="datos-generales col-md-6" >
 					
 				<h3>Datos Generales</h3>
-				<form action="" id="Proveedores2">
+				<form action="" id="ProveedoresDos">
 					<div class="form-group has-warning">
 					  <label class="control-label" for="inputCalleYNumeroProveedores">Calle y Número:</label>
-					  <input required type="text" class="form-control" id="inputIDProveedores">
+					  <input required type="text" class="form-control" id="inpustCalleYNumeroProveedores">
 					</div>
 					<div class="form-group">
 					  <label class="control-label" for="inputDelegacionYMunicipioProveedores">Delegacion Y Municipio:</label>
@@ -148,7 +123,24 @@
 					</div>
 
 				</form>
-
+                
+                <div hidden id="vista-datos2" >
+                    <p >Calle y Número></p>
+                    <p class="id-datos" id="vista-calle"></p>
+                    <p>Delegación y Municipio</p>
+                    <p id="vista-delega"></p>
+                    <p>País</p>
+                    <p id="vista-pais"></p>
+                    <p>Estado</p>            
+                    <p id="vista-entidad"></p>
+                    <p>Código Postal</p>
+                    <p id="vista-cp"></p>
+                    <p>Contacto</p>
+                    <p id="vista-contacto"></p>
+                    <p>Número</p>
+                    <p id="vista-numero"></p>
+			     </div>         
+                                                                                          
 			</div>
 		</div>
 		<div class="iconos col-md-2">

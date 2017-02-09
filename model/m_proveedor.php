@@ -5,22 +5,22 @@ require_once('config/database.php');
 /**
 * 
 */
-class Proveedores extends
+class m_proveedor
 {
 
 	private $db = null;
 
 	
-	function __construct(argument)
+	function __construct()
 	{
-		$this->db = Database:::getInstance();
+		$this->db = Database::getInstance();
 	}
 
 	public function getProveedor($idProveedor)
 	{		
 		$result = $this->db->select(
-			"SELECT * FROM usuarios WHERE id_proveedor = :id",
-			array("id => $idProveedor")
+			"SELECT * FROM proveedores WHERE id_proveedor = :id",
+			array("id" => $idProveedor)
 			);
 
 		if($result)

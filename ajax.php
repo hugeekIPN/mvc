@@ -3,6 +3,7 @@ require_once("controller/sessionController.php");
 require_once("controller/loginController.php");
 require_once("controller/usuariosController.php");
 require_once("controller/eventoController.php");
+require_once("controller/ProveedorController.php");
 
 sessionController::startSession(); 
 
@@ -48,7 +49,7 @@ switch ($action) {
         echo json_encode($usuario->deleteUsuario($_POST));
         break;
         
-        
+        /// Eventos
      case 'getEvento':
         $evento = new eventoController($_POST['eventoId']);
         echo json_encode($evento->getEvento());
@@ -64,6 +65,24 @@ switch ($action) {
      case 'deleteEvento':
         $evento = new eventoController($_POST['eventoId']);
         echo json_encode($evento->deleteEvento($_POST));
+        break;
+        
+        /// Proveedores
+     case 'getProveedor':
+        $proveedor = new ProveedorController($_POST['id_proveedor']);
+        echo json_encode($proveedor->getProveedor($_POST));
+        break;
+     case 'addProveedor':
+        $evento = new eventoController(null);
+        echo json_encode($proveedor->nuevoEvento($_POST));
+        break;
+     case 'updateProveedor':
+        $evento = new eventoController($_POST['id_evento']);
+        echo json_encode($proveedor->updateEvento($_POST));
+        break;
+     case 'deleteProveedor':
+        $evento = new eventoController($_POST['eventoId']);
+        echo json_encode($proveedor->deleteProveedor($_POST));
         break;
 
 	default:		

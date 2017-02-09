@@ -6,6 +6,7 @@ include_once("sessionController.php");
 include_once("loginController.php");
 include_once("model/m_proveedor.php");
 
+
 /**
 * 
 */
@@ -17,7 +18,7 @@ class ProveedorController
 	public function __construct($idProveedor)
 	{
 		$this->idProveedor = $idProveedor;
-		$this->model = new m_proveedor;
+		$this->model = new m_proveedor();
 	}
 
 	public function index(){
@@ -151,8 +152,7 @@ class ProveedorController
         return true;
 	}
 
-
-	private function validaDatos($data){
+	/**private function validaDatos($data){
 		$errors = array();
 
 		$razon_social		=> $data['razon_social'];
@@ -200,14 +200,12 @@ class ProveedorController
 
 		return $errors;
 
-	}
-
-
-
-
-	/**
+	}**/
+	
+    /**
 	* Verifica si un arreglo o un string es vacio
 	**/
+    
 	private function esVacio($in){
         if(is_array($in))
             return empty($in);
