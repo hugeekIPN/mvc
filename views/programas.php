@@ -80,13 +80,13 @@
 		<!-- contenedor iconos -->
 		<div class="iconos col-md-2">
 			<section class="nuevo">
-				<button id="btn-add-programa" onclick="programas.add();">
+				<button id="btn-add-programa" onclick="location.reload();">
 					<img src="assets/iconos/Recurso 11.png" alt="Editar">
 					<small >Nuevo</small>
 				</button>
 			</section>
 			<section >
-				<button id="btn-edit">
+				<button onclick="programas.editPrograma();" hidden id="btn-edit">
 					<img src="assets/iconos/Recurso 7.png" alt="Editar">
 					<small >Editar</small>
 				</button>
@@ -98,7 +98,7 @@
 				</button>
 			</section>
 			<section >
-				<button id="btn-delete">
+				<button onclick="programas.deletePrograma();" hidden id="btn-delete">
 					<img src="assets/iconos/Recurso 9.png" alt="Borrar">
 					<small>Borrar</small>
 				</button>

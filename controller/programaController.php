@@ -59,12 +59,23 @@ class programaController
 	}
 
 	public function getPrograma(){
-		return $this->model->getPrograma($this->idPrograma);
+		$result = $this->model->getPrograma($this->idPrograma);
+
+		if($result){
+			$result['status'] = "success";
+
+		}else{
+			$result = array(
+				"status" => "error",
+				"message" => "El id del programa no existe");
+		}
+
+		return $result;
 	}
 
 	public function updatePrograma($data){
 		$result = array();
-		$errors = $this->validaDatos($postData);
+		$errors = $this->validaDatosUpdate($data);
 
 		if($errors){
 			$message = implode("<br>", $errors);
@@ -82,19 +93,11 @@ class programaController
 
 			if($currentPrograma['descripcion']!=$data['descripcion'])
 				$newData['descripcion']=$data['descripcion'];
-
-			if($currentPrograma['estado'] != $data['estado'])
-				$newData['estado'] = $data['estado'];
-
-			if($currentPrograma['fecha_creacion'] != $data['fecha_creacion'])
-				$newData['fecha_creacion'] = $data['fecha_creacion'];
-
-			if($currentPrograma['ultima_modificacion'] != $data['ultima_modificacion'])
-				$newData['ultima_modificacion'] = $data['ultima_modificacion'];
-
 	     
 			if($newData){
-				$this->model->updatePrograma($newData, $this->idPrograma);
+
+				$newData['ultima_modificacion'] = date("Y-m-d H:i:s");
+ 				$this->model->updatePrograma($newData, $this->idPrograma);
 			}
 
 			$result = array(
@@ -105,13 +108,58 @@ class programaController
 		return $result;
 	}
 
+	/**
+	* Funcion para validar datos de actualizacion
+	**/
+	private function validaDatosUpdate($data){
+		$nombre = $data['nombre'];
+		$descripcion = $data['descripcion'];
+
+		$errors = array();
+
+		$currentPrograma = $this->model->getPrograma($this->idPrograma);
+
+		//validamos que exista el id del usuario
+        if(!$currentPrograma){
+            $errors[] = "No existe el programa";
+            return $errors;
+        }
+
+		$anotherPrograma = $this->model->getProgramaByName($nombre);
+
+		//Validamos que el nombre del programa sea único
+		if($anotherPrograma && $anotherPrograma['id_programa'] != $this->idPrograma){
+			$errors[] = "El nombre ya está registrado";
+		}
+
+		if ($this->esVacio($nombre)) {
+			$errors[] = "Nombre no puede ser vacío";
+		}
+
+		if ($this->esVacio($descripcion)) {
+			$errors[] = "Descripción no puede ser vacío";
+		}
+
+		return $errors;
+	}
+
 
 	/**
 	* FALTA VALIDAR RELACIONES
 	**/
 	public function deletePrograma(){
-		 $this->model->deletePrograma($this->idPrograma);        
-        return true;
+		$result = array();
+		if($this->model->deletePrograma($this->idPrograma)){
+			$result = array(
+				"status" => "success",
+				"message" => "Registro eliminado");
+		}else{
+			$result = array(
+				"status" => "error",
+				"message" => "No se pudo realizar la operación");
+		}
+
+		return $result;
 	}
 
 
@@ -126,6 +174,11 @@ class programaController
         if ($this->esVacio($nombre)) {
 			$errors[] = "Nombre no puede ser vacío";
 		}
+
+		if($this->model->getProgramaByName($nombre)){
+			$errors[] = "El nombre del programa ya esta registrado";
+		}
+
 		if ($this->esVacio($descripcion)) {
 			$errors[] = "Descripción no puede ser vacío";
 		}

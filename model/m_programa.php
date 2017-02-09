@@ -27,6 +27,21 @@ class m_programa{
     }
 
     /**
+    * Busca un programa por su nombre
+    **/
+    public function getProgramaByName($nombre){
+        $result = $this->db->select(
+            "SELECT * FROM programas WHERE nombre = :nombre",
+            array("nombre" => $nombre));
+
+        if($result){
+            return $result[0];
+        }else{
+            return null;
+        }
+    }
+
+    /**
     * Guarda un nuevo programa
     * @param Arreglo con los datos del programa
     * @return true si logra guardar los datos
@@ -67,9 +82,9 @@ class m_programa{
     **/
     public function deletePrograma($id_programa)  /// update Estado = eliminado
     {    
-        $this->db->delete("programas", "id_programa = :id", array( "id" => $id_programa ));        
+        return $this->db->delete("programas", "id_programa = :id", array( "id" => $id_programa ));        
         
-        return true;
+        
     }
 
     /**

@@ -71,6 +71,21 @@ switch ($action) {
        echo json_encode($programa->nuevoPrograma($_POST));
        break; 
 
+    case 'getPrograma':
+        $programa = new programaController($_POST['idPrograma']);
+        echo json_encode($programa->getPrograma());
+        break; 
+
+    case 'updatePrograma':
+        $programa = new programaController($_POST['idPrograma']);
+        echo json_encode($programa->updatePrograma($_POST));
+        break;    
+
+    case 'deletePrograma':
+        $programa = new programaController($_POST['idPrograma']);
+        echo json_encode($programa->deletePrograma($_POST));
+        break;           
+
 	default:		
 		break;
 }
