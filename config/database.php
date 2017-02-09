@@ -115,8 +115,10 @@ class Database extends PDO
             $sth->bindValue(":$key", $value);
         }
         
-        $sth->execute();
+        $count = $sth->execute();
 
         $sth->closeCursor();
+
+        return $count;
     }
 }
