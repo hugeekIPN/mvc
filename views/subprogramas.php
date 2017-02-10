@@ -18,13 +18,13 @@
 					      </tr>
 					   </thead>
 					   <tbody>
-					   		<?php foreach ($programas as $programa): ?>
-					   		<tr onclick="programas.verPrograma(<?php echo $programa['id_programa']; ?>);">
-					   			<td> <?php echo $programa['id_programa']; ?>
+					   		<?php foreach ($subprogramas as $supprograma): ?>
+					   		<tr onclick="subprogramas.verPrograma(<?php echo $subprograma['id_subprograma']; ?>);">
+					   			<td> <?php echo $subprograma['id_subprograma']; ?>
 					   			</td>
 
 					   			<td>
-					   				<?php echo $programa['nombre']; ?>
+					   				<?php echo $subprograma['nombre']; ?>
 					   			</td>
 					   		</tr>	
 					   		<?php endforeach ?>
@@ -47,8 +47,8 @@
 				</div>
 				
 				<!-- formulario -->
-				<form id="formulario-programas">
-					<input type="hidden" name="id-programa" id="id-programa">
+				<form id="formulario-subprogramas">
+					<input type="hidden" name="id-subprograma" id="id-subprograma">
 
 					<div class="input form-group">
 					  <label class="control-label" for="inputNombreProgramas">Nombre:</label>
@@ -63,42 +63,42 @@
 				<!-- fin formulario -->
 
 				<!-- datos a mostrar en texto plano -->
-				<div hidden id="datos-programas">
+				<div hidden id="datos-subprogramas">
 					<p><strong>ID</strong></p>		
-					<p class="id-datos id" id="view-id-programa"></p>
+					<p class="id-datos id" id="view-id-subprograma"></p>
 
 					<p>Nombre</p>	
-					<p id="view-nombre-programa"></p>
+					<p id="view-nombre-subprograma"></p>
 
 					<p>Descripcion</p>
-					<p id="view-descripcion-programa"></p>
+					<p id="view-descripcion-subprograma"></p>
 				</div>
-				<!-- fin datos a mostrar para programas -->					
+				<!-- fin datos a mostrar para subprogramas -->					
 		</div>
 		<!-- fin contenedor formulario y datos -->
 
 		<!-- contenedor iconos -->
 		<div class="iconos col-md-2">
 			<section class="nuevo">
-				<button id="btn-add-programa" onclick="location.reload();">
+				<button id="btn-add-subprograma" onclick="location.reload();">
 					<img src="assets/iconos/Recurso 11.png" alt="Editar">
 					<small >Nuevo</small>
 				</button>
 			</section>
 			<section >
-				<button onclick="programas.editPrograma();" hidden id="btn-edit">
+				<button onclick="subprogramas.editPrograma();" hidden id="btn-edit">
 					<img src="assets/iconos/Recurso 7.png" alt="Editar">
 					<small >Editar</small>
 				</button>
 			</section>
 			<section >
-				<button id="btn-save" onclick="programas.add();"  >
+				<button id="btn-save" onclick="subprogramas.add();"  >
 					<img src="assets/iconos/Recurso 8.png" alt="Guardar">
 					<small>Guardar</small>
 				</button>
 			</section>
 			<section >
-				<button onclick="programas.deletePrograma();" hidden id="btn-delete">
+				<button onclick="subprogramas.deletePrograma();" hidden id="btn-delete">
 					<img src="assets/iconos/Recurso 9.png" alt="Borrar">
 					<small>Borrar</small>
 				</button>
