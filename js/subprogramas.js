@@ -1,4 +1,4 @@
-var programas = {};
+var subprogramas = {};
 
 /**
 * se capturan los inputs de la vista
