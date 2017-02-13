@@ -3,7 +3,11 @@ require_once("controller/sessionController.php");
 require_once("controller/loginController.php");
 require_once("controller/usuariosController.php");
 require_once("controller/eventoController.php");
+<<<<<<< HEAD
 require_once("controller/ProveedorController.php");
+=======
+require_once("controller/programaController.php");
+>>>>>>> 4e8d67ebc2a7650bc5e62cb4f4330a666c2078d3
 
 sessionController::startSession(); 
 
@@ -47,9 +51,14 @@ switch ($action) {
     case 'deleteUsuario':
         $usuario = new usuariosController($_POST['usuarioId']);
         echo json_encode($usuario->deleteUsuario($_POST));
+<<<<<<< HEAD
         break;
         
         /// Eventos
+=======
+        break;        
+        
+>>>>>>> 4e8d67ebc2a7650bc5e62cb4f4330a666c2078d3
      case 'getEvento':
         $evento = new eventoController($_POST['eventoId']);
         echo json_encode($evento->getEvento());
@@ -84,6 +93,26 @@ switch ($action) {
         $evento = new eventoController($_POST['eventoId']);
         echo json_encode($proveedor->deleteProveedor($_POST));
         break;
+
+    case 'addPrograma':
+       $programa = new programaController(null);
+       echo json_encode($programa->nuevoPrograma($_POST));
+       break; 
+
+    case 'getPrograma':
+        $programa = new programaController($_POST['idPrograma']);
+        echo json_encode($programa->getPrograma());
+        break; 
+
+    case 'updatePrograma':
+        $programa = new programaController($_POST['idPrograma']);
+        echo json_encode($programa->updatePrograma($_POST));
+        break;    
+
+    case 'deletePrograma':
+        $programa = new programaController($_POST['idPrograma']);
+        echo json_encode($programa->deletePrograma($_POST));
+        break;           
 
 	default:		
 		break;

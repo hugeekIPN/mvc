@@ -23,7 +23,6 @@ usuarios.elementos = {
 **/
 usuarios.addUser = function (editMode) {
     var data  = usuarios.elementos;
-    var modal = $("#modal-add-edit-user");
     var btn   = $("#btn-add-user");
     var action = "addUsuario";
     var usuarioId = 0;
@@ -179,7 +178,7 @@ usuarios.verFormularioVacio = function(){
 	//activamos opcion para guardar
 	var save_button = $("#btn-update-user");
 	save_button.show();
-	update_button.attr('onclick','usuarios.addUser()');
+	
 }
 
 usuarios.deleteUser = function(){

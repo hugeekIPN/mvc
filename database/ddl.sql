@@ -83,7 +83,7 @@ CREATE TABLE IF NOT EXISTS `sgi`.`especies` (
 DROP TABLE IF EXISTS `sgi`.`programas` ;
 
 CREATE TABLE IF NOT EXISTS `sgi`.`programas` (
-  `id_programa` INT NOT NULL,
+  `id_programa` INT AUTO_INCREMENT,
   `nombre` VARCHAR(250) NULL,
   `descripcion` VARCHAR(250) NULL,
   `estado` INT NULL,
@@ -98,7 +98,7 @@ CREATE TABLE IF NOT EXISTS `sgi`.`programas` (
 DROP TABLE IF EXISTS `sgi`.`subprogramas` ;
 
 CREATE TABLE IF NOT EXISTS `sgi`.`subprogramas` (
-  `id_subprograma` INT NOT NULL,
+  `id_subprograma` INT AUTO_INCREMENT,
   `programas_id_programa` INT NOT NULL,
   `nombre` VARCHAR(250) NULL,
   `descripcion` VARCHAR(250) NULL,
