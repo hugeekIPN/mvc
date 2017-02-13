@@ -47,19 +47,17 @@ class m_proveedor
 				'pais'				=> $data['pais'],
 				'entidad'			=> $data['entidad'],
 				'tipo'				=> $data['tipo'],
-				'contacto'			=> $data['contacto'],
 				'correo_contacto'	=> $data['correo_contacto'],
-				'estado'         => $data['estado'], 
 				'fecha_creacion'         => $data['fecha_creacion'],
             	'ultima_modificacion'         => $data['ultima_modificacion']  
 				));
 	}
 
 
-	public function updateProveedor($data,$idProveedor)
+	public function updateProveedor($data, $idProveedor)
 	{
 		$this->db->update(
-			"proveedores",
+			"proveedores", $data,
 			"id_proveedor = :id",
 			array("id" => $idProveedor)
 			);

@@ -38,8 +38,7 @@
 			<div class="datos-bancarios col-md-6" >
 				<form action="" id="Proveedores">
 					<div class="form-group has-warning">
-					  <label class="control-label" for="inputIDProveedores">ID:</label>
-					  <input required type="text" class="form-control" id="inputIDProveedores">
+					  <input required type="hidden" class="form-control" id="inputIDProveedores">
 					</div>
 					<div class="form-group">
 					  <label class="control-label" for="inputRazonProveedores">Razón Social:</label>
@@ -90,12 +89,15 @@
                                             
 			</div>
 			<div class="datos-generales col-md-6" >
-					
+				<div class="input">
+					<div id="mensajes-server"></div>
+				</div>
+                                             
 				<h3>Datos Generales</h3>
 				<form action="" id="ProveedoresDos">
 					<div class="form-group has-warning">
 					  <label class="control-label" for="inputCalleYNumeroProveedores">Calle y Número:</label>
-					  <input required type="text" class="form-control" id="inpustCalleYNumeroProveedores">
+					  <input required type="text" class="form-control" id="inputCalleYNumeroProveedores">
 					</div>
 					<div class="form-group">
 					  <label class="control-label" for="inputDelegacionYMunicipioProveedores">Delegacion Y Municipio:</label>
@@ -125,7 +127,7 @@
 				</form>
                 
                 <div hidden id="vista-datos2" >
-                    <p >Calle y Número></p>
+                    <p >Calle y Número</p>
                     <p class="id-datos" id="vista-calle"></p>
                     <p>Delegación y Municipio</p>
                     <p id="vista-delega"></p>
@@ -146,26 +148,26 @@
 		<div class="iconos col-md-2">
 			<section class="nuevo">
 
-				<button >
+				<button onclick="location.reload();">
 					<img src="assets/iconos/Recurso 11.png" alt="Editar">
 
 					<small >Nuevo</small>
 				</button>
 			</section>
 			<section >
-				<button >
+				<button onclick="Proveedores.editproveedor();" id="btn-edit-user">
 					<img src="assets/iconos/Recurso 7.png" alt="Editar">
 					<small >Editar</small>
 				</button>
 			</section>
 			<section >
-				<button  >
+				<button onclick="Proveedores.addproveedor();" id="btn-update-proveedor">
 					<img src="assets/iconos/Recurso 8.png" alt="Guardar">
 					<small>Guardar</small>
 				</button>
 			</section>
 			<section >
-				<button>
+				<button onclick="Proveedores.deleteproveedor();">
 					<img src="assets/iconos/Recurso 9.png" alt="Borrar">
 					<small>Borrar</small>
 				</button>

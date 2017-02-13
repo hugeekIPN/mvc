@@ -42,7 +42,7 @@ class ProveedorController
 
 	public function nuevoProveedor($postData){
 		$result = array();
-		$errors = $this->validaDatos($postData);
+		$errors = false; // $this->validaDatos($postData);
 
 		if($errors){
 			$message = implode("<br>", $errors);
@@ -67,7 +67,7 @@ class ProveedorController
 
 	public function updateProveedor($data){
 		$result = array();
-		$errors = $this->validaDatos($postData);
+		$errors = false; // $this->validaDatos($postData);
 
 		if($errors){
 			$message = implode("<br>", $errors);
@@ -95,8 +95,6 @@ class ProveedorController
 			if($currentProveedor['sucursal'] != $data['sucursal'])
 				$newData['sucursal'] = $data['sucursal'];
 
-			if($currentProveedor['plaza'] != $data['plaza'])
-				$newData['plaza'] = $data['plaza'];
 
 			if($currentProveedor['rfc'] != $data['rfc'])
 				$newData['rfc'] = $data['rfc'];
@@ -107,8 +105,6 @@ class ProveedorController
 			if($currentProveedor['calle'] != $data['calle'])
 				$newData['calle'] = $data['calle'];
 
-			if($currentProveedor['colonia'] != $data['colonia'])
-				$newData['colonia'] = $data['colonia'];
 
 			if($currentProveedor['cp'] != $data['cp'])
 				$newData['cp'] = $data['cp'];
@@ -122,11 +118,6 @@ class ProveedorController
 			if($currentProveedor['entidad'] != $data['entidad'])
 				$newData['entidad'] = $data['entidad'];
 
-			if($currentProveedor['tipo'] != $data['tipo'])
-				$newData['tipo'] = $data['tipo'];
-
-			if($currentProveedor['contacto'] != $data['contacto'])
-				$newData['contacto'] = $data['contacto'];
 
 			if($currentProveedor['correo_contacto'] != $data['correo_contacto'])
 				$newData['correo_contacto'] = $data['correo_contacto'];
@@ -148,8 +139,19 @@ class ProveedorController
 	* FALTA VALIDAR RELACIONES
 	**/
 	public function deleteProveedor(){
-		 $this->model->deleteProveedor($this->idProveedor);        
-        return true;
+        $result = array();
+        
+		if($this->model->eliminarProveedor($this->idProveedor)){
+			$result = array(
+				"status" => "success",
+				"message" => "Registro eliminado");
+		}else{
+			$result = array(
+				"status" => "error",
+				"message" => "No se pudo realizar la operación");
+		}
+
+		return $result;
 	}
 
 	/**private function validaDatos($data){

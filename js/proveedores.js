@@ -78,9 +78,8 @@ Proveedores.verProveedor = function (proveedorId){
 
 Proveedores.addproveedor = function (editMode) {
     var data  = Proveedores.elementos;
-    var modal = $("#modal-add-edit-proveedor");
-    var btn   = $("#btn-add-proveedor");
-    var action = "addproveedor";
+    var action = "addProveedor";
+    
     var proveedorId = 0;
     var forUpdate = false;
 
@@ -91,7 +90,7 @@ Proveedores.addproveedor = function (editMode) {
 
        
         if ( editMode ) {
-            action = "updateproveedor";
+            action = "updateProveedor";
             proveedorId = $("#inputIDProveedores").val();
 
         }      
@@ -100,24 +99,30 @@ Proveedores.addproveedor = function (editMode) {
 			type: "POST",
 			url: "ajax.php",
 			dataType: "json",
-			data: {
-				id_proveedor : proveedorId,
-				nombre : data.nombre.val(),
-                subprogramas_idsubprogramas : data.subProgId.val(),
-                descripcion : data.proveedorDesc.val(),
-                fecha_creacion: data.fechaproveedor.val(),
-                pais: data.pais.val(),
-                ciudad: data.ciudad.val(),
-                entidad: data.entidad.val(),
-                estado: "1",
-				action : action
+			data: {                
+                    id_proveedor : proveedorId,
+                    razon_social : data.razon_social.val(),
+                    rfc : data.rfc.val(),
+                    cuenta : data.cuenta.val(),
+                    banco : data.banco.val(),
+                    sucursal: data.sucursal.val(),
+                    referencia: data.referencia.val(),
+                    calle: data.calle.val(),
+                    delegacion: data.delegacion.val(),
+                    pais: data.pais.val(),
+                    entidad: data.estado.val(),
+                    cp: data.cp.val(),
+                    correo_contacto: data.correo_contacto.val(),
+                    telefono: data.telefono.val(),
+                    action : action
 				},
 			success: function(result){
-				if(result.status == "error"){
-					utilerias.displayErrorServerMessage($("#mensajes-server"),result.message);
+				if(result.status == "error"){	      utilerias.displayErrorServerMessage($("#mensajes-server"),result.message);
 				}else {
 					$("#formulario-usuario :input").val('');
 					utilerias.displaySuccessMessage($("#mensajes-server"),result.message);
+                    
+                     location.reload();
 				}
 			}
 		});		
@@ -125,13 +130,9 @@ Proveedores.addproveedor = function (editMode) {
 };
 
 
-/**
-* Funcion cuando se pulse el boton editar. 
-* En este caso se muestra un formulario con los datos
-
 Proveedores.editproveedor = function(){
 	var data = Proveedores.elementos;
-    var proveedorId= data.proveedorId.val();
+    var proveedorId= data.id_proveedor.val();
 
     //mostramos el boton de agregar nuevo usuario
     data.button.show();
@@ -146,33 +147,42 @@ Proveedores.editproveedor = function(){
 
 	//mostramos el formulario
 	$("#Proveedores").show();
-
+    $("#ProveedoresDos").show();
 	//ocultamos datos de visualizacion
-	$("#datos-usuario").hide();
-
+	$("#vista-datos").hide();
+    $("#vista-datos2").hide();
+    
 	utilerias.removeErrorMessages();
 	
     $.ajax({
 		type: "POST",
 		url: "ajax.php",
 		data: {
-			action: "getproveedor",
-			proveedorId: proveedorId
+			action: "getProveedor",
+			id_proveedor: proveedorId
 		},
 		success: function(result){
 			var res = JSON.parse(result);
             
-            data.proveedorId.val(res.id_proveedor);
-			data.nombre.val(res.nombre);
-            
-            
+            data.id_proveedor.val(res.id_proveedor);
+			data.razon_social.val(res.razon_social);
+            data.cuenta.val(res.cuenta);
+			data.banco.val(res.banco); data.sucursal.val(res.sucursal);
+            data.rfc.val(res.rfc);    
+			data.referencia.val(res.referencia);      
+            data.calle.val(res.calle);    
+            data.delegacion.val(res.delegacion);    
+            data.pais.val(res.pais);       
+            data.cp.val(res.cp);    
+            data.calle.val(res.calle);    
+            data.estado.val(res.entidad);    
+            data.correo_contacto.val(res.correo_contacto);   
+            data.telefono.val(res.telefono);    
             
 		}
 	});
         
 };
-**/
-
 /**
 * Funcion que llama a agregar nuevo usuario, con modalidad de actualizacion
 **/
@@ -192,21 +202,21 @@ Proveedores.verFormularioVacio = function(){
 
 Proveedores.deleteproveedor = function(){
     var data = Proveedores.elementos;
-    var proveedorId= data.proveedorId.val();
+    var proveedorId= data.id_proveedor.val();
 	var c= confirm('Estás seguro de esto?');
 	if(c){
 		$.ajax({
 			type: "post",
 			url: "ajax.php",
 			data: {
-				action: "deleteproveedor",
+				action: "deleteProveedor",
 				proveedorId: proveedorId
 			},
 			success: function(result){
 				if(result.status == "error")
 					utilerias.displayErrorMessage($("#mensajes-server"),result.message);
-				else
-					location.reload();
+			     else
+                     location.reload();
 			}
 		});
 	}

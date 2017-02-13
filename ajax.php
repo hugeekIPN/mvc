@@ -71,15 +71,15 @@ switch ($action) {
         echo json_encode($proveedor->getProveedor($_POST));
         break;
      case 'addProveedor':
-        $evento = new eventoController(null);
-        echo json_encode($proveedor->nuevoEvento($_POST));
+       $proveedor= new ProveedorController(null);
+        echo json_encode($proveedor->nuevoProveedor($_POST));
         break;
      case 'updateProveedor':
-        $evento = new eventoController($_POST['id_evento']);
-        echo json_encode($proveedor->updateEvento($_POST));
+       $proveedor= new ProveedorController($_POST['id_proveedor']);
+        echo json_encode($proveedor->updateProveedor($_POST));
         break;
      case 'deleteProveedor':
-        $evento = new eventoController($_POST['eventoId']);
+        $proveedor = new ProveedorController($_POST['proveedorId']);
         echo json_encode($proveedor->deleteProveedor($_POST));
         break;
 /// Crud Programas
