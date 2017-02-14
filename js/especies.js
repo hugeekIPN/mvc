@@ -21,7 +21,7 @@ especies.elementos = {
 **/
 especies.add = function(){
 	var data = especies.elementos;
-	var action = "addespecie";
+	var action = "addEspecie";
 
 	if(especies.validaDatos(data)){
 		$.ajax({
@@ -29,7 +29,6 @@ especies.add = function(){
 			url: "ajax.php",
 			dataType: "json",
 			data: {
-				nombre: data.nombre.val(),
 				descripcion: data.descripcion.val(),
 				action: action
 				},
@@ -53,11 +52,6 @@ especies.validaDatos = function(data){
 	var valid = true;
 
 	utilerias.removeErrorMessages();
-
-	if($.trim(data.nombre.val())==""){
-		valid = false;
-		utilerias.displayErrorMessage(data.nombre, "Se debe proporcionar un nombre");
-	}
 
 	if($.trim(data.descripcion.val())==""){
 		valid = false;
@@ -161,10 +155,9 @@ especies.updateespecie = function(){
 			url: "ajax.php",
 			dataType: "json",
 			data: {
-				idespecie : idespecie,
-				nombre: elem.nombre.val(),
+				id_especie : idespecie,
 				descripcion: elem.descripcion.val(),
-				action: "updateespecie"
+				action: "updateEspecie"
 			},
 			success: function(result){
 				if(result.status == "error"){
@@ -194,8 +187,8 @@ especies.deleteespecie = function(){
 			url: "ajax.php",
 			dataType: "json",
 			data: {
-				action: "deleteespecie",
-				idespecie: idespecie
+				action: "deleteEspecie",
+				id_especie: idespecie
 			},
 			success: function(result){
 				if(result.status == "error"){

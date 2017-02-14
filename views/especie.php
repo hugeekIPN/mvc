@@ -42,7 +42,7 @@
 			<form action="" id="formulario-especies">
 					<div class="form-group has-warning">
 					  <label class="control-label" for="inputIDEspecie">ID:</label>
-					  <input required type="text" class="form-control" id="inputIDEspecie">
+					  <input required type="text" class="form-control" id="inputIDEspecie" disabled>
 					</div>
 					<div class="form-group">
 					  <label class="control-label" for="inputDescripcionEspecie">Descripción:</label>
@@ -79,13 +79,13 @@
 				</button>
 			</section>
 			<section >
-				<button id="btn-save" >
+				<button id="btn-save" onclick="especies.add();">
 					<img src="assets/iconos/Recurso 8.png" alt="Guardar">
 					<small>Guardar</small>
 				</button>
 			</section>
 			<section >
-				<button id="btn-delete">
+				<button id="btn-delete" onclick="especies.deleteespecie();">
 					<img src="assets/iconos/Recurso 9.png" alt="Borrar">
 					<small>Borrar</small>
 				</button>

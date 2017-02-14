@@ -116,9 +116,9 @@ class EspecieController
 		$errors = array();
 
 		$descripcion		= $data['descripcion'];
-		$estado		= $data['estado'];
-		$fecha_creacion			= $data['fecha_creacion'];
-		$utima_modificacion = $data['ultima_modificacion'];
+		$estado		= "1";
+		//$fecha_creacion			= $data['fecha_creacion'];
+		//$utima_modificacion = $data['ultima_modificacion'];
 		
 
 		if ($this->esVacio($descripcion)) {
@@ -127,13 +127,14 @@ class EspecieController
         if ($this->esVacio($estado)) {
 			$errors[] = "Estado no puede ser vacío";
 		}
+        /*
         if ($this->esVacio($fecha_modificacion)) {
 			$errors[] = "Fecha de creación no puede ser vacío";
 		}
         if ($this->esVacio($ultima_modificacion)) {
 			$errors[] = "Ultima modificación no puede ser vacío";
 		}
-       
+       */
         
 
 		// Las validaciones son en caso de que se proporcionen. Hay que definirlo.
