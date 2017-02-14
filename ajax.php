@@ -6,6 +6,7 @@ require_once("controller/eventoController.php");
 require_once("controller/ProveedorController.php");
 require_once("controller/programaController.php");
 require_once("controller/subprogramaController.php");
+require_once("controller/especieController.php");
 
 sessionController::startSession(); 
 
@@ -126,7 +127,30 @@ switch ($action) {
         echo json_encode($subprograma->deleteSubprograma($_POST));
         break;         
     // FIN CRUD SUBPROGRAMAS
+    
+        // CRUD ESPECIES
+    case 'addEspecie':
+       $especie = new EspecieController(null);
+       echo json_encode($especie->nuevoEspecie($_POST));
+       break; 
 
+    case 'getEspecie':
+        $especie = new EspecieController($_POST['id_especie']);
+        echo json_encode($especie->getEspecie());
+        break; 
+
+    case 'updateEspecie':
+        $especie = new EspecieController($_POST['id_especie']);
+        echo json_encode($especie->updateEspecie($_POST));
+        break;    
+
+    case 'deleteEspecie':
+        $especie = new EspecieController($_POST['id_especie']);
+        echo json_encode($especie->deleteEspecie($_POST));
+        break;         
+        
+    /// FIN CRUD ESPECIES
+        
 	default:		
 		break;
 }

@@ -18,56 +18,12 @@
 					      </tr>
 					   </thead>
 					   <tbody>
-					       <tr>
-					      	 <td><a href="#">056</a></td>
-					         <td><a href="#" >Agua botella 1 galón</a></td>
+                            <?php foreach ($especies as $especie): ?>  
+					       <tr onclick="especies.verespecie(<?php echo $especie['id_especie']; ?>);">
+					      	 <td><?php echo $especie['id_especie']; ?></td>
+					         <td><?php echo $especie['descripcion']; ?></td>
 					      </tr>
-					       <tr>
-					      	 <td><a href="#">056</a></td>
-					         <td><a href="#" >Agua botella 1 galón</a></td>
-					      </tr>
-					       <tr>
-					      	 <td><a href="#">056</a></td>
-					         <td><a href="#" >Agua botella 1 galón</a></td>
-					      </tr>
-					       <tr>
-					      	 <td><a href="#">056</a></td>
-					         <td><a href="#" >Agua botella 1 galón</a></td>
-					      </tr>
-					       <tr>
-					      	 <td><a href="#">056</a></td>
-					         <td><a href="#" >Agua botella 1 galón</a></td>
-					      </tr>
-					       <tr>
-					      	 <td><a href="#">056</a></td>
-					         <td><a href="#" >Agua botella 1 galón</a></td>
-					      </tr>
-					       <tr>
-					      	 <td><a href="#">056</a></td>
-					         <td><a href="#" >Agua botella 1 galón</a></td>
-					      </tr>
-					       <tr>
-					      	 <td><a href="#">056</a></td>
-					         <td><a href="#" >Agua botella 1 galón</a></td>
-					      </tr>
-					       <tr>
-					      	 <td><a href="#">056</a></td>
-					         <td><a href="#" >Agua botella 1 galón</a></td>
-					      </tr>
-					       <tr>
-					      	 <td><a href="#">056</a></td>
-					         <td><a href="#" >Agua botella 1 galón</a></td>
-					      </tr>
-					       <tr>
-					      	 <td><a href="#">056</a></td>
-					         <td><a href="#" >Agua botella 1 galón</a></td>
-					      </tr>
-					       <tr>
-					      	 <td><a href="#">056</a></td>
-					         <td><a href="#" >Agua botella 1 galón</a></td>
-					      </tr>
-
-					      
+					     <?php endforeach; ?>  
 					   </tbody>
 					</table>
 	        	</div>

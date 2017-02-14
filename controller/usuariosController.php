@@ -34,25 +34,7 @@ class UsuariosController {
         }
 	}
     
-       public function especie()
-	{
-        $login = new loginController();
-        if($login->_isLoggedIn()){
-            
-							
-				$usuario = sessionController::get("username");	
-            
-            
-            $users = $this->model->getAllUsers();
-            
-            require_once("views/templates/header.php");
-            require_once("views/templates/nav.php");
-            require_once("views/especie.php");
-            require_once("views/templates/footer.php");
-        }else{
-            require_once("views/login.php");
-        }
-	}
+ 
     
        public function cap_apoyos()
 	{
@@ -142,45 +124,6 @@ class UsuariosController {
 	 
     }
 
-   
-    public function programas(){
-        $login = new loginController();
-        if($login->_isLoggedIn()){
-            
-                            
-        $usuario = sessionController::get("username");  
-            
-            
-            $users = $this->model->getAllUsers();
-
-            require_once("views/templates/header.php");
-            require_once("views/templates/nav.php");
-            require_once("views/programas.php");
-            require_once("views/templates/footer.php");
-        }else{
-            require_once("views/login.php");
-        }
-
-    }
-    public function subprogramas(){
-        $login = new loginController();
-        if($login->_isLoggedIn()){
-            
-                            
-        $usuario = sessionController::get("username");  
-            
-            
-            $users = $this->model->getAllUsers();
-
-            require_once("views/templates/header.php");
-            require_once("views/templates/nav.php");
-            require_once("views/subprogramas.php");
-            require_once("views/templates/footer.php");
-        }else{
-            require_once("views/login.php");
-        }
-
-    }
 
 
     public function deleteUsuario() 

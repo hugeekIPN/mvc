@@ -9,6 +9,8 @@ require_once("controller/eventoController.php");
 require_once("controller/ProveedorController.php");
 require_once("controller/programaController.php");
 require_once("controller/subprogramaController.php");
+require_once("controller/especieController.php");
+
 
 sessionController::startSession(); 
 $login        = new loginController();
@@ -19,6 +21,7 @@ $subprograma = new subprogramaController(null);
 
 $evento   = new eventoController("1");
 $proveedor   = new ProveedorController("1");
+$especie= new EspecieController(null);
 
 $option=isset($_REQUEST['op']) ?  $_REQUEST['op']: null;
 
@@ -37,7 +40,7 @@ $option=isset($_REQUEST['op']) ?  $_REQUEST['op']: null;
     break;
           
     case 'especies':
-        $user->especie();
+        $especie->index();
     break;
     
     case 'cap_apoyos':

@@ -1,0 +1,218 @@
+var especies = {};
+
+/**
+* se capturan los inputs de la vista
+**/
+especies.elementos = {
+	id_especie: $("#id-especie"),
+	nombre: $("#inputNombreespecies"),
+	descripcion: $("#inputDescripcionespecies"),
+	btn_add: $("#btn-add-especie"),
+	btn_save: $("#btn-save"),
+	btn_edit: $("#btn-edit"),
+	btn_delete: $("#btn-delete"),
+	msj_server: $("#mensajes-server"),
+	formulario: $("#formulario-especies"),
+	cont_datos: $("#datos-especies"),
+};
+
+/**
+* Agregar un nuevo especie
+**/
+especies.add = function(){
+	var data = especies.elementos;
+	var action = "addespecie";
+
+	if(especies.validaDatos(data)){
+		$.ajax({
+			type: "post",
+			url: "ajax.php",
+			dataType: "json",
+			data: {
+				nombre: data.nombre.val(),
+				descripcion: data.descripcion.val(),
+				action: action
+				},
+			success: function(result){
+				if(result.status == "error"){
+					utilerias.displayErrorServerMessage(data.msj_server,result.message);
+				}else{
+					$("#formulario-especies :input").val('');
+					utilerias.displaySuccessMessage(data.msj_server,result.message);
+					location.reload();
+				}
+			}
+		});
+	}
+};
+
+/**
+* Valida los valores del formulario
+**/
+especies.validaDatos = function(data){
+	var valid = true;
+
+	utilerias.removeErrorMessages();
+
+	if($.trim(data.nombre.val())==""){
+		valid = false;
+		utilerias.displayErrorMessage(data.nombre, "Se debe proporcionar un nombre");
+	}
+
+	if($.trim(data.descripcion.val())==""){
+		valid = false;
+		utilerias.displayErrorMessage(data.descripcion,"Se debe proporcionar una descripcion");
+	}
+
+	return valid;
+};
+
+/**
+* Funcion cuando se da clic en algun elemento de la tabla.
+* Permite visualizar la informacion en texto plano
+**/
+especies.verespecie = function(idespecie){
+
+	var elem = especies.elementos;
+
+	utilerias.removeErrorMessages();
+	elem.id_especie.val(idespecie);
+
+	$.ajax({
+		type: "post",
+		url: "ajax.php",
+		data: {
+			action: "getEspecie",
+			idespecie: idespecie
+		},
+
+		success: function(result){
+			var res = JSON.parse(result);
+
+			if(res.status == "error"){
+				utilerias.displayErrorServerMessage(msj_server, res.message);
+			}else{
+				//mostramos y ocultamos botones correspondientes
+				elem.btn_edit.show();
+				elem.btn_save.hide();
+				elem.btn_delete.show();
+				
+
+				$("#view-id-especie").text(res.id_especie);
+				$("#view-nombre-especie").text(res.nombre);
+				$("#view-descripcion-especie").text(res.descripcion);
+
+				elem.formulario.hide();
+				elem.cont_datos.show();
+			}
+		}
+	});
+};
+
+/**
+* Cuando se da click en el icono editar
+* Muestra los datos en el formulario
+**/
+especies.editespecie = function(){
+	var elem = especies.elementos;
+	var idespecie = elem.id_especie.val();
+
+	utilerias.removeErrorMessages();
+
+	$.ajax({
+		type: "post",
+		url: "ajax.php",
+		data: {
+			action: "getespecie",
+			idespecie: idespecie
+		},
+
+		success: function(result){
+			var res = JSON.parse(result);
+
+			if(res.status == "error"){
+				utilerias.displayErrorServerMessage(elem.msj_server, res.message);
+			}else{
+				//mostramos y ocultamos botones correspondientes
+				elem.btn_save.attr('onclick','especies.updateespecie();');
+				elem.btn_save.show();
+				elem.btn_edit.hide();
+				
+				elem.nombre.val(res.nombre);
+				elem.descripcion.val(res.descripcion);
+
+				elem.formulario.show();
+				elem.cont_datos.hide();
+			}
+		}
+	});
+};
+
+/**
+* Funcion para actualizar los datos
+**/
+especies.updateespecie = function(){
+	var elem = especies.elementos;
+
+	var idespecie = elem.id_especie.val();
+
+	if(especies.validaDatos(elem)){
+		$.ajax({
+			type: "post",
+			url: "ajax.php",
+			dataType: "json",
+			data: {
+				idespecie : idespecie,
+				nombre: elem.nombre.val(),
+				descripcion: elem.descripcion.val(),
+				action: "updateespecie"
+			},
+			success: function(result){
+				if(result.status == "error"){
+					utilerias.displayErrorServerMessage(elem.msj_server,result.message);
+				}else{
+					$("#formulario-especies :input").val('');
+					utilerias.displaySuccessMessage(elem.msj_server,result.message);
+					location.reload();					
+				}
+			}
+		});
+	}
+};
+
+
+
+/**
+* Al pulsar el icono borrar, se ejecuta la funcion
+**/
+especies.deleteespecie = function(){
+	var elem = especies.elementos;
+	var idespecie = elem.id_especie.val();
+	var c = confirm('Estás seguro de realizar la operación?');
+	if(c){
+		$.ajax({
+			type: "post",
+			url: "ajax.php",
+			dataType: "json",
+			data: {
+				action: "deleteespecie",
+				idespecie: idespecie
+			},
+			success: function(result){
+				if(result.status == "error"){
+					utilerias.displayErrorServerMessage(elem.msj_server,result.message);
+				}
+				else{
+					utilerias.displaySuccessMessage(elem.msj_server,result.message);
+					location.reload();
+				}
+			}
+		});
+	}
+};
+
+
+
+
+
+

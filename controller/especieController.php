@@ -30,7 +30,7 @@ class EspecieController
 			require_once("views/templates/header.php");
 
 			require_once("views/templates/nav.php");
-            require_once("views/especies.php");// Cual es?
+            require_once("views/especie.php");// Cual es?
             require_once("views/templates/footer.php");
 		}else{
 			require_once("views/login.php");
@@ -115,10 +115,10 @@ class EspecieController
 	private function validaDatos($data){
 		$errors = array();
 
-		$descripcion		=> $data['descripcion'];
-		$estado		=> $data['estado'];
-		$fecha_creacion			=> $data['fecha_creacion'];
-		$utima_modificacion 				=> $data['ultima_modificacion'];
+		$descripcion		= $data['descripcion'];
+		$estado		= $data['estado'];
+		$fecha_creacion			= $data['fecha_creacion'];
+		$utima_modificacion = $data['ultima_modificacion'];
 		
 
 		if ($this->esVacio($descripcion)) {
