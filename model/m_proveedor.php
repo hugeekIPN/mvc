@@ -5,22 +5,22 @@ require_once('config/database.php');
 /**
 * 
 */
-class Proveedores extends
+class m_proveedor
 {
 
 	private $db = null;
 
 	
-	function __construct(argument)
+	function __construct()
 	{
-		$this->db = Database:::getInstance();
+		$this->db = Database::getInstance();
 	}
 
 	public function getProveedor($idProveedor)
 	{		
 		$result = $this->db->select(
-			"SELECT * FROM usuarios WHERE id_proveedor = :id",
-			array("id => $idProveedor")
+			"SELECT * FROM proveedores WHERE id_proveedor = :id",
+			array("id" => $idProveedor)
 			);
 
 		if($result)
@@ -47,19 +47,17 @@ class Proveedores extends
 				'pais'				=> $data['pais'],
 				'entidad'			=> $data['entidad'],
 				'tipo'				=> $data['tipo'],
-				'contacto'			=> $data['contacto'],
 				'correo_contacto'	=> $data['correo_contacto'],
-				'estado'         => $data['estado'], 
 				'fecha_creacion'         => $data['fecha_creacion'],
             	'ultima_modificacion'         => $data['ultima_modificacion']  
 				));
 	}
 
 
-	public function updateProveedor($data,$idProveedor)
+	public function updateProveedor($data, $idProveedor)
 	{
 		$this->db->update(
-			"proveedores",
+			"proveedores", $data,
 			"id_proveedor = :id",
 			array("id" => $idProveedor)
 			);
