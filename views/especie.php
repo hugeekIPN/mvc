@@ -18,56 +18,12 @@
 					      </tr>
 					   </thead>
 					   <tbody>
-					       <tr>
-					      	 <td><a href="#">056</a></td>
-					         <td><a href="#" >Agua botella 1 galón</a></td>
+                            <?php foreach ($especies as $especie): ?>  
+					       <tr onclick="especies.verespecie(<?php echo $especie['id_especie']; ?>);">
+					      	 <td><?php echo $especie['id_especie']; ?></td>
+					         <td><?php echo $especie['descripcion']; ?></td>
 					      </tr>
-					       <tr>
-					      	 <td><a href="#">056</a></td>
-					         <td><a href="#" >Agua botella 1 galón</a></td>
-					      </tr>
-					       <tr>
-					      	 <td><a href="#">056</a></td>
-					         <td><a href="#" >Agua botella 1 galón</a></td>
-					      </tr>
-					       <tr>
-					      	 <td><a href="#">056</a></td>
-					         <td><a href="#" >Agua botella 1 galón</a></td>
-					      </tr>
-					       <tr>
-					      	 <td><a href="#">056</a></td>
-					         <td><a href="#" >Agua botella 1 galón</a></td>
-					      </tr>
-					       <tr>
-					      	 <td><a href="#">056</a></td>
-					         <td><a href="#" >Agua botella 1 galón</a></td>
-					      </tr>
-					       <tr>
-					      	 <td><a href="#">056</a></td>
-					         <td><a href="#" >Agua botella 1 galón</a></td>
-					      </tr>
-					       <tr>
-					      	 <td><a href="#">056</a></td>
-					         <td><a href="#" >Agua botella 1 galón</a></td>
-					      </tr>
-					       <tr>
-					      	 <td><a href="#">056</a></td>
-					         <td><a href="#" >Agua botella 1 galón</a></td>
-					      </tr>
-					       <tr>
-					      	 <td><a href="#">056</a></td>
-					         <td><a href="#" >Agua botella 1 galón</a></td>
-					      </tr>
-					       <tr>
-					      	 <td><a href="#">056</a></td>
-					         <td><a href="#" >Agua botella 1 galón</a></td>
-					      </tr>
-					       <tr>
-					      	 <td><a href="#">056</a></td>
-					         <td><a href="#" >Agua botella 1 galón</a></td>
-					      </tr>
-
-					      
+					     <?php endforeach; ?>  
 					   </tbody>
 					</table>
 	        	</div>
@@ -75,16 +31,18 @@
 		
 	</div>
 	<div class="form-group col-md-6 der">
+                                        
 		<div class="datos datos2 col-md-10">
 			<div class="datos-bancarios col-md-10" >
-			<form action="" id="Especie">
+                                                  
+                <div class="input">
+					<div id="mensajes-server"></div>
+				</div>
+                                             
+			<form action="" id="formulario-especies">
 					<div class="form-group has-warning">
 					  <label class="control-label" for="inputIDEspecie">ID:</label>
-					  <input required type="text" class="form-control" id="inputIDEspecie">
-					</div>
-					<div class="form-group">
-					  <label class="control-label" for="inputNombreEspecie">Nombre:</label>
-					  <input required type="text" class="form-control" id="inputNombreEspecie">
+					  <input required type="text" class="form-control" id="inputIDEspecie" disabled>
 					</div>
 					<div class="form-group">
 					  <label class="control-label" for="inputDescripcionEspecie">Descripción:</label>
@@ -94,31 +52,40 @@
 
 				</form>
 				
+                                                                                           
+                  <div hidden id="datos-especies">
+					<p><strong>ID</strong></p>		
+					<p class="id-datos id" id="view-id-especie"></p>
+
+
+					<p>Descripcion</p>
+					<p id="view-descripcion-especie"></p>
+				</div>                                                                         
 
 			</div>
 			
 		</div>
 		<div class="iconos col-md-2">
 			<section class="nuevo">
-				<button >
+				<button onclick="location.reload()" id="btn-add-especie">
 					<img src="assets/iconos/Recurso 11.png" alt="Editar">
 					<small >Nuevo</small>
 				</button>
 			</section>
 			<section >
-				<button >
+				<button onclick="especies.editespecie();" id="btn-edit">
 					<img src="assets/iconos/Recurso 7.png" alt="Editar">
 					<small >Editar</small>
 				</button>
 			</section>
 			<section >
-				<button  >
+				<button id="btn-save" onclick="especies.add();">
 					<img src="assets/iconos/Recurso 8.png" alt="Guardar">
 					<small>Guardar</small>
 				</button>
 			</section>
 			<section >
-				<button>
+				<button id="btn-delete" onclick="especies.deleteespecie();">
 					<img src="assets/iconos/Recurso 9.png" alt="Borrar">
 					<small>Borrar</small>
 				</button>

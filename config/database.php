@@ -68,10 +68,12 @@ class Database extends PDO
             $sth->bindValue(":$key", $value);
         }
                 
-        $sth->execute();        
+        $count = $sth->execute();        
         // print_r($db->errorInfo()); 
         //  var_dump($sth);    
-        $sth->closeCursor();       
+        $sth->closeCursor();  
+
+        return $count;     
        
     }
     
@@ -99,9 +101,11 @@ class Database extends PDO
             $sth->bindValue(":$key", $value);
         }        
         
-        $sth->execute();
+        $count = $sth->execute();
 
         $sth->closeCursor();
+
+        return $count;
     }
     
   

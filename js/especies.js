@@ -1,37 +1,34 @@
-var subprogramas = {};
+var especies = {};
 
 /**
 * se capturan los inputs de la vista
 **/
-subprogramas.elementos = {
-	id_programa: $("#selectPrograma"),
-	id_subprograma: $("#id-subprograma"),
-	nombre: $("#inputNombreSubprogramas"),
-	descripcion: $("#inputDescripcionSubprogramas"),
-	btn_add: $("#btn-add-subprograma"),
+especies.elementos = {
+	id_especie: $("#view-id-especie"),
+    idespecie: $("#inputIDEspecie"),
+	descripcion: $("#inputDescripcionEspecie"),
+	btn_add: $("#btn-add-especie"),
 	btn_save: $("#btn-save"),
 	btn_edit: $("#btn-edit"),
 	btn_delete: $("#btn-delete"),
 	msj_server: $("#mensajes-server"),
-	formulario: $("#formulario-subprogramas"),
-	cont_datos: $("#datos-subprogramas"),
+	formulario: $("#formulario-especies"),
+	cont_datos: $("#datos-especies"),
 };
 
 /**
-* Agregar un nuevo programa
+* Agregar un nuevo especie
 **/
-subprogramas.add = function(){
-	var data = subprogramas.elementos;
-	var action = "addSubprograma";	
+especies.add = function(){
+	var data = especies.elementos;
+	var action = "addEspecie";
 
-	if(subprogramas.validaDatos(data)){
+	if(especies.validaDatos(data)){
 		$.ajax({
 			type: "post",
 			url: "ajax.php",
 			dataType: "json",
 			data: {
-				id_programa: data.id_programa.val(), 
-				nombre: data.nombre.val(),
 				descripcion: data.descripcion.val(),
 				action: action
 				},
@@ -39,7 +36,7 @@ subprogramas.add = function(){
 				if(result.status == "error"){
 					utilerias.displayErrorServerMessage(data.msj_server,result.message);
 				}else{
-					$("#formulario-subprogramas :input").val('');
+					$("#formulario-especies :input").val('');
 					utilerias.displaySuccessMessage(data.msj_server,result.message);
 					location.reload();
 				}
@@ -51,19 +48,14 @@ subprogramas.add = function(){
 /**
 * Valida los valores del formulario
 **/
-subprogramas.validaDatos = function(data){
+especies.validaDatos = function(data){
 	var valid = true;
 
 	utilerias.removeErrorMessages();
 
-	if($.trim(data.nombre.val())==""){
-		valid = false;
-		utilerias.displayErrorMessage(data.nombre, "Se debe proporcionar un nombre");
-	}
-
 	if($.trim(data.descripcion.val())==""){
 		valid = false;
-		utilerias.displayErrorMessage(data.descripcion,"Se debe proporcionar una descripción");
+		utilerias.displayErrorMessage(data.descripcion,"Se debe proporcionar una descripcion");
 	}
 
 	return valid;
@@ -73,19 +65,19 @@ subprogramas.validaDatos = function(data){
 * Funcion cuando se da clic en algun elemento de la tabla.
 * Permite visualizar la informacion en texto plano
 **/
-subprogramas.verSubprograma = function(idSubprograma){
+especies.verespecie = function(idespecie){
 
-	var elem = subprogramas.elementos;
+	var elem = especies.elementos;
 
 	utilerias.removeErrorMessages();
-	elem.id_subprograma.val(idSubprograma);
+	elem.id_especie.val(idespecie);
 
 	$.ajax({
 		type: "post",
 		url: "ajax.php",
 		data: {
-			action: "getSubprograma",
-			idSubprograma: idSubprograma
+			action: "getEspecie",
+			id_especie: idespecie
 		},
 
 		success: function(result){
@@ -100,10 +92,8 @@ subprogramas.verSubprograma = function(idSubprograma){
 				elem.btn_delete.show();
 				
 
-				$("#view-id-subprograma").text(res.id_subprograma);
-				$("#view-nombre-subprograma").text(res.nombre);
-				$("#view-descripcion-subprograma").text(res.descripcion);
-				$("#view-nombre-programa").text(res.nombre_programa);
+				$("#view-id-especie").text(res.id_especie);
+				$("#view-descripcion-especie").text(res.descripcion);
 
 				elem.formulario.hide();
 				elem.cont_datos.show();
@@ -116,9 +106,9 @@ subprogramas.verSubprograma = function(idSubprograma){
 * Cuando se da click en el icono editar
 * Muestra los datos en el formulario
 **/
-subprogramas.editSubprograma = function(){
-	var elem = subprogramas.elementos;
-	var idSubprograma = elem.id_subprograma.val();
+especies.editespecie = function(){
+	var elem = especies.elementos;
+	var idespecie = elem.id_especie.val();
 
 	utilerias.removeErrorMessages();
 
@@ -126,8 +116,8 @@ subprogramas.editSubprograma = function(){
 		type: "post",
 		url: "ajax.php",
 		data: {
-			action: "getSubprograma",
-			idSubprograma: idSubprograma
+			action: "getEspecie",
+			id_especie: idespecie
 		},
 
 		success: function(result){
@@ -137,14 +127,13 @@ subprogramas.editSubprograma = function(){
 				utilerias.displayErrorServerMessage(elem.msj_server, res.message);
 			}else{
 				//mostramos y ocultamos botones correspondientes
-				elem.btn_save.attr('onclick','subprogramas.updateSubprograma();');
+				elem.btn_save.attr('onclick','especies.updateespecie();');
 				elem.btn_save.show();
 				elem.btn_edit.hide();
 				
-				elem.nombre.val(res.nombre);
+				elem.idespecie.val(res.id_especie);
 				elem.descripcion.val(res.descripcion);
 
-				elem.id_programa.val(res.id_programa);
 				elem.formulario.show();
 				elem.cont_datos.hide();
 			}
@@ -155,29 +144,26 @@ subprogramas.editSubprograma = function(){
 /**
 * Funcion para actualizar los datos
 **/
-subprogramas.updateSubprograma = function(){
-	var elem = subprogramas.elementos;
+especies.updateespecie = function(){
+	var elem = especies.elementos;
 
-	var idSubprograma = elem.id_subprograma.val();
-	var idPrograma = elem.id_programa.val();
+	var idespecie = elem.id_especie.val();
 
-	if(subprogramas.validaDatos(elem)){
+	if(especies.validaDatos(elem)){
 		$.ajax({
 			type: "post",
 			url: "ajax.php",
 			dataType: "json",
 			data: {
-				id_programa : idPrograma,
-				idSubprograma: idSubprograma,
-				nombre: elem.nombre.val(),
+				id_especie : idespecie,
 				descripcion: elem.descripcion.val(),
-				action: "updateSubprograma"
+				action: "updateEspecie"
 			},
 			success: function(result){
 				if(result.status == "error"){
 					utilerias.displayErrorServerMessage(elem.msj_server,result.message);
 				}else{
-					$("#formulario-programas :input").val('');
+					$("#formulario-especies :input").val('');
 					utilerias.displaySuccessMessage(elem.msj_server,result.message);
 					location.reload();					
 				}
@@ -191,9 +177,9 @@ subprogramas.updateSubprograma = function(){
 /**
 * Al pulsar el icono borrar, se ejecuta la funcion
 **/
-subprogramas.deleteSubprograma = function(){
-	var elem = subprogramas.elementos;
-	var idSubprograma = elem.id_subprograma.val();
+especies.deleteespecie = function(){
+	var elem = especies.elementos;
+	var idespecie = elem.id_especie.val();
 	var c = confirm('Estás seguro de realizar la operación?');
 	if(c){
 		$.ajax({
@@ -201,8 +187,8 @@ subprogramas.deleteSubprograma = function(){
 			url: "ajax.php",
 			dataType: "json",
 			data: {
-				action: "deleteSubprograma",
-				idSubprograma: idSubprograma
+				action: "deleteEspecie",
+				id_especie: idespecie
 			},
 			success: function(result){
 				if(result.status == "error"){

@@ -5,6 +5,9 @@ require_once("controller/usuariosController.php");
 require_once("controller/eventoController.php");
 require_once("controller/ProveedorController.php");
 require_once("controller/programaController.php");
+require_once("controller/subprogramaController.php");
+require_once("controller/especieController.php");
+
 sessionController::startSession(); 
 
 if(empty($_SERVER['HTTP_X_REQUESTED_WITH']) || strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) != 'xmlhttprequest') 
@@ -105,26 +108,49 @@ switch ($action) {
 
     // CRUD SUBPROGRAMAS
     case 'addSubprograma':
-       $programa = new programaController(null);
-       echo json_encode($programa->nuevoPrograma($_POST));
+       $subprograma = new subprogramaController(null);
+       echo json_encode($subprograma->nuevoSubprograma($_POST));
        break; 
 
-    case 'getSubPrograma':
-        $programa = new programaController($_POST['idSubPrograma']);
-        echo json_encode($programa->getPrograma());
+    case 'getSubprograma':
+        $subprograma = new subprogramaController($_POST['idSubprograma']);
+        echo json_encode($subprograma->getSubprograma());
         break; 
 
-    case 'updateSubPrograma':
-        $programa = new programaController($_POST['idSubPrograma']);
-        echo json_encode($programa->updatePrograma($_POST));
+    case 'updateSubprograma':
+        $subprograma = new subprogramaController($_POST['idSubprograma']);
+        echo json_encode($subprograma->updateSubprograma($_POST));
         break;    
 
-    case 'deleteSubPrograma':
-        $programa = new programaController($_POST['idSubPrograma']);
-        echo json_encode($programa->deletePrograma($_POST));
+    case 'deleteSubprograma':
+        $subprograma = new subprogramaController($_POST['idSubprograma']);
+        echo json_encode($subprograma->deleteSubprograma($_POST));
         break;         
     // FIN CRUD SUBPROGRAMAS
+    
+        // CRUD ESPECIES
+    case 'addEspecie':
+       $especie = new EspecieController(null);
+       echo json_encode($especie->nuevoEspecie($_POST));
+       break; 
 
+    case 'getEspecie':
+        $especie = new EspecieController($_POST['id_especie']);
+        echo json_encode($especie->getEspecie());
+        break; 
+
+    case 'updateEspecie':
+        $especie = new EspecieController($_POST['id_especie']);
+        echo json_encode($especie->updateEspecie($_POST));
+        break;    
+
+    case 'deleteEspecie':
+        $especie = new EspecieController($_POST['id_especie']);
+        echo json_encode($especie->deleteEspecie($_POST));
+        break;         
+        
+    /// FIN CRUD ESPECIES
+        
 	default:		
 		break;
 }
