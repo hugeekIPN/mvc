@@ -4,9 +4,9 @@ var especies = {};
 * se capturan los inputs de la vista
 **/
 especies.elementos = {
-	id_especie: $("#id-especie"),
-	nombre: $("#inputNombreespecies"),
-	descripcion: $("#inputDescripcionespecies"),
+	id_especie: $("#view-id-especie"),
+    idespecie: $("#inputIDEspecie"),
+	descripcion: $("#inputDescripcionEspecie"),
 	btn_add: $("#btn-add-especie"),
 	btn_save: $("#btn-save"),
 	btn_edit: $("#btn-edit"),
@@ -83,7 +83,7 @@ especies.verespecie = function(idespecie){
 		url: "ajax.php",
 		data: {
 			action: "getEspecie",
-			idespecie: idespecie
+			id_especie: idespecie
 		},
 
 		success: function(result){
@@ -99,7 +99,6 @@ especies.verespecie = function(idespecie){
 				
 
 				$("#view-id-especie").text(res.id_especie);
-				$("#view-nombre-especie").text(res.nombre);
 				$("#view-descripcion-especie").text(res.descripcion);
 
 				elem.formulario.hide();
@@ -123,8 +122,8 @@ especies.editespecie = function(){
 		type: "post",
 		url: "ajax.php",
 		data: {
-			action: "getespecie",
-			idespecie: idespecie
+			action: "getEspecie",
+			id_especie: idespecie
 		},
 
 		success: function(result){
@@ -138,7 +137,7 @@ especies.editespecie = function(){
 				elem.btn_save.show();
 				elem.btn_edit.hide();
 				
-				elem.nombre.val(res.nombre);
+				elem.idespecie.val(res.id_especie);
 				elem.descripcion.val(res.descripcion);
 
 				elem.formulario.show();
