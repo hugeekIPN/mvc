@@ -138,8 +138,19 @@ class subprogramaController
 	* FALTA VALIDAR RELACIONES
 	**/
 	public function deleteSubprograma(){
-		 $this->model->deleteSubprograma($this->idSubprograma);        
-        return true;
+		$result = array();
+		if($this->model->deleteSubprograma($this->idSubprograma)){
+			$result = array(
+				'status' => 'success',
+				'message' => 'Registro eliminado'
+			 );
+		}else{
+			$result = array(
+				"status" => "error",
+				"message" => "No se pudo realizar la operación");
+		}
+
+		return $result;
 	}
 
 

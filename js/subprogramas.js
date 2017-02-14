@@ -191,9 +191,9 @@ subprogramas.updateSubprograma = function(){
 /**
 * Al pulsar el icono borrar, se ejecuta la funcion
 **/
-programas.deletePrograma = function(){
-	var elem = programas.elementos;
-	var idPrograma = elem.id_programa.val();
+subprogramas.deleteSubprograma = function(){
+	var elem = subprogramas.elementos;
+	var idSubprograma = elem.id_subprograma.val();
 	var c = confirm('Estás seguro de realizar la operación?');
 	if(c){
 		$.ajax({
@@ -201,8 +201,8 @@ programas.deletePrograma = function(){
 			url: "ajax.php",
 			dataType: "json",
 			data: {
-				action: "deletePrograma",
-				idPrograma: idPrograma
+				action: "deleteSubprograma",
+				idSubprograma: idSubprograma
 			},
 			success: function(result){
 				if(result.status == "error"){

@@ -119,9 +119,7 @@ class m_subprograma{
     **/
     public function deleteSubprograma($id_subprograma)  /// update Estado = eliminado
     {    
-        $this->db->delete("subprogramas", "id_subprograma = :id", array( "id" => $id_subprograma ));        
-        
-        return true;
+        return $this->db->delete("subprogramas", "id_subprograma = :id", array( "id" => $id_subprograma ));       
     }
 
 
