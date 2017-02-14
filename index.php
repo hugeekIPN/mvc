@@ -6,15 +6,19 @@ require_once("controller/sessionController.php");
 require_once("controller/loginController.php");
 require_once("controller/usuariosController.php");
 require_once("controller/eventoController.php");
+require_once("controller/ProveedorController.php");
 require_once("controller/programaController.php");
+require_once("controller/subprogramaController.php");
 
 sessionController::startSession(); 
 $login        = new loginController();
 $user         = new usuariosController(sessionController::get("usuarioId"));
 
 $programa = new programaController(null);
+$subprograma = new subprogramaController(null);
 
 $evento   = new eventoController("1");
+$proveedor   = new ProveedorController("1");
 
 $option=isset($_REQUEST['op']) ?  $_REQUEST['op']: null;
 
@@ -29,7 +33,7 @@ $option=isset($_REQUEST['op']) ?  $_REQUEST['op']: null;
     break;
     
     case 'proveedores':
-        $user->proveedores();
+        $proveedor->index();
     break;
           
     case 'especies':
@@ -48,7 +52,7 @@ $option=isset($_REQUEST['op']) ?  $_REQUEST['op']: null;
         break;
         
     case 'subprogramas':
-        $user->subprogramas();
+        $subprograma->index();
         break;
           
     default:    

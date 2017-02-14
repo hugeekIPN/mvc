@@ -3,8 +3,8 @@ require_once("controller/sessionController.php");
 require_once("controller/loginController.php");
 require_once("controller/usuariosController.php");
 require_once("controller/eventoController.php");
+require_once("controller/ProveedorController.php");
 require_once("controller/programaController.php");
-
 sessionController::startSession(); 
 
 if(empty($_SERVER['HTTP_X_REQUESTED_WITH']) || strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) != 'xmlhttprequest') 
@@ -47,8 +47,7 @@ switch ($action) {
     case 'deleteUsuario':
         $usuario = new usuariosController($_POST['usuarioId']);
         echo json_encode($usuario->deleteUsuario($_POST));
-        break;        
-        
+        break;     
      case 'getEvento':
         $evento = new eventoController($_POST['eventoId']);
         echo json_encode($evento->getEvento());
@@ -65,7 +64,25 @@ switch ($action) {
         $evento = new eventoController($_POST['eventoId']);
         echo json_encode($evento->deleteEvento($_POST));
         break;
-
+        
+/// CRUD Proveedores
+     case 'getProveedor':
+        $proveedor = new ProveedorController($_POST['id_proveedor']);
+        echo json_encode($proveedor->getProveedor($_POST));
+        break;
+     case 'addProveedor':
+       $proveedor= new ProveedorController(null);
+        echo json_encode($proveedor->nuevoProveedor($_POST));
+        break;
+     case 'updateProveedor':
+       $proveedor= new ProveedorController($_POST['id_proveedor']);
+        echo json_encode($proveedor->updateProveedor($_POST));
+        break;
+     case 'deleteProveedor':
+        $proveedor = new ProveedorController($_POST['proveedorId']);
+        echo json_encode($proveedor->deleteProveedor($_POST));
+        break;
+/// Crud Programas
     case 'addPrograma':
        $programa = new programaController(null);
        echo json_encode($programa->nuevoPrograma($_POST));
@@ -84,7 +101,29 @@ switch ($action) {
     case 'deletePrograma':
         $programa = new programaController($_POST['idPrograma']);
         echo json_encode($programa->deletePrograma($_POST));
-        break;           
+        break;   
+
+    // CRUD SUBPROGRAMAS
+    case 'addSubprograma':
+       $programa = new programaController(null);
+       echo json_encode($programa->nuevoPrograma($_POST));
+       break; 
+
+    case 'getSubPrograma':
+        $programa = new programaController($_POST['idSubPrograma']);
+        echo json_encode($programa->getPrograma());
+        break; 
+
+    case 'updateSubPrograma':
+        $programa = new programaController($_POST['idSubPrograma']);
+        echo json_encode($programa->updatePrograma($_POST));
+        break;    
+
+    case 'deleteSubPrograma':
+        $programa = new programaController($_POST['idSubPrograma']);
+        echo json_encode($programa->deletePrograma($_POST));
+        break;         
+    // FIN CRUD SUBPROGRAMAS
 
 	default:		
 		break;

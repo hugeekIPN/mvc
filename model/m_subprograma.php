@@ -14,7 +14,7 @@ class m_subprograma{
     * @param id_subprograma - El id del subprograma
     * @return Los datos del subprograma en caso de éxito, null en caso contrario
     **/
-    public function getSubrograma($id_subprograma) 
+    public function getSubprograma($id_subprograma) 
     {
         $result = $this->db->select(
                     "SELECT * FROM subprogramas WHERE id_subprograma = :id",
@@ -83,7 +83,7 @@ class m_subprograma{
         if(count($result)>0)
             return $result;
         else
-            return null;
+            return array();
     }
 }
 

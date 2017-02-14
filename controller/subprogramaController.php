@@ -2,20 +2,20 @@
 
 include_once("sessionController.php");
 include_once("loginController.php");
-include_once("model/m_Subrograma.php");
+include_once("model/m_subprograma.php");
 
 /**
 * 
 */
-class subSubrogramaController
+class subprogramaController
 {
-	private $idSubrograma;
+	private $idSubprograma;
 	public $model;
 	
-	public function __construct($idSubrograma)
+	public function __construct($idSubprograma)
 	{
-		$this->idSubrograma = $idSubrograma;
-		$this->model = new m_Subrograma;
+		$this->idSubprograma = $idSubprograma;
+		$this->model = new m_subprograma();
 	}
 
 	public function index(){
@@ -25,19 +25,19 @@ class subSubrogramaController
 		if($login->_isLoggedIn()){
 			$usuario = sessionController::get('username');
 
-			$subSubrogramas = $this->model->getAllSubSubrogramas();
-
+			$subprogramas = $this->model->getAllSubprogramas();
+			
 			require_once("views/templates/header.php");
 
 			require_once("views/templates/nav.php");
-            require_once("views/subSubrogramas.php");// Cual es?
+            require_once("views/subprogramas.php");
             require_once("views/templates/footer.php");
 		}else{
 			require_once("views/login.php");
 		}
 	}
 
-	public function nuevoSubrograma($postData){
+	public function nuevoSubprograma($postData){
 		$result = array();
 		$errors = $this->validaDatos($postData);
 
@@ -48,7 +48,7 @@ class subSubrogramaController
 				"status" => "error",
 				"message" => $message );
 		}else{
-			$this->model->nuevoSubrograma($postData);
+			$this->model->nuevoSubprograma($postData);
 
 			$result = array(
 				"status" => "success",
@@ -58,11 +58,11 @@ class subSubrogramaController
 		return $result;
 	}
 
-	public function getSubrograma(){
-		return $this->model->getSubrograma($this->idSubrograma);
+	public function getSubprograma(){
+		return $this->model->getSubprograma($this->idSubprograma);
 	}
 
-	public function updateSubrograma($data){
+	public function updateSubprograma($data){
 		$result = array();
 		$errors = $this->validaDatos($postData);
 
@@ -73,32 +73,32 @@ class subSubrogramaController
 				"status" => "error",
 				"message" => $message );
 		}else{
-			$currentSubrograma = $this->model->getSubrograma($this->idSubrograma);
+			$currentSubprograma = $this->model->getSubprograma($this->idSubprograma);
 
 			$newData = array();
 
 
-            if($currentSubrograma['programas_id_programa']!=$data['programas_id_programa'])
+            if($currentSubprograma['programas_id_programa']!=$data['programas_id_programa'])
 				$newData['programas_id_programa']=$data['programas_id_programa'];
 
-            if($currentSubrograma['nombre']!=$data['nombre'])
+            if($currentSubprograma['nombre']!=$data['nombre'])
 				$newData['nombre']=$data['nombre'];
 
-			if($currentSubrograma['descripcion']!=$data['descripcion'])
+			if($currentSubprograma['descripcion']!=$data['descripcion'])
 				$newData['descripcion']=$data['descripcion'];
 
-			if($currentSubrograma['estado'] != $data['estado'])
+			if($currentSubprograma['estado'] != $data['estado'])
 				$newData['estado'] = $data['estado'];
 
-			if($currentSubrograma['fecha_creacion'] != $data['fecha_creacion'])
+			if($currentSubprograma['fecha_creacion'] != $data['fecha_creacion'])
 				$newData['fecha_creacion'] = $data['fecha_creacion'];
 
-			if($currentSubrograma['ultima_modificacion'] != $data['ultima_modificacion'])
+			if($currentSubprograma['ultima_modificacion'] != $data['ultima_modificacion'])
 				$newData['ultima_modificacion'] = $data['ultima_modificacion'];
 
 	     
 			if($newData){
-				$this->model->updateSubrograma($newData, $this->idSubrograma);
+				$this->model->updateSubprograma($newData, $this->idSubprograma);
 			}
 
 			$result = array(
@@ -113,20 +113,20 @@ class subSubrogramaController
 	/**
 	* FALTA VALIDAR RELACIONES
 	**/
-	public function deleteSubrograma(){
-		 $this->model->deleteSubrograma($this->idSubrograma);        
+	public function deleteSubprograma(){
+		 $this->model->deleteSubprograma($this->idSubprograma);        
         return true;
 	}
 
 
 	private function validaDatos($data){
 		$errors = array();
-        $programas_id_programa => $data['programas_id_programa']
-        $nombe		=> $data['nombre'];
-		$descripcion		=> $data['descripcion'];
-		$estado		=> $data['estado'];
-		$fecha_creacion			=> $data['fecha_creacion'];
-		$utima_modificacion 				=> $data['ultima_modificacion'];
+        $programas_id_programa = $data['programas_id_programa'];
+        $nombe		= $data['nombre'];
+		$descripcion		= $data['descripcion'];
+		$estado		= $data['estado'];
+		$fecha_creacion			= $data['fecha_creacion'];
+		$utima_modificacion 				= $data['ultima_modificacion'];
 		
         if ($this->esVacio($programas_id_programa)) {
 			$errors[] = "id_programa no puede ser vacío";
