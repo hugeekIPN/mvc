@@ -14,17 +14,21 @@
 					   <thead>
 					      <tr>
 					      	 <th>ID</th>
-					         <th>Nombre</th>
+					         <th>Subprograma</th>
+					         <th>Programa</th>
 					      </tr>
 					   </thead>
 					   <tbody>
 					   		<?php foreach ($subprogramas as $subprograma): ?>
-					   		<tr onclick="subprogramas.verPrograma(<?php echo $subprograma['id_subprograma']; ?>);">
+					   		<tr onclick="subprogramas.verSubprograma(<?php echo $subprograma['id_subprograma']; ?>);">
 					   			<td> <?php echo $subprograma['id_subprograma']; ?>
 					   			</td>
 
 					   			<td>
 					   				<?php echo $subprograma['nombre']; ?>
+					   			</td>
+					   			<td>
+					   				<?php echo $subprograma['nombre_programa']; ?>
 					   			</td>
 					   		</tr>	
 					   		<?php endforeach ?>
@@ -51,12 +55,21 @@
 					<input type="hidden" name="id-subprograma" id="id-subprograma">
 
 					<div class="input form-group">
-					  <label class="control-label" for="inputNombreProgramas">Nombre:</label>
-					  <input required type="text" class="form-control" id="inputNombreProgramas">
+						<label class="control-label" for="selectPrograma">Programa:</label>
+						<select name="selectPrograma" id="selectPrograma" class="form-control">
+							<?php foreach ($programas as $programa): ?>
+								<option value="<?php echo $programa['id_programa']; ?>"><?php echo $programa['nombre']; ?></option>
+							<?php endforeach; ?>
+						</select>
+					</div>
+
+					<div class="input form-group">
+					  <label class="control-label" for="inputNombreSubprogramas">Nombre:</label>
+					  <input required type="text" class="form-control" id="inputNombreSubprogramas">
 					</div>
 					<div class="input form-group">
-					  <label class="control-label" for="inputDescripcionProgramas">Descripción:</label>
-					  <textarea  class="form-control" id="inputDescripcionProgramas" cols="2" ></textarea>
+					  <label class="control-label" for="inputDescripcionSubprogramas">Descripción:</label>
+					  <textarea  class="form-control" id="inputDescripcionSubprogramas" cols="2" ></textarea>
 					</div>
 
 				</form>
@@ -67,7 +80,10 @@
 					<p><strong>ID</strong></p>		
 					<p class="id-datos id" id="view-id-subprograma"></p>
 
-					<p>Nombre</p>	
+					<p>Nombre del programa al que pertenece</p>
+					<p id="view-nombre-programa"></p>
+
+					<p>Nombre del subprograma</p>	
 					<p id="view-nombre-subprograma"></p>
 
 					<p>Descripcion</p>
@@ -86,7 +102,7 @@
 				</button>
 			</section>
 			<section >
-				<button onclick="subprogramas.editPrograma();" hidden id="btn-edit">
+				<button onclick="subprogramas.editSubprograma();" hidden id="btn-edit">
 					<img src="assets/iconos/Recurso 7.png" alt="Editar">
 					<small >Editar</small>
 				</button>
@@ -98,7 +114,7 @@
 				</button>
 			</section>
 			<section >
-				<button onclick="subprogramas.deletePrograma();" hidden id="btn-delete">
+				<button onclick="subprogramas.deleteSubprograma();" hidden id="btn-delete">
 					<img src="assets/iconos/Recurso 9.png" alt="Borrar">
 					<small>Borrar</small>
 				</button>

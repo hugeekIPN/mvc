@@ -176,7 +176,7 @@ class programaController
 		}
 
 		if($this->model->getProgramaByName($nombre)){
-			$errors[] = "El nombre del programa ya esta registrado";
+			$errors[] = "El nombre del programa ya está registrado";
 		}
 
 		if ($this->esVacio($descripcion)) {

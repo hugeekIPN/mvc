@@ -3,32 +3,34 @@ var subprogramas = {};
 /**
 * se capturan los inputs de la vista
 **/
-programas.elementos = {
-	id_programa: $("#id-programa"),
-	nombre: $("#inputNombreProgramas"),
-	descripcion: $("#inputDescripcionProgramas"),
-	btn_add: $("#btn-add-programa"),
+subprogramas.elementos = {
+	id_programa: $("#selectPrograma"),
+	id_subprograma: $("#id-subprograma"),
+	nombre: $("#inputNombreSubprogramas"),
+	descripcion: $("#inputDescripcionSubprogramas"),
+	btn_add: $("#btn-add-subprograma"),
 	btn_save: $("#btn-save"),
 	btn_edit: $("#btn-edit"),
 	btn_delete: $("#btn-delete"),
 	msj_server: $("#mensajes-server"),
-	formulario: $("#formulario-programas"),
-	cont_datos: $("#datos-programas"),
+	formulario: $("#formulario-subprogramas"),
+	cont_datos: $("#datos-subprogramas"),
 };
 
 /**
 * Agregar un nuevo programa
 **/
-programas.add = function(){
-	var data = programas.elementos;
-	var action = "addPrograma";
+subprogramas.add = function(){
+	var data = subprogramas.elementos;
+	var action = "addSubprograma";	
 
-	if(programas.validaDatos(data)){
+	if(subprogramas.validaDatos(data)){
 		$.ajax({
 			type: "post",
 			url: "ajax.php",
 			dataType: "json",
 			data: {
+				id_programa: data.id_programa.val(), 
 				nombre: data.nombre.val(),
 				descripcion: data.descripcion.val(),
 				action: action
@@ -37,7 +39,7 @@ programas.add = function(){
 				if(result.status == "error"){
 					utilerias.displayErrorServerMessage(data.msj_server,result.message);
 				}else{
-					$("#formulario-programas :input").val('');
+					$("#formulario-subprogramas :input").val('');
 					utilerias.displaySuccessMessage(data.msj_server,result.message);
 					location.reload();
 				}
@@ -49,7 +51,7 @@ programas.add = function(){
 /**
 * Valida los valores del formulario
 **/
-programas.validaDatos = function(data){
+subprogramas.validaDatos = function(data){
 	var valid = true;
 
 	utilerias.removeErrorMessages();
@@ -61,7 +63,7 @@ programas.validaDatos = function(data){
 
 	if($.trim(data.descripcion.val())==""){
 		valid = false;
-		utilerias.displayErrorMessage(data.descripcion,"Se debe proporcionar una descripcion");
+		utilerias.displayErrorMessage(data.descripcion,"Se debe proporcionar una descripción");
 	}
 
 	return valid;
@@ -71,19 +73,19 @@ programas.validaDatos = function(data){
 * Funcion cuando se da clic en algun elemento de la tabla.
 * Permite visualizar la informacion en texto plano
 **/
-programas.verPrograma = function(idPrograma){
+subprogramas.verSubprograma = function(idSubprograma){
 
-	var elem = programas.elementos;
+	var elem = subprogramas.elementos;
 
 	utilerias.removeErrorMessages();
-	elem.id_programa.val(idPrograma);
+	elem.id_subprograma.val(idSubprograma);
 
 	$.ajax({
 		type: "post",
 		url: "ajax.php",
 		data: {
-			action: "getPrograma",
-			idPrograma: idPrograma
+			action: "getSubprograma",
+			idSubprograma: idSubprograma
 		},
 
 		success: function(result){
@@ -98,9 +100,10 @@ programas.verPrograma = function(idPrograma){
 				elem.btn_delete.show();
 				
 
-				$("#view-id-programa").text(res.id_programa);
-				$("#view-nombre-programa").text(res.nombre);
-				$("#view-descripcion-programa").text(res.descripcion);
+				$("#view-id-subprograma").text(res.id_subprograma);
+				$("#view-nombre-subprograma").text(res.nombre);
+				$("#view-descripcion-subprograma").text(res.descripcion);
+				$("#view-nombre-programa").text(res.nombre_programa);
 
 				elem.formulario.hide();
 				elem.cont_datos.show();
@@ -113,9 +116,9 @@ programas.verPrograma = function(idPrograma){
 * Cuando se da click en el icono editar
 * Muestra los datos en el formulario
 **/
-programas.editPrograma = function(){
-	var elem = programas.elementos;
-	var idPrograma = elem.id_programa.val();
+subprogramas.editSubprograma = function(){
+	var elem = subprogramas.elementos;
+	var idSubprograma = elem.id_subprograma.val();
 
 	utilerias.removeErrorMessages();
 
@@ -123,8 +126,8 @@ programas.editPrograma = function(){
 		type: "post",
 		url: "ajax.php",
 		data: {
-			action: "getPrograma",
-			idPrograma: idPrograma
+			action: "getSubprograma",
+			idSubprograma: idSubprograma
 		},
 
 		success: function(result){
@@ -134,13 +137,14 @@ programas.editPrograma = function(){
 				utilerias.displayErrorServerMessage(elem.msj_server, res.message);
 			}else{
 				//mostramos y ocultamos botones correspondientes
-				elem.btn_save.attr('onclick','programas.updatePrograma();');
+				elem.btn_save.attr('onclick','subprogramas.updateSubprograma();');
 				elem.btn_save.show();
 				elem.btn_edit.hide();
 				
 				elem.nombre.val(res.nombre);
 				elem.descripcion.val(res.descripcion);
 
+				elem.id_programa.val(res.id_programa);
 				elem.formulario.show();
 				elem.cont_datos.hide();
 			}
@@ -151,21 +155,23 @@ programas.editPrograma = function(){
 /**
 * Funcion para actualizar los datos
 **/
-programas.updatePrograma = function(){
-	var elem = programas.elementos;
+subprogramas.updateSubprograma = function(){
+	var elem = subprogramas.elementos;
 
+	var idSubprograma = elem.id_subprograma.val();
 	var idPrograma = elem.id_programa.val();
 
-	if(programas.validaDatos(elem)){
+	if(subprogramas.validaDatos(elem)){
 		$.ajax({
 			type: "post",
 			url: "ajax.php",
 			dataType: "json",
 			data: {
-				idPrograma : idPrograma,
+				id_programa : idPrograma,
+				idSubprograma: idSubprograma,
 				nombre: elem.nombre.val(),
 				descripcion: elem.descripcion.val(),
-				action: "updatePrograma"
+				action: "updateSubprograma"
 			},
 			success: function(result){
 				if(result.status == "error"){

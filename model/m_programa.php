@@ -91,7 +91,7 @@ class m_programa{
     * Obtiene todos los programas de la base de datos
     **/
     public function getAllProgramas(){
-        $query = "SELECT * from programas ORDER BY id_programa DESC";
+        $query = "SELECT * from programas";
         $result = $this->db->select($query, array());
         if(count($result)>0)
             return $result;

@@ -4,6 +4,7 @@ require_once("controller/loginController.php");
 require_once("controller/usuariosController.php");
 require_once("controller/eventoController.php");
 require_once("controller/programaController.php");
+require_once("controller/subprogramaController.php");
 
 sessionController::startSession(); 
 
@@ -88,18 +89,18 @@ switch ($action) {
 
     // CRUD SUBPROGRAMAS
     case 'addSubprograma':
-       $programa = new programaController(null);
-       echo json_encode($programa->nuevoPrograma($_POST));
+       $subprograma = new subprogramaController(null);
+       echo json_encode($subprograma->nuevoSubprograma($_POST));
        break; 
 
-    case 'getSubPrograma':
-        $programa = new programaController($_POST['idSubPrograma']);
-        echo json_encode($programa->getPrograma());
+    case 'getSubprograma':
+        $subprograma = new subprogramaController($_POST['idSubprograma']);
+        echo json_encode($subprograma->getSubprograma());
         break; 
 
-    case 'updateSubPrograma':
-        $programa = new programaController($_POST['idSubPrograma']);
-        echo json_encode($programa->updatePrograma($_POST));
+    case 'updateSubprograma':
+        $subprograma = new subprogramaController($_POST['idSubprograma']);
+        echo json_encode($subprograma->updateSubprograma($_POST));
         break;    
 
     case 'deleteSubPrograma':
