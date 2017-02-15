@@ -12,7 +12,7 @@
 					      </tr>
 					   </thead>
 					   <tbody>
-<<<<<<< HEAD
+
 					       <tr>
 					      	 <td><a href="#">60</a></td>
 					         <td><a href="#" >Bicicletas para los atletas</a></td>

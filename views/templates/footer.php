@@ -6,7 +6,7 @@
 	</footer>
 	<script type="text/javascript" src="js/utilerias.js"></script>   
 	<script type="text/javascript" src="js/usuarios.js"></script>
->
+
     <script type="text/javascript" src="js/utilerias.js"></script>  
 
     <script type="text/javascript" src="js/especies.js"></script>

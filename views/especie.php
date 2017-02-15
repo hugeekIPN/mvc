@@ -40,7 +40,7 @@
 				</div>
                                              
 			<form action="" id="formulario-especies">
-					<div class="form-group has-warning">
+					<div class="form-group ">
 					  <label class="control-label" for="inputIDEspecie">ID:</label>
 					  <input required type="text" class="form-control" id="inputIDEspecie" disabled>
 					</div>
