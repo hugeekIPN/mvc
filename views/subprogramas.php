@@ -11,81 +11,7 @@
 					         <th>Programa</th>
 					      </tr>
 					   </thead>
-					   <tbody>
-
-					       <tr>
-					      	 <td><a href="#">60</a></td>
-					         <td><a href="#" >Bicicletas para los atletas</a></td>
-					      </tr>
-					      <tr>
-					      	 <td><a href="#">21</a></td>
-					         <td><a href="#" >Dibujando sonrisas</a></td>
-					      </tr>
-					       <tr>
-					      	 <td><a href="#">60</a></td>
-					         <td><a href="#" >Bicicletas para los atletas</a></td>
-					      </tr>
-					      <tr>
-					      	 <td><a href="#">21</a></td>
-					         <td><a href="#" >Dibujando sonrisas</a></td>
-					      </tr>
-					       <tr>
-					      	 <td><a href="#">60</a></td>
-					         <td><a href="#" >Bicicletas para los atletas</a></td>
-					      </tr>
-					      <tr>
-					      	 <td><a href="#">21</a></td>
-					         <td><a href="#" >Dibujando sonrisas</a></td>
-					      </tr>
-					       <tr>
-					      	 <td><a href="#">60</a></td>
-					         <td><a href="#" >Bicicletas para los atletas</a></td>
-					      </tr>
-					      <tr>
-					      	 <td><a href="#">21</a></td>
-					         <td><a href="#" >Dibujando sonrisas</a></td>
-					      </tr>
-					       <tr>
-					      	 <td><a href="#">60</a></td>
-					         <td><a href="#" >Bicicletas para los atletas</a></td>
-					      </tr>
-					      <tr>
-					      	 <td><a href="#">21</a></td>
-					         <td><a href="#" >Dibujando sonrisas</a></td>
-					      </tr>
-					       <tr>
-					      	 <td><a href="#">60</a></td>
-					         <td><a href="#" >Bicicletas para los atletas</a></td>
-					      </tr>
-					      <tr>
-					      	 <td><a href="#">21</a></td>
-					         <td><a href="#" >Dibujando sonrisas</a></td>
-					      </tr>
-					       <tr>
-					      	 <td><a href="#">60</a></td>
-					         <td><a href="#" >Bicicletas para los atletas</a></td>
-					      </tr>
-					      <tr>
-					      	 <td><a href="#">21</a></td>
-					         <td><a href="#" >Dibujando sonrisas</a></td>
-					      </tr>
-					      					      <tr>
-					      	 <td><a href="#">21</a></td>
-					         <td><a href="#" >Dibujando sonrisas</a></td>
-					      </tr>
-					      					      <tr>
-					      	 <td><a href="#">21</a></td>
-					         <td><a href="#" >Dibujando sonrisas</a></td>
-					      </tr>					      <tr>
-					      	 <td><a href="#">21</a></td>
-					         <td><a href="#" >Dibujando sonrisas</a></td>
-					      </tr>
-					      					      <tr>
-					      	 <td><a href="#">21</a></td>
-					         <td><a href="#" >Dibujando sonrisas</a></td>
-					      </tr>
-					      
-=======
+					   <tbody>					      
 					   		<?php foreach ($subprogramas as $subprograma): ?>
 					   		<tr onclick="subprogramas.verSubprograma(<?php echo $subprograma['id_subprograma']; ?>);">
 					   			<td> <?php echo $subprograma['id_subprograma']; ?>
@@ -99,7 +25,6 @@
 					   			</td>
 					   		</tr>	
 					   		<?php endforeach ?>
->>>>>>> a5780440509a4e74a037e406778e73da164cb0ff
 					   </tbody>
 					</table>
 	        	</div>
