@@ -9,7 +9,7 @@
 	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
 	<!--  Importa los JavaScript-->
     <link rel="stylesheet" href="assets/DataTables/datatables.css">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>	
+	<script type="text/javascript" src="assets/js/jquery-3.1.1.min.js"></script>	
     <script type="text/javascript" src="assets/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="assets/DataTables/datatables.js"></script>	
     <script type="text/javascript" src="assets/js/jquery.toaster.js"></script>
