@@ -39,7 +39,7 @@ class EspecieController
 
 	public function nuevoEspecie($postData){
 		$result = array();
-		$errors = $this->validaDatos($postData);
+		$errors = false;// $this->validaDatos($postData);
 
 		if($errors){
 			$message = implode("<br>", $errors);
@@ -64,7 +64,7 @@ class EspecieController
 
 	public function updateEspecie($data){
 		$result = array();
-		$errors = $this->validaDatos($postData);
+		$errors = false; //$this->validaDatos($postData);
 
 		if($errors){
 			$message = implode("<br>", $errors);
