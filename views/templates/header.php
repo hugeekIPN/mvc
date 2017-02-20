@@ -1,10 +1,3 @@
-<?php
-/// elimina warning de tabla null
-error_reporting(E_ALL|E_STRICT);
-ini_set('display_startup_errors', 0);
-ini_set('display_errors', 0);
-
-?>
 
 <!DOCTYPE html>
 <html lang="es">
