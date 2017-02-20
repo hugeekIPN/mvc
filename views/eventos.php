@@ -43,7 +43,7 @@
 					  <input required type="text" class="form-control" id="inputIDEventos">
 					  <span class="help-block"></span>
 					</div>
-					<div class="form-group has-warning">
+					<div class="form-group ">
 					  <label class="control-label" for="inputIDSubEventos">ID Subprograma:</label>
 					  <input required type="text" class="form-control" id="inputIDSubEventos">
 					</div>

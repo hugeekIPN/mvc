@@ -37,7 +37,7 @@
 		<div class="datos col-md-10">
 			<div class="datos-bancarios col-md-6" >
 				<form action="" id="Proveedores">
-					<div class="form-group has-warning">
+					<div class="form-group ">
 					  <input required type="hidden" class="form-control" id="inputIDProveedores">
 					</div>
 					<div class="form-group">
@@ -49,20 +49,20 @@
 					  <label class="control-label" for="inputRFCProveedores">RFC:</label>
 					  <input required type="text" class="form-control" id="inputRFCProveedores">
 					</div>
-					<div class="form-group has-warning">
+					<div class="form-group ">
 					  <label class="control-label" for="inputCuentaProveedores">Cuenta:</label>
 					  <input required type="text" class="form-control" id="inputCuentaProveedores">
 					</div>
-					<div class="form-group has-warning">
+					<div class="form-group ">
 					  <label class="control-label" for="inputBancoProveedores">Banco:</label>
 					  <input required type="text" class="form-control" id="inputBancoProveedores">
 					</div>
-					<div class="form-group has-warning">
+					<div class="form-group ">
 					  <label class="control-label" for="inputSucursalProveedores">Sucursal:</label>
 					  <input required type="text" class="form-control" id="inputSucursalProveedores">
 					</div>
 					
-					<div class="form-group has-warning">
+					<div class="form-group ">
 					  <label class="control-label" for="inputReferenciaProveedores">Referencia:</label>
 					  <input  type="text" class="form-control" id="inputReferenciaProveedores">
 					</div>
@@ -95,7 +95,7 @@
                                              
 				<h3>Datos Generales</h3>
 				<form action="" id="ProveedoresDos">
-					<div class="form-group has-warning">
+					<div class="form-group ">
 					  <label class="control-label" for="inputCalleYNumeroProveedores">Calle y Número:</label>
 					  <input required type="text" class="form-control" id="inputCalleYNumeroProveedores">
 					</div>
@@ -107,19 +107,19 @@
 					  <label class="control-label" for="inputPaisProveedores">País:</label>
 					  <input required type="text" class="form-control" id="inputPaisProveedores">
 					</div>
-					<div class="form-group has-warning">
+					<div class="form-group ">
 					  <label class="control-label" for="inputEstadoProveedores">Estado:</label>
 					  <input required type="text" class="form-control" id="inputEstadoProveedores">
 					</div>
-					<div class="form-group has-warning">
+					<div class="form-group ">
 					  <label class="control-label" for="inputCodigoPostalProveedores">Código Postal:</label>
 					  <input required type="text" class="form-control" id="inputCodigoPostalProveedores">
 					</div>
-					<div class="form-group has-warning">
+					<div class="form-group ">
 					  <label class="control-label" for="inputContactoProveedores">Contacto:</label>
 					  <input required type="text" class="form-control" id="inputContactoProveedores" placeholder="usuario@fundacion.com">
 					</div>
-					<div class="form-group has-warning">
+					<div class="form-group ">
 					  <label class="control-label" for="inputNumeroProveedores">Número:</label>
 					  <input  type="text" class="form-control" id="inputNumeroProveedores">
 					</div>

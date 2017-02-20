@@ -386,12 +386,13 @@ body{
 		}
 			div.izq div.registros{
 				margin-left: -50px; 
+			
 			}
-				/*div.izq div.registros div.cont{
+				div.izq div.registros div.cont{
 					overflow: hidden;
-					height: 310px;
+					height: 510px;
 					overflow-y: scroll; 
-				}*/
+				}
 				div.izq div.registros div.cont table td{
 					border: none;
 					cursor: pointer;
@@ -563,7 +564,7 @@ body{
 				text-decoration:none;
 				font-size: 18px;
 			}
-	
+
 	footer{
 		width: 100%;
 		height: 70px;
@@ -571,8 +572,8 @@ body{
 		text-align: center;
 		padding: 25px 0;
 		line-height: 8px;
+		bottom: 0;
 		margin-top: 65px;
-		
 
 
 	}

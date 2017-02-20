@@ -1,16 +1,9 @@
 <div class="container container-proveedor "onload="oCurrentValue.innerText = estado.isContentEditable;">
 	<div class="form-group col-md-6 izq">
-	        <div class="col-md-8 ">
-	           <!-- <form action="" class="search-form">
-	                <div class="form-group has-feedback">
-	            		<input type="text" class="form-control" name="search" id="search" placeholder="Buscar...">
-	              		<span class="glyphicon glyphicon-search form-control-feedback"></span>
-	            	</div>
-	            </form> -->
-	        </div>
+	       
 	        <div class="col-md-12 registros">
 	        	<div class="cont">
-					<table id="example" class="display" cellspacing="0" width="100%"" class="table-hover">
+					<table id="example" class="display" cellspacing="0" >
 					   <thead>
 					      <tr>
 					      	 <th>ID</th>
@@ -18,7 +11,7 @@
 					         <th>Programa</th>
 					      </tr>
 					   </thead>
-					   <tbody>
+					   <tbody>					      
 					   		<?php foreach ($subprogramas as $subprograma): ?>
 					   		<tr onclick="subprogramas.verSubprograma(<?php echo $subprograma['id_subprograma']; ?>);">
 					   			<td> <?php echo $subprograma['id_subprograma']; ?>
