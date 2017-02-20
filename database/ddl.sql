@@ -69,7 +69,7 @@ CREATE TABLE IF NOT EXISTS `sgi`.`proveedores` (
 DROP TABLE IF EXISTS `sgi`.`especies` ;
 
 CREATE TABLE IF NOT EXISTS `sgi`.`especies` (
-  `id_especie` INT NOT NULL,
+  `id_especie` INT AUTO_INCREMENT,
   `descripcion` VARCHAR(255) NULL,
   `estado` INT NULL,
   `fecha_creacion` DATETIME NULL,
