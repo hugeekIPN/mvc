@@ -1,3 +1,4 @@
+
 <div class="container container-proveedor "onload="oCurrentValue.innerText = estado.isContentEditable;">
 	<div class="form-group col-md-6 izq">
 	        <div class="col-md-8 ">
@@ -23,7 +24,9 @@
 					      	 <td><?php echo $especie['id_especie']; ?></td>
 					         <td><?php echo $especie['descripcion']; ?></td>
 					      </tr>
-					     <?php endforeach; ?>  
+					     <?php endforeach;       
+                            ?>
+                                                                                                    
 					   </tbody>
 					</table>
 	        	</div>
