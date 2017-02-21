@@ -38,6 +38,7 @@ especies.add = function(){
 				}else{
 					$("#formulario-especies :input").val('');
 					utilerias.displaySuccessMessage(data.msj_server,result.message);
+                    
 					location.reload();
 				}
 			}

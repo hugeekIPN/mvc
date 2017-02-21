@@ -81,7 +81,7 @@ class m_especie{
         if(count($result)>0)
             return $result;
         else
-            return null;
+            return array();
     }
 }
 

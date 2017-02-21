@@ -82,7 +82,7 @@ class m_proveedor
 		if($result)
 			return $result;
 		else
-			return null;
+			return array();
 	}
 
 }
