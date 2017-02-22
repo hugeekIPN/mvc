@@ -23,6 +23,7 @@ class UsuariosController {
             
 							
             $usuario = sessionController::get("username");	
+            $titulo = "Usuarios";
 
             $users = $this->model->getAllUsers();     
             require_once("views/templates/header.php");
@@ -105,6 +106,9 @@ class UsuariosController {
             if($currentUser['nombre'] != $data['username'])
                 $newData['nombre'] = $data['username'];
 
+            if($currentUser['email'] != $data['email'])
+                $newData['email'] = $data['email'];
+
             if($data['password'])
                 if($currentUser['password'] !=
                     $data['password'])
@@ -133,6 +137,13 @@ class UsuariosController {
             return array(
                 "status" => "error",
                 "message" => "El usuario no existe");
+
+        if($this->userId == sessionController::get("usuarioId")){
+            return array(
+                "status" => "error",
+                "message" => "No se puede eliminar al usuario actual"
+                );
+        }
 
         $this->model->deleteUsuario($this->userId);
         return array(

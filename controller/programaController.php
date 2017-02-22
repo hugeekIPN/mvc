@@ -22,8 +22,10 @@ class programaController
 
 		$login = new loginController();
 
+
 		if($login->_isLoggedIn()){
 			$usuario = sessionController::get('username');
+			$titulo = "Programas";
 
 			$programas = $this->model->getAllProgramas();
 

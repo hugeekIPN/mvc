@@ -11,7 +11,7 @@
 	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
 	<link rel="stylesheet" type="text/css" href="assets/css/normalize.css">
 	<!--  Importa los JavaScript-->
-	<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+	<script type="text/javascript" src="assets/js/jquery-3.1.1.min.js"></script>
     <script type="text/javascript" src="assets/js/bootstrap.min.js"></script>
  	
 </head>
@@ -23,7 +23,7 @@
 			
 			<div class="col-md-6 formulario">
                 <div id="errores"></div>
-				<form id="login-form" method="post" class="form-horizontal" >
+				<form id="login-form" method="post" class="form-horizontal formulario" >
 				  <div class="form-group">
 				    <label for="username" class="col-sm-2 control-label">Usuario:</label>
 				    <div class="col-sm-6">

@@ -42,7 +42,7 @@
 					<div id="mensajes-server"></div>
 				</div>
                                              
-			<form action="" id="formulario-especies">
+			<form class="formulario" action="" id="formulario-especies">
 					<div class="form-group ">
                                             
 					  <input required type="hidden" class="form-control" id="inputIDEspecie" >

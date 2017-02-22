@@ -36,7 +36,7 @@
 	<div class="form-group col-md-6 der">
 		<div class="datos col-md-10">
 			<div class="datos-bancarios col-md-6" >
-				<form action="" id="Proveedores">
+				<form class="formulario" action="" id="Proveedores">
 					<div class="form-group ">
 					  <input required type="hidden" class="form-control" id="inputIDProveedores">
 					</div>

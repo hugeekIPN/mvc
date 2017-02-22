@@ -14,8 +14,9 @@ include_once("model/m_login.php");
 		{			
 			if( $this->_isLoggedIn() ):
 							
-				$usuario = sessionController::get("email");											
-
+				$usuario = sessionController::get("username");		
+				$titulo = "Panel de administración";
+								
 				require_once("views/templates/header.php");
 				require_once("views/dashboard.php");
 			    require_once("views/templates/footer.php");		
@@ -46,7 +47,8 @@ include_once("model/m_login.php");
 	        if(count($valida) == 1) 
 	        {	 
 		            sessionController::set("usuarioId", $valida[0]['id_usuario']);	            
-		            sessionController::set("email", $valida[0]['email']);	            
+		            sessionController::set("email", $valida[0]['email']);	
+		            sessionController::set("username",$valida[0]['nombre']);            
 		            
 		            $logged=true;	           
 	        }

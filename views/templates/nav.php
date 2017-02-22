@@ -50,7 +50,7 @@
 	    </div>
 
 	    <div class="col-md-4 titulo">
-	    	<p class="">Proveedores</p>
+	    	<p class=""><?php echo $titulo; ?></p>
 	    	
 	    </div>
 

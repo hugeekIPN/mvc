@@ -24,6 +24,7 @@ class EventoController
 
 		if($login->_isLoggedIn()){
 			$usuario = sessionController::get('username');
+			$titulo = "Eventos";
 
 			$eventos = $this->model->getAllEventos();
             require_once("views/templates/header.php");
