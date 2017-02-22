@@ -20,10 +20,14 @@ Proveedores.elementos = {
     cp : $("#inputCodigoPostalProveedores"),
     correo_contacto : $("#inputContactoProveedores"),
     telefono : $("#inputNumeroProveedores"),
+    btn_edit: $("#btn-edit-user"),
+    btn_save: $("#btn-add-proveedor"),
+    btn_delete: $("#btn-delete-user"),
 	 button : $("#btn-update-proveedor"),
 }; 
 
 Proveedores.verProveedor = function (proveedorId){
+    var elem= Proveedores.elementos;
 
 	//ocultamos el boton de actualizar
 	var update_button = $("#btn-update-proveedor");
@@ -44,7 +48,11 @@ Proveedores.verProveedor = function (proveedorId){
 		},
 		success: function(result){
 			var res = JSON.parse(result);
-
+            
+            elem.btn_edit.show();
+            elem.btn_delete.show();
+            elem.btn_save.hide();
+            
 			//ocultamos formulario
 			$("#ProveedoresDos").hide();
             $("#Proveedores").hide();
@@ -141,9 +149,8 @@ Proveedores.editproveedor = function(){
     $("#btn-edit-user").hide();
 
     //activamos el de acutalizar
-	var update_button = $("#btn-update-proveedor");
-	update_button.show();
-	update_button.attr('onclick','Proveedores.updateproveedor()');
+	data.btn_save.show();
+	data.btn_save.attr('onclick','Proveedores.updateproveedor()');
 
 	//mostramos el formulario
 	$("#Proveedores").show();
@@ -163,6 +170,8 @@ Proveedores.editproveedor = function(){
 		},
 		success: function(result){
 			var res = JSON.parse(result);
+            
+            data.btn_save.show();
             
             data.id_proveedor.val(res.id_proveedor);
 			data.razon_social.val(res.razon_social);

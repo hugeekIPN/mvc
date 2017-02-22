@@ -117,7 +117,7 @@
 					</div>
 					<div class="form-group ">
 					  <label class="control-label" for="inputContactoProveedores">Contacto:</label>
-					  <input required type="text" class="form-control" id="inputContactoProveedores" placeholder="usuario@fundacion.com">
+					  <input required type="email" class="form-control" id="inputContactoProveedores" placeholder="usuario@fundacion.com">
 					</div>
 					<div class="form-group ">
 					  <label class="control-label" for="inputNumeroProveedores">Número:</label>
@@ -155,19 +155,19 @@
 				</button>
 			</section>
 			<section >
-				<button onclick="Proveedores.editproveedor();" id="btn-edit-user">
+				<button hidden onclick="Proveedores.editproveedor();" id="btn-edit-user">
 					<img src="assets/iconos/Recurso 7.png" alt="Editar">
 					<small >Editar</small>
 				</button>
 			</section>
 			<section >
-				<button onclick="Proveedores.addproveedor();" id="btn-update-proveedor">
+				<button onclick="Proveedores.addproveedor();" id="btn-add-proveedor">
 					<img src="assets/iconos/Recurso 8.png" alt="Guardar">
 					<small>Guardar</small>
 				</button>
 			</section>
 			<section >
-				<button onclick="Proveedores.deleteproveedor();">
+				<button hidden onclick="Proveedores.deleteproveedor();" id="btn-delete-proveedor">
 					<img src="assets/iconos/Recurso 9.png" alt="Borrar">
 					<small>Borrar</small>
 				</button>
