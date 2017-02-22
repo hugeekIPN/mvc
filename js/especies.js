@@ -101,7 +101,7 @@ especies.verespecie = function(idespecie){
 				//mostramos y ocultamos botones correspondientes
 				elem.btn_edit.show();
 				elem.btn_save.hide();
-				
+				elem.btn_delete.show();
 
 				$("#view-id-especie").text(res.id_especie);
 				$("#view-descripcion-especie").text(res.descripcion);
@@ -141,6 +141,7 @@ especies.editespecie = function(){
 				elem.btn_save.attr('onclick','especies.updateespecie();');
 				elem.btn_save.show();
 				elem.btn_edit.hide();
+                elem.btn_delete.show();
 				
 				elem.idespecie.val(res.id_especie);
 				elem.descripcion.val(res.descripcion);
@@ -206,7 +207,7 @@ especies.deleteespecie = function(){
 					utilerias.displayErrorServerMessage(elem.msj_server,result.message);
 				}
 				else{
-					utilerias.displaySuccessMessage(elem.msj_server,result.message);
+                    utilerias.displaySuccessMessage(elem.msj_server,result.message);
 					location.reload();
 				}
 			}

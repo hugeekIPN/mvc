@@ -76,7 +76,7 @@
 				</button>
 			</section>
 			<section >
-				<button onclick="especies.editespecie();" id="btn-edit">
+				<button hidden onclick="especies.editespecie();" id="btn-edit">
 					<img src="assets/iconos/Recurso 7.png" alt="Editar">
 					<small >Editar</small>
 				</button>
@@ -88,7 +88,7 @@
 				</button>
 			</section>
 			<section >
-				<button id="btn-delete" onclick="especies.deleteespecie();">
+				<button hidden id="btn-delete" onclick="especies.deleteespecie();">
 					<img src="assets/iconos/Recurso 9.png" alt="Borrar">
 					<small>Borrar</small>
 				</button>
