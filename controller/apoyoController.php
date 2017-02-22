@@ -24,6 +24,7 @@ class ApoyoGastoController
 
 		if($login->_isLoggedIn()){
 			$usuario = sessionController::get('username');
+			$titulo = "Apoyos";
 
 			$apoyos = $this->model->getApoyoGasto();
 

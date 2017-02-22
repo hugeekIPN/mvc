@@ -28,6 +28,7 @@ class subprogramaController
 
 		if($login->_isLoggedIn()){
 			$usuario = sessionController::get('username');
+			$titulo = "Subprogramas";
 
 			$subprogramas = $this->model->getAllSubprogramas();
 

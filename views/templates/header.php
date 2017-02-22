@@ -34,10 +34,10 @@
 
 	    <div class="col-md-4 header2">
 	    	<p class="">Usuario:</p>
-	    	<p class="nombre-u"><strong>Castillo Puebla Socorro</strong></p>
+	    	<p class="nombre-u"><strong><?php echo $usuario; ?></strong></p>
 	    </div>
 	    <div class="col-md-4 header3">
-	    	<p class="">Miercoles, 11 de Enero del 2017 </p>
+	    	<p class=""><?php echo date("d / m / Y"); ?></p>
 	    </div>
 
 	    

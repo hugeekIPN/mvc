@@ -27,6 +27,7 @@ class ProveedorController
 
 		if($login->_isLoggedIn()){
 			$usuario = sessionController::get('username');
+			$titulo = "Proveedores y Donatarios";
 
 			$proveedores = $this->model->getAllProveedores();
 

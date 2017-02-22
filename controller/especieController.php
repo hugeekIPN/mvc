@@ -24,6 +24,7 @@ class EspecieController
 
 		if($login->_isLoggedIn()){
 			$usuario = sessionController::get('username');
+			$titulo = "Especies";
 
 			$especies = $this->model->getAllEspecies();
 

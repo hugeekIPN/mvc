@@ -23,6 +23,7 @@ class UsuariosController {
             
 							
             $usuario = sessionController::get("username");	
+            $titulo = "Usuarios";
 
             $users = $this->model->getAllUsers();     
             require_once("views/templates/header.php");
@@ -104,6 +105,9 @@ class UsuariosController {
 
             if($currentUser['nombre'] != $data['username'])
                 $newData['nombre'] = $data['username'];
+
+            if($currentUser['email'] != $data['email'])
+                $newData['email'] = $data['email'];
 
             if($data['password'])
                 if($currentUser['password'] !=
