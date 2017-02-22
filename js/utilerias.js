@@ -1,3 +1,11 @@
+
+// $(document).ready();
+$(function() {
+    $(".formulario").submit(function(e){
+        return false;
+    });
+});
+
 var utilerias = {};
 
 utilerias.displaySuccessMessage = function (element, message) {

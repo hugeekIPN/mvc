@@ -23,7 +23,7 @@
 			
 			<div class="col-md-6 formulario">
                 <div id="errores"></div>
-				<form id="login-form" method="post" class="form-horizontal" >
+				<form id="login-form" method="post" class="form-horizontal formulario" >
 				  <div class="form-group">
 				    <label for="username" class="col-sm-2 control-label">Usuario:</label>
 				    <div class="col-sm-6">

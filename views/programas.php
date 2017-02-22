@@ -47,7 +47,7 @@
 				</div>
 				
 				<!-- formulario -->
-				<form id="formulario-programas">
+				<form id="formulario-programas" class="formulario" >
 					<input type="hidden" name="id-programa" id="id-programa">
 
 					<div class="input form-group">

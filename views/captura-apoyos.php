@@ -64,7 +64,7 @@
 		</form>
 	</div>
 	<div class="form-central col-md-4 ">
-		<form method="post" >
+		<form method="post" class="formulario" >
 		  <div class="form-group col-md-12">
 		    <label for="exampleInputEmail1">Tipo de Apoyo</label>
 		    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">

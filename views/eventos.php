@@ -37,7 +37,7 @@
 		<div class="datos datos2 col-md-10 eventos">
 			<div class="datos-bancarios col-md-10 evento" >
 				
-				<form action="" id="eventos">
+				<form  class="formulario" action="" id="eventos">
 					<div class="form-group">
 					  <label class="control-label" for="inputIDEventos">ID:</label>
 					  <input required type="text" class="form-control" id="inputIDEventos">
