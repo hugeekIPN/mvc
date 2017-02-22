@@ -16,6 +16,14 @@ especies.elementos = {
 	cont_datos: $("#datos-especies"),
 };
 
+especies.verFormularioVacio = function(){
+    var data = especies.elementos;
+    
+	location.reload();
+
+	data.btn_delete.hide();
+}
+
 /**
 * Agregar un nuevo especie
 **/
@@ -36,10 +44,13 @@ especies.add = function(){
 				if(result.status == "error"){
 					utilerias.displayErrorServerMessage(data.msj_server,result.message);
 				}else{
-					$("#formulario-especies :input").val('');
-					utilerias.displaySuccessMessage(data.msj_server,result.message);
                     
-					location.reload();
+					$("#formulario-especies :input").val('');
+                    
+                  location.reload();
+                    utilerias.displaySuccessMessage(data.msj_server,result.message);
+                    
+					
 				}
 			}
 		});
@@ -90,7 +101,6 @@ especies.verespecie = function(idespecie){
 				//mostramos y ocultamos botones correspondientes
 				elem.btn_edit.show();
 				elem.btn_save.hide();
-				elem.btn_delete.show();
 				
 
 				$("#view-id-especie").text(res.id_especie);
@@ -165,8 +175,8 @@ especies.updateespecie = function(){
 					utilerias.displayErrorServerMessage(elem.msj_server,result.message);
 				}else{
 					$("#formulario-especies :input").val('');
-					utilerias.displaySuccessMessage(elem.msj_server,result.message);
-					location.reload();					
+				
+					location.reload();	utilerias.displaySuccessMessage(elem.msj_server,result.message);					
 				}
 			}
 		});

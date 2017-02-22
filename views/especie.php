@@ -44,8 +44,8 @@
                                              
 			<form action="" id="formulario-especies">
 					<div class="form-group ">
-					  <label class="control-label" for="inputIDEspecie">ID:</label>
-					  <input required type="text" class="form-control" id="inputIDEspecie" disabled>
+                                            
+					  <input required type="hidden" class="form-control" id="inputIDEspecie" >
 					</div>
 					<div class="form-group">
 					  <label class="control-label" for="inputDescripcionEspecie">Descripción:</label>
@@ -70,7 +70,7 @@
 		</div>
 		<div class="iconos col-md-2">
 			<section class="nuevo">
-				<button onclick="location.reload()" id="btn-add-especie">
+				<button onclick="especies.verFormularioVacio()" id="btn-add-especie">
 					<img src="assets/iconos/Recurso 11.png" alt="Editar">
 					<small >Nuevo</small>
 				</button>
