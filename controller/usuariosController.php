@@ -134,6 +134,13 @@ class UsuariosController {
                 "status" => "error",
                 "message" => "El usuario no existe");
 
+        if($this->userId == sessionController::get("usuarioId")){
+            return array(
+                "status" => "error",
+                "message" => "No se puede eliminar al usuario actual"
+                );
+        }
+
         $this->model->deleteUsuario($this->userId);
         return array(
             "status" => "success",

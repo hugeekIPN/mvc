@@ -189,15 +189,19 @@ usuarios.deleteUser = function(){
 		$.ajax({
 			type: "post",
 			url: "ajax.php",
+			dataType: "json",
 			data: {
 				action: "deleteUsuario",
 				usuarioId: userId
 			},
 			success: function(result){
-				if(result.status == "error")
-					utilerias.displayErrorMessage($("#mensajes-server"),result.message);
-				else
-					location.reload();
+				if(result.status == "error"){
+					utilerias.displayErrorServerMessage($("#mensajes-server"),result.message);
+				}
+				else{
+					utilerias.displaySuccessMessage($("#mensajes-server"),result.message);
+					location.reload();					
+				}
 			}
 		});
 	}

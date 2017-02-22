@@ -46,15 +46,15 @@
 
 		<!-- contenedor formulario y datos de usuario -->
 		<div class="datos col-md-10" id="cont-datos">
+			<!-- para errores del back  -->
+			<div class="input">
+				<div id="mensajes-server"></div>
+			</div>   
 
 			<!-- contenedor formulario -->
 			<div id="cont-formulario">
-				<h3>Datos Generales</h3>  
-
-				<!-- para errores del back  -->
-				<div class="input">
-					<div id="mensajes-server"></div>
-				</div>          
+				<h3>Datos Generales</h3> 
+       
 
 				<!-- formulario -->
 				<form id="formulario-usuario">
