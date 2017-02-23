@@ -8,16 +8,20 @@ var Proveedores = {};
 Proveedores.elementos = {
 	razon_social : $("#inputRazonProveedores"),
     id_proveedor : $("#inputIDProveedores"),
+    tipo : $("#inputTipoProveedores"),
     rfc : $("#inputRFCProveedores"),
     cuenta : $("#inputCuentaProveedores"),
 	banco : $("#inputBancoProveedores"),
 	sucursal : $("#inputSucursalProveedores"),
     referencia : $("#inputReferenciaProveedores"),
+    plaza : $("#inputPlazaProveedores"),
+    colonia : $("#inputColoniaProveedores"),
     calle : $("#inputCalleYNumeroProveedores"),
     delegacion : $("#inputDelegacionYMunicipioProveedores"),
     pais : $("#inputPaisProveedores"),
     estado : $("#inputEstadoProveedores"),
     cp : $("#inputCodigoPostalProveedores"),
+    contacto: $("#inputContactoNombreProveedores"),
     correo_contacto : $("#inputContactoProveedores"),
     telefono : $("#inputNumeroProveedores"),
     btn_edit: $("#btn-edit-user"),
@@ -59,20 +63,29 @@ Proveedores.verProveedor = function (proveedorId){
             
             //vista izq
 			$("#vista-id").text(res.id_proveedor);
-            $("#razon").text(res.razon_social);
+            
+            if(res.tipo=="1")
+                $("#vista-tipo").text("Proveedor");
+            else
+                $("#vista-tipo").text("Donatario");
+            
+            $("#vista-razon").text(res.razon_social);
             $("#vista-rfc").text(res.rfc);
             $("#vista-cuenta").text(res.cuenta);
             $("#vista-banco").text(res.banco);
             $("#vista-sucursal").text(res.sucursal);
+            $("#vista-plaza").text(res.plaza);
             $("#vista-referencia").text(res.referencia);
             
 	       //vista der
-			$("#vista-calle").text(res.id_proveedor);
+            $("#vista-colonia").text(res.colonia);
+			$("#vista-calle").text(res.calle);
             $("#vista-delega").text(res.delegacion);
             $("#vista-pais").text(res.pais);
             $("#vista-entidad").text(res.entidad);
             $("#vista-cp").text(res.cp);
-            $("#vista-contacto").text(res.correo_contacto);
+            $("#vista-contacto").text(res.contacto);
+            $("#vista-correo").text(res.correo_contacto);
             $("#vista-numero").text(res.telefono);
             
 			//mostramos los datos en el contenedor
@@ -100,7 +113,6 @@ Proveedores.addproveedor = function (editMode) {
         if ( editMode ) {
             action = "updateProveedor";
             proveedorId = $("#inputIDProveedores").val();
-
         }      
 
         $.ajax({
@@ -110,16 +122,20 @@ Proveedores.addproveedor = function (editMode) {
 			data: {                
                     id_proveedor : proveedorId,
                     razon_social : data.razon_social.val(),
+                    tipo: data.tipo.val(),
                     rfc : data.rfc.val(),
                     cuenta : data.cuenta.val(),
                     banco : data.banco.val(),
                     sucursal: data.sucursal.val(),
+                    plaza: data.plaza.val(),
                     referencia: data.referencia.val(),
+                    colonia: data.colonia.val(),
                     calle: data.calle.val(),
                     delegacion: data.delegacion.val(),
                     pais: data.pais.val(),
                     entidad: data.estado.val(),
                     cp: data.cp.val(),
+                    contacto: data.contacto.val(),
                     correo_contacto: data.correo_contacto.val(),
                     telefono: data.telefono.val(),
                     action : action
@@ -127,10 +143,11 @@ Proveedores.addproveedor = function (editMode) {
 			success: function(result){
 				if(result.status == "error"){	      utilerias.displayErrorServerMessage($("#mensajes-server"),result.message);
 				}else {
+                    location.reload();
 					$("#formulario-usuario :input").val('');
 					utilerias.displaySuccessMessage($("#mensajes-server"),result.message);
                     
-                     location.reload();
+                     
 				}
 			}
 		});		
@@ -174,17 +191,21 @@ Proveedores.editproveedor = function(){
             data.btn_save.show();
             
             data.id_proveedor.val(res.id_proveedor);
+            data.tipo.val(res.tipo);
 			data.razon_social.val(res.razon_social);
             data.cuenta.val(res.cuenta);
 			data.banco.val(res.banco); data.sucursal.val(res.sucursal);
             data.rfc.val(res.rfc);    
-			data.referencia.val(res.referencia);      
+			data.referencia.val(res.referencia);   
+            data.plaza.val(res.plaza);     
             data.calle.val(res.calle);    
             data.delegacion.val(res.delegacion);    
             data.pais.val(res.pais);       
-            data.cp.val(res.cp);    
+            data.cp.val(res.cp); 
+            data.colonia.val(res.colonia);  
             data.calle.val(res.calle);    
             data.estado.val(res.entidad);    
+            data.contacto.val(res.contacto);   
             data.correo_contacto.val(res.correo_contacto);   
             data.telefono.val(res.telefono);    
             

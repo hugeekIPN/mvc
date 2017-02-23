@@ -40,6 +40,14 @@
 					<div class="form-group ">
 					  <input required type="hidden" class="form-control" id="inputIDProveedores">
 					</div>
+                     <div class="form-group">
+					  <label class="control-label" for="inputTipoProveedores">Tipo:</label>
+					  <select id="inputTipoProveedores" name="inputTipoProveedores">
+                          <option value="" selected="selected">- selecciona -</option>
+                          <option value="1">Proveedor</option>
+                          <option value="2">Donatario</option>
+                        </select>
+					</div>                                                                           
 					<div class="form-group">
 					  <label class="control-label" for="inputRazonProveedores">Razón Social:</label>
 					  <input required type="text" class="form-control" id="inputRazonProveedores">
@@ -61,6 +69,10 @@
 					  <label class="control-label" for="inputSucursalProveedores">Sucursal:</label>
 					  <input required type="text" class="form-control" id="inputSucursalProveedores">
 					</div>
+                    <div class="form-group ">
+					  <label class="control-label" for="inputPlazaProveedores">Plaza:</label>
+					  <input required type="text" class="form-control" id="inputPlazaProveedores">
+					</div>                                                                                
 					
 					<div class="form-group ">
 					  <label class="control-label" for="inputReferenciaProveedores">Referencia:</label>
@@ -72,8 +84,10 @@
                 <div hidden id="vista-datos" >
                     <p ><strong>ID</strong></p>
                     <p class="id-datos id" id="vista-id"><strong></strong></p>
+                    <p>Tipo:</p>
+                    <p id="vista-tipo"></p>               
                     <p>Razón social</p>
-                    <p id="razon"></p>
+                    <p id="vista-razon"></p>
                     <p>Datos Bancarios</p>
                     <p>RFC</p>
                     <p id="vista-rfc"></p>
@@ -83,18 +97,25 @@
                     <p id="vista-banco"></p>
                     <p>Sucursal</p>
                     <p id="vista-sucursal"></p>
+                    <p>Plaza</p>
+                    <p id="vista-plaza"></p>
                     <p>Referencia</p>
                     <p id="vista-referencia"></p>
 			     </div>         
                                             
 			</div>
 			<div class="datos-generales col-md-6" >
+                                                 
 				<div class="input">
 					<div id="mensajes-server"></div>
 				</div>
                                              
 				<h3>Datos Generales</h3>
 				<form action="" id="ProveedoresDos">
+                     <div class="form-group ">
+					  <label class="control-label" for="inputColoniaProveedores">Colonia:</label>
+					  <input required type="text" class="form-control" id="inputColoniaProveedores">
+					</div>                              
 					<div class="form-group ">
 					  <label class="control-label" for="inputCalleYNumeroProveedores">Calle y Número:</label>
 					  <input required type="text" class="form-control" id="inputCalleYNumeroProveedores">
@@ -115,31 +136,41 @@
 					  <label class="control-label" for="inputCodigoPostalProveedores">Código Postal:</label>
 					  <input required type="text" class="form-control" id="inputCodigoPostalProveedores">
 					</div>
+                    <div class="form-group ">
+					  <label class="control-label" for="inputContactoNombreProveedores">Contacto:</label>
+					  <input type="text" class="form-control" id="inputContactoNombreProveedores">
+					</div>
+                                                                                                                                   
 					<div class="form-group ">
-					  <label class="control-label" for="inputContactoProveedores">Contacto:</label>
+					  <label class="control-label" for="inputContactoProveedores">Email:</label>
 					  <input required type="email" class="form-control" id="inputContactoProveedores" placeholder="usuario@fundacion.com">
 					</div>
+                                                                                                                                         
 					<div class="form-group ">
-					  <label class="control-label" for="inputNumeroProveedores">Número:</label>
+					  <label class="control-label" for="inputNumeroProveedores">Teléfono:</label>
 					  <input  type="text" class="form-control" id="inputNumeroProveedores">
 					</div>
 
 				</form>
                 
                 <div hidden id="vista-datos2" >
+                    <p >Colonia</p>
+                    <p id="vista-colonia"></p>
                     <p >Calle y Número</p>
-                    <p class="id-datos" id="vista-calle"></p>
+                    <p id="vista-calle"></p>
                     <p>Delegación y Municipio</p>
                     <p id="vista-delega"></p>
                     <p>País</p>
                     <p id="vista-pais"></p>
-                    <p>Estado</p>            
+                    <p>Estado:</p>            
                     <p id="vista-entidad"></p>
-                    <p>Código Postal</p>
+                    <p>Código Postal:</p>
                     <p id="vista-cp"></p>
-                    <p>Contacto</p>
+                    <p>Contacto:</p>
                     <p id="vista-contacto"></p>
-                    <p>Número</p>
+                    <p>Email:</p>
+                    <p id="vista-correo"></p>
+                    <p>Teléfono</p>
                     <p id="vista-numero"></p>
 			     </div>         
                                                                                           

@@ -125,18 +125,10 @@ class EspecieController
 		if ($this->esVacio($descripcion)) {
 			$errors[] = "Descripción no puede ser vacío";
 		}
+        
         if ($this->esVacio($estado)) {
 			$errors[] = "Estado no puede ser vacío";
 		}
-        /*
-        if ($this->esVacio($fecha_modificacion)) {
-			$errors[] = "Fecha de creación no puede ser vacío";
-		}
-        if ($this->esVacio($ultima_modificacion)) {
-			$errors[] = "Ultima modificación no puede ser vacío";
-		}
-       */
-        
 
 		// Las validaciones son en caso de que se proporcionen. Hay que definirlo.
 		//if ($rfc && (strlen($rfc) != 12))  {
