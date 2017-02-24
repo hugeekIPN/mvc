@@ -261,6 +261,8 @@ Proveedores.validaDatosproveedor = function(data,forUpdate){
 	var valid = true;
 	var msg = "";
 /*
+    YA SE VALIDÓ DESDE EL CONTROLLER
+
 	utilerias.removeErrorMessages();
 
 	if($.trim(data.nombre.val())==""){

@@ -1,5 +1,3 @@
-
-
 <?php 
 
 include_once("sessionController.php");
@@ -68,7 +66,7 @@ class ProveedorController
 
 	public function updateProveedor($data){
 		$result = array();
-		$errors = false; // $this->validaDatos($postData);
+		$errors = $this->validaDatos($data);
 
 		if($errors){
 			$message = implode("<br>", $errors);
@@ -77,6 +75,7 @@ class ProveedorController
 				"status" => "error",
 				"message" => $message );
 		}else{
+            
 			$currentProveedor = $this->model->getProveedor($this->idProveedor);
 
 			$newData = array();
@@ -122,7 +121,19 @@ class ProveedorController
 
 			if($currentProveedor['correo_contacto'] != $data['correo_contacto'])
 				$newData['correo_contacto'] = $data['correo_contacto'];
+            
+            if($currentProveedor['tipo'] != $data['tipo'])
+				$newData['tipo'] = $data['tipo'];
+            
+            if($currentProveedor['plaza'] != $data['plaza'])
+				$newData['plaza'] = $data['plaza'];
+            
+            if($currentProveedor['colonia'] != $data['colonia'])
+				$newData['colonia'] = $data['colonia'];
 
+            if($currentProveedor['contacto'] != $data['contacto'])
+				$newData['contacto'] = $data['contacto'];
+            
 			if($newData){
 				$this->model->updateProveedor($newData, $this->idProveedor);
 			}
@@ -163,41 +174,39 @@ class ProveedorController
 		$cuenta 			= $data['cuenta'];
 		$banco 				= $data['banco'];
 		$sucursal			= $data['sucursal'];
-		// $plaza				=> $data['plaza'];
+        $plaza				= $data['plaza'];
 		$rfc				= $data['rfc'];
 		$telefono			= $data['telefono'];
 		$calle				= $data['calle'];
-		//$colonia			= $data['colonia'];
+		$colonia			= $data['colonia'];
 		$cp					= $data['cp'];
 		$delegacion			= $data['delegacion'];
 		$pais				= $data['pais'];
 		$entidad			= $data['entidad'];
-		//$tipo				= $data['tipo'];
-		//$contacto			= $data['contacto'];
+		$tipo				= $data['tipo'];
+		$contacto			= $data['contacto'];
 		$correo_contacto	= $data['correo_contacto'];
 
 		if ($this->esVacio($razon_social)) {
 			$errors[] = "Razon social no puede ser vacío";
 		}
-
-		// Las validaciones son en caso de que se proporcionen. Hay que definirlo.
-	
-		/*
         
-        if ($rfc && (strlen($rfc) != 12))  {
+        if ($this->esVacio($rfc)) {
+			$errors[] = "RFC no puede ser vacío";
+		}
+        
+        if ($rfc && (strlen($rfc) != 13))  {
 			$errors[] = "Formato de rfc no válido";
 		}
-
-
+        
 		if($telefono && !preg_match("/^[0-9]{10}$/", $telefono)){
-			$errors[] = "Formtao de teléfono no válido";
+			$errors[] = "Formato de teléfono no válido";
 		}
-
-		if($cp && !preg_match("/^[0-9]{5}$/", subject)){
+        
+		if($cp && !preg_match("/^[0-9]{5}$/", $cp)){
 			$errors[] = "Formato de cp no válido";
 		}
-
-
+        
         if($tipo && !($tipo == 1 || $tipo == 2)){
 			$errors[] = "Tipo de proveedor no válido";
 		}
@@ -206,7 +215,7 @@ class ProveedorController
 		if($correo_contacto && !filter_var($correo_contacto, FILTER_VALIDATE_EMAIL)){
 			$errors[] = "Formato de correo de contacto incorrecto";
 		}
-         */
+        
         
 		return $errors;
 
