@@ -195,7 +195,7 @@ class ProveedorController
 			$errors[] = "RFC no puede ser vacío";
 		}
         
-        if ($rfc && (strlen($rfc) != 13))  {
+        if ($rfc && (strlen($rfc) <= 11 || strlen($rfc) >=15 ))  {
 			$errors[] = "Formato de rfc no válido";
 		}
         
