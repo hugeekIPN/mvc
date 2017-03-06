@@ -387,13 +387,13 @@ body{
 			div.izq div.registros{
 				margin-left: -50px; 
 			
-			}
+			}/*
 				div.izq div.registros div.cont{
 					overflow: hidden;
 					height: 510px;
 					overflow-y: scroll; 
 				}
-				div.izq div.registros div.cont table td{
+*/				div.izq div.registros div.cont table td{
 					border: none;
 					cursor: pointer;
 				}
