@@ -6,25 +6,19 @@
 					   <thead>
 					      <tr>
 					      	 <th>ID</th>
-					         <th>Nombre del Evento</th>
+					         <th>Subprograma</th>
 					         <th>Proveedor</th>
 					      </tr>
 					   </thead>
-					   <tbody>		
-                           
-                           
-					   		<?php $i = 0; foreach ($eventos as $evento): ?>
+					   <tbody>					      
+					   		<?php foreach ($eventos as $evento): ?>
 					   		<tr onclick="eventos.verEvento(<?php echo $evento['id_evento']; ?>);">
 					   			<td><?php echo $evento['id_evento']; ?></td>
 					   			<td><?php echo $evento['nombre']; ?></td>
-					   			<td><?php echo $evento['subprogramas_idsubprogramas']; ?></td>
-                                <td><?php echo $subprogramas[$i]['nombre']; $i++; ?></td>
-                                
-                               
-                                					   		</tr>	
-					   		<?php endforeach; ?>
-                            
-
+					   			<td><?php echo $evento['subprogramas_idsubprogramas']; ?>
+					   			</td>
+					   		</tr>	
+					   		<?php endforeach ?>
 					   </tbody>
 					</table>
 	        	</div>
@@ -40,21 +34,11 @@
 				<!-- formulario -->
 				<form  class="formulario-eventos" action="" id="eventos">
 					<input type="hidden" name="id-subprograma" id="id-subprograma">
-<!--
 					<div class="input form-group">
-						<label class="control-label" for="selectEvento">Evento:</label>
-						<select name="selectEvento" id="selectEvento" class="form-control">
-							<?php foreach ($eventos as $evento): ?>
-								<option value="<?php echo $evento['eventoId']; ?>"><?php echo $evento['nombre']; ?></option>
-							<?php endforeach; ?>
-						</select>
-					</div>
--->
-                    	<div class="input form-group">
-						<label class="control-label" for="selectSubprograma">SubPrograma:</label>
-						<select name="selectSubprograma" id="selectSubprograma" class="form-control">
-							<?php foreach ($eventos as $evento): ?>
-								<option value="<?php echo $evento['eventoId']; ?>"><?php echo $evento['nombre']; ?></option>
+						<label class="control-label" for="selectPrograma">Evento:</label>
+						<select name="selectPrograma" id="selectPrograma" class="form-control">
+							<?php foreach ($programas as $programa): ?>
+								<option value="<?php echo $programa['id_programa']; ?>"><?php echo $programa['nombre']; ?></option>
 							<?php endforeach; ?>
 						</select>
 					</div>
@@ -96,7 +80,7 @@
 		<!-- contenedor iconos -->
 		<div class="iconos col-md-2">
 			<section class="nuevo">
-				<button id="btn-add-evento" onclick="location.reload();">
+				<button id="btn-add-evento" onclick="eventos.verFormularioVacio();">
 					<img src="assets/iconos/Recurso 11.png" alt="Editar">
 					<small >Nuevo</small>
 				</button>

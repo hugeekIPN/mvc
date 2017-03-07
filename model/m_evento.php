@@ -58,13 +58,13 @@ class m_evento{
     **/
     public function updateEvento($updateData, $id_evento)
     {    
-        $this->db->update("eventos", 
+        return $this->db->update("eventos", 
                     $updateData, 
                     "id_evento = :id",
                     array( "id" => $id_evento )
                );
 
-        return true;
+        
     }
 
     /**

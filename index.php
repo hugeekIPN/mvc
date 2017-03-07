@@ -19,7 +19,7 @@ $user         = new usuariosController(sessionController::get("usuarioId"));
 $programa = new programaController(null);
 $subprograma = new subprogramaController(null);
 
-$evento   = new eventoController("1");
+$evento   = new eventoController("2", "1");
 $proveedor   = new ProveedorController("1");
 $especie= new EspecieController(null);
 

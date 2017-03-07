@@ -3,19 +3,24 @@
 include_once("sessionController.php");
 include_once("loginController.php");
 include_once("model/m_evento.php");
-
+include_once("model/m_subprograma.php");
 /**
 * 
 */
 class EventoController
 {
 	private $idEvento;
+    private $idSubprograma;
 	public $model;
+    public $modelSubprograma;
 	
-	public function __construct($idEvento)
+	public function __construct($idEvento, $idSubprograma)
 	{
 		$this->idEvento = $idEvento;
 		$this->model = new m_evento;
+        $this->idSubprograma = $idSubprograma;
+        $this->modelSubprograma = new m_subprograma();
+        
 	}
 
 	public function index(){
@@ -27,6 +32,8 @@ class EventoController
 			$titulo = "Eventos";
 
 			$eventos = $this->model->getAllEventos();
+            $subprogramas = $this->modelSubprograma->getAllSubprogramas(); 
+            
             require_once("views/templates/header.php");
 			require_once("views/templates/nav.php");
             require_once("views/eventos.php");// Cual es? 
