@@ -378,7 +378,8 @@ body{
 			}
 	/*=======DIV CONTENIDO PROVEEDORES=======*/
 		div.container-proveedor{
-			margin-top: 20px;		
+			margin-top: 20px;
+			padding-left: 5%;		
 		}
 		div.izq{
 			border-right: 1px solid #0090d6;
