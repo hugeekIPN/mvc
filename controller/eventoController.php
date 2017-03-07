@@ -79,40 +79,40 @@ class EventoController
 				"status" => "error",
 				"message" => $message );
 		}else{
-			//$currentEvento = $this->model->getEvento($this->idEvento);
+			$currentEvento = $this->model->getEvento($this->idEvento);
 
-			// $newData = array();
-            /*
+			 $newData = array();
+            
 			if($currentEvento['subprogramas_isSubprogramas']!=$data['subprogramas_isSubprogramas'])
 				$newData['subprogramas_isSubprogramas']=$data['subprogramas_isSubprogramas'];
 
-			if($currentEvento['fecha'] != $data['fecha'])
-				$newData['fecha'] = $data['fecha'];
+		/*	if($currentEvento['fecha'] != $data['fecha'])
+				$newData['fecha'] = $data['fecha'];*/
 
 			if($currentEvento['descripcion'] != $data['descripcion'])
 				$newData['descripcion'] = $data['descripcion'];
-
-			if($currentEvento['pais'] != $data['pais'])
-				$newData['pais'] = $data['pais'];
-
-            if($currentEvento['ciudad'] != $data['ciudad'])
-				$newData['ciudad'] = $data['ciudad'];
-
-            if($currentEvento['entidad'] != $data['entidad'])
-				$newData['entidad'] = $data['entidad'];
-
-            if($currentEvento['estado'] != $data['estado'])
-				$newData['estado'] = $data['estado'];
-
-           if($currentEvento['fecha_creacion'] != $data['fecha_creacion'])
-				$newData['fecha_creacion'] = $data['fecha_creacion'];
-
-            if($currentEvento['ultima_modificacion'] != $data['ultima_modificacion'])
-				$newData['ultima_modificacion'] = $data['ultima_modificacion'];
-            */
+//
+//			if($currentEvento['pais'] != $data['pais'])
+//				$newData['pais'] = $data['pais'];
+//
+//            if($currentEvento['ciudad'] != $data['ciudad'])
+//				$newData['ciudad'] = $data['ciudad'];
+//
+//            if($currentEvento['entidad'] != $data['entidad'])
+//				$newData['entidad'] = $data['entidad'];
+//
+//            if($currentEvento['estado'] != $data['estado'])
+//				$newData['estado'] = $data['estado'];
+//
+//           if($currentEvento['fecha_creacion'] != $data['fecha_creacion'])
+//				$newData['fecha_creacion'] = $data['fecha_creacion'];
+//
+//            if($currentEvento['ultima_modificacion'] != $data['ultima_modificacion'])
+//				$newData['ultima_modificacion'] = $data['ultima_modificacion'];
+//            
 	     
-			if($data){
-				 $message = $this->model->updateEvento($data, $this->idEvento);
+			if($newData){
+				 $message = $this->model->updateEvento($newData, $this->idEvento);
                 
                 	$result = array(
 				"status" => "success",

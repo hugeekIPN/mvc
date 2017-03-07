@@ -14,11 +14,8 @@ eventos.elementos = {
 	ciudad : $("#inputCiudadEventos"),
     entidad : $("#inputEntidadEventos"),
     fechaEvento : $("#inputFechaCreacionEventos"),
-    
     msj_server: $("#mensajes-server"),
-    
-     button : $("#btn-update-evento"),
-    
+	 button : $("#btn-update-evento"),
 };
 
 eventos.verEvento = function (eventoId){
@@ -51,13 +48,11 @@ eventos.verEvento = function (eventoId){
 			$("#vista-nombre").text(res.nombre);
 			$("#vista-desc").text(res.descripcion);
             $("#vista-subProgId").text(res.subprogramas_idsubprogramas);
-            
-            $("#view-nombre-subProgId").text(res.nombre_Subprograma);
-//			$("#vista-pais").text(res.pais);
-//			$("#vista-ciudad").text(res.ciudad);
-//            if(res.estado=="1")
-//			     $("#vista-estado").text("México");
-//		    $("#vista-entidad").text(res.entidad);
+			$("#vista-pais").text(res.pais);
+			$("#vista-ciudad").text(res.ciudad);
+            if(res.estado=="1")
+			     $("#vista-estado").text("México");
+		    $("#vista-entidad").text(res.entidad);
 			$("#vista-fecha").text(res.fecha_creacion);
             
 			//mostramos los datos en el contenedor
@@ -93,15 +88,15 @@ eventos.addEvento = function (editMode) {
 			url: "ajax.php",
 			dataType: "json",
 			data: {
-				eventoId : eventoId,
+				id_evento : eventoId,
 				nombre : data.nombre.val(),
                 subprogramas_idsubprogramas : data.subProgId.val(),
                 descripcion : data.eventoDesc.val(),
-                fecha_creacion: data.fechaEvento.val(),
-                pais: data.pais.val(),
-                ciudad: data.ciudad.val(),
-                entidad: data.entidad.val(),
-                estado: "1",
+//                fecha_creacion: data.fechaEvento.val(),
+//                pais: data.pais.val(),
+//                ciudad: data.ciudad.val(),
+//                entidad: data.entidad.val(),
+//                estado: "1",
 				action : action
 				},
 			success: function(result){
@@ -110,6 +105,7 @@ eventos.addEvento = function (editMode) {
 				}else {
 					$("#formulario-usuario :input").val('');
 					utilerias.displaySuccessMessage($("#mensajes-server"),result.message);
+                    location.reload();
 				}
 			}
 		});		
@@ -173,32 +169,7 @@ eventos.editEvento = function(){
 * Funcion que llama a agregar nuevo usuario, con modalidad de actualizacion
 **/
 eventos.updateEvento = function () {
-    //eventos.addEvento(true);
-    var elem = eventos.elementos;
-    var id_evento = elem.eventoId.val();
-    
-    if(eventos.validaDatosEvento(elem)){
-        $.ajax({
-            type: "post",
-            url:"ajax.php",
-            dataType:"json",
-            data:{
-                id_evento: id_evento,
-                nombre: elem.nombre.val(),
-                descripcion: elem.eventoDesc.val(),
-                action: "updateEvento"
-            },
-            success: function(result){
-                if(result.status == "Error"){
-                    utilerias.displayErrorServerMessage(elem.msj_server,result.message);
-                }else{
-                    $("#formulario-eventos :input").val('');
-                    utilerias.displaySuccessMessage(elem.msj_server,result.message);
-                    location.reload();
-                }
-            }
-        });
-    }
+    eventos.addEvento(true);
 };
 
 
@@ -240,14 +211,14 @@ eventos.deleteEvento = function(){
 **/
 eventos.validaDatosEvento = function(data,forUpdate){
 	var valid = true;
-    utilerias.removeErrorMessages();
+        utilerias.removeErrorMessages();
     if($.trim(data.nombre.val())==""){
         valid = false;
         utilerias.displayErrorMessage(data.nombre,"Se debe Ingresar El Nombre del Evento");
     }
     if($.trim(data.eventoDesc.val())==""){
         valid = false;
-        utilerias.displayErrorMessage(data.eventoDesc," SE debe Ingresar la Descripsion del Evento");
+        utilerias.displayErrorMessage(data.eventoDesc," Se debe Ingresar la Descripción del Evento");
     }
     return valid;
 };

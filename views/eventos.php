@@ -13,15 +13,13 @@
 					   <tbody>		
                            
                            
-					   		<?php $i = 0; foreach ($eventos as $evento): ?>
+<!--					   		<?php $i = 0; foreach ($eventos as $evento): ?>-->
 					   		<tr onclick="eventos.verEvento(<?php echo $evento['id_evento']; ?>);">
 					   			<td><?php echo $evento['id_evento']; ?></td>
 					   			<td><?php echo $evento['nombre']; ?></td>
 					   			<td><?php echo $evento['subprogramas_idsubprogramas']; ?></td>
-                                <td><?php echo $subprogramas[$i]['nombre']; $i++; ?></td>
-                                
-                               
-                                					   		</tr>	
+<!--                                <td><?php echo $subprogramas[$i]['nombre']; $i++; ?></td>-->
+                            </tr>	
 					   		<?php endforeach; ?>
                             
 
@@ -59,12 +57,12 @@
 						</select>
 					</div>
                     <div class="input form-group">
-					  <label class="control-label" for="inputIDEventos">ID :</label>
-					  <input required type="text" class="form-control" id="inputIDEventos">
+					  <!--<label type="hidden" class="control-label" for="inputIDEventos">ID :</label>-->
+					  <input type="hidden" required type="text" class="form-control" id="inputIDEventos">
 					</div>
                      <div class="input form-group">
-					  <label class="control-label" for="inputIDSubEventos">ID Subprograma :</label>
-					  <input required type="text" class="form-control" id="inputIDSubEventos">
+					  <!--<label class="control-label" for="inputIDSubEventos">ID Subprograma :</label>-->
+					  <input type="hidden" required type="text" class="form-control" id="inputIDSubEventos">
 					</div>
 					<div class="input form-group">
 					  <label class="control-label" for="inputNombreEventos">Nombre:</label>
