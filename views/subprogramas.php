@@ -1,4 +1,4 @@
-<div class="container container-proveedor "onload="oCurrentValue.innerText = estado.isContentEditable;">
+<div class="container col-md-12 container-proveedor "onload="oCurrentValue.innerText = estado.isContentEditable;">
 	<div class="form-group col-md-6 izq">
 	       
 	        <div class="col-md-12 registros">

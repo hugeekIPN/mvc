@@ -378,7 +378,8 @@ body{
 			}
 	/*=======DIV CONTENIDO PROVEEDORES=======*/
 		div.container-proveedor{
-			margin-top: 20px;		
+			margin-top: 20px;
+			padding-left: 5%;		
 		}
 		div.izq{
 			border-right: 1px solid #0090d6;
@@ -387,13 +388,13 @@ body{
 			div.izq div.registros{
 				margin-left: -50px; 
 			
-			}
+			}/*
 				div.izq div.registros div.cont{
 					overflow: hidden;
 					height: 510px;
 					overflow-y: scroll; 
 				}
-				div.izq div.registros div.cont table td{
+*/				div.izq div.registros div.cont table td{
 					border: none;
 					cursor: pointer;
 				}

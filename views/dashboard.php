@@ -1,4 +1,4 @@
-<div class="container btn-opciones">
+<div class="container  btn-opciones">
 		<ul class="nav nav-bar dashboard col-md-8">
 			<li>
 				<div class="form-group form">

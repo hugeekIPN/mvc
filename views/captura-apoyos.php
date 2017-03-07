@@ -1,4 +1,4 @@
-<div class="container col-md-12 captura-apoyos">
+<div class="container col-md-12 captura-apoyos container-proveedor">
 	<div class="form-izq col-md-4">
 		<form method="post" >
 		  <div class="form-group col-md-12">
