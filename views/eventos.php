@@ -1,13 +1,8 @@
-<div class="container col-md-12 container-proveedor "onload="oCurrentValue.innerText = estado.isContentEditable;">
+<div class="container container-proveedor "onload="oCurrentValue.innerText = estado.isContentEditable;">
 	<div class="form-group col-md-6 izq">
 	        <div class="col-md-12 registros">
 	        	<div class="cont">
-<<<<<<< HEAD
-					<table id="example2" class="display" cellspacing="0" width="100%"" class="table-hover">                                                                               
-                                                                                                         
-=======
 					<table id="example" class="display" cellspacing="0" >
->>>>>>> 8261a92658d02bb7946203d5add871eacad9dcd4
 					   <thead>
 					      <tr>
 					      	 <th>ID</th>
@@ -18,13 +13,15 @@
 					   <tbody>		
                            
                            
-<!--					   		<?php $i = 0; foreach ($eventos as $evento): ?>-->
+					   		<?php $i = 0; foreach ($eventos as $evento): ?>
 					   		<tr onclick="eventos.verEvento(<?php echo $evento['id_evento']; ?>);">
 					   			<td><?php echo $evento['id_evento']; ?></td>
 					   			<td><?php echo $evento['nombre']; ?></td>
 					   			<td><?php echo $evento['subprogramas_idsubprogramas']; ?></td>
-<!--                                <td><?php echo $subprogramas[$i]['nombre']; $i++; ?></td>-->
-                            </tr>	
+                                <td><?php echo $subprogramas[$i]['nombre']; $i++; ?></td>
+                                
+                               
+                                					   		</tr>	
 					   		<?php endforeach; ?>
                             
 
@@ -62,12 +59,12 @@
 						</select>
 					</div>
                     <div class="input form-group">
-					  <!--<label type="hidden" class="control-label" for="inputIDEventos">ID :</label>-->
-					  <input type="hidden" required type="text" class="form-control" id="inputIDEventos">
+					  <label class="control-label" for="inputIDEventos">ID :</label>
+					  <input required type="text" class="form-control" id="inputIDEventos">
 					</div>
                      <div class="input form-group">
-					  <!--<label class="control-label" for="inputIDSubEventos">ID Subprograma :</label>-->
-					  <input type="hidden" required type="text" class="form-control" id="inputIDSubEventos">
+					  <label class="control-label" for="inputIDSubEventos">ID Subprograma :</label>
+					  <input required type="text" class="form-control" id="inputIDSubEventos">
 					</div>
 					<div class="input form-group">
 					  <label class="control-label" for="inputNombreEventos">Nombre:</label>
