@@ -14,7 +14,6 @@ eventos.elementos = {
 	ciudad : $("#inputCiudadEventos"),
     entidad : $("#inputEntidadEventos"),
     fechaEvento : $("#inputFechaCreacionEventos"),
-    msj_server: $("#mensajes-server"),
 	 button : $("#btn-update-evento"),
 };
 
@@ -92,11 +91,11 @@ eventos.addEvento = function (editMode) {
 				nombre : data.nombre.val(),
                 subprogramas_idsubprogramas : data.subProgId.val(),
                 descripcion : data.eventoDesc.val(),
-//                fecha_creacion: data.fechaEvento.val(),
-//                pais: data.pais.val(),
-//                ciudad: data.ciudad.val(),
-//                entidad: data.entidad.val(),
-//                estado: "1",
+                fecha_creacion: data.fechaEvento.val(),
+                pais: data.pais.val(),
+                ciudad: data.ciudad.val(),
+                entidad: data.entidad.val(),
+                estado: "1",
 				action : action
 				},
 			success: function(result){
@@ -105,7 +104,6 @@ eventos.addEvento = function (editMode) {
 				}else {
 					$("#formulario-usuario :input").val('');
 					utilerias.displaySuccessMessage($("#mensajes-server"),result.message);
-                    location.reload();
 				}
 			}
 		});		
@@ -211,16 +209,17 @@ eventos.deleteEvento = function(){
 **/
 eventos.validaDatosEvento = function(data,forUpdate){
 	var valid = true;
-        utilerias.removeErrorMessages();
-    if($.trim(data.nombre.val())==""){
-        valid = false;
-        utilerias.displayErrorMessage(data.nombre,"Se debe Ingresar El Nombre del Evento");
-    }
-    if($.trim(data.eventoDesc.val())==""){
-        valid = false;
-        utilerias.displayErrorMessage(data.eventoDesc," Se debe Ingresar la Descripción del Evento");
-    }
-    return valid;
+	var msg = "";
+/*
+	utilerias.removeErrorMessages();
+
+	if($.trim(data.nombre.val())==""){
+		valid = false;
+		utilerias.displayErrorMessage(data.nombre,"El nombre de usuario es requerido");
+	}
+*/
+	return valid;
+
 };
 
 /**

@@ -37,13 +37,13 @@ class m_evento{
             'subprogramas_idsubprogramas'    => $data['subprogramas_idsubprogramas'],
             'nombre'    => $data['nombre'],
             'descripcion'    => $data['descripcion'],
-            'pais'    => $data['pais'],
-            'ciudad'    => $data['ciudad'],
-            'entidad'    => $data['entidad'],
-            'estado'    => $data['estado'],
+//            'pais'    => $data['pais'],
+//            'ciudad'    => $data['ciudad'],
+//            'entidad'    => $data['entidad'],
+//            'estado'    => $data['estado'],
          //   'fecha_inicio'    => $data['fecha_inicio'],
            // 'fecha_fin'    => $data['fecha_fin'],
-            'fecha_creacion'    => $data['fecha_creacion']
+//            'fecha_creacion'    => $data['fecha_creacion']
           //  'fecha_modificacion'    => $data['fecha_modificacion']
         ));
         
@@ -58,13 +58,13 @@ class m_evento{
     **/
     public function updateEvento($updateData, $id_evento)
     {    
-        $this->db->update("eventos", 
+        return $this->db->update("eventos", 
                     $updateData, 
                     "id_evento = :id",
                     array( "id" => $id_evento )
                );
 
-        return true;
+        
     }
 
     /**

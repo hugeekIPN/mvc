@@ -3,19 +3,24 @@
 include_once("sessionController.php");
 include_once("loginController.php");
 include_once("model/m_evento.php");
-
+include_once("model/m_subprograma.php");
 /**
 * 
 */
 class EventoController
 {
 	private $idEvento;
+    private $idSubprograma;
 	public $model;
+    public $modelSubprograma;
 	
-	public function __construct($idEvento)
+	public function __construct($idEvento, $idSubprograma)
 	{
 		$this->idEvento = $idEvento;
 		$this->model = new m_evento;
+        $this->idSubprograma = $idSubprograma;
+        $this->modelSubprograma = new m_subprograma();
+        
 	}
 
 	public function index(){
@@ -27,6 +32,8 @@ class EventoController
 			$titulo = "Eventos";
 
 			$eventos = $this->model->getAllEventos();
+            $subprogramas = $this->modelSubprograma->getAllSubprogramas(); 
+            
             require_once("views/templates/header.php");
 			require_once("views/templates/nav.php");
             require_once("views/eventos.php");// Cual es? 
@@ -72,40 +79,40 @@ class EventoController
 				"status" => "error",
 				"message" => $message );
 		}else{
-			//$currentEvento = $this->model->getEvento($this->idEvento);
+			$currentEvento = $this->model->getEvento($this->idEvento);
 
-			// $newData = array();
-            /*
+			 $newData = array();
+            
 			if($currentEvento['subprogramas_isSubprogramas']!=$data['subprogramas_isSubprogramas'])
 				$newData['subprogramas_isSubprogramas']=$data['subprogramas_isSubprogramas'];
 
-			if($currentEvento['fecha'] != $data['fecha'])
-				$newData['fecha'] = $data['fecha'];
+		/*	if($currentEvento['fecha'] != $data['fecha'])
+				$newData['fecha'] = $data['fecha'];*/
 
 			if($currentEvento['descripcion'] != $data['descripcion'])
 				$newData['descripcion'] = $data['descripcion'];
-
-			if($currentEvento['pais'] != $data['pais'])
-				$newData['pais'] = $data['pais'];
-
-            if($currentEvento['ciudad'] != $data['ciudad'])
-				$newData['ciudad'] = $data['ciudad'];
-
-            if($currentEvento['entidad'] != $data['entidad'])
-				$newData['entidad'] = $data['entidad'];
-
-            if($currentEvento['estado'] != $data['estado'])
-				$newData['estado'] = $data['estado'];
-
-           if($currentEvento['fecha_creacion'] != $data['fecha_creacion'])
-				$newData['fecha_creacion'] = $data['fecha_creacion'];
-
-            if($currentEvento['ultima_modificacion'] != $data['ultima_modificacion'])
-				$newData['ultima_modificacion'] = $data['ultima_modificacion'];
-            */
+//
+//			if($currentEvento['pais'] != $data['pais'])
+//				$newData['pais'] = $data['pais'];
+//
+//            if($currentEvento['ciudad'] != $data['ciudad'])
+//				$newData['ciudad'] = $data['ciudad'];
+//
+//            if($currentEvento['entidad'] != $data['entidad'])
+//				$newData['entidad'] = $data['entidad'];
+//
+//            if($currentEvento['estado'] != $data['estado'])
+//				$newData['estado'] = $data['estado'];
+//
+//           if($currentEvento['fecha_creacion'] != $data['fecha_creacion'])
+//				$newData['fecha_creacion'] = $data['fecha_creacion'];
+//
+//            if($currentEvento['ultima_modificacion'] != $data['ultima_modificacion'])
+//				$newData['ultima_modificacion'] = $data['ultima_modificacion'];
+//            
 	     
-			if($data){
-				 $message = $this->model->updateEvento($data, $this->idEvento);
+			if($newData){
+				 $message = $this->model->updateEvento($newData, $this->idEvento);
                 
                 	$result = array(
 				"status" => "success",
