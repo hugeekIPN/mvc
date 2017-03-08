@@ -17,7 +17,11 @@ class m_evento{
     public function getEvento($id_evento) 
     {
         $result = $this->db->select(
-                    "SELECT * FROM eventos WHERE id_evento = :id",
+                    "SELECT e.id_evento, e.nombre, e.descripcion, e.subprogramas_id_subprogramas, s.nombre as nombre_subprograma
+                    FROM eventos as e
+                    INNER JOIN subprogramas as s
+                    ON e.subprogramas_idsubprogramas=s.id_subprograma
+                    WHERE e.id_evento = :id",
                     array ("id" => $id_evento)
                   );
         if ( count($result) > 0 )
@@ -83,7 +87,12 @@ class m_evento{
     * Obtiene todos los eventos de la base de datos
     **/
     public function getAllEventos(){
-        $query = "SELECT * from eventos ORDER BY id_evento DESC";
+
+        $query = "SELECT e.id_evento, e.nombre, e.descripcion, e.subprogramas_idsubprogramas, s.nombre as nombre_subprograma
+                    FROM eventos as e
+                    INNER JOIN subprogramas as s
+                    ON e.subprogramas_idsubprogramas=s.id_subprograma";
+
         $result = $this->db->select($query, array());
         if(count($result)>0)
             return $result;
