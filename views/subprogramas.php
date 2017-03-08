@@ -3,7 +3,7 @@
 	       
 	        <div class="col-md-12 registros">
 	        	<div class="cont">
-					<table id="example" class="display" cellspacing="0" >
+					<table id="example5" class="display" cellspacing="0" >
 					   <thead>
 					      <tr>
 					      	 <th>ID</th>

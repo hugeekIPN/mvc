@@ -16,7 +16,7 @@
 	    </div>
 	    <div class="col-md-12 registros">
 	    	<div class="cont">
-	    		<table id="example" class="display" cellspacing="0" class="table-hover">
+	    		<table id="example6" class="display" cellspacing="0" class="table-hover">
 	    			<thead>
 	    				<tr>
 	    					<th>ID</th>
