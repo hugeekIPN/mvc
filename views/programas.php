@@ -48,14 +48,14 @@
 				
 				<!-- formulario -->
 				<form id="formulario-programas" class="formulario" >
-					<input type="hidden" name="id-programa" id="id-programa">
+					<input type="hidden" name="id-programa" id="id-programa" class="titulos">
 
-					<div class="input form-group">
-					  <label class="control-label" for="inputNombreProgramas">Nombre:</label>
+					<div class="input form-group subp">
+					  <label class="control-label titulos" for="inputNombreProgramas">Nombre:</label>
 					  <input required type="text" class="form-control" id="inputNombreProgramas">
 					</div>
 					<div class="input form-group">
-					  <label class="control-label" for="inputDescripcionProgramas">Descripción:</label>
+					  <label class="control-label titulos" for="inputDescripcionProgramas">Descripción:</label>
 					  <textarea  class="form-control" id="inputDescripcionProgramas" cols="2" ></textarea>
 					</div>
 
@@ -64,13 +64,13 @@
 
 				<!-- datos a mostrar en texto plano -->
 				<div hidden id="datos-programas">
-					<p><strong>ID</strong></p>		
+					<p class="titulos"><strong>ID</strong></p>		
 					<p class="id-datos id" id="view-id-programa"></p>
 
-					<p>Nombre</p>	
+					<p class="titulos">Nombre</p>	
 					<p id="view-nombre-programa"></p>
 
-					<p>Descripcion</p>
+					<p class="titulos">Descripcion</p>
 					<p id="view-descripcion-programa"></p>
 				</div>
 				<!-- fin datos a mostrar para programas -->					

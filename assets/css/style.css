@@ -42,6 +42,40 @@ src: url(../fonts/helveticamm/HelveticaLTStd-UltraComp.otf);
 font-family: fundacion-mdcn;
 src: url(../fonts/helveticamm/HelveticaNeueLTStd-MdCn.otf);
 }
+.fundacion{
+	font-family: fundacion;
+}
+.fundacion-b{
+	font-family: fundacion-b;
+}
+.fundacion-l{
+	font-family: fundacion-l;
+}
+.fundacion-th{
+	font-family: fundacion-th;
+}
+.fundacion-comp{
+	font-family: fundacion-comp;
+}
+.fundacion-bc{
+	font-family: fundacion-bc;
+}
+.fundacion-ob{
+	font-family: fundacion-ob;
+}
+.fundacion-r{
+	font-family: fundacion-r;
+}
+.fundacion-uc{
+	font-family: fundacion-uc;
+}
+.fundacion-mdcn{
+	font-family: fundacion-mdcn;
+}
+
+
+
+
 
 /*=====BARRA LATERAL SCROLL======*/
 ::-webkit-scrollbar {
@@ -161,6 +195,7 @@ body{
 				width: 180px;
 				height: 33.4px;
 				margin-right: 50px;
+				margin-top: 2%;
 			}
 		div.header2{
 			text-align: center;
@@ -308,6 +343,7 @@ body{
 
 			ul.nav-right{
 				margin-left:190px; 
+				text-align: center;
 			}
 				ul.nav-right li{
 					width: 100px;
@@ -619,3 +655,27 @@ div.dt-buttons a{
 	cursor: pointer;
 }
 /*==========*/
+/*======BOTON SALIR========*/
+
+a.salir{
+	height: 83px;
+
+}
+
+/*=====================*/
+@media (max-width: ){
+
+}
+p.id{
+	font-family: fundacion-b;
+	font-size:28px ;
+	color: #0090d6;
+}
+.titulos{
+	font-size: 16px;
+	font-weight: bold;
+	font-family: fundacion-l;
+}
+div.subp{
+	margin-top: 70px;
+}

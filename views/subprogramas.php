@@ -47,8 +47,8 @@
 				<form  class="formulario" id="formulario-subprogramas">
 					<input type="hidden" name="id-subprograma" id="id-subprograma">
 
-					<div class="input form-group">
-						<label class="control-label" for="selectPrograma">Programa:</label>
+					<div class="input form-group subp">
+						<label class="control-label titulos" for="selectPrograma">Nombre del programa al que pertenece:</label>
 						<select name="selectPrograma" id="selectPrograma" class="form-control">
 							<?php foreach ($programas as $programa): ?>
 								<option value="<?php echo $programa['id_programa']; ?>"><?php echo $programa['nombre']; ?></option>
@@ -57,11 +57,11 @@
 					</div>
 
 					<div class="input form-group">
-					  <label class="control-label" for="inputNombreSubprogramas">Nombre:</label>
+					  <label class="control-label titulos" for="inputNombreSubprogramas">Nombre del subprograma:</label>
 					  <input required type="text" class="form-control" id="inputNombreSubprogramas">
 					</div>
 					<div class="input form-group">
-					  <label class="control-label" for="inputDescripcionSubprogramas">Descripción:</label>
+					  <label class="control-label titulos" for="inputDescripcionSubprogramas ">Descripción:</label>
 					  <textarea  class="form-control" id="inputDescripcionSubprogramas" cols="2" ></textarea>
 					</div>
 
@@ -70,16 +70,16 @@
 
 				<!-- datos a mostrar en texto plano -->
 				<div hidden id="datos-subprogramas">
-					<p><strong>ID</strong></p>		
-					<p class="id-datos id" id="view-id-subprograma"></p>
+					<p class="fundacion-l titulos">ID</p>		
+					<p class=" id" id="view-id-subprograma"></p>
 
-					<p>Nombre del programa al que pertenece</p>
+					<p class="titulos"> Nombre del programa al que pertenece: </p>
 					<p id="view-nombre-programa"></p>
 
-					<p>Nombre del subprograma</p>	
+					<p class="titulos">Nombre del subprograma:</p>	
 					<p id="view-nombre-subprograma"></p>
 
-					<p>Descripcion</p>
+					<p class="titulos">Descripcion</p>
 					<p id="view-descripcion-subprograma"></p>
 				</div>
 				<!-- fin datos a mostrar para subprogramas -->					
