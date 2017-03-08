@@ -59,6 +59,9 @@ eventos.verEvento = function (eventoId){
 			$("#datos-evento").show();
 			//cambiamos a visible el boton editar
 			$("#btn-edit-evento").show();
+            
+            //Obtener Nombre del SubPrograma
+            $("#view-nombreSubPrograma").text(res.nombre_subPrograma);
 		}
 	});
 };

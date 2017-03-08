@@ -7,21 +7,18 @@
 					      <tr>
 					      	 <th>ID</th>
 					         <th>Nombre del Evento</th>
-					         <th>Proveedor</th>
+					         <th>SubProgramas</th>
 					      </tr>
 					   </thead>
-					   <tbody>		
-                           
-                           
-				   		    <?php foreach ($eventos as $evento): ?>
+					   <tbody>
+                           <?php foreach ($eventos as $evento): ?>
 					   		<tr onclick="eventos.verEvento(<?php echo $evento['id_evento']; ?>);">
 					   			<td><?php echo $evento['id_evento']; ?></td>
 					   			<td><?php echo $evento['nombre']; ?></td>
-					   			<td><?php echo $evento['subprogramas_idsubprogramas']; ?></td>
+<!--					   			<td><?php echo $evento['subprogramas_idsubprogramas']; ?></td>-->
+                                <td><?php echo $subprograma['nombre']; ?></td>
                             </tr>	
 					   		<?php endforeach; ?>
-                            
-
 					   </tbody>
 					</table>
 	        	</div>
@@ -37,21 +34,11 @@
 				<!-- formulario -->
 				<form  class="formulario-eventos" action="" id="eventos">
 					<input type="hidden" name="id-subprograma" id="id-subprograma">
-<!--
-					<div class="input form-group">
-						<label class="control-label" for="selectEvento">Evento:</label>
-						<select name="selectEvento" id="selectEvento" class="form-control">
-							<?php foreach ($eventos as $evento): ?>
-								<option value="<?php echo $evento['eventoId']; ?>"><?php echo $evento['nombre']; ?></option>
-							<?php endforeach; ?>
-						</select>
-					</div>
--->
                     	<div class="input form-group">
 						<label class="control-label" for="selectSubprograma">SubPrograma:</label>
 						<select name="selectSubprograma" id="selectSubprograma" class="form-control">
-							<?php foreach ($eventos as $evento): ?>
-								<option value="<?php echo $evento['eventoId']; ?>"><?php echo $evento['nombre']; ?></option>
+							<?php foreach ($subprogramas as $subprograma): ?>
+								<option value="<?php echo $subprograma['id_subprograma']; ?>"><?php echo $subprograma['nombre']; ?></option>
 							<?php endforeach; ?>
 						</select>
 					</div>
