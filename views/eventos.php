@@ -7,7 +7,7 @@
 					      <tr>
 					      	 <th>ID</th>
 					         <th>Nombre del Evento</th>
-					         <th>Proveedor</th>
+					         <th>Subprograma</th>
 					      </tr>
 					   </thead>
 					   <tbody>		
@@ -17,7 +17,7 @@
 					   		<tr onclick="eventos.verEvento(<?php echo $evento['id_evento']; ?>);">
 					   			<td><?php echo $evento['id_evento']; ?></td>
 					   			<td><?php echo $evento['nombre']; ?></td>
-					   			<td><?php echo $evento['subprogramas_idsubprogramas']; ?></td>
+					   			<td><?php echo $evento['nombre_subprograma']; ?></td>
                             </tr>	
 					   		<?php endforeach; ?>
                             
