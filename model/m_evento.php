@@ -23,7 +23,7 @@ class m_evento{
         if ( count($result) > 0 )
             return $result[0];
         else
-            return null;
+            return array();
     }
 
     /**
@@ -88,7 +88,7 @@ class m_evento{
         if(count($result)>0)
             return $result;
         else
-            return null;
+            return array();
     }
 }
 
