@@ -59,9 +59,6 @@ eventos.verEvento = function (eventoId){
 			$("#datos-evento").show();
 			//cambiamos a visible el boton editar
 			$("#btn-edit-evento").show();
-            
-            //Obtener Nombre del SubPrograma
-            $("#view-nombreSubPrograma").text(res.nombre_subPrograma);
 		}
 	});
 };
@@ -157,11 +154,11 @@ eventos.editEvento = function(){
 			data.nombre.val(res.nombre);
             data.subProgId.val(res.subprogramas_idsubprogramas);
             data.eventoDesc.val(res.descripcion);
-			data.pais.val(res.pais);
-			data.ciudad.val(res.ciudad);
-            if(res.entidad=="1")
-			     data.entidad.val("uno");
-			data.fechaEvento.val(res.fecha_creacion);
+//			data.pais.val(res.pais);
+//			data.ciudad.val(res.ciudad);
+//            if(res.entidad=="1")
+//			     data.entidad.val("uno");
+//			data.fechaEvento.val(res.fecha_creacion);
 		}
 	});
         

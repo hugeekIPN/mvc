@@ -17,7 +17,7 @@ class m_evento{
     public function getEvento($id_evento) 
     {
         $result = $this->db->select(
-                    "SELECT e.id_evento, e.nombre, e.descripcion, e.subprogramas_id_subprogramas, s.nombre as nombre_subprograma
+                    "SELECT e.id_evento, e.nombre, e.descripcion, e.subprogramas_idsubprogramas, s.nombre as nombre_subprograma
                     FROM eventos as e
                     INNER JOIN subprogramas as s
                     ON e.subprogramas_idsubprogramas=s.id_subprograma
