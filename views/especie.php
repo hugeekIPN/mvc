@@ -45,10 +45,10 @@
 			<form class="formulario" action="" id="formulario-especies">
 					<div class="form-group ">
                                             
-					  <input required type="hidden" class="form-control" id="inputIDEspecie" >
+					  <input required type="hidden" class="form-contro titulos" id="inputIDEspecie" >
 					</div>
-					<div class="form-group">
-					  <label class="control-label" for="inputDescripcionEspecie">Descripción:</label>
+					<div class="form-group datos2">
+					  <label class="control-label titulos" for="inputDescripcionEspecie">Descripción:</label>
 					  <textarea  class="form-control" id="inputDescripcionEspecie" cols="2" ></textarea>
 					</div>
 					
@@ -57,11 +57,11 @@
 				
                                                                                            
                   <div hidden id="datos-especies">
-					<p><strong>ID</strong></p>		
+					<p class="titulos"><strong>ID</strong></p>		
 					<p class="id-datos id" id="view-id-especie"></p>
 
 
-					<p>Descripcion</p>
+					<p class="titulos">Descripcion</p>
 					<p id="view-descripcion-especie"></p>
 				</div>                                                                         
 

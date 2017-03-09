@@ -41,36 +41,36 @@
 					  <input required type="hidden" class="form-control" id="inputIDProveedores">
 					</div>
                      <div class="form-group">
-					  <label class="control-label" for="inputTipoProveedores">Tipo:</label>
-					  <select id="inputTipoProveedores" name="inputTipoProveedores">
+					  <label class="control-label titulos" for="inputTipoProveedores">Tipo:</label>
+					  <select class="control-select" id="inputTipoProveedores" name="inputTipoProveedores">
                           <option value="" selected="selected">- selecciona -</option>
                           <option value="1">Proveedor</option>
                           <option value="2">Donatario</option>
                         </select>
 					</div>                                                                           
 					<div class="form-group">
-					  <label class="control-label" for="inputRazonProveedores">Razón Social:</label>
+					  <label class="control-label titulos" for="inputRazonProveedores">Razón Social:</label>
 					  <input required type="text" class="form-control" id="inputRazonProveedores">
 					</div>
 					<h3>Datos Bancarios</h3>
 					<div class="form-group">
-					  <label class="control-label" for="inputRFCProveedores">RFC:</label>
+					  <label class="control-label titulos" for="inputRFCProveedores">RFC:</label>
 					  <input required type="text" class="form-control" id="inputRFCProveedores">
 					</div>
 					<div class="form-group ">
-					  <label class="control-label" for="inputCuentaProveedores">Cuenta:</label>
+					  <label class="control-label titulos" for="inputCuentaProveedores">Cuenta:</label>
 					  <input required type="text" class="form-control" id="inputCuentaProveedores">
 					</div>
 					<div class="form-group ">
-					  <label class="control-label" for="inputBancoProveedores">Banco:</label>
+					  <label class="control-label titulos" for="inputBancoProveedores">Banco:</label>
 					  <input required type="text" class="form-control" id="inputBancoProveedores">
 					</div>
 					<div class="form-group ">
-					  <label class="control-label" for="inputSucursalProveedores">Sucursal:</label>
+					  <label class="control-label titulos" for="inputSucursalProveedores">Sucursal:</label>
 					  <input required type="text" class="form-control" id="inputSucursalProveedores">
 					</div>
                     <div class="form-group ">
-					  <label class="control-label" for="inputPlazaProveedores">Plaza:</label>
+					  <label class="control-label titulos" for="inputPlazaProveedores">Plaza:</label>
 					  <input required type="text" class="form-control" id="inputPlazaProveedores">
 					</div>                                                                                
 					
@@ -82,24 +82,24 @@
 				</form>
                  
                 <div hidden id="vista-datos" >
-                    <p ><strong>ID</strong></p>
+                    <p  class="titulos"><strong>ID</strong></p>
                     <p class="id-datos id" id="vista-id"><strong></strong></p>
-                    <p>Tipo:</p>
+                    <p class="titulos"><strong>Tipo:</strong></p>
                     <p id="vista-tipo"></p>               
-                    <p>Razón social</p>
+                    <p class="titulos"><strong>Razón social</strong></p>            
                     <p id="vista-razon"></p>
-                    <p>Datos Bancarios</p>
-                    <p>RFC</p>
+                    <h3>Datos Bancarios</h3>
+                    <p class="titulos"><strong>RFC</strong></p>
                     <p id="vista-rfc"></p>
-                    <p>Cuenta</p>            
+                    <p class="titulos"><strong>Cuenta</strong></p>            
                     <p id="vista-cuenta"></p>
-                    <p>Banco</p>
+                    <p class="titulos"><strong>Banco</strong></p>
                     <p id="vista-banco"></p>
-                    <p>Sucursal</p>
+                    <p class="titulos"><strong>Sucursal</strong></p>
                     <p id="vista-sucursal"></p>
-                    <p>Plaza</p>
+                    <p class="titulos"><strong>Plaza</strong></p>
                     <p id="vista-plaza"></p>
-                    <p>Referencia</p>
+                    <p class="titulos"><strong>Referencia</strong></p>
                     <p id="vista-referencia"></p>
 			     </div>         
                                             
@@ -113,64 +113,64 @@
 				<h3>Datos Generales</h3>
 				<form action="" id="ProveedoresDos">
                      <div class="form-group ">
-					  <label class="control-label" for="inputColoniaProveedores">Colonia:</label>
+					  <label class="control-label titulos" for="inputColoniaProveedores">Colonia:</label>
 					  <input required type="text" class="form-control" id="inputColoniaProveedores">
 					</div>                              
 					<div class="form-group ">
-					  <label class="control-label" for="inputCalleYNumeroProveedores">Calle y Número:</label>
+					  <label class="control-label titulos" for="inputCalleYNumeroProveedores">Calle y Número:</label>
 					  <input required type="text" class="form-control" id="inputCalleYNumeroProveedores">
 					</div>
 					<div class="form-group">
-					  <label class="control-label" for="inputDelegacionYMunicipioProveedores">Delegacion Y Municipio:</label>
+					  <label class="control-label titulos" for="inputDelegacionYMunicipioProveedores">Delegacion Y Municipio:</label>
 					  <input required type="text" class="form-control" id="inputDelegacionYMunicipioProveedores">
 					</div>
 					<div class="form-group">
-					  <label class="control-label" for="inputPaisProveedores">País:</label>
+					  <label class="control-label titulos" for="inputPaisProveedores">País:</label>
 					  <input required type="text" class="form-control" id="inputPaisProveedores">
 					</div>
 					<div class="form-group ">
-					  <label class="control-label" for="inputEstadoProveedores">Estado:</label>
+					  <label class="control-label titulos" for="inputEstadoProveedores">Estado:</label>
 					  <input required type="text" class="form-control" id="inputEstadoProveedores">
 					</div>
 					<div class="form-group ">
-					  <label class="control-label" for="inputCodigoPostalProveedores">Código Postal:</label>
+					  <label class="control-label titulos" for="inputCodigoPostalProveedores">Código Postal:</label>
 					  <input required type="text" class="form-control" id="inputCodigoPostalProveedores">
 					</div>
                     <div class="form-group ">
-					  <label class="control-label" for="inputContactoNombreProveedores">Contacto:</label>
+					  <label class="control-label titulos" for="inputContactoNombreProveedores">Contacto:</label>
 					  <input type="text" class="form-control" id="inputContactoNombreProveedores">
 					</div>
                                                                                                                                    
 					<div class="form-group ">
-					  <label class="control-label" for="inputContactoProveedores">Email:</label>
+					  <label class="control-label titulos" for="inputContactoProveedores">Email:</label>
 					  <input required type="email" class="form-control" id="inputContactoProveedores" placeholder="usuario@fundacion.com">
 					</div>
                                                                                                                                          
 					<div class="form-group ">
-					  <label class="control-label" for="inputNumeroProveedores">Teléfono:</label>
+					  <label class="control-label titulos" for="inputNumeroProveedores">Teléfono:</label>
 					  <input  type="text" class="form-control" id="inputNumeroProveedores">
 					</div>
 
 				</form>
                 
                 <div hidden id="vista-datos2" >
-                    <p >Colonia</p>
+                    <p class="titulos" >Colonia</p>
                     <p id="vista-colonia"></p>
-                    <p >Calle y Número</p>
+                    <p class="titulos" >Calle y Número</p>
                     <p id="vista-calle"></p>
-                    <p>Delegación y Municipio</p>
+                    <p class="titulos">Delegación y Municipio</p>
                     <p id="vista-delega"></p>
-                    <p>País</p>
+                    <p class="titulos">País</p>
                     <p id="vista-pais"></p>
-                    <p>Estado:</p>            
+                    <p class="titulos">Estado:</p>            
                     <p id="vista-entidad"></p>
-                    <p>Código Postal:</p>
+                    <p class="titulos">Código Postal:</p>
                     <p id="vista-cp"></p>
-                    <p>Contacto:</p>
+                    <p class="titulos">Contacto:</p>
                     <p id="vista-contacto"></p>
-                    <p>Email:</p>
+                    <p class="titulos">Email:</p>
                     <p id="vista-correo"></p>
-                    <p>Teléfono</p>
+                    <p class="titulos">Teléfono</p>
                     <p id="vista-numero"></p>
 			     </div>         
                                                                                           
