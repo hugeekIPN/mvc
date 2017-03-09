@@ -39,16 +39,16 @@ class m_evento{
     {             
         $this->db->insert('eventos',  array (
             'subprogramas_idsubprogramas'    => $data['subprogramas_idsubprogramas'],
-            'nombre'    => $data['nombre'],
+            'nombre'         => $data['nombre'],
             'descripcion'    => $data['descripcion'],
-//            'pais'    => $data['pais'],
-//            'ciudad'    => $data['ciudad'],
-//            'entidad'    => $data['entidad'],
-//            'estado'    => $data['estado'],
-         //   'fecha_inicio'    => $data['fecha_inicio'],
-           // 'fecha_fin'    => $data['fecha_fin'],
-//            'fecha_creacion'    => $data['fecha_creacion']
-          //  'fecha_modificacion'    => $data['fecha_modificacion']
+            //'pais'    => $data['pais'],
+            //'ciudad'    => $data['ciudad'],
+            //'entidad'    => $data['entidad'],
+            //'estado'    => $data['estado'],
+            //'fecha_inicio'    => $data['fecha_inicio'],
+            //'fecha_fin'    => $data['fecha_fin'],
+             //'fecha_creacion'    => date("Y-m-d H:i:s "),
+             //'fecha_modificacion'    => date("Y-m-d H:i:s")
         ));
         
        return true;       

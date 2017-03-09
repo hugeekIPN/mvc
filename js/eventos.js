@@ -6,16 +6,13 @@ var eventos = {};
 * Se capturan los objetos html
 **/
 eventos.elementos = {
-	nombre : $("#inputNombreEventos"),
-    eventoId : $("#inputIDEventos"),
-    subProgId : $("#inputIDSubEventos"),
-    eventoDesc : $("#inputDescripcionEventos"),
-	pais : $("#inputPaisEventos"),
-	ciudad : $("#inputCiudadEventos"),
-    entidad : $("#inputEntidadEventos"),
-    fechaEvento : $("#inputFechaCreacionEventos"),
-    msj_server: $("#mensajes-server"),
-	 button : $("#btn-update-evento"),
+	nombre :       $("#inputNombreEventos"),
+    eventoId :     $("#vista-id"),
+    subProgId :    $("#selectSubprograma"),
+    eventoDesc :   $("#inputDescripcionEventos"),
+    msj_server:    $("#mensajes-server"),
+    button :       $("#btn-update-evento"),
+    btn_editEvent: $("#btn-edit-evento"),
 };
 
 eventos.verEvento = function (eventoId){
@@ -28,7 +25,7 @@ eventos.verEvento = function (eventoId){
 
 
 	utilerias.removeErrorMessages();
-	$("#inputIDEventos").val(eventoId);	
+	$("#vista-id").val(eventoId);	
 	
     $.ajax({
 		type: "POST",
@@ -47,13 +44,8 @@ eventos.verEvento = function (eventoId){
 			$("#vista-id").text(res.id_evento);
 			$("#vista-nombre").text(res.nombre);
 			$("#vista-desc").text(res.descripcion);
-            $("#vista-subProgId").text(res.subprogramas_idsubprogramas);
-			$("#vista-pais").text(res.pais);
-			$("#vista-ciudad").text(res.ciudad);
-            if(res.estado=="1")
-			     $("#vista-estado").text("México");
-		    $("#vista-entidad").text(res.entidad);
-			$("#vista-fecha").text(res.fecha_creacion);
+            
+            $("#vista-subProgId").text(res.nombre_subprograma);
             
 			//mostramos los datos en el contenedor
 			$("#datos-evento").show();
@@ -79,7 +71,7 @@ eventos.addEvento = function (editMode) {
        
         if ( editMode ) {
             action = "updateEvento";
-            eventoId = $("#inputIDEventos").val();
+            eventoId = $("#vista-id").val();
 
         }      
 
@@ -92,11 +84,6 @@ eventos.addEvento = function (editMode) {
 				nombre : data.nombre.val(),
                 subprogramas_idsubprogramas : data.subProgId.val(),
                 descripcion : data.eventoDesc.val(),
-//                fecha_creacion: data.fechaEvento.val(),
-//                pais: data.pais.val(),
-//                ciudad: data.ciudad.val(),
-//                entidad: data.entidad.val(),
-//                estado: "1",
 				action : action
 				},
 			success: function(result){
@@ -134,9 +121,10 @@ eventos.editEvento = function(){
 
 	//mostramos el formulario
 	$("#eventos").show();
-
 	//ocultamos datos de visualizacion
 	$("#datos-usuario").hide();
+    //ocultamos el boton Editar
+    data.btn_editEvent.hide();
 
 	utilerias.removeErrorMessages();
 	
@@ -154,11 +142,6 @@ eventos.editEvento = function(){
 			data.nombre.val(res.nombre);
             data.subProgId.val(res.subprogramas_idsubprogramas);
             data.eventoDesc.val(res.descripcion);
-//			data.pais.val(res.pais);
-//			data.ciudad.val(res.ciudad);
-//            if(res.entidad=="1")
-//			     data.entidad.val("uno");
-//			data.fechaEvento.val(res.fecha_creacion);
 		}
 	});
         
@@ -185,7 +168,7 @@ eventos.verFormularioVacio = function(){
 eventos.deleteEvento = function(){
     var data = eventos.elementos;
     var eventoId= data.eventoId.val();
-	var c= confirm('Estás seguro de esto?');
+	var c= confirm('Esta acción eliminará el registro, ¿deseas continuar? ');
 	if(c){
 		$.ajax({
 			type: "post",
@@ -214,11 +197,11 @@ eventos.validaDatosEvento = function(data,forUpdate){
         utilerias.removeErrorMessages();
     if($.trim(data.nombre.val())==""){
         valid = false;
-        utilerias.displayErrorMessage(data.nombre,"Se debe Ingresar El Nombre del Evento");
+        utilerias.displayErrorMessage(data.nombre,"Se debe ingresar el nombre del evento");
     }
     if($.trim(data.eventoDesc.val())==""){
         valid = false;
-        utilerias.displayErrorMessage(data.eventoDesc," Se debe Ingresar la Descripción del Evento");
+        utilerias.displayErrorMessage(data.eventoDesc," Se debe ingresar la descripción del evento");
     }
     return valid;
 };

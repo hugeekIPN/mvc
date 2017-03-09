@@ -80,8 +80,7 @@ class EventoController
 				"message" => $message );
 		}else{
 			$currentEvento = $this->model->getEvento($this->idEvento);
-
-			 $newData = array();
+            $newData = array();
             
 			if($currentEvento['subprogramas_isSubprogramas']!=$data['subprogramas_isSubprogramas'])
 				$newData['subprogramas_isSubprogramas']=$data['subprogramas_isSubprogramas'];
@@ -91,37 +90,24 @@ class EventoController
 
 			if($currentEvento['descripcion'] != $data['descripcion'])
 				$newData['descripcion'] = $data['descripcion'];
-//
-//			if($currentEvento['pais'] != $data['pais'])
-//				$newData['pais'] = $data['pais'];
-//
-//            if($currentEvento['ciudad'] != $data['ciudad'])
-//				$newData['ciudad'] = $data['ciudad'];
-//
-//            if($currentEvento['entidad'] != $data['entidad'])
-//				$newData['entidad'] = $data['entidad'];
-//
-//            if($currentEvento['estado'] != $data['estado'])
-//				$newData['estado'] = $data['estado'];
-//
-//           if($currentEvento['fecha_creacion'] != $data['fecha_creacion'])
-//				$newData['fecha_creacion'] = $data['fecha_creacion'];
-//
-//            if($currentEvento['ultima_modificacion'] != $data['ultima_modificacion'])
-//				$newData['ultima_modificacion'] = $data['ultima_modificacion'];
-//            
 	     
 			if($newData){
-				 $message = $this->model->updateEvento($newData, $this->idEvento);
                 
-                	$result = array(
-				"status" => "success",
-				"message" => $message);
-			}
-
-		
+                if($this->model->updateEvento($newData,$this->idEvento)){
+                    $result = array(
+                        "status" =>  "success",
+                        "message" => "Registros Actualizados");
+                }else{
+                    $result = array(
+                        "status" => "Error",
+                        "message"=> "No se pudo actualizar la información");
+                }
+			}else{
+                $result = array(
+                    "status" => "sucess",
+                    "message"=> "No Hay Cambios Por Actualizar");
+            }
 		}
-
 		return $result;
 	}
 
@@ -200,9 +186,6 @@ class EventoController
 
 
 	}
-
-
-
 
 	/**
 	* Verifica si un arreglo o un string es vacio
