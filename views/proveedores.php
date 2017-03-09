@@ -42,7 +42,7 @@
 					</div>
                      <div class="form-group">
 					  <label class="control-label titulos" for="inputTipoProveedores">Tipo:</label>
-					  <select class="control-select" id="inputTipoProveedores" name="inputTipoProveedores">
+					  <select class="control-select form-control" id="inputTipoProveedores" name="inputTipoProveedores">
                           <option value="" selected="selected">- selecciona -</option>
                           <option value="1">Proveedor</option>
                           <option value="2">Donatario</option>
