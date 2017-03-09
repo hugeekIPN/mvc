@@ -113,31 +113,31 @@
 				<h3>Datos Generales</h3>
 				<form action="" id="ProveedoresDos">
                      <div class="form-group ">
-					  <label class="control-label titulos" for="inputColoniaProveedores">Colonia:</label>
-					  <input required type="text" class="form-control" id="inputColoniaProveedores">
-					</div>                              
-					<div class="form-group ">
 					  <label class="control-label titulos" for="inputCalleYNumeroProveedores">Calle y Número:</label>
 					  <input required type="text" class="form-control" id="inputCalleYNumeroProveedores">
 					</div>
+                   <div class="form-group ">
+					  <label class="control-label titulos" for="inputColoniaProveedores">Colonia:</label>
+					  <input required type="text" class="form-control" id="inputColoniaProveedores">
+					</div>                              
 					<div class="form-group">
-					  <label class="control-label titulos" for="inputDelegacionYMunicipioProveedores">Delegacion Y Municipio:</label>
+					  <label class="control-label titulos" for="inputDelegacionYMunicipioProveedores">Delegación y Municipio:</label>
 					  <input required type="text" class="form-control" id="inputDelegacionYMunicipioProveedores">
 					</div>
+                     <div class="form-group ">
+					  <label class="control-label titulos" for="inputEstadoProveedores">Estado:</label>
+					  <input required type="text" class="form-control" id="inputEstadoProveedores">
+					</div>                                          
 					<div class="form-group">
 					  <label class="control-label titulos" for="inputPaisProveedores">País:</label>
 					  <input required type="text" class="form-control" id="inputPaisProveedores">
-					</div>
-					<div class="form-group ">
-					  <label class="control-label titulos" for="inputEstadoProveedores">Estado:</label>
-					  <input required type="text" class="form-control" id="inputEstadoProveedores">
 					</div>
 					<div class="form-group ">
 					  <label class="control-label titulos" for="inputCodigoPostalProveedores">Código Postal:</label>
 					  <input required type="text" class="form-control" id="inputCodigoPostalProveedores">
 					</div>
                     <div class="form-group ">
-					  <label class="control-label titulos" for="inputContactoNombreProveedores">Contacto:</label>
+					  <label class="control-label titulos" for="inputContactoNombreProveedores">Nombre del contacto:</label>
 					  <input type="text" class="form-control" id="inputContactoNombreProveedores">
 					</div>
                                                                                                                                    
@@ -147,26 +147,26 @@
 					</div>
                                                                                                                                          
 					<div class="form-group ">
-					  <label class="control-label titulos" for="inputNumeroProveedores">Teléfono:</label>
-					  <input  type="text" class="form-control" id="inputNumeroProveedores">
+					  <label class="control-label titulos" for="inputNumeroProveedores">Teléfono (10 dígitos) :</label>
+					  <input  type="text" class="form-control" id="inputNumeroProveedores" placeholder="Lada + Teléfono">
 					</div>
 
 				</form>
                 
                 <div hidden id="vista-datos2" >
-                    <p class="titulos" >Colonia</p>
-                    <p id="vista-colonia"></p>
                     <p class="titulos" >Calle y Número</p>
                     <p id="vista-calle"></p>
+                    <p class="titulos" >Colonia</p>
+                    <p id="vista-colonia"></p>
                     <p class="titulos">Delegación y Municipio</p>
                     <p id="vista-delega"></p>
-                    <p class="titulos">País</p>
-                    <p id="vista-pais"></p>
                     <p class="titulos">Estado:</p>            
                     <p id="vista-entidad"></p>
+                    <p class="titulos">País</p>
+                    <p id="vista-pais"></p>
                     <p class="titulos">Código Postal:</p>
                     <p id="vista-cp"></p>
-                    <p class="titulos">Contacto:</p>
+                    <p class="titulos">Nombre del contacto:</p>
                     <p id="vista-contacto"></p>
                     <p class="titulos">Email:</p>
                     <p id="vista-correo"></p>

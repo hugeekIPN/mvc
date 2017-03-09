@@ -188,7 +188,7 @@ class ProveedorController
 		$correo_contacto	= $data['correo_contacto'];
 
 		if ($this->esVacio($razon_social)) {
-			$errors[] = "Razon social no puede ser vacío";
+			$errors[] = "Razón social no puede ser vacío";
 		}
         
         if ($this->esVacio($rfc)) {
@@ -196,7 +196,7 @@ class ProveedorController
 		}
         
         if ($rfc && (strlen($rfc) <= 11 || strlen($rfc) >=15 ))  {
-			$errors[] = "Formato de rfc no válido";
+			$errors[] = "Formato de RFC no válido";
 		}
         
 		if($telefono && !preg_match("/^[0-9]{10}$/", $telefono)){
@@ -204,7 +204,7 @@ class ProveedorController
 		}
         
 		if($cp && !preg_match("/^[0-9]{5}$/", $cp)){
-			$errors[] = "Formato de cp no válido";
+			$errors[] = "Formato de CP no válido";
 		}
         
         if($tipo && !($tipo == 1 || $tipo == 2)){

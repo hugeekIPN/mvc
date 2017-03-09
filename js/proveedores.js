@@ -233,7 +233,7 @@ Proveedores.verFormularioVacio = function(){
 Proveedores.deleteproveedor = function(){
     var data = Proveedores.elementos;
     var proveedorId= data.id_proveedor.val();
-	var c= confirm('Estás seguro de esto?');
+	var c= confirm(' Esta acción eliminará el registro, ¿deseas continuar?');
 	if(c){
 		$.ajax({
 			type: "post",

@@ -192,7 +192,7 @@ especies.updateespecie = function(){
 especies.deleteespecie = function(){
 	var elem = especies.elementos;
 	var idespecie = elem.id_especie.val();
-	var c = confirm('Estás seguro de realizar la operación?');
+	var c = confirm(' Esta acción eliminará el registro, ¿deseas continuar?');
 	if(c){
 		$.ajax({
 			type: "post",
