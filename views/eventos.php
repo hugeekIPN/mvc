@@ -41,14 +41,6 @@
 							<?php endforeach; ?>
 						</select>
 					</div>
-                    <div class="input form-group">
-					  <!--<label type="hidden" class="control-label" for="inputIDEventos">ID :</label>-->
-					  <input type="hidden" required type="text" class="form-control" id="inputIDEventos">
-					</div>
-                     <div class="input form-group">
-					  <!--<label class="control-label" for="inputIDSubEventos">ID Subprograma :</label>-->
-					  <input type="hidden" required type="text" class="form-control" id="inputIDSubEventos">
-					</div>
 					<div class="input form-group">
 					  <label class="control-label" for="inputNombreEventos">Nombre:</label>
 					  <input required type="text" class="form-control" id="inputNombreEventos">
@@ -69,7 +61,7 @@
 					<p id="vista-subProgId"></p>
 					<p>Nombre del Evento</p>	
 					<p id="vista-nombre"></p>
-					<p>Descripcion</p>
+					<p>Descripci&oacute;n</p>
 					<p id="vista-desc"></p>
 				</div>
 				<!-- fin datos a mostrar para subprogramas -->					
