@@ -161,14 +161,16 @@
                         <option value="Yucatán">Yucatán</option>
                         <option value="Zacatecas">Zacatecas</option>
                         </select>
-                    </div>
-                                                                                                
+                                                 
+                        <input type="hidden" class="form-control" id="inputEstadoProveedores_text">                         
+                    </div>                                                                      
                                                                                                   
 					<div class="form-group">
 					  <label class="control-label titulos" for="inputPaisProveedores">País:</label>
 					  <select class="form-control" id="inputPaisProveedores"  onchange="Proveedores.pais();">
                             <option value="México">México</option>
                             <option value="EUA">EUA</option>
+                            <option value="Otro">Otro</option>
                         </select>
 					</div>
 					<div class="form-group ">

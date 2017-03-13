@@ -28,6 +28,19 @@ class m_proveedor
 		else
 			return null;
 	}
+    
+    public function getProveedor_razon($razon)
+	{		
+		$result = $this->db->select(
+			"SELECT * FROM proveedores WHERE razon_social = :razon",
+			array("razon" => $razon)
+			);
+
+		if($result)
+			return $result[0];
+		else
+			return null;
+	}
 
 	public function nuevoProveedor($data){
 		$this->db->insert('proveedores',
