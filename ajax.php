@@ -1,36 +1,40 @@
 <?php
-require_once("controller/sessionController.php");
-require_once("controller/loginController.php");
-require_once("controller/usuariosController.php");
-require_once("controller/eventoController.php");
-require_once("controller/ProveedorController.php");
-require_once("controller/programaController.php");
-require_once("controller/subprogramaController.php");
-require_once("controller/especieController.php");
+require_once "controller/sessionController.php";
+require_once "controller/loginController.php";
+require_once "controller/usuariosController.php";
+require_once "controller/eventoController.php";
+require_once "controller/ProveedorController.php";
+require_once "controller/programaController.php";
+require_once "controller/subprogramaController.php";
+require_once "controller/especieController.php";
 
-sessionController::startSession(); 
+sessionController::startSession();
 
-if(empty($_SERVER['HTTP_X_REQUESTED_WITH']) || strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) != 'xmlhttprequest') 
+if (empty($_SERVER['HTTP_X_REQUESTED_WITH']) || strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) != 'xmlhttprequest') {
     die("Valió barriga Sr...!");
+}
+
 /*
 $url = parse_url( isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : '');
 if( !isset( $url['host']) || ($url['host'] != $_SERVER['SERVER_NAME']))
-    die("Valió barriga Sr...!");
-*/
+die("Valió barriga Sr...!");
+ */
 
 $action = $_POST['action'];
 
 switch ($action) {
-	case 'logearse':
-		$login = new loginController();
-		$logeado = $login->login($_POST['username'], $_POST['password']);
+    case 'logearse':
+        $login   = new loginController();
+        $logeado = $login->login($_POST['username'], $_POST['password']);
 
-        if($logeado === true)
+        if ($logeado === true) {
             echo json_encode(array(
                 'status' => 'success',
-                'page'   => 'index.php'
+                'page'   => 'index.php',
             ));
-		break;
+        }
+
+        break;
 
     case 'addUsuario':
         $usuario = new usuariosController(null);
@@ -50,108 +54,109 @@ switch ($action) {
     case 'deleteUsuario':
         $usuario = new usuariosController($_POST['usuarioId']);
         echo json_encode($usuario->deleteUsuario($_POST));
-        break;     
-     case 'getEvento':
+        break;
+    case 'getEvento':
         $evento = new eventoController($_POST['eventoId']);
         echo json_encode($evento->getEvento());
         break;
-     case 'addEvento':
+    case 'addEvento':
         $evento = new eventoController(null);
         echo json_encode($evento->nuevoEvento($_POST));
         break;
-     case 'updateEvento':
+
+    case 'updateEvento':
         $evento = new eventoController($_POST['id_evento']);
         echo json_encode($evento->updateEvento($_POST));
         break;
-     case 'deleteEvento':
+
+    case 'deleteEvento':
         $evento = new eventoController($_POST['eventoId']);
         echo json_encode($evento->deleteEvento($_POST));
         break;
-        
+
 /// CRUD Proveedores
-     case 'getProveedor':
+    case 'getProveedor':
         $proveedor = new ProveedorController($_POST['id_proveedor']);
         echo json_encode($proveedor->getProveedor($_POST));
         break;
-     case 'addProveedor':
-       $proveedor= new ProveedorController(null);
+    case 'addProveedor':
+        $proveedor = new ProveedorController(null);
         echo json_encode($proveedor->nuevoProveedor($_POST));
         break;
-     case 'updateProveedor':
-       $proveedor= new ProveedorController($_POST['id_proveedor']);
+    case 'updateProveedor':
+        $proveedor = new ProveedorController($_POST['id_proveedor']);
         echo json_encode($proveedor->updateProveedor($_POST));
         break;
-     case 'deleteProveedor':
+    case 'deleteProveedor':
         $proveedor = new ProveedorController($_POST['proveedorId']);
         echo json_encode($proveedor->deleteProveedor($_POST));
         break;
 /// Crud Programas
     case 'addPrograma':
-       $programa = new programaController(null);
-       echo json_encode($programa->nuevoPrograma($_POST));
-       break; 
+        $programa = new programaController(null);
+        echo json_encode($programa->nuevoPrograma($_POST));
+        break;
 
     case 'getPrograma':
         $programa = new programaController($_POST['idPrograma']);
         echo json_encode($programa->getPrograma());
-        break; 
+        break;
 
     case 'updatePrograma':
         $programa = new programaController($_POST['idPrograma']);
         echo json_encode($programa->updatePrograma($_POST));
-        break;    
+        break;
 
     case 'deletePrograma':
         $programa = new programaController($_POST['idPrograma']);
         echo json_encode($programa->deletePrograma($_POST));
-        break;   
+        break;
 
     // CRUD SUBPROGRAMAS
     case 'addSubprograma':
-       $subprograma = new subprogramaController(null);
-       echo json_encode($subprograma->nuevoSubprograma($_POST));
-       break; 
+        $subprograma = new subprogramaController(null);
+        echo json_encode($subprograma->nuevoSubprograma($_POST));
+        break;
 
     case 'getSubprograma':
         $subprograma = new subprogramaController($_POST['idSubprograma']);
         echo json_encode($subprograma->getSubprograma());
-        break; 
+        break;
 
     case 'updateSubprograma':
         $subprograma = new subprogramaController($_POST['idSubprograma']);
         echo json_encode($subprograma->updateSubprograma($_POST));
-        break;    
+        break;
 
     case 'deleteSubprograma':
         $subprograma = new subprogramaController($_POST['idSubprograma']);
         echo json_encode($subprograma->deleteSubprograma($_POST));
-        break;         
+        break;
     // FIN CRUD SUBPROGRAMAS
-    
-        // CRUD ESPECIES
+
+    // CRUD ESPECIES
     case 'addEspecie':
-       $especie = new EspecieController(null);
-       echo json_encode($especie->nuevoEspecie($_POST));
-       break; 
+        $especie = new EspecieController(null);
+        echo json_encode($especie->nuevoEspecie($_POST));
+        break;
 
     case 'getEspecie':
         $especie = new EspecieController($_POST['id_especie']);
         echo json_encode($especie->getEspecie());
-        break; 
+        break;
 
     case 'updateEspecie':
         $especie = new EspecieController($_POST['id_especie']);
         echo json_encode($especie->updateEspecie($_POST));
-        break;    
+        break;
 
     case 'deleteEspecie':
         $especie = new EspecieController($_POST['id_especie']);
         echo json_encode($especie->deleteEspecie($_POST));
-        break;         
-        
-    /// FIN CRUD ESPECIES
-        
-	default:		
-		break;
-}
+        break;
 
+    /// FIN CRUD ESPECIES
+
+    default:
+        break;
+}

@@ -19,7 +19,7 @@ class m_referencia_apoyo{
         $result = $this->db->select(
                     "SELECT * FROM referencias_apoyos WHERE id_referencia = :idRef and idApoyo = ",
                     array ("idRef" => $id_referencia_apoyo,
-                            "idApoyo" => $
+//FaltaComponerLinea       //"idApoyo" => $
                     )
                   );
         if ( count($result) > 0 )

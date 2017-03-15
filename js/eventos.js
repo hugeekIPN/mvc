@@ -152,7 +152,32 @@ eventos.editEvento = function(){
 * Funcion que llama a agregar nuevo usuario, con modalidad de actualizacion
 **/
 eventos.updateEvento = function () {
-    eventos.addEvento(true);
+    //eventos.addEvento(true);
+    var data = eventos.elementos;
+    
+    if(eventos.validaDatosEvento(data)){
+        $.ajax({
+			type: "POST",
+			url: "ajax.php",
+			dataType: "json",
+			data: {
+				id_evento : data.eventoId.val(),
+				nombre : data.nombre.val(),
+                subprogramas_idsubprogramas : data.subProgId.val(),
+                descripcion : data.eventoDesc.val(),
+				action : "updateEvento"
+				},
+			success: function(result){
+				if(result.status == "error"){
+					utilerias.displayErrorServerMessage($("#mensajes-server"),result.message);
+				}else {
+					$("#formulario-usuario :input").val('');
+					utilerias.displaySuccessMessage($("#mensajes-server"),result.message);
+                    location.reload();
+				}
+			}
+		});		
+    }
 };
 
 

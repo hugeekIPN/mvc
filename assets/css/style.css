@@ -497,7 +497,7 @@ body{
 	div.der div.datos2 div.datos-bancarios{
 		top:120px;
 	}
-	div. der div.eventos div.datos-bancarios{
+	div.der div.eventos div.datos-bancarios{
 		top: -50px !important;
 	}
 		/*div.datos2 div.datos-bancarios p {
@@ -663,9 +663,8 @@ a.salir{
 }
 
 /*=====================*/
-@media (max-width: ){
-
-}
+/*@media (max-width:){
+}*/
 p.id{
 	font-family: fundacion-b;
 	font-size:28px ;

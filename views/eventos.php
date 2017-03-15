@@ -13,11 +13,11 @@
 					   <tbody>
                            <?php foreach ($eventos as $evento): ?>
 					   		<tr onclick="eventos.verEvento(<?php echo $evento['id_evento']; ?>);">
-					   			<td><?php echo $evento['id_evento']; ?></td>
-					   			<td><?php echo $evento['nombre']; ?></td>
+					   			<td><?=$evento['id_evento'];?></td>
+					   			<td><?=$evento['nombre'];?></td>
 					   			<td><?php echo $evento['nombre_subprograma']; ?></td>
-                            </tr>	
-					   		<?php endforeach; ?>
+                            </tr>
+					   		<?php endforeach;?>
 					   </tbody>
 					</table>
 	        	</div>
@@ -37,14 +37,14 @@
 						<label class="control-label" for="selectSubprograma">SubPrograma:</label>
 						<select name="selectSubprograma" id="selectSubprograma" class="form-control">
 							<?php foreach ($subprogramas as $subprograma): ?>
-								<option value="<?php echo $subprograma['id_subprograma']; ?>"><?php echo $subprograma['nombre']; ?></option>
-							<?php endforeach; ?>
+								<option value="<?=$subprograma['id_subprograma'];?>"><?php echo $subprograma['nombre']; ?></option>
+							<?php endforeach;?>
 						</select>
 					</div>
 					<div class="input form-group">
 					  <label class="control-label" for="inputNombreEventos">Nombre:</label>
 					  <input required type="text" class="form-control" id="inputNombreEventos">
-					</div> 
+					</div>
 					<div class="input form-group">
 					  <label class="control-label" for="inputDescripcionEventos">Descripción:</label>
 					  <textarea  class="form-control" id="inputDescripcionEventos" cols="2" ></textarea>
@@ -55,16 +55,16 @@
 
 				<!-- datos a mostrar en texto plano -->
 				<div hidden id="datos-evento">
-					<p><strong>ID</strong></p>		
+					<p><strong>ID</strong></p>
 					<p class="id-datos id" id="vista-id"></p>
 					<p>SubPrograma</p>
 					<p id="vista-subProgId"></p>
-					<p>Nombre del Evento</p>	
+					<p>Nombre del Evento</p>
 					<p id="vista-nombre"></p>
 					<p>Descripci&oacute;n</p>
 					<p id="vista-desc"></p>
 				</div>
-				<!-- fin datos a mostrar para subprogramas -->					
+				<!-- fin datos a mostrar para subprogramas -->
 		</div>
 		<!-- fin contenedor formulario y datos -->
 
@@ -94,7 +94,7 @@
 					<small>Borrar</small>
 				</button>
 			</section>
-			
+
 		</div>
 	</div>
 </div>
