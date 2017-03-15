@@ -186,10 +186,18 @@ class ProveedorController
 		$tipo				= $data['tipo'];
 		$contacto			= $data['contacto'];
 		$correo_contacto	= $data['correo_contacto'];
-
+        
+        if ($this->esVacio($tipo)) {
+			$errors[] = "Debe seleccionar un tipo Proveedor/Donatario.";
+		}
+        
+        
 		if ($this->esVacio($razon_social)) {
 			$errors[] = "Razón social no puede ser vacío";
 		}
+        
+        if($this->model->getProveedor_razon($razon_social))
+            $errors[] = "La razón social que ha ingresado, ya existe. "; 
         
         if ($this->esVacio($rfc)) {
 			$errors[] = "RFC no puede ser vacío";
