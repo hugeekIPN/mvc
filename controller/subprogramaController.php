@@ -11,8 +11,8 @@ include_once "model/m_programa.php";
 class subprogramaController
 {
     private $idSubprograma;
-    public $model;
-    public $modelPrograma;
+    public  $model;
+    public  $modelPrograma;
 
     public function __construct($idSubprograma)
     {

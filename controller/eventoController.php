@@ -74,7 +74,7 @@ class EventoController
     public function updateEvento($data)
     {
         $result = array();
-        $errors = $this->validaEventosUpdate($postData);
+        $errors = $this->validaEventosUpdate($data);
 
         if ($errors) {
             $message = implode("<br>", $errors);
@@ -131,11 +131,12 @@ class EventoController
             return $errors;
         }
         //validadmos que exista el id del subprograma al que pertenece el evento
-        if (!$this->modelSubprograma->getEvento($data['subprogramas_idsubprogramas'])) {
-            $errors[] = "El subprograma que ha seleccionado no está disponible";
+        if (!$this->modelSubprograma->getSubprograma($data['subprogramas_idsubprogramas'])) {
+            
+            $errors[] ="El subprograma que ha seleccionado no está disponible";
             return $errors;
         }
-        $anotherEvento = $this->model->getEvento($nombre);
+        $anotherEvento = $this->model->getEventoByName($nombre);
         //validamos que el nombre del evento sea unico
         if ($anotherEvento && $anotherEvento['id_evento'] != $this->idEvento) {
             $errors[] = 'El nombre ya está registrado';

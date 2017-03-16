@@ -20,8 +20,7 @@ class m_subprograma{
         $query = "SELECT programas_id_programa as id_programa, p.nombre as nombre_programa, s.id_subprograma,  s.nombre, s.descripcion, s.fecha_creacion, s.ultima_modificacion 
             FROM subprogramas AS s            
             INNER JOIN programas as p on s.programas_id_programa=p.id_programa
-            WHERE s.id_subprograma = :id
-            ORDER BY s.id_subprograma DESC";
+            WHERE s.id_subprograma = :id";
 
         $select = $this->db->select($query,
                     array ("id" => $id_subprograma)

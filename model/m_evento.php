@@ -86,6 +86,28 @@ class m_evento
 
         return true;
     }
+    
+    /**
+     * Obtiene todos los eventos de la base de datos
+     **/
+    public function getEventoByName($nombre)
+    {
+        $result = $this->db->select(
+            "SELECT e.id_evento, e.nombre, e.descripcion, e.subprogramas_idsubprogramas, s.nombre as nombre_subprograma
+                    FROM eventos as e
+                    INNER JOIN subprogramas as s
+                    ON e.subprogramas_idsubprogramas=s.id_subprograma
+                    WHERE e.nombre = :nombre
+                    ORDER BY e.id_evento DES",
+            array("nombre" => $nombre)
+        );
+        if (count($result) > 0) {
+            return $result[0];
+        } else {
+            return array();
+        }
+
+    }
 
     /**
      * Obtiene todos los eventos de la base de datos
@@ -106,4 +128,5 @@ class m_evento
         }
 
     }
+    
 }
