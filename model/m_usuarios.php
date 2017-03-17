@@ -33,7 +33,7 @@ class m_usuarios{
     public function getUsuarioEmail($email){
         $result = $this->db->select(
             "SELECT * FROM usuarios WHERE email = :email",
-            array("email"=> $email));
+            array("email" => $email));
 
         if($result){
             return $result[0];

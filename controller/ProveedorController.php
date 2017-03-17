@@ -41,7 +41,7 @@ class ProveedorController
 
 	public function nuevoProveedor($postData){
 		$result = array();
-		$errors = $this->validaDatos($postData);
+		$errors = $this->validaDatos($postData, "0");
 
 		if($errors){
 			$message = implode("<br>", $errors);
@@ -66,7 +66,7 @@ class ProveedorController
 
 	public function updateProveedor($data){
 		$result = array();
-		$errors = $this->validaDatos($data);
+		$errors = $this->validaDatos($data, "1");
 
 		if($errors){
 			$message = implode("<br>", $errors);
@@ -166,9 +166,10 @@ class ProveedorController
 		return $result;
 	}
 
-	private function validaDatos($data){
+	private function validaDatos($data, $aoe){
+        
 		$errors = array();
-
+        $id_proveedor		= $data['id_proveedor'];
 		$razon_social		= $data['razon_social'];
 		$referencia 		= $data['referencia'];
 		$cuenta 			= $data['cuenta'];
@@ -196,10 +197,19 @@ class ProveedorController
 			$errors[] = "Razón social no puede ser vacío";
 		}
         
-        if($this->model->getProveedor_razon($razon_social))
-            $errors[] = "La razón social que ha ingresado, ya existe. "; 
+        $anotherRazon =  $this->model->getProveedor_razon($razon_social);
         
-        if ($this->esVacio($rfc)) {
+       
+            if($anotherRazon && $anotherRazon['id_proveedor'] != $id_proveedor && $aoe == "1"){
+                $errors[] = "La razón social que ha ingresado, ya existe.";
+            }else{
+                if($this->model->getProveedor_razon($razon_social) && $aoe == "0")
+                    $errors[] = "La razón social que ha ingresado, ya existe. ";
+            }
+            
+    
+        
+        if ($this->esVacio($rfc) ) {
 			$errors[] = "RFC no puede ser vacío";
 		}
         

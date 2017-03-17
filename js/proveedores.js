@@ -213,6 +213,7 @@ Proveedores.editproveedor = function(){
     
 	utilerias.removeErrorMessages();
 	
+
     $.ajax({
 		type: "POST",
 		url: "ajax.php",
@@ -258,7 +259,7 @@ Proveedores.editproveedor = function(){
             
 		}
 	});
-        
+
 };
 /**
 * Funcion que llama a agregar nuevo usuario, con modalidad de actualizacion
@@ -306,17 +307,30 @@ Proveedores.deleteproveedor = function(){
 **/
 Proveedores.validaDatosproveedor = function(data,forUpdate){
 	var valid = true;
-	var msg = "";
-/*
-    YA SE VALIDÓ DESDE EL CONTROLLER
-
+    
 	utilerias.removeErrorMessages();
 
-	if($.trim(data.nombre.val())==""){
+    if($.trim(data.tipo.val())==""){
 		valid = false;
-		utilerias.displayErrorMessage(data.nombre,"El nombre de usuario es requerido");
+		utilerias.displayErrorMessage(data.tipo,"El campo tipo es requerido.");
 	}
-*/
+	if($.trim(data.razon_social.val())==""){
+		valid = false;
+		utilerias.displayErrorMessage(data.razon_social,"Razón social es requerida.");
+	}
+    
+    if($.trim(data.rfc.val())==""){
+		valid = false;
+		utilerias.displayErrorMessage(data.rfc,"El RFC es requerido");
+	}
+    
+    if(data.correo_contacto.val() != ""){
+        if(!Proveedores.mailValido(data.correo_contacto.val())){
+			valid = false;
+			utilerias.displayErrorMessage(data.correo_contacto,"Formato de correo no válido")
+		}
+    }
+
 	return valid;
 
 };
@@ -325,3 +339,13 @@ Proveedores.validaDatosproveedor = function(data,forUpdate){
 * Funcion para validar mail
 * Tomado de http://www.w3schools.com/js/tryit.asp?filename=tryjs_form_validate_email
 **/
+
+
+Proveedores.mailValido = function(email){
+    var atpos = email.indexOf("@");
+    var dotpos = email.lastIndexOf(".");
+    if (atpos<1 || dotpos<atpos+2 || dotpos+2>=email.length) {        
+        return false;
+	}
+	return true;
+};

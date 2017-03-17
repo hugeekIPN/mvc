@@ -45,10 +45,11 @@ especies.add = function(){
 					utilerias.displayErrorServerMessage(data.msj_server,result.message);
 				}else{
                     
-					$("#formulario-especies :input").val('');
                     
-                  location.reload();
                     utilerias.displaySuccessMessage(data.msj_server,result.message);
+                    
+                    
+                    location.reload();
                     
 					
 				}
@@ -69,6 +70,14 @@ especies.validaDatos = function(data){
 		valid = false;
 		utilerias.displayErrorMessage(data.descripcion,"Se debe proporcionar una descripcion");
 	}
+    
+    descip = data.descripcion.val();
+    if( descip.length > 140 ){
+       valid = false;
+		utilerias.displayErrorMessage(data.descripcion,"Número de caracteres excedido."); 
+        
+    }
+    
 
 	return valid;
 };
@@ -175,9 +184,9 @@ especies.updateespecie = function(){
 				if(result.status == "error"){
 					utilerias.displayErrorServerMessage(elem.msj_server,result.message);
 				}else{
-					$("#formulario-especies :input").val('');
-				
-					location.reload();	utilerias.displaySuccessMessage(elem.msj_server,result.message);					
+						utilerias.displaySuccessMessage(elem.msj_server,result.message);
+                    
+                        location.reload();
 				}
 			}
 		});
