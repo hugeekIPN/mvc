@@ -18,11 +18,11 @@
 </head>
 <body>
 		<div class="row pantalla">
-			<div class="col-md-6 logo">				
+			<div class="col-xs-6 logo">				
 				<img class="pull-right" src="assets/img/logo.png" alt="Logo Fundación TELMEX">
 			</div>
 			
-			<div class="col-md-6 formulario">
+			<div class="col-xs-6 formulario">
                 <div id="errores"></div>
 				<form id="login-form" method="post" class="form-horizontal formulario" >
 				  <div class="form-group">
