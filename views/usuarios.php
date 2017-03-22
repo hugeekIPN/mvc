@@ -1,10 +1,10 @@
 
 <!-- contenedor principal -->
-<div class="container col-md-12 container-proveedor "onload="oCurrentValue.innerText = estado.isContentEditable;">
+<div class="container col-xs-12 container-proveedor "onload="oCurrentValue.innerText = estado.isContentEditable;">
 
 	<!-- contenedor izquierdo  -->
-	<div class="form-group col-md-6 izq">
-		<div class="col-md-8 ">
+	<div class="form-group col-xs-6 izq">
+		<div class="col-xs-8 ">
 	        <!-- 
 	           <form action="" class="search-form">
 	                <div class="form-group has-feedback">
@@ -14,7 +14,7 @@
 	            </form> 
 	        -->
 	    </div>
-	    <div class="col-md-12 registros">
+	    <div class="col-xs-12 registros">
 	    	<div class="cont">
 	    		<table id="example6" class="display" cellspacing="0" class="table-hover">
 	    			<thead>
@@ -42,10 +42,10 @@
 
 
 	<!-- conenedor derecho -->
-	<div class="form-group col-md-6 der">
+	<div class="form-group col-xs-6 der">
 
 		<!-- contenedor formulario y datos de usuario -->
-		<div class="datos col-md-10" id="cont-datos">
+		<div class="datos col-xs-10" id="cont-datos">
 			<!-- para errores del back  -->
 			<div class="input">
 				<div id="mensajes-server"></div>
@@ -104,7 +104,7 @@
 		<!-- fin contenedor datos y formulario de usuario -->		
 
 		<!-- iconos editar,nuevo, eliminar -->
-		<div class="iconos col-md-2">
+		<div class="iconos col-xs-2">
 			<section class="nuevo">
 				<button id="btn-add-user" onclick="usuarios.verFormularioVacio();">
 					<img src="assets/iconos/Recurso 11.png" alt="Agregar un usuario nuevo">

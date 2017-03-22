@@ -415,6 +415,7 @@ body{
 	/*=======DIV CONTENIDO PROVEEDORES=======*/
 		div.container-proveedor{
 			margin-top: 20px;
+			width: 100%;
 			padding-left: 5%;		
 		}
 		div.izq{

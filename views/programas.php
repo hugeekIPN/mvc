@@ -1,6 +1,6 @@
-<div class="container col-md-12 container-proveedor "onload="oCurrentValue.innerText = estado.isContentEditable;">
-	<div class="form-group col-md-6 izq">
-	        <div class="col-md-8 ">
+<div class="container col-xs-12 container-proveedor "onload="oCurrentValue.innerText = estado.isContentEditable;">
+	<div class="form-group col-xs-6 izq">
+	        <div class="col-xs-8 ">
 	           <!-- <form action="" class="search-form">
 	                <div class="form-group has-feedback">
 	            		<input type="text" class="form-control" name="search" id="search" placeholder="Buscar...">
@@ -8,7 +8,7 @@
 	            	</div>
 	            </form> -->
 	        </div>
-	        <div class="col-md-12 registros">
+	        <div class="col-xs-12 registros">
 	        	<div class="cont">
 					<table id="example3" class="display" cellspacing="0" width="100%"" class="table-hover">
 					   <thead>
@@ -36,10 +36,10 @@
 	</div>
 
 	<!-- contenedor derecho -->
-	<div class="form-group col-md-6 der">
+	<div class="form-group col-xs-6 der">
 
 		<!-- contenedor formulario y visualizacion de datos en texto plano  -->
-		<div class="datos datos2 col-md-10 eventos">
+		<div class="datos datos2 col-xs-10 eventos">
 			
 
 				<div class="input">
@@ -78,7 +78,7 @@
 		<!-- fin contenedor formulario y datos -->
 
 		<!-- contenedor iconos -->
-		<div class="iconos col-md-2">
+		<div class="iconos col-xs-2">
 			<section class="nuevo">
 				<button id="btn-add-programa" onclick="location.reload();">
 					<img src="assets/iconos/Recurso 11.png" alt="Editar">

@@ -1,7 +1,7 @@
 
-<div class="container col-md-12 container-proveedor "onload="oCurrentValue.innerText = estado.isContentEditable;">
-	<div class="form-group col-md-6 izq">
-	        <div class="col-md-8 ">
+<div class="container col-xs-12 container-proveedor "onload="oCurrentValue.innerText = estado.isContentEditable;">
+	<div class="form-group col-xs-6 izq">
+	        <div class="col-xs-8 ">
 	           <!-- <form action="" class="search-form">
 	                <div class="form-group has-feedback">
 	            		<input type="text" class="form-control" name="search" id="search" placeholder="Buscar...">
@@ -9,7 +9,7 @@
 	            	</div>
 	            </form> -->
 	        </div>
-	        <div class="col-md-12 registros">
+	        <div class="col-xs-12 registros">
 	        	<div class="cont">
 					<table id="example4" class="display" cellspacing="0" width="100%"" class="table-hover">
 					   <thead>
@@ -33,9 +33,9 @@
 	        </div>
 		
 	</div>
-	<div class="form-group col-md-6 der">
-		<div class="datos col-md-10">
-			<div class="datos-bancarios col-md-6" >
+	<div class="form-group col-xs-6 der">
+		<div class="datos col-xs-10">
+			<div class="datos-bancarios col-xs-6" >
 				<form class="formulario" action="" id="Proveedores">
 					<div class="form-group ">
 					  <input required type="hidden" class="form-control" id="inputIDProveedores">
@@ -104,7 +104,7 @@
 			     </div>         
                                             
 			</div>
-			<div class="datos-generales col-md-6" >
+			<div class="datos-generales col-xs-6" >
                                                  
 				<div class="input">
 					<div id="mensajes-server"></div>
@@ -217,7 +217,7 @@
                                                                                           
 			</div>
 		</div>
-		<div class="iconos col-md-2">
+		<div class="iconos col-xs-2">
 			<section class="nuevo">
 
 				<button onclick="location.reload();">

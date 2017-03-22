@@ -1,15 +1,8 @@
 
-<div class="container col-md-12 container-proveedor "onload="oCurrentValue.innerText = estado.isContentEditable;">
-	<div class="form-group col-md-6 izq">
-	        <div class="col-md-8 ">
-	           <!-- <form action="" class="search-form">
-	                <div class="form-group has-feedback">
-	            		<input type="text" class="form-control" name="search" id="search" placeholder="Buscar...">
-	              		<span class="glyphicon glyphicon-search form-control-feedback"></span>
-	            	</div>
-	            </form> -->
-	        </div>
-	        <div class="col-md-12 registros">
+<div class="container col-xs-12 container-proveedor "onload="oCurrentValue.innerText = estado.isContentEditable;">
+	<div class="form-group col-xs-6 izq">
+	        
+	        <div class="col-xs-12 registros">
 	        	<div class="cont">
 					<table id="example1" class="display" cellspacing="0" width="100%"" class="table-hover">
 					   <thead>
@@ -33,10 +26,10 @@
 	        </div>
 		
 	</div>
-	<div class="form-group col-md-6 der">
+	<div class="form-group col-xs-6 der">
                                         
-		<div class="datos datos2 col-md-10">
-			<div class="datos-bancarios col-md-10" >
+		<div class="datos datos2 col-xs-10">
+			<div class="datos-bancarios col-xs-10" >
                                                   
                 <div class="input">
 					<div id="mensajes-server"></div>
@@ -68,7 +61,7 @@
 			</div>
 			
 		</div>
-		<div class="iconos col-md-2">
+		<div class="iconos col-xs-2">
 			<section class="nuevo">
 				<button onclick="especies.verFormularioVacio()" id="btn-add-especie">
 					<img src="assets/iconos/Recurso 11.png" alt="Editar">
