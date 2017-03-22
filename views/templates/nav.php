@@ -1,9 +1,9 @@
 	<nav class=" menu">
 	  <div class="container-fluid">
 
-	    <div class="navbar-header col-md-4 ">
+	    <div class="navbar-header col-xs-4 ">
 	      <ul class="nav navazul">
-	      	<li class="col-xs-4 dropdown">
+	      	<li class=" dropdown">
 		      	<a href="#" class="dropbtn2">
 					<img src="assets/iconos/Recurso 3.png" alt="Reportes">
 		      		<p>Reportes</p>
@@ -20,7 +20,7 @@
 		    			<li><a href="#">Evento por Programa</a></li>
 			    </ul>
 	      	</li>
-	      	<li class="col-xs-4 dropdown">
+	      	<li class=" dropdown">
 		      	<a href="#"  class="dropbtn2" >
 					<img src="assets/iconos/Recurso 2.png" alt="Captura">
 		      		<p>Captura</p>
@@ -31,7 +31,7 @@
 		    			
 			    </ul>
 	      	</li>
-	      	<li class="col-xs-4 dropdown">
+	      	<li class=" dropdown">
 		      	<a href="#" class="dropbtn2">
 					<img src="assets/iconos/Recurso 1.png" alt="Consulta">
 		      		<p>Consulta</p>
@@ -49,14 +49,14 @@
 	      </ul>
 	    </div>
 
-	    <div class="col-md-4 titulo">
+	    <div class="col-xs-4 titulo">
 	    	<p class=""><?php echo $titulo; ?></p>
 	    	
 	    </div>
 
-	    <div class="col-md-4 ">
+	    <div class="col-xs-4 ">
 		    <ul class="nav nav-right">
-		    	<li class="col-md-4">
+		    	<li class="col-xs-4">
 			      	<a href="#" >
 						<img src="assets/iconos/Recurso5.png" alt="Ayuda">
 			      		<p>Ayuda</p>

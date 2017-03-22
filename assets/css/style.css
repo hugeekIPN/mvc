@@ -193,9 +193,9 @@ body{
 		}
 			div.logo2 img{
 				width: 180px;
-				height: 33.4px;
+				height: 35.4px;
 				margin-right: 50px;
-				margin-top: 2%;
+				margin-top: 5%;
 			}
 		div.header2{
 			text-align: center;
@@ -342,7 +342,7 @@ body{
 			}
 
 			ul.nav-right{
-				margin-left:190px; 
+				margin-left:15%; 
 				text-align: center;
 			}
 				ul.nav-right li{
@@ -677,4 +677,20 @@ p.id{
 }
 div.subp{
 	margin-top: 70px;
+}
+
+
+@media (max-width: 1238px ){
+	
+	div.titulo p{
+		font-size: 26px;
+	}
+}
+@media (max-width: 914px) {
+	.navbar-brand{
+		padding: 0;
+	}
+	.header3{
+		padding: 0;
+	}
 }

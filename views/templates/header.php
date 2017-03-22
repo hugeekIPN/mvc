@@ -10,6 +10,7 @@
 	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
 	<!--  Importa los JavaScript-->
     <link rel="stylesheet" href="assets/DataTables/datatables.css">
+    <link rel="stylesheet" href="assets/css/non-responsive.css">
 	<script type="text/javascript" src="assets/js/jquery-3.1.1.min.js"></script>	
     <script type="text/javascript" src="assets/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="assets/DataTables/datatables.js"></script>	
@@ -26,18 +27,18 @@
 <body>
 	<nav class="navbar header">
 	  <div class="container-fluid">
-	    <div class="navbar-header col-md-4 header1 ">
+	    <div class="navbar-header col-xs-4 header1 ">
 	      <a class="navbar-brand" href="#">
 	      	<div class=" logo2">				
-                <a href="index.php"><img class="pull-left" src="assets/img/logo.png" alt="Logo Fundación TELMEX"></a>
+                <a href="index.php"><img class="pull-left imagenindex" src="assets/img/logo.png" alt="Logo Fundación TELMEX"></a>
 			</div></a>
 	    </div>
 
-	    <div class="col-md-4 header2">
+	    <div class="col-xs-4 header2">
 	    	<p class="">Usuario:</p>
 	    	<p class="nombre-u"><strong><?php echo $usuario; ?></strong></p>
 	    </div>
-	    <div class="col-md-4 header3">
+	    <div class="col-xs-4 header3">
 	    	<p class=""><?php echo date("d / m / Y"); ?></p>
 	    </div>
 
