@@ -2,12 +2,11 @@
 
 // Composer's auto-loading functionality
 require 'dompdf/autoload.inc.php';
+
 use Dompdf\Dompdf;
 
-$var = "Soy una variable";
-$fecha= date("Y-m-d H:i:s");   
 $html = '<!DOCTYPE html>
-<html lang="es">
+<html lang="us">
 
 <head>
     
