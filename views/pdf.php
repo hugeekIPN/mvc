@@ -7,20 +7,23 @@ use Dompdf\Dompdf;
 $var = "Soy una variable";
 $fecha= date("Y-m-d H:i:s");   
 $html = '<!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     
-    <meta charset="es_ES.UTF-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <meta name="description" content="Especialidad de electronica de ESIME Zacatenco" >
-    <meta name="author" content="Esteban Cureño">
+    
+    <meta name="description" content="Solicitud de transferencia electrónica" >
+    <meta name="author" content="CTIN">
 
     <title>Solicitud de transferencia electrónica</title>
 </head>
 
 <body>
-<img src="assets/img/logo.png" width="200px">
+<p style="text-align: center;">
+<img src="assets/img/logo.png" width="300px">
+</p>
 <hr style="color: gray;" />
 <span style="text-align: center;">Parque Vía No. 198, Col. Cuahtémoc, Delegación Cuauhtémoc, C.P. 06599, México, D.F.</span>
 <hr style="color: gray;" />
