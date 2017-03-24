@@ -242,6 +242,21 @@ class ProveedorController
     /**
 	* Verifica si un arreglo o un string es vacio
 	**/
+    public function pdf(){
+
+		$login = new loginController();
+
+		if($login->_isLoggedIn()){
+			$usuario = sessionController::get('username');
+			$titulo = "Proveedores y Donatarios";
+
+			$proveedores = $this->model->getAllProveedores();
+
+			require_once("views/pdf.php");
+		}else{
+			require_once("views/login.php");
+		}
+	}
     
 	private function esVacio($in){
         if(is_array($in))

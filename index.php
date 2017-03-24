@@ -58,6 +58,9 @@ $option=isset($_REQUEST['op']) ?  $_REQUEST['op']: null;
         $subprograma->index();
         break;
           
+    case 'pdf':
+        $proveedor->pdf();
+        break;
     default:    
         $login->index();
     break;
