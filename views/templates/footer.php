@@ -14,5 +14,7 @@
         $("#example1,#example2,#example3,#example4,#example5,#example6").DataTable({dom: 'Bfrtip',  buttons: ['excel']} );
         });
         </script>
+    <script src="assets/js/jquery-ui.min.js"></script>
+
 </body>
 </html>	

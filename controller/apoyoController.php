@@ -37,6 +37,19 @@ class ApoyoGastoController {
         }
     }
 
+    public function test(){
+        $usuario = 'dummy';
+        $titulo = "Apoyos";
+
+        $apoyos = array();
+
+        require_once("views/templates/header.php");
+
+        require_once("views/templates/nav.php");
+        require_once("views/datepicker.php"); 
+        require_once("views/templates/footer.php");        
+    }
+
     public function nuevoApoyoGasto($postData) {
         $result = array();
         $errors = $this->validaDatos($postData);
