@@ -233,7 +233,7 @@ body{
 			}
 
 	/*tiras de los menús*/
-		div.container{
+		div.containers{
 			height: 530px;
 			z-index: -10;
 		}
@@ -491,7 +491,7 @@ body{
 				}
 				div.der div.datos div p.nombre{
 				}
-				div.der div.datos div h3{
+				 div.datos div h3{
 					font-family: fundacion-comp;
 					color: #0090d6;
 				}
@@ -501,41 +501,7 @@ body{
 	div.der div.eventos div.datos-bancarios{
 		top: -50px !important;
 	}
-		/*div.datos2 div.datos-bancarios p {
-			font-family: fundacion-l;
-			padding-top: 5px;
-		}
-		div.datos2 div.datos-bancarios p:nth-child(1) {
-			font-size: 18px;
-			font-family: fundacion-b;
-		}
-		div.datos2 div.datos-bancarios p:nth-child(2) {
-			font-family: fundacion-mdcn;
-			color: #0090d6;
-			margin-top: 10px;
-			margin-bottom: 10px;
-			font-size: 32px;
-		}
-		div.datos2 div.datos-bancarios p:nth-child(3) {
-			font-size: 20px;
-			font-family: fundacion-b;
-		}
-		div.datos2 div.datos-bancarios p:nth-child(4) {
-			font-size: 22px;
-		}
-		div.datos2 div.datos-bancarios p:nth-child(5) {
-			font-size: 20px;
-		}
 		
-		div.der div.eventos div p.strong{
-			font-family: fundacion-b;
-			font-size: 16px;
-			margin-top: 8px;
-		}
-		div.der div.datos2 div.datos-bancarios p.des{
-			line-height: 19px !important;
-			text-align: justify;
-		}*/
 		div.der div.eventos div.evento{
 			top:0 !important;
 		}
@@ -630,7 +596,7 @@ body{
 
 /*=====menu despegable nuevo=====*/
 
-	div.iconos section.nuevo button img{
+	 section.nuevo button img{
 		width: 35px;
 
 	}
@@ -679,6 +645,39 @@ p.id{
 div.subp{
 	margin-top: 70px;
 }
+/*===ICONOS HORIZONTALES DE APOYOS Y GASTOS===*/
+div.iconos_h section button{
+					text-decoration:none;
+					background: none;
+					border:none;
+					padding: 5px;
+
+				}div.iconos_h section button:hover {
+					background: rgba(0,0,0,.1);
+					border-radius: 10px;
+				}
+
+/**/
+
+
+/*==Captura apoyo==*/
+	form h3{
+		font-family: fundacion-comp !important;
+		color: #0090d6;
+	}
+	.margin_top{
+		margin-top: 5rem;
+	}
+	.radios{
+		margin-top: 1em;
+	}
+	.width{
+		width: 900px !important;
+	}
+	.fechas{
+		margin-top: 1rem;
+	}
+/*========0*/
 
 
 @media (max-width: 1238px ){
