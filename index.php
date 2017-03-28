@@ -67,6 +67,11 @@ $option=isset($_REQUEST['op']) ?  $_REQUEST['op']: null;
     case 'test':
         $apoyo->viewPage();
         break;
+
+    case 'tes2':
+        $apoyo->test();
+        break;
+
     default:    
         $login->index();
     break;

@@ -37,6 +37,7 @@ class ApoyoGastoController {
         }
     }
 
+
     public function viewPage(){
         $usuario = "dummy";
             $titulo = "Apoyos";
@@ -45,6 +46,19 @@ class ApoyoGastoController {
             require_once("views/templates/nav.php");
             require_once("views/apoyos.php"); // Cual es?
             require_once("views/templates/footer.php");
+
+    public function test(){
+        $usuario = 'dummy';
+        $titulo = "Apoyos";
+
+        $apoyos = array();
+
+        require_once("views/templates/header.php");
+
+        require_once("views/templates/nav.php");
+        require_once("views/datepicker.php"); 
+        require_once("views/templates/footer.php");        
+
     }
 
     public function nuevoApoyoGasto($postData) {
