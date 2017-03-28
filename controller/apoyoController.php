@@ -46,6 +46,7 @@ class ApoyoGastoController {
             require_once("views/templates/nav.php");
             require_once("views/apoyos.php"); // Cual es?
             require_once("views/templates/footer.php");
+        }
 
     public function test(){
         $usuario = 'dummy';

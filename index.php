@@ -68,7 +68,7 @@ $option=isset($_REQUEST['op']) ?  $_REQUEST['op']: null;
         $apoyo->viewPage();
         break;
 
-    case 'tes2':
+    case 'test2':
         $apoyo->test();
         break;
 
