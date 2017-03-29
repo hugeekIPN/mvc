@@ -1,7 +1,7 @@
 <?php
 
 // Composer's auto-loading functionality
-require 'dompdf/autoload.inc.php';
+require 'vendor/autoload.php';
 
 use Dompdf\Dompdf;
 
@@ -73,28 +73,5 @@ $dompdf->stream("Solicitud.pdf", array("Attachment"=>0));
 
 
 
-
-
-/*
-
-require_once '../autoload.inc.php';
-
-// reference the Dompdf namespace
-use Dompdf\Dompdf;
-
-// instantiate and use the dompdf class
-$dompdf = new Dompdf();
-$dompdf->loadHtml('hello world');
-
-// (Optional) Setup the paper size and orientation
-$dompdf->setPaper('A4', 'landsce');
-
-// Render the HTML as PDF
-$dompdf->render();
-
-// Output the generated PDF to Browser
-//$dompdf->stream();
-
-*/
 
 ?>

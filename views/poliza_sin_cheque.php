@@ -1,7 +1,7 @@
 <?php
 
 // Composer's auto-loading functionality
-require 'dompdf/autoload.inc.php';
+require 'vendor/autoload.php';
 
 use Dompdf\Dompdf;
 
@@ -49,6 +49,6 @@ $html = '<!DOCTYPE html>
 $dompdf = new DOMPDF();  //if you use namespaces you may use new \DOMPDF()
 $dompdf->loadHtml($html);
 $dompdf->render();
-$dompdf->stream("Solicitud.pdf", array("Attachment"=>0));
+$dompdf->stream("Poliza.pdf", array("Attachment"=>0));
 
 ?>
