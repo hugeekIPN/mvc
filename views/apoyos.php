@@ -16,27 +16,12 @@
 			<label class="radio-inline"><input type="radio" name="optradio">Cancelado</label>
 		</section>
 		<section class="filtros col-xs-5 fechas">
-			<div class="container width">
-			    <div class='col-xs-3'>
-			        <div class="form-group">
-			            <div class='input-group date' id='datetimepicker6'>
-			                <input type='text' class="form-control" />
-			                <span class="input-group-addon">
-			                    <span class="glyphicon glyphicon-calendar"></span>
-			                </span>
-			            </div>
-			        </div>
-			    </div>
-			    <div class="col-xs-3 ">
-			        <div class="form-group">
-			            <div class='input-group date' id='datetimepicker7'>
-			                <input type='text' class="form-control" />
-			                <span class="input-group-addon">
-			                    <span class="glyphicon glyphicon-calendar"></span>
-			                </span>
-			            </div>
-			        </div>
-			    </div>
+			<span class="rango_fechas pull-left">Rango de Fechas</span>
+			<div class="form-group col-xs-3">
+			 <input type="text" id="datepicker" class="form-control" placeholder="Inicio">
+			</div>
+			<div class="form-group col-xs-3">
+			 <input type="text" id="datepicker2" class="form-control" placeholder="Fin">
 			</div>
 
 		</section>
@@ -95,6 +80,7 @@
 			</div>   
 			<!-- contenedor formulario -->
 			<div id="cont-formulario">
+			<h1 class="titulo_centrado">Capturar Apoyos</h1>
 				<!-- formulario -->
 				<form id="formulario-libreto-ana-maria">
 			
@@ -156,7 +142,7 @@
 					</div>
 
 					<div class="input form-group">
-						<label for="fechadoctosalida">Abono</label>
+						<label for="fechadoctosalida">Fecha de documento de salida</label>
 						<input type="text" class="form-control" name="fechadoctosalida" id="fechadoctosalida" >
 					</div class="form-group">
 					 

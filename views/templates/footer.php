@@ -19,7 +19,12 @@
         //}); 
        
         </script>
-
+     <script>
+              $( function() {
+                $( "#datepicker" ).datepicker();
+                $( "#datepicker2" ).datepicker();
+              } );
+              </script>
     <script src="assets/js/jquery-ui.min.js"></script>
 
 </body>

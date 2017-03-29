@@ -210,6 +210,7 @@ body{
 			text-align: right;
 		}
 
+
 /*=======INDEX=======*/
 	/*botones ayuda, salir*/
 	
@@ -670,6 +671,7 @@ div.iconos_h section button{
 	}
 	.radios{
 		margin-top: 1em;
+		font-family: fundacion-l;
 	}
 	.width{
 		width: 900px !important;
@@ -677,6 +679,20 @@ div.iconos_h section button{
 	.fechas{
 		margin-top: 1rem;
 	}
+	span.rango_fechas{
+			font-family: fundacion-l;
+			margin-top: 5px;
+	}
+	section.nuevo button{
+		font-family: fundacion-l;
+	}
+	h1.titulo_centrado{
+		font-family: fundacion-l;
+		text-align: center;
+		margin-bottom: 1em;
+	}
+
+
 /*========0*/
 
 
