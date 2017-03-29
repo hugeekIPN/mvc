@@ -242,17 +242,31 @@ class ProveedorController
     /**
 	* Verifica si un arreglo o un string es vacio
 	**/
-    public function pdf(){
+    public function solicitud(){
 
 		$login = new loginController();
 
 		if($login->_isLoggedIn()){
 			$usuario = sessionController::get('username');
-			$titulo = "Proveedores y Donatarios";
 
 			$proveedores = $this->model->getAllProveedores();
 
-			require_once("views/pdf.php");
+			require_once("views/solicitud_transferencia.php");
+		}else{
+			require_once("views/login.php");
+		}
+	}
+    
+    public function poliza(){
+
+		$login = new loginController();
+
+		if($login->_isLoggedIn()){
+			$usuario = sessionController::get('username');
+
+			$proveedores = $this->model->getAllProveedores();
+
+			require_once("views/poliza_sin_cheque.php");
 		}else{
 			require_once("views/login.php");
 		}
