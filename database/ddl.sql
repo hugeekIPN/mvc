@@ -8,21 +8,21 @@ SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 
 -- -----------------------------------------------------
--- Schema sgi
+-- Schema sgi-telmex
 -- -----------------------------------------------------
 
 -- -----------------------------------------------------
--- Schema sgi
+-- Schema sgi-telmex
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `sgi` DEFAULT CHARACTER SET utf8 ;
-USE `sgi` ;
+CREATE SCHEMA IF NOT EXISTS `sgi-telmex` DEFAULT CHARACTER SET utf8 ;
+USE `sgi-telmex` ;
 
 -- -----------------------------------------------------
--- Table `sgi`.`usuarios`
+-- Table `sgi-telmex`.`usuarios`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `sgi`.`usuarios` ;
+DROP TABLE IF EXISTS `sgi-telmex`.`usuarios` ;
 
-CREATE TABLE IF NOT EXISTS `sgi`.`usuarios` (
+CREATE TABLE IF NOT EXISTS `sgi-telmex`.`usuarios` (
   `id_usuario` INT NOT NULL AUTO_INCREMENT,
   `email` VARCHAR(250) NULL,
   `nombre` VARCHAR(200) NULL,
@@ -34,11 +34,11 @@ CREATE TABLE IF NOT EXISTS `sgi`.`usuarios` (
 
 
 -- -----------------------------------------------------
--- Table `sgi`.`proveedores`
+-- Table `sgi-telmex`.`proveedores`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `sgi`.`proveedores` ;
+DROP TABLE IF EXISTS `sgi-telmex`.`proveedores` ;
 
-CREATE TABLE IF NOT EXISTS `sgi`.`proveedores` (
+CREATE TABLE IF NOT EXISTS `sgi-telmex`.`proveedores` (
   `id_proveedor` INT NOT NULL AUTO_INCREMENT,
   `razon_social` VARCHAR(250) NULL,
   `referencia` VARCHAR(250) NULL,
@@ -64,11 +64,11 @@ CREATE TABLE IF NOT EXISTS `sgi`.`proveedores` (
 
 
 -- -----------------------------------------------------
--- Table `sgi`.`especies`
+-- Table `sgi-telmex`.`especies`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `sgi`.`especies` ;
+DROP TABLE IF EXISTS `sgi-telmex`.`especies` ;
 
-CREATE TABLE IF NOT EXISTS `sgi`.`especies` (
+CREATE TABLE IF NOT EXISTS `sgi-telmex`.`especies` (
   `id_especie` INT AUTO_INCREMENT,
   `descripcion` VARCHAR(255) NULL,
   `estado` INT NULL,
@@ -78,11 +78,11 @@ CREATE TABLE IF NOT EXISTS `sgi`.`especies` (
 
 
 -- -----------------------------------------------------
--- Table `sgi`.`programas`
+-- Table `sgi-telmex`.`programas`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `sgi`.`programas` ;
+DROP TABLE IF EXISTS `sgi-telmex`.`programas` ;
 
-CREATE TABLE IF NOT EXISTS `sgi`.`programas` (
+CREATE TABLE IF NOT EXISTS `sgi-telmex`.`programas` (
   `id_programa` INT AUTO_INCREMENT,
   `nombre` VARCHAR(250) NULL,
   `descripcion` VARCHAR(250) NULL,
@@ -93,11 +93,11 @@ CREATE TABLE IF NOT EXISTS `sgi`.`programas` (
 
 
 -- -----------------------------------------------------
--- Table `sgi`.`subprogramas`
+-- Table `sgi-telmex`.`subprogramas`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `sgi`.`subprogramas` ;
+DROP TABLE IF EXISTS `sgi-telmex`.`subprogramas` ;
 
-CREATE TABLE IF NOT EXISTS `sgi`.`subprogramas` (
+CREATE TABLE IF NOT EXISTS `sgi-telmex`.`subprogramas` (
   `id_subprograma` INT AUTO_INCREMENT,
   `programas_id_programa` INT NOT NULL,
   `nombre` VARCHAR(250) NULL,
@@ -109,17 +109,17 @@ CREATE TABLE IF NOT EXISTS `sgi`.`subprogramas` (
   INDEX `fk_subprogramas_programas1_idx` (`programas_id_programa` ASC),
   CONSTRAINT `fk_subprogramas_programas1`
     FOREIGN KEY (`programas_id_programa`)
-    REFERENCES `sgi`.`programas` (`id_programa`)
+    REFERENCES `sgi-telmex`.`programas` (`id_programa`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
 
 
 -- -----------------------------------------------------
--- Table `sgi`.`eventos`
+-- Table `sgi-telmex`.`eventos`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `sgi`.`eventos` ;
+DROP TABLE IF EXISTS `sgi-telmex`.`eventos` ;
 
-CREATE TABLE IF NOT EXISTS `sgi`.`eventos` (
+CREATE TABLE IF NOT EXISTS `sgi-telmex`.`eventos` (
   `id_evento` INT NOT NULL AUTO_INCREMENT,
   `nombre` VARCHAR(250) CHARACTER SET 'big5' NULL,
   `subprogramas_idsubprogramas` INT NOT NULL,
@@ -136,17 +136,17 @@ CREATE TABLE IF NOT EXISTS `sgi`.`eventos` (
   INDEX `fk_eventos_subprogramas1_idx` (`subprogramas_idsubprogramas` ASC),
   CONSTRAINT `fk_eventos_subprogramas1`
     FOREIGN KEY (`subprogramas_idsubprogramas`)
-    REFERENCES `sgi`.`subprogramas` (`id_subprograma`)
+    REFERENCES `sgi-telmex`.`subprogramas` (`id_subprograma`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
 
 
 -- -----------------------------------------------------
--- Table `sgi`.`apoyosgastos`
+-- Table `sgi-telmex`.`apoyosgastos`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `sgi`.`apoyosgastos` ;
+DROP TABLE IF EXISTS `sgi-telmex`.`apoyosgastos` ;
 
-CREATE TABLE IF NOT EXISTS `sgi`.`apoyosgastos` (
+CREATE TABLE IF NOT EXISTS `sgi-telmex`.`apoyosgastos` (
   `id_apoyo` INT NOT NULL AUTO_INCREMENT,
   `apoyo-gasto` CHAR(2) NULL COMMENT '1-Apoyo\n2-Gasto\n',
   `especies_id_especie` INT NULL,
@@ -174,22 +174,22 @@ CREATE TABLE IF NOT EXISTS `sgi`.`apoyosgastos` (
   INDEX `fk_apoyos-gastos_eventos1_idx` (`eventos_id_evento` ASC),
   CONSTRAINT `fk_apoyos-gastos_especies1`
     FOREIGN KEY (`especies_id_especie`)
-    REFERENCES `sgi`.`especies` (`id_especie`)
+    REFERENCES `sgi-telmex`.`especies` (`id_especie`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_apoyos-gastos_eventos1`
     FOREIGN KEY (`eventos_id_evento`)
-    REFERENCES `sgi`.`eventos` (`id_evento`)
+    REFERENCES `sgi-telmex`.`eventos` (`id_evento`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
 
 
 -- -----------------------------------------------------
--- Table `sgi`.`proveedores_apoyos-gastos`
+-- Table `sgi-telmex`.`proveedores_apoyos-gastos`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `sgi`.`proveedores_apoyos-gastos` ;
+DROP TABLE IF EXISTS `sgi-telmex`.`proveedores_apoyos-gastos` ;
 
-CREATE TABLE IF NOT EXISTS `sgi`.`proveedores_apoyos-gastos` (
+CREATE TABLE IF NOT EXISTS `sgi-telmex`.`proveedores_apoyos-gastos` (
   `proveedores_id_donatario` INT NOT NULL,
   `apoyos-gastos_id_apoyo-gasto` INT NOT NULL,
   `tipo_transaccion` VARCHAR(4) NULL COMMENT 'Refiere si es proveedor o donatario\n',
@@ -198,22 +198,22 @@ CREATE TABLE IF NOT EXISTS `sgi`.`proveedores_apoyos-gastos` (
   INDEX `fk_proovedores_has_apoyos_proovedores1_idx` (`proveedores_id_donatario` ASC),
   CONSTRAINT `fk_proovedores_has_apoyos_proovedores1`
     FOREIGN KEY (`proveedores_id_donatario`)
-    REFERENCES `sgi`.`proveedores` (`id_proveedor`)
+    REFERENCES `sgi-telmex`.`proveedores` (`id_proveedor`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_proovedores_has_apoyos_apoyos1`
     FOREIGN KEY (`apoyos-gastos_id_apoyo-gasto`)
-    REFERENCES `sgi`.`apoyosgastos` (`id_apoyo`)
+    REFERENCES `sgi-telmex`.`apoyosgastos` (`id_apoyo`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
 
 
 -- -----------------------------------------------------
--- Table `sgi`.`referencias`
+-- Table `sgi-telmex`.`referencias`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `sgi`.`referencias` ;
+DROP TABLE IF EXISTS `sgi-telmex`.`referencias` ;
 
-CREATE TABLE IF NOT EXISTS `sgi`.`referencias` (
+CREATE TABLE IF NOT EXISTS `sgi-telmex`.`referencias` (
   `id_referencia` INT NOT NULL AUTO_INCREMENT,
   `descripcion` VARCHAR(250) NULL,
   `fecha_creacion` DATETIME NULL,
@@ -222,11 +222,11 @@ CREATE TABLE IF NOT EXISTS `sgi`.`referencias` (
 
 
 -- -----------------------------------------------------
--- Table `sgi`.`referencias_has_apoyosgastos`
+-- Table `sgi-telmex`.`referencias_has_apoyosgastos`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `sgi`.`referencias_has_apoyosgastos` ;
+DROP TABLE IF EXISTS `sgi-telmex`.`referencias_has_apoyosgastos` ;
 
-CREATE TABLE IF NOT EXISTS `sgi`.`referencias_has_apoyosgastos` (
+CREATE TABLE IF NOT EXISTS `sgi-telmex`.`referencias_has_apoyosgastos` (
   `referencias_id_referencia` INT NOT NULL,
   `apoyosgastos_id_apoyo` INT NOT NULL,
   PRIMARY KEY (`referencias_id_referencia`, `apoyosgastos_id_apoyo`),
@@ -234,54 +234,54 @@ CREATE TABLE IF NOT EXISTS `sgi`.`referencias_has_apoyosgastos` (
   INDEX `fk_referencias_has_apoyosgastos_referencias1_idx` (`referencias_id_referencia` ASC),
   CONSTRAINT `fk_referencias_has_apoyosgastos_referencias1`
     FOREIGN KEY (`referencias_id_referencia`)
-    REFERENCES `sgi`.`referencias` (`id_referencia`)
+    REFERENCES `sgi-telmex`.`referencias` (`id_referencia`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_referencias_has_apoyosgastos_apoyosgastos1`
     FOREIGN KEY (`apoyosgastos_id_apoyo`)
-    REFERENCES `sgi`.`apoyosgastos` (`id_apoyo`)
+    REFERENCES `sgi-telmex`.`apoyosgastos` (`id_apoyo`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
 
-USE `sgi` ;
+USE `sgi-telmex` ;
 
 -- -----------------------------------------------------
--- Placeholder table for view `sgi`.`view1`
+-- Placeholder table for view `sgi-telmex`.`view1`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `sgi`.`view1` (`id` INT);
+CREATE TABLE IF NOT EXISTS `sgi-telmex`.`view1` (`id` INT);
 
 -- -----------------------------------------------------
--- Placeholder table for view `sgi`.`view2`
+-- Placeholder table for view `sgi-telmex`.`view2`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `sgi`.`view2` (`id` INT);
+CREATE TABLE IF NOT EXISTS `sgi-telmex`.`view2` (`id` INT);
 
 -- -----------------------------------------------------
--- Placeholder table for view `sgi`.`view3`
+-- Placeholder table for view `sgi-telmex`.`view3`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `sgi`.`view3` (`id` INT);
+CREATE TABLE IF NOT EXISTS `sgi-telmex`.`view3` (`id` INT);
 
 -- -----------------------------------------------------
--- View `sgi`.`view1`
+-- View `sgi-telmex`.`view1`
 -- -----------------------------------------------------
-DROP VIEW IF EXISTS `sgi`.`view1` ;
-DROP TABLE IF EXISTS `sgi`.`view1`;
-USE `sgi`;
-
-
--- -----------------------------------------------------
--- View `sgi`.`view2`
--- -----------------------------------------------------
-DROP VIEW IF EXISTS `sgi`.`view2` ;
-DROP TABLE IF EXISTS `sgi`.`view2`;
-USE `sgi`;
+DROP VIEW IF EXISTS `sgi-telmex`.`view1` ;
+DROP TABLE IF EXISTS `sgi-telmex`.`view1`;
+USE `sgi-telmex`;
 
 
 -- -----------------------------------------------------
--- View `sgi`.`view3`
+-- View `sgi-telmex`.`view2`
 -- -----------------------------------------------------
-DROP VIEW IF EXISTS `sgi`.`view3` ;
-DROP TABLE IF EXISTS `sgi`.`view3`;
-USE `sgi`;
+DROP VIEW IF EXISTS `sgi-telmex`.`view2` ;
+DROP TABLE IF EXISTS `sgi-telmex`.`view2`;
+USE `sgi-telmex`;
+
+
+-- -----------------------------------------------------
+-- View `sgi-telmex`.`view3`
+-- -----------------------------------------------------
+DROP VIEW IF EXISTS `sgi-telmex`.`view3` ;
+DROP TABLE IF EXISTS `sgi-telmex`.`view3`;
+USE `sgi-telmex`;
 
 
 SET SQL_MODE=@OLD_SQL_MODE;

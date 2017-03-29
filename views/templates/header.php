@@ -6,15 +6,19 @@
 	<meta charset="UTF-8">
 	<title>SGI - TELMEX</title>
 	<!--  Importa los estilos-->
+	<link rel="stylesheet" href="assets/css/jquery-ui.min.css">
 	<link rel="stylesheet" type="text/css" href="assets/css/bootstrap.css">
 	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
-	<!--  Importa los JavaScript-->
-    <link rel="stylesheet" href="assets/DataTables/datatables.css">
+	<link rel="stylesheet" href="assets/DataTables/datatables.css">
     <link rel="stylesheet" href="assets/css/non-responsive.css">
-	<script type="text/javascript" src="assets/js/jquery-3.1.1.min.js"></script>	
+
+	<!--  Importa los JavaScript-->
+
+	<script type="text/javascript" src="assets/js/jquery-3.1.1.min.js"></script>
     <script type="text/javascript" src="assets/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="assets/DataTables/datatables.js"></script>	
     <script type="text/javascript" src="assets/js/jquery.toaster.js"></script>
+
     <script>
 	 	$(document).ready(function(){
 		    $('#example').DataTable();
