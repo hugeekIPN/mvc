@@ -272,6 +272,22 @@ class ProveedorController
 		}
 	}
     
+    
+    public function cuenta(){
+
+		$login = new loginController();
+
+		if($login->_isLoggedIn()){
+			$usuario = sessionController::get('username');
+
+			$proveedores = $this->model->getAllProveedores();
+
+			require_once("views/cuenta_por_pagar.php");
+		}else{
+			require_once("views/login.php");
+		}
+	}
+    
 	private function esVacio($in){
         if(is_array($in))
             return empty($in);
