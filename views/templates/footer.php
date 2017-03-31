@@ -25,6 +25,20 @@
                 $( "#datepicker2" ).datepicker();
               } );
               </script>
+     <script>
+         
+         $(document).ready(function(){
+            $("#contenedor-apoyos").hide();
+            $("#btn-add-apoyo").click(function(){
+             $("#datable").hide();
+             $("#contenedor-apoyos").show();
+            });
+            $("#close").click(function(){
+             $("#datable").show();
+             $("#contenedor-apoyos").hide();
+            });
+        });
+     </script>
     <script src="assets/js/jquery-ui.min.js"></script>
 
 </body>
