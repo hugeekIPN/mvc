@@ -66,7 +66,12 @@ $option=isset($_REQUEST['op']) ?  $_REQUEST['op']: null;
     case 'solicitud':
         $proveedor->solicitud();
         break;
-
+    case 'cuenta':
+        $proveedor->cuenta();
+        break;      
+    case 'cheque':
+        $proveedor->cheque();
+        break;   
     case 'test':
         $apoyo->viewPage();
         break;
