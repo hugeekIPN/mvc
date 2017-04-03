@@ -288,6 +288,21 @@ class ProveedorController
 		}
 	}
     
+    public function cheque(){
+
+		$login = new loginController();
+
+		if($login->_isLoggedIn()){
+			$usuario = sessionController::get('username');
+
+			$proveedores = $this->model->getAllProveedores();
+
+			require_once("views/cheque.php");
+		}else{
+			require_once("views/login.php");
+		}
+	}
+    
 	private function esVacio($in){
         if(is_array($in))
             return empty($in);
