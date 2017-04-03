@@ -1,6 +1,7 @@
 
 <!-- contenedor principal -->
 <div class="container col-xs-12 container-proveedor "onload="oCurrentValue.innerText = estado.isContentEditable;">
+<div id="datable">
 	<div class="row col-xs-12 opciones_apoyos ">
 		<div class="iconos_h col-xs-2">
 			<section class="nuevo ">
@@ -30,7 +31,7 @@
 		</section>
 	</div>
 	<!-- contenedor de tabla  -->
-	<div class="form-group col-xs-12 margin_top" id="datable">
+	<div class="form-group col-xs-12 margin_top" >
 			<div class="cont">
 	    		<table id="example1" class="display" cellspacing="0" class="table-hover">
 	    			<thead>
@@ -65,7 +66,7 @@
 	    		</table>	
 	    	</div>   
 	</div>
-
+</div>
 	<!-- fin contenedor de tabla -->
 
 
@@ -77,9 +78,9 @@
 				<div id="mensajes-server"></div>
 			</div>   
 			<!-- contenedor formulario -->
-			<div id="cont-formularios-apoyo">
+			<div id="cont-formularios-apoyo" class="form_apoyos">
 
-			<h1 class="titulo_centrado">Capturar Apoyos <button class="btn btn-sm btn-danger " id="close">X</button></h1>
+			<h1 class="titulo_centrado">Capturar Apoyos <button class="btn btn-sm btn-danger pull-right" id="close">X</button></h1>
 
 				<!-- formularios -->
 				<form id="formulario-libreto-ana-maria">
@@ -134,44 +135,37 @@
 						</select>
 					</div >
 					 
-					<div class=" input form-group col-xs-3">
-						<label for="descripcionapoyo">Descripción de Apoyo/Gasto</label>
-						<textarea   rows="1" class="form-control" name="descripcionapoyo" id="descripcionapoyo" >
-						</textarea>
-					</div>
-					<div class=" form-group col-xs-1">
-						<label for="Tipodeapoyo">Tipo de Apoyo/Gasto</label>
+					
+					<div class=" form-group col-xs-2">
+						<label for="Tipodeapoyo">Tipo de Apoyo</label>
 						<select type="text" class="form-control" name="Tipodeapoyo" id="Tipodeapoyo" >
 							<option value="especie">Especie</option>
 							<option value="importe">Importe</option>
 						</select>
 					</div >
-					<div class=" form-group col-xs-1">
+					<div class=" form-group col-xs-2">
 						<label for="paises">País</label>
 						<select type="text" class="form-control" name="paises" id="paises" >
 							<option value="">Lista de paises</option>
 						</select>
 					</div >
 
-					<div class=" form-group col-xs-2">
+					<div class=" form-group col-xs-3">
 						<label for="estadooregion">Estado o Región</label>
 						<select type="text" class="form-control" name="estadooregion" id="estadooregion" >
 							<option value="">Listado de estados y regiones</option>
 						</select>
 					</div >
+					
 					<div class=" form-group col-xs-3">
-						<label for="observaciones">Observaciones</label>
-						<input type="text" class="form-control" name="observaciones" id="observaciones" >
-					</div>
-					<div class=" form-group col-xs-2">
 						<label for="numerodefactura">Número de Factura</label>
 						<input type="text" class="form-control" name="numerodefactura" id="numerodefactura" >
 					</div>
-					<div class=" form-group col-xs-2">
+					<div class=" form-group col-xs-3">
 						<label for="importe_apoyo">Importe</label>
 						<input type="text" class="form-control" name="importe_apoyo" id="importe_apoyo" >
 					</div>
-					<div class=" form-group col-xs-2">
+					<div class=" form-group col-xs-3">
 						<label for="moneda_apoyo">Moneda</label>
 						<select type="text" class="form-control" name="moneda_apoyo" id="moneda_apoyo" >
 							<option value="">Moneda Nacional</option>
@@ -179,6 +173,17 @@
 							<option value="">Euro</option>
 						</select>
 					</div >
+					<div class=" form-group col-xs-6">
+						<label for="observaciones">Observaciones</label>
+						<textarea rows="1" type="text" class="form-control" name="observaciones" id="observaciones" >
+						</textarea>
+					</div>
+					<div class=" input form-group col-xs-6">
+						<label for="descripcionapoyo">Descripción de Apoyo</label>
+						<textarea   rows="1" class="form-control" name="descripcionapoyo" id="descripcionapoyo" >
+						</textarea>
+					</div>
+					
 
 				</form>
 				</div>
