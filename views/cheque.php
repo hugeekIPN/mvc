@@ -89,17 +89,22 @@ FUNDACIÓN TELMEX, A.C. <span class="red">0006330</span><br>
         <th>HABER</th>
     </tr>
     <tr>
+        <td rowspan="2" height="300px"><br><br><br><br></td>
+        <td rowspan="2" ><br><br><br><br> </td>
         <td><br><br><br><br></td>
         <td><br><br><br><br> </td>
-        <td><br><br><br><br></td>
-        <td><br><br><br><br></td>
     </tr>
     <tr>
+        <td height="50px">TOTAL: </td>
+        <td><br><br><br></td>
+    </tr>
+    <tr>    
         <td>HECHO POR:</td>
         <td>REVISO:</td>
         <td>AUTORIZO:</td>
         <td>CONTABILIZO:</td>
     </tr>
+    
 <table>
 
 </body>
