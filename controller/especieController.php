@@ -31,8 +31,10 @@ class EspecieController
 			require_once("views/templates/header.php");
 
 			require_once("views/templates/nav.php");
-            require_once("views/especie.php");// Cual es?
+            require_once("views/especie.php"); 
             require_once("views/templates/footer.php");
+            
+            
 		}else{
 			require_once("views/login.php");
 		}
@@ -130,26 +132,6 @@ class EspecieController
 			$errors[] = "Estado no puede ser vacío";
 		}
 
-		// Las validaciones son en caso de que se proporcionen. Hay que definirlo.
-		//if ($rfc && (strlen($rfc) != 12))  {
-		//	$errors[] = "Formato de rfc no válido";
-		//}
-
-		//if($telefono && !preg_match("/^[0-9]{10}$/", $telefono)){
-		//	$errors[] = "Formtao de teléfono no válido";
-		//}
-
-		//if($cp && !preg_match("/^[0-9]{5}$/", subject)){
-		//	$errors[] = "Formato de cp no válido";
-		//}
-
-		//if($tipo && !($tipo == 1 || $tipo == 2)){
-		//	$errors[] = "Tipo de proveedor no válido";
-		//}
-
-		//if($correo_contacto && !filter_var($correo_contacto, FILTER_VALIDATE_EMAIL)){
-		//	$errors[] "Formato de correo de contacto incorrecto";
-		//}
 
 		return $errors;
 

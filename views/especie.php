@@ -1,10 +1,17 @@
 
 <div class="container col-xs-12 container-proveedor "onload="oCurrentValue.innerText = estado.isContentEditable;">
-	<div class="form-group col-xs-6 izq">
-	        
+     	<div class="form-group col-xs-6 izq">
+	        <div class="col-xs-8 ">
+	           <!-- <form action="" class="search-form">
+	                <div class="form-group has-feedback">
+	            		<input type="text" class="form-control" name="search" id="search" placeholder="Buscar...">
+	              		<span class="glyphicon glyphicon-search form-control-feedback"></span>
+	            	</div>
+	            </form> -->
+	        </div>
 	        <div class="col-xs-12 registros">
 	        	<div class="cont">
-					<table id="example7" class="display" cellspacing="0" width="100%"" class="table-hover">
+					<table id="example4" class="display" cellspacing="0" width="100%"" class="table-hover">
 					   <thead>
 					      <tr>
 					      	 <th>ID</th>
@@ -12,20 +19,21 @@
 					      </tr>
 					   </thead>
 					   <tbody>
-                            <?php foreach ($especies as $especie): ?>  
+                                                                                                         
+                         <?php foreach ($especies as $especie): ?>  
 					       <tr onclick="especies.verespecie(<?php echo $especie['id_especie']; ?>);">
 					      	 <td><?php echo $especie['id_especie']; ?></td>
 					         <td><?php echo $especie['descripcion']; ?></td>
 					      </tr>
 					     <?php endforeach;       
-                            ?>
-                                                                                                    
+                            ?>           
+                                             
 					   </tbody>
 					</table>
 	        	</div>
 	        </div>
 		
-	</div>
+	</div>                                                                                               
 	<div class="form-group col-xs-6 der">
                                         
 		<div class="datos datos2 col-xs-10">
@@ -90,3 +98,7 @@
 		</div>
 	</div>
 </div>
+                                                                       
+                                                                       
+                                                                       
+                                                            
