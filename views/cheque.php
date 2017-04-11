@@ -20,17 +20,9 @@ $html = '<!DOCTYPE html>
     <style>
         p, pre{
             font-family: sans-serif;
-        }
         
-        .red{
-            color:red;
         }
-        .enc_izq{
-            position:left;
-        }
-        .enc_der{
-            position:right;
-        }
+   
         table{
             border-radius: 10px 10px 10px 10px;
             -moz-border-radius: 10px 10px 10px 10px;
@@ -45,30 +37,31 @@ $html = '<!DOCTYPE html>
 </head>
 
 <body>
-<div class="enc_izq">
-FUNDACIÓN TELMEX A. C.<br>
+<p style="font-size:12px; color:gray; float:left;">
+<span style="font-size:14px; color:gray; font-weight:bold; float:left;">FUNDACIÓN TELMEX A. C.</span><br>
 PARQUE VIA No. 198 COL. CUAHTEMOC<br>
 DELEGACION CUAUHTEMOC, C.P. 06599<br>
 R.F.C. FTE-951227-NS5<br>
-</div>
-<div class="enc_der">
-CHEQUE No. <span class="red">0006330</span><br>
+</p>
+<p style="font-size:12px; color:gray;float:right; ">
+CHEQUE No. <span style="color:red; font-size:16;">0006330</span><br>
 FECHA '.date("Y-M-D").'<br>
-</div>
+</p>
 
-<br>
-PAGUESE POR ESTE CHEQUE A:
-TELEFONOS DE MEXICO S.A. DE C.V.
-__________________________________________________________ <div class="monto"> $ 709,491.68 </div><br>
-SETESCIENTOS NUEVE MIL CUATROCIENTOS NOVENTA Y UN PESO 68/100 M.N. <span>MONEDA NACIONAL FUNDACIÓN TELMEX, A.C.</span>
-________________________________________________________________________
-
-<img src="">  <div>__________________________<br>FIRMAS AUTORIZADAS</div>
 <br><br><br><br>
-<p>SUPLICAMOS DESPRENDER ESTE TALON ANTES DDE PRESENTAR EL CHEQUE</p>
+<p style="font-size:14px; color:black; float:left;">
+<span style="color: gray; font-size:12px;">PAGUESE POR ESTE CHEQUE A:</span> <br><br>
+<span style="float:left;">TELEFONOS DE MEXICO S.A. DE C.V.</span>
+<span style="float:right;"> $ 709,491.68 </span><br><br>
+<span style="color: black; font-size:14px;">SETESCIENTOS NUEVE MIL CUATROCIENTOS NOVENTA Y UN PESO 68/100 M.N.</span><br>
+</p>
+<br><br><br><br>
 
-FUNDACIÓN TELMEX, A.C. <span class="red">0006330</span><br>
+<p style="font-size:12px; color:gray; text-align:center;">SUPLICAMOS DESPRENDER ESTE TALON ANTES DE PRESENTAR EL CHEQUE</p>
 
+<span style="font-size:14px; color:gray; font-weight:bold; float:left;">FUNDACIÓN TELMEX, A.C. </span><span  style="float:right; color:red; font-size:16;">0006330</span>
+
+<br><br>
 <table border="1">
     <tr>
         <th>FECHA</th>

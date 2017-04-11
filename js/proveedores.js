@@ -324,6 +324,12 @@ Proveedores.validaDatosproveedor = function(data,forUpdate){
 		utilerias.displayErrorMessage(data.rfc,"El RFC es requerido");
 	}
     
+    var rfc = data.rfc.val();
+    if(rfc.length < "12" || rfc.length > "14" ){
+		valid = false;
+		utilerias.displayErrorMessage(data.rfc,"El RFC no es válido");
+	}
+    
     if(data.correo_contacto.val() != ""){
         if(!Proveedores.mailValido(data.correo_contacto.val())){
 			valid = false;
