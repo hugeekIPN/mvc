@@ -12,17 +12,22 @@
 	<script type="text/javascript" src="https://cdn.datatables.net/s/dt/jq-2.1.4,jszip-2.5.0,pdfmake-0.1.18,dt-1.10.10,b-1.1.0,b-html5-1.1.0/datatables.min.js"></script>
         <script>
         $(function() {
-        $("#example1,#example2,#example3,#example4,#example5,#example6").DataTable( );
+        $("#example1,#example2,#example3,#example4,#example5,#example6").DataTable();
+
         }); 
-        //$(function() {
-        //$("#example1,#example2,#example3,#example4,#example5,#example6").DataTable({dom: 'Bfrtip',  buttons: ['excel']} );
-        //}); 
+        $(function() {
+        $("#example7").DataTable({dom: 'Bfrtip',  buttons: ['excel']} );
+        }); 
        
         </script>
      <script>
               $( function() {
                 $( "#datepicker" ).datepicker();
                 $( "#datepicker2" ).datepicker();
+                $( "#datepicker3" ).datepicker();
+                $( "#datepicker4" ).datepicker();
+                $( "#datepicker5" ).datepicker();
+                $( "#datepicker6" ).datepicker();
               } );
               </script>
      <script>

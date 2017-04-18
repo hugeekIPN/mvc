@@ -699,6 +699,37 @@ div.iconos_h section button{
 	}
 
 /*========0*/
+/*===Apoyos Reprotes==*/
+.div_reportes{
+	font-family: fundacion-l;
+}
+ /*====IMPRIMIBLES====*/
+ .imprimibles{
+ 	text-align: center;
+ 	font-family: fundacion-l;
+ 	 margin-left: 20%;
+	top: 1000px;
+
+ }
+ .imprimibles div button{
+ 	background: none;
+ 	border: none;
+ 	padding-top: 50px;
+ 	padding-bottom: 30px;
+
+ }
+  .imprimibles div button:hover{
+  	background: rgba(0,0,0,.1);
+  	border-radius: 50px; 
+  }
+ 
+  .boton_file{
+  	margin-top: 35px;
+  }
+
+/*=================IMPRIMIBLES==============*/
+
+
 
 
 @media (max-width: 1238px ){

@@ -33,7 +33,7 @@
 	<!-- contenedor de tabla  -->
 	<div class="form-group col-xs-12 margin_top" >
 			<div class="cont">
-	    		<table id="example1" class="display" cellspacing="0" class="table-hover">
+	    		<table id="example7" class="display" cellspacing="0" class="table-hover">
 	    			<thead>
 	    				<tr>
 	    					<th>Folio</th>
@@ -66,6 +66,19 @@
 	    		</table>	
 	    	</div>   
 	</div>
+	<section class="div_reportes">
+			<h4 class="generar_reportes col-xs-4"> Rango de fechas para generar reporte:</h4>
+			
+			<div class="form-group col-xs-3">
+			 <input type="text" id="datepicker3" class="form-control" placeholder="Inicio">
+			</div>
+			<div class="form-group col-xs-3">
+			 <input type="text" id="datepicker4" class="form-control" placeholder="Fin">
+			</div>
+			<div class="reporte form-group col-xs-2">
+				<button class="btn btn-primary"> Generar reporte</button>
+			</div>
+		</section>
 </div>
 	<!-- fin contenedor de tabla -->
 
@@ -78,9 +91,18 @@
 				<div id="mensajes-server"></div>
 			</div>   
 			<!-- contenedor formulario -->
-			<div id="cont-formularios-apoyo" class="form_apoyos">
+			<div id="cont-formulario-apoyo" class="form_apoyos">
 
-			<h1 class="titulo_centrado">Capturar Apoyos <button class="btn btn-sm btn-danger pull-right" id="close">X</button></h1>
+			<h1 class="titulo_centrado">Capturar Apoyos <span class=" form-group col-xs-2">
+						<select type="text" class="form-control" name="frecuencia" id="frecuencia" >
+							<option value="activo">Activo</option>
+							<option value="espera">Espera</option>
+							<option value="cancelado">Cancelado</option>
+							<option value="finalizado">Finalizado</option>
+														
+						</select>
+					</span>
+				<button class="btn btn-sm btn-danger pull-right" id="close">X</button></h1>
 
 				<!-- formularios -->
 				<form id="formulario-libreto-ana-maria">
@@ -100,9 +122,18 @@
 						<input type="text" class="form-control" name="abono" id="abono" >
 					</div >
 					<h3 class="h3form">1.- Libreta Ana María</h3> 
-					<div class=" input form-group">
+					<div class=" input form-group col-xs-4">
 						<label for="reflibretaana">Referencia Libreta Ana Maria</label>
-						<input type="text" class="form-control" name="reflibretaana" id="reflibretaana" value="">
+						<input type="text" class="form-control" name="reflibretaana" id="reflibretaana" value="" disabled>
+					</div>
+					<div class=" input form-group col-xs-4">
+						<label for="mescaptura">Mes de Captura</label>
+						<input type="text" class="form-control" name="mescaptura" id="mescaptura" value="" >
+
+					</div>
+					<div class="form-group col-xs-4">
+					<label for="fechacaptura">Fecha de Captura</label>
+					 <input type="text" id="datepicker5" name="fechacaptura" class="form-control" placeholder="Fecha">
 					</div>
 
 				</form>
@@ -189,19 +220,11 @@
 				</div>
 				<form id="formulario-libretaflujo">
 					<h3 class="h3form">3.- Libreta Flujo </h3>
-					<div class=" form-group col-xs-6">
-						<label for="fechareferencia">Fecha Referencia</label>
-						<input type="text" class="form-control" name="fechareferencia" id="fechareferencia" >
-					</div>
 					
-					<div class=" form-group col-xs-6">
-						<label for="referenciasflujo">Referencia Flujo</label>
-						<input type="text" class="form-control" name="referenciasflujo" id="referenciasflujo" >
-					</div>
 
 					<div class=" form-group col-xs-4">
 						<label for="fechadoctosalida">Fecha de documento de salida</label>
-						<input type="text" class="form-control" name="fechadoctosalida" id="fechadoctosalida" >
+						<input type="text" id="datepicker6" class="form-control" placeholder="Click">
 					</div >
 					 
 					<div class=" input form-group col-xs-4">
@@ -222,11 +245,87 @@
 					</div>
 					<div class=" input form-group col-xs-4">
 						<label for="poliza">Saldo</label>
-						<input type="text" class="form-control" name="poliza" id="poliza" value="">
+						<input type="text" class="form-control" name="poliza" id="poliza" value="" disabled>
 					</div>
 				</form>
+
+				<!--INICIO IMPRIMIBLES -->
+				<div class="row imprimibles">
+					<div class=" input form-group col-xs-2">
+						<button>
+							<figure><img src="assets/iconos/Recurso 13.png" alt="Cuentas por pagar"></figure>
+							<p>Cuenta por pagar</p>
+						</button>
+						
+					</div>
+					<div class=" input form-group col-xs-2">
+						<button>
+							<figure><img src="assets/iconos/Recurso 16.png" alt="Póliza sin cheque"></figure>
+							<p>Póliza sin cheque</p>
+						</button>
+						
+					</div>
+					<div class=" input form-group col-xs-2">
+						<button>
+							<figure><img src="assets/iconos/Recurso 17.png" alt="transferencia"></figure>
+						
+						<p>Transferencia</p>
+						</button>
+					</div>
+					<div class=" input form-group col-xs-2">
+						<button>
+							<figure><img src="assets/iconos/Recurso 15.png" alt="Cheque"></figure>
+						
+						<p>Cheque</p>
+					</button>
+					</div>
+				</div><!-- Fin de imprimibles -->
+				<!--Subir archivos -->
+				<div class="row subir-archivos">
+					<h3>Subir Archivos PDF y XML</h3>
+					<div class="col-xs-6 pdf">
+						<h4>PDF <span><button class="btn btn-primary " id="nuevo_pdf">Nuevo</button></span></h4>
+						<form action="" enctype="multipart/form-data" method="post">
+							<!-- REPETIR DIV "upload_pdf" PARA VARIOS ARCHIVOS-->
+							<div class=" input form-group col-xs-12 upload_pdf">
+								<input type="file" id="archivo" accept=".pdf" name="archivo" class=" ">
+								<input type="hidden" value="20000" name="MAX_FILE_SIZE">
+								<input type="submit" name="cargar" value="Cargar PDF" class="btn btn-danger col-xs-2 boton_file">
+							</div>
+							<div class=" input form-group col-xs-12 upload_pdf">
+								<input type="file" id="archivo" accept=".xml" name="archivo" class=" ">
+								<input type="hidden" value="20000" name="MAX_FILE_SIZE">
+								<input type="submit" name="cargar" value="Cargar PDF" class="btn btn-danger col-xs-2 boton_file">
+							</div>
+							<div class=" input form-group col-xs-12 upload_pdf">
+								<input type="file" id="archivo" accept=".xml" name="archivo" class=" ">
+								<input type="hidden" value="20000" name="MAX_FILE_SIZE">
+								<input type="submit" name="cargar" value="Cargar PDF" class="btn btn-danger col-xs-2 boton_file">
+							</div>
+							
+						</form>
+					</div>
+					<div class="col-xs-6 xml">
+						<h4>XML <span><button class="btn btn-primary" id="nuevo_xml">Nuevo</button></h4>
+						<form action="" enctype="multipart/form-data" method="post">
+							<!-- REPETIR DIV "upload_xml" PARA VARIOS ARCHIVOS-->
+							<div class=" input form-group col-xs-12 upload_xml">
+								<input type="file" id="archivo" accept=".xml" name="archivo" class="btn ">
+								<input type="hidden" value="20000" name="MAX_FILE_SIZE">
+							</div>
+							<div class=" input form-group col-xs-12 upload_xml">
+								<input type="file" id="archivo" accept=".xml" name="archivo" class="btn ">
+								<input type="hidden" value="20000" name="MAX_FILE_SIZE">
+							</div>
+							<input type="submit" name="cargar2" value="Cargar XML" class="btn btn-danger boton_file col-xs-2">
+						</form>
+					</div>
+				</div>
+				<!-- Fin de subir archivos -->
+
 			</div>
 			<!-- fin formulario -->
+
 	</div>
 
 </div>
