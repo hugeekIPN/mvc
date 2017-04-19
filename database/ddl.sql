@@ -75,6 +75,27 @@ CREATE TABLE IF NOT EXISTS `sgi-telmex`.`especies` (
   `fecha_creacion` DATETIME NULL,
   `ultima_modificacion` TIMESTAMP NULL,
   PRIMARY KEY (`id_especie`));
+-- -----------------------------------------------------
+-- Table `sgi-telmex`.`captura`
+-- -----------------------------------------------------
+
+Create Table If Not Exists 'sig'.'captura'(
+idCaptura 	int Not Null Primary Key Auto_Increment,
+mesContable varchar(250) Not Null,
+referencia	int Not Null,
+fecha_docSalida	date Not Null,
+docSalida	varchar(250) Not Null,
+concepto 	varchar(250) Not Null,
+cargo 		Double Not Null,
+saldo		Double Not Null,
+fecha_creacion	DATETIME Null,
+ultima_modi	TIMESTAMP Null
+);
+
+-- -----------------------------------------------------
+--ALTER TABLE tablename AUTO_INCREMENT = 1;
+-- -----------------------------------------------------
+
 
 
 -- -----------------------------------------------------

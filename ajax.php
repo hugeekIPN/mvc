@@ -7,6 +7,7 @@ require_once "controller/ProveedorController.php";
 require_once "controller/programaController.php";
 require_once "controller/subprogramaController.php";
 require_once "controller/especieController.php";
+require_once 'controller/capturaController.php';
 
 sessionController::startSession();
 
@@ -156,7 +157,25 @@ switch ($action) {
         break;
 
     /// FIN CRUD ESPECIES
-
+    
+    // CRUD ESPECIES
+    case 'addCaptura';
+        $captura = new capturaController($_POST['idCaptura']);
+        echo json_encode($captura->nuevaCaptura($_POST));
+        break;
+    case 'getCaptura';
+        $captura = new capturaController($_POST['idCaptura']);
+        echo json_encode($captura->getCaptura($_POST));
+        break;
+    case 'updateCaptura':
+        $captura = new capturaController($_POST['idCaptura']);
+        echo json_encode($captura->updateCaptura($_POST));
+        break;
+    case 'deleteCaptura':
+        $captura = new capturaController($_POST['idCaptura']);
+        echo json_encode($captura->deleteCaptura($_POST));
+        break;
+    /// FIN CRUD ESPECIES
     default:
         break;
 }
