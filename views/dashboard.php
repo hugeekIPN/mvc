@@ -28,6 +28,7 @@
 		  		<ul class="col-xs-2 nav nav-bar captura">
 		    			<li><a href="#">Apoyos</a></li>
 		    			<li><a href="#">Gastos</a></li>
+                                        <li><a href="index.php?op=captura">Captura</a></li>
 		    			
 		    			
 		    		</ul>

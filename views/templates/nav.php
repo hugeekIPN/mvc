@@ -28,7 +28,8 @@
 		      	<ul class="nav dropdown-content2">
 			        <li><a href="#">Apoyos</a></li>
 		    			<li><a href="#">Gastos</a></li>
-		    			
+		    			//vistacaptura
+                    <li><a href=""></a></li>
 			    </ul>
 	      	</li>
 	      	<li class=" dropdown">
