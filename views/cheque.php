@@ -23,15 +23,6 @@ $html = '<!DOCTYPE html>
         
         }
    
-        table{
-            border-radius: 10px 10px 10px 10px;
-            -moz-border-radius: 10px 10px 10px 10px;
-            -webkit-border-radius: 10px 10px 10px 10px;
-            border: 1px solid #000000;
-            width: 100%;
-            text-align:center;
-
-        }
     </style>
     
 </head>
@@ -62,7 +53,7 @@ FECHA '.date("Y-M-D").'<br>
 <span style="font-size:14px; color:gray; font-weight:bold; float:left;">FUNDACIÓN TELMEX, A.C. </span><span  style="float:right; color:red; font-size:16;">0006330</span>
 
 <br><br>
-<table border="1">
+<table border="0">
     <tr>
         <th>FECHA</th>
         <th>CONCEPTO</th>
@@ -74,7 +65,7 @@ FECHA '.date("Y-M-D").'<br>
         <td>$709,491.68</td>
     </tr>
 <table>
-<table border="1" class="codifica">
+<table border="0" class="codifica">
     <tr>
         <th>No. DE CUENTA</th>
         <th>CODIFICACION</th>

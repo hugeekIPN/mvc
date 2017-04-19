@@ -26,7 +26,7 @@
 		      		<p>Captura</p>
 		      	</a>
 		      	<ul class="nav dropdown-content2">
-			        <li><a href="#">Apoyos</a></li>
+			        <li><a href="index.php?op=apoyos">Apoyos</a></li>
 		    			<li><a href="#">Gastos</a></li>
 		    			
 			    </ul>
