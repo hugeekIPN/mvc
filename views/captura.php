@@ -70,6 +70,10 @@
                     <label class="control-label titulos" for="inputCargo">Cargo:</label>
                     <input required="" type="number" class="form-control" id="inputCargo" placeholder="Ingrese Cargo $0.0" min="0">
                 </div>
+                <div class="input form-group">
+                    <label class="control-label titulos" for="inputSaldo">Saldo:</label>
+                    <input required="" type="number" class="form-control" id="inputSaldo" placeholder="Saldo" min="0">
+                </div>
             </form>
             <!-- fin formulario -->
 
@@ -85,7 +89,7 @@
                 <p id="view-referencia"></p>
                 
                 <p class="titulos">Fecha Docto. Salida</p>	
-                <p id="view-FchaDocto-Salida"></p>
+                <p id="view-FechaDocto-Salida"></p>
                 
                  <p class="titulos">Docto. Salida</p>	
                 <p id="view-Docto-Salida"></p>
@@ -93,8 +97,10 @@
                 <p class="titulos">Concepto</p>	
                 <p id="view-concepto"></p>
                 
-                <p class="titulos">Cargo</p>	
+                <p class="titulos">Cargo</p>
                 <p id="view-cargo"></p>
+                <p class="titulos">Saldo</p>
+                <p id="view-saldo"></p>
 <!--                
                 <p class="titulos">Saldo</p>
                 <p id="view-saldo"></p>-->

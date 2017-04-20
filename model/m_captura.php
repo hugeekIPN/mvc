@@ -16,6 +16,7 @@ class m_captura {
             'docSalida'         => $data['docSalida'],
             'concepto'          => $data['concepto'],
             'cargo'             => $data['cargo'],
+            'saldo'             => $data['saldo'],
             'fecha_creacion'    => date("Y-m-d H:i:s"), 
             'ultima_modi'       => date("Y-m-d H:i:s")
         ));
