@@ -155,14 +155,18 @@
 					<div class=" form-group col-xs-3">
 						<label for="evento">Evento</label>
 						<select type="text" class="form-control" name="evento" id="evento" >
-							<option value="">Desplegar eventos</option>
+							<?php foreach ($eventos as $evento): ?>
+								<option value="<?=$evento['id_evento'];?>"><?php echo $evento['nombre']; ?></option>
+							<?php endforeach;?>
 						</select>
 					</div>
 
 					<div class=" form-group col-xs-3">
 						<label for="proveedor">Proveedor</label>
 						<select type="text" class="form-control" name="proveedor" id="proveedor" >
-							<option value="">Desplegar proveedores</option>
+							<?php foreach ($proveedores as $proveedor): ?>
+								<option value="<?=$proveedor['id_proveedor'];?>"><?php echo $proveedor['razon_social']; ?></option>
+							<?php endforeach;?>
 						</select>
 					</div >
 					 

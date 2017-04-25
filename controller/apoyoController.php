@@ -3,18 +3,27 @@
 include_once("sessionController.php");
 include_once("loginController.php");
 include_once("model/m_apoyo_gasto.php");
-
+include_once "model/m_evento.php";
+include_once("model/m_proveedor.php");
 /**
  * 
  */
 class ApoyoGastoController {
 
     private $idApoyo;
+    private $idEvento;
+    private $idProveedor;
     public $model;
+    public $modelEvento;
+    public $modelProveedor;
 
-    public function __construct($idApoyo) {
+    public function __construct($idApoyo, $idEvento, $idProveedor) {
         $this->idApoyo = $idApoyo;
         $this->model = new m_apoyo_gasto;
+        $this->idEvento = $idEvento;
+        $this->modelEvento = new m_evento();
+        $this->idProveedor = $idProveedor;
+        $this->modelProveedor = new m_proveedor();
     }
 
     public function index() {
@@ -41,7 +50,11 @@ class ApoyoGastoController {
     public function viewPage(){
         $usuario = "dummy";
             $titulo = "Apoyos";
-            require_once("views/templates/header.php");
+          
+         $eventos = $this->modelEvento->getAllEventos();
+        
+         $proveedores = $this->modelProveedor->getAllProveedores();
+        require_once("views/templates/header.php");
 
             require_once("views/templates/nav.php");
             require_once("views/apoyos.php"); // Cual es?

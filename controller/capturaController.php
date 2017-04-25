@@ -71,7 +71,7 @@ class capturaController {
     public function updateCaptura($data){
      $result = array();
      $result = true;
-     $erros = false; //$this->validaDstosUpdate($data);
+     $erros = false; //$this->validaDatosUpdate($data);
      
      if ($erros) {
          $message = implode("<br>", $erros);
@@ -85,6 +85,12 @@ class capturaController {
          if ($currentCaptura['mesContable'] != $data['mesContable']) {
              $newData['mesContable'] = $data['mesContable'];
          }
+         $newData['referencia'] = $data['referencia'];
+         $newData['fecha_docSalida'] = $data['fecha_docSalida'];
+         $newData['docSalida'] = $data['docSalida'];
+         $newData['concepto'] = $data['concepto'];
+         $newData['cargo'] = $data['cargo'];
+         $newData['saldo'] = $data['saldo'];
          
          if($newData){
              $newData['ultima_modi'] = date("Y-m-d H:i:s");

@@ -24,7 +24,7 @@ $subprograma = new subprogramaController(null);
 $evento   = new eventoController("2", "1");
 $proveedor   = new ProveedorController("1");
 $especie= new EspecieController(null);
-$apoyo = new ApoyoGastoController(null);
+$apoyo = new ApoyoGastoController(null, null, null);
 
 $captura = new capturaController(null);
 

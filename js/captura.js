@@ -183,7 +183,7 @@ captura.validaDatos = function (data,  forUpdate) {
 captura.deleteCaptura = function () {
     var elementos = captura.elem;
     var idCaptura = elementos.idCaptura.val();
-    var c = confim('Está seguro de realizar la operación');
+    var c = confirm('Está seguro de realizar la operación');
     if (c) {
         $.ajax({
             type: "post",
@@ -193,10 +193,12 @@ captura.deleteCaptura = function () {
                 action: "deleteCaptura",
                 idCaptura: idCaptura
             },
-            success: function (result) {
-                if (result.status == "error") {
-                    utilerias.displayErrorServerMessage(elementos.msj_server, result.message);
-                } else {
+           success: function(result){
+                var res = JSON.parse(result);
+
+                if(res.status == "error"){
+                    utilerias.displayErrorServerMessage(elem.msj_server, res.message);
+                }else{
                     utilerias.displaySuccessMessage(elementos.msj_server, result.message);
                     location.reload();
                 }
