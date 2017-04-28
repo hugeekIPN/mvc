@@ -82,10 +82,9 @@ class m_proveedor
 
 	public function eliminarProveedor($idProveedor)
 	{
-		$this->db->delete("proveedores","id_proveedor = :id",
+		return $this->db->delete("proveedores","id_proveedor = :id",
 			array("id"=>$idProveedor));
-
-		return true;
+            
 	}
 
 	public function getAllProveedores(){

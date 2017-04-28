@@ -35,8 +35,7 @@ class capturaController {
 
     public function nuevaCaptura($postData) {
         $result = array();
-        $errors = false;
-        // $result = $this->validaDatos($postData);
+        $errors = $this->validaDatos($postData);
 
         if ($errors) {
             $message = implode("<br>", $errors);
@@ -107,10 +106,11 @@ class capturaController {
 
     public function deleteCaptura(){
         $result = array();
+        
         if ($this->model->deleteCaptura($this->idCaptura)) {
             $result = array(
                 "status" => "success",
-                "message"=> "Registros eliminados");
+                "message"=> "Registro eliminado");
         }else{
             $result = array(
                 "status" => "error",
@@ -126,17 +126,12 @@ class capturaController {
 		$mesContable		= $data['mesContable'];
 		$referencia 		= $data['referencia'];
         
-        if ($this->esVacio($tipo)) {
-			$errors[] = "Debe seleccionar un tipo Proveedor/Donatario.";
-		}
-        
-        
-		if ($this->esVacio($razon_social)) {
-			$errors[] = "Razón social no puede ser vacío";
+		if ($this->esVacio($mesContable)) {
+			$errors[] = "Mes Contable no puede ser vacío";
 		}       
         
-        if ($this->esVacio($rfc) ) {
-			$errors[] = "RFC no puede ser vacío";
+        if ($this->esVacio($referencia) ) {
+			$errors[] = "Referencia no puede ser vacío";
 		}        
         
         

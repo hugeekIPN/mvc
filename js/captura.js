@@ -69,15 +69,16 @@ captura.add = function(editMode){
     var idCaptura = 0;
     var forUpdate = false;
     
-    if ( editMode == true)
+    if (editMode == true)
         forUpdate = true;
     
-	if(true){
+	if(captura.validaDatos(data, forUpdate)){
         
         if ( editMode ) {
             action = "updateCaptura";
             idCaptura = $("#id-captura").val();
-        }     
+        }    
+        
 		$.ajax({
 			type: "post",
 			url: "ajax.php",
@@ -94,10 +95,8 @@ captura.add = function(editMode){
                     action: action
 				},
                 success: function(result){
-                var res = JSON.parse(result);
-
-                if(res.status == "error"){
-                    utilerias.displayErrorServerMessage(elem.msj_server, res.message);
+                if(result.status == "error"){
+                    utilerias.displayErrorServerMessage(elem.msj_server, result.message);
                 }else{
                         location.reload();
                     }
@@ -150,31 +149,10 @@ captura.editCaptura = function () {
 
 captura.validaDatos = function (data,  forUpdate) {
     var valid = true;
-    //utilerias.removeErrorMessages();
     
     if ($.trim(data.mesContable.val())=="") {
         valid = false;
         utilerias.displayErrorMessage(data.mesContable,"Se debe ingresar mes contable");
-    }
-    if ($.trim(data.referencia.val())=="") {
-        valid = false;
-        utilerias.displayErrorMessage(data.referencia,"Se debe ingresar referencia");
-    }
-    if ($.trim(data.fecha_docSalida.val())=="") {
-        valid = false;
-        utilerias.displayErrorMessage(data.fecha_docSalida,"Se debe ingresar Fecha Doc. Salida");
-    }
-    if ($.trim(data.docSalida.val())=="") {
-        valid = false;
-        utilerias.displayErrorMessage(data.docSalida,"Se debe ingresar Doc. Salida");
-    }
-    if ($.trim(data.concepto.val())=="") {
-        valid = false;
-        utilerias.displayErrorMessage(data.concepto,"Se debe ingresar Concepto");
-    }
-    if ($.trim(data.cargo.val())=="") {
-        valid = false;
-        utilerias.displayErrorMessage(data.cargo,"Se debe ingresar Cargo");
     }
     return valid;
 };
@@ -194,12 +172,9 @@ captura.deleteCaptura = function () {
                 idCaptura: idCaptura
             },
            success: function(result){
-                var res = JSON.parse(result);
-
-                if(res.status == "error"){
-                    utilerias.displayErrorServerMessage(elem.msj_server, res.message);
+                if(result.status == "error"){
+                    utilerias.displayErrorServerMessage(elem.msj_server, result.message);
                 }else{
-                    utilerias.displaySuccessMessage(elementos.msj_server, result.message);
                     location.reload();
                 }
             }

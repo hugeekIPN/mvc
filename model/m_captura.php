@@ -53,6 +53,6 @@ class m_captura {
     }
     
     public function deleteCaptura($idCaptura) {
-        return $this->db->DELETE("captura","idCaptura = id", array("id" => $idCaptura));
+         return $this->db->delete("captura","idCaptura = :id", array("id" => $idCaptura));
     }
 }
