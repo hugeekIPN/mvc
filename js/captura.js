@@ -155,6 +155,12 @@ captura.validaDatos = function (data,  forUpdate) {
         valid = false;
         utilerias.displayErrorMessage(data.mesContable, "Se debe ingresar mes contable");
     }
+    
+     if ($.trim(data.mesContable.val())=="") {
+        valid = false;
+        utilerias.displayErrorMessage(data.referencia, "Se debe ingresar referencia");
+    }
+    
     return valid;
 };
 
