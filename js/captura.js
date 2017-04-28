@@ -72,7 +72,7 @@ captura.add = function(editMode){
     if (editMode == true)
         forUpdate = true;
     
-	if(captura.validaDatos(data, forUpdate)){
+	if((captura.validaDatos(data))){
         
         if ( editMode ) {
             action = "updateCaptura";
@@ -147,20 +147,35 @@ captura.editCaptura = function () {
     });
 };
 
-captura.validaDatos = function (data,  forUpdate) {
+
+captura.validaDatos = function (data) {
     var valid = true;
     utilerias.removeErrorMessages();
     
     if ($.trim(data.mesContable.val())=="") {
         valid = false;
-        utilerias.displayErrorMessage(data.mesContable, "Se debe ingresar mes contable");
+        utilerias.displayErrorMessage(data.mesContable,"Se debe ingresar mes contable");
     }
-    
-     if ($.trim(data.mesContable.val())=="") {
+    if ($.trim(data.referencia.val())=="") {
         valid = false;
-        utilerias.displayErrorMessage(data.referencia, "Se debe ingresar referencia");
+        utilerias.displayErrorMessage(data.referencia,"Se debe ingresar referencia");
     }
-    
+    if ($.trim(data.fecha_docSalida.val())=="") {
+        valid = false;
+        utilerias.displayErrorMessage(data.fecha_docSalida,"Se debe ingresar Fecha Doc. Salida");
+    }
+    if ($.trim(data.docSalida.val())=="") {
+        valid = false;
+        utilerias.displayErrorMessage(data.docSalida,"Se debe ingresar Doc. Salida");
+    }
+    if ($.trim(data.concepto.val())=="") {
+        valid = false;
+        utilerias.displayErrorMessage(data.concepto,"Se debe ingresar Concepto");
+    }
+    if ($.trim(data.cargo.val())=="") {
+        valid = false;
+        utilerias.displayErrorMessage(data.cargo,"Se debe ingresar Cargo");
+    }
     return valid;
 };
 
