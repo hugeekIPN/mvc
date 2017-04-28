@@ -149,10 +149,11 @@ captura.editCaptura = function () {
 
 captura.validaDatos = function (data,  forUpdate) {
     var valid = true;
+    utilerias.removeErrorMessages();
     
     if ($.trim(data.mesContable.val())=="") {
         valid = false;
-        utilerias.displayErrorMessage(data.mesContable,"Se debe ingresar mes contable");
+        utilerias.displayErrorMessage(data.mesContable, "Se debe ingresar mes contable");
     }
     return valid;
 };
