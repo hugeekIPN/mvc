@@ -95,7 +95,7 @@ class subprogramaController
     public function updateSubprograma($data)
     {
         $result = array();
-        $errors = $this->validaDatosUpdate($postdata);
+        $errors = $this->validaDatosUpdate($data);
 
         if ($errors) {
             $message = implode("<br>", $errors);
