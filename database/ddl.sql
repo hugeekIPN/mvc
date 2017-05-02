@@ -6,6 +6,9 @@
 -- mysql -hotmaa16c1i9nwrek.cbetxkdyhwsb.us-east-1.rds.amazonaws.com -uy8fov3ok27xmfm0d -povh9qhskodzi5hj9 ubecyl5k9bukhqtd
 
 DROP TABLE IF EXISTS `proveedores_apoyos-gastos`;
+DROP TABLE IF EXISTS cargo;
+DROP TABLE IF EXISTS saldo;
+DROP TABLE IF EXISTS archivos;
 DROP TABLE IF EXISTS `apoyosgastos` ;
 DROP TABLE IF EXISTS `eventos` ;
 DROP TABLE IF EXISTS `subprogramas` ;
@@ -137,46 +140,92 @@ CREATE TABLE IF NOT EXISTS `eventos` (
 
 
 -- -----------------------------------------------------
+-- Table saldo
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS saldo;
+
+CREATE TABLE IF NOT EXISTS saldo
+(
+  id_saldo INT UNSIGNED NOT NULL AUTO_INCREMENT
+  ,saldo DECIMAL(11,2)
+  ,`fecha_creacion` DATETIME DEFAULT CURRENT_TIMESTAMP
+  ,`ultima_modificacion` DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP  
+  ,PRIMARY KEY (id_saldo)
+)ENGINE=InnoDB  DEFAULT CHARSET=utf8;
+
+
+
+-- -----------------------------------------------------
 -- Table `apoyosgastos`
+-- estatus: 
+--      1 activo
+--      2 en espera
+--      3 cancelado
+--      4 finalizado
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `apoyosgastos` ;
 
 CREATE TABLE IF NOT EXISTS `apoyosgastos` (
   `id_apoyo` INT UNSIGNED NOT NULL AUTO_INCREMENT
-  ,`apoyo-gasto` TINYINT DEFAULT 1 COMMENT '1-Apoyo\n2-Gasto\n'
-  ,`especies_id_especie` INT UNSIGNED NOT NULL
-  ,`anio` INT NULL
+  ,`tipo` TINYINT DEFAULT 1 COMMENT '1-Apoyo\n2-Gasto\n'
+  ,`estatus` TINYINT DEFAULT 1  COMMENT  '1 activo, 2 espera, 3 cancelado, 4 finalizado'
+  ,`concepto` VARCHAR(512)
+  ,`importe` DECIMAL(11,2) DEFAULT 0
+  ,`moneda` TINYINT DEFAULT 1 COMMENT '1 mn 2 usd 3 euros'
+  ,`tipo_cambio` VARCHAR(45)
+  ,`id_saldo` INT UNSIGNED NOT NULL
+  
+  -- campos de libreta anamaria
+  ,`mes_contable_anamaria` VARCHAR(16)
+  ,`mes_captura_anamaria` VARCHAR(16)
+  ,`fecha_captura_anamaria` DATETIME DEFAULT CURRENT_TIMESTAMP  
+  ,`referencia_anamaria` VARCHAR(32)
+
+  -- campos de captura apoyo
   ,`folio` VARCHAR(255) NULL COMMENT 'Folio asignado internamente por el usuario\n'
-  ,`tipo` CHAR(2) NULL COMMENT '1-Dinero\n2-Especie\n'
-  ,`cantidad` FLOAT NULL
-  ,`unidad` VARCHAR(45) NULL COMMENT 'Unidad en la que se cuantificará el apoyo\n'
+  ,`frecuencia` TINYINT DEFAULT 1 COMMENT '1 unico 2 semanal 3 quincenal 4 mensual 5 bimestral 6 anual'
+  ,`eventos_id_evento` INT UNSIGNED NOT NULL
+  ,`id_proveedor` INT UNSIGNED NOT NULL
+  ,`id_donatario` INT UNSIGNED NOT NULL
+  ,`tipo_apoyo` TINYINT DEFAULT 1 COMMENT '1 importe 2 especie'
   ,`pais` VARCHAR(45) NULL
   ,`entidad` VARCHAR(45) NULL
-  ,`descripcion` VARCHAR(45) NULL
-  ,`moneda` CHAR(2) NULL
-  ,`tipo_cambio` VARCHAR(45) NULL
-  ,`fcambio` DATE NULL
-  ,`freferencia` DATE NULL
-  ,`fcaptura` DATE NULL
-  ,`observaciones` VARCHAR(255) NULL
-  ,`frecuencia` INT NULL
-  ,`eventos_id_evento` INT UNSIGNED NOT NULL
-  ,`estado` INT NULL
-  ,`fecha_creacion` DATETIME NULL
-  ,`ultima_modificacion` TIMESTAMP NULL
+  ,`descripcion` VARCHAR(512)
+  ,`observaciones` VARCHAR(512)
+  ,`factura` VARCHAR(32)
+  ,`referencia` VARCHAR(32)  
+  ,`unidad` VARCHAR(45) NULL COMMENT 'Unidad en la que se cuantificará el apoyo\n'
+  ,`anio` INT NULL  
+  
+  -- campos libreta flujo
+  ,`mes_contabel_libretaflujo` VARCHAR(16)
+  ,`fecha_docto_salida` DATETIME DEFAULT CURRENT_TIMESTAMP
+  ,`docto_salida` VARCHAR(64)
+  ,`poliza` VARCHAR(32)  
+
+  ,`fecha_creacion` DATETIME DEFAULT CURRENT_TIMESTAMP
+  ,`ultima_modificacion` DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP  
   ,PRIMARY KEY (`id_apoyo`)
-  ,INDEX `fk_apoyos-gastos_especies1_idx` (`especies_id_especie` ASC)
-  ,INDEX `fk_apoyos-gastos_eventos1_idx` (`eventos_id_evento` ASC)
-  ,CONSTRAINT `fk_apoyos-gastos_especies1`
-    FOREIGN KEY (`especies_id_especie`)
-    REFERENCES `especies` (`id_especie`)
+  ,CONSTRAINT `fk_apoyo_proveedor`
+    FOREIGN KEY (`id_proveedor`)
+    REFERENCES `proveedores` (`id_proveedor`)
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_apoyos-gastos_eventos1`
+    ON UPDATE CASCADE
+  ,CONSTRAINT `fk_apoyo_donatario`
+    FOREIGN KEY (`id_donatario`)
+    REFERENCES `proveedores` (`id_proveedor`)
+    ON DELETE NO ACTION
+    ON UPDATE CASCADE
+  ,CONSTRAINT `fk_apoyo_saldo`
+    FOREIGN KEY (`id_saldo`)
+    REFERENCES `saldo`(`id_saldo`)
+    ON DELETE NO ACTION
+    ON UPDATE CASCADE
+  ,CONSTRAINT `fk_apoyo_eventos`
     FOREIGN KEY (`eventos_id_evento`)
     REFERENCES `eventos` (`id_evento`)
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION
+    ON UPDATE CASCADE
 )ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
 
@@ -204,10 +253,58 @@ CREATE TABLE IF NOT EXISTS `proveedores_apoyos-gastos` (
     ON UPDATE NO ACTION
 )ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
+
+
+-- -----------------------------------------------------
+-- Table archivos
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS archivos;
+
+CREATE TABLE IF NOT EXISTS archivos
+(
+  id_archivos INT UNSIGNED NOT NULL AUTO_INCREMENT
+  ,id_apoyo_gasto INT UNSIGNED NOT NULL
+  ,pdf VARCHAR(512)
+  ,xml VARCHAR(512)
+  ,`fecha_creacion` DATETIME DEFAULT CURRENT_TIMESTAMP
+  ,`ultima_modificacion` DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP  
+  ,PRIMARY KEY(id_archivos)
+  ,CONSTRAINT `fk_archivos_apoyos`
+    FOREIGN KEY(`id_apoyo_gasto`)
+    REFERENCES `apoyosgastos` (`id_apoyo`)
+    ON DELETE NO ACTION
+    ON UPDATE CASCADE
+)ENGINE=InnoDB  DEFAULT CHARSET=utf8;
+
+-- -----------------------------------------------------
+-- Table cargo
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS cargo;
+
+CREATE TABLE IF NOT EXISTS cargo
+(
+  id_cargo INT UNSIGNED NOT NULL AUTO_INCREMENT
+  ,mes_contable VARCHAR(16)
+  ,fecha_docto_salida DATETIME DEFAULT CURRENT_TIMESTAMP
+  ,docto_salida VARCHAR(64)
+  ,concepto VARCHAR(512)
+  ,cargo DECIMAL(11,2)
+  ,id_saldo INT UNSIGNED NOT NULL
+  ,`fecha_creacion` DATETIME DEFAULT CURRENT_TIMESTAMP
+  ,`ultima_modificacion` DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP  
+  ,PRIMARY KEY(id_cargo)
+  ,CONSTRAINT `fk_cargo_saldo`
+    FOREIGN KEY(`id_saldo`)
+    REFERENCES  `saldo` (`id_saldo`)
+    ON DELETE NO ACTION
+    ON UPDATE CASCADE
+)ENGINE=InnoDB  DEFAULT CHARSET=utf8;
+
+
 -- -----------------------------------------------------
 -- Table `captura`
 -- -----------------------------------------------------
-
+-- Desechar captura, es la misma que saldo
 Create Table If Not Exists `captura`(
   `idCaptura` INT UNSIGNED NOT NULL AUTO_INCREMENT
   ,`mesContable` varchar(250) Not Null
