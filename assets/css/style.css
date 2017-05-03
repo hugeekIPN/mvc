@@ -729,9 +729,32 @@ div.iconos_h section button{
 
 /*=================IMPRIMIBLES==============*/
 
+input[type="file"]{
+	display: none;
+}
+.cargar{
+    background-color:;
+    padding:10px;
+    position:relative;
+    text-decoration:none;
+    color:#fff;
+    background-image: linear-gradient(bottom, rgb(171,27,27) 0%, rgb(212,51,51) 100%);
+    border-radius: 5px;
+    cursor: pointer;
+}
 
+/*=========================================*/
 
-
+.center{
+	text-align: center;
+}
+div.subir-archivos{
+	margin-top: 200px;
+}
+div.subir-archivos{
+	text-align: center;
+}
+ /* =========EDITANDO INPUT FILE==========*/
 @media (max-width: 1238px ){
 	
 	div.titulo p{
