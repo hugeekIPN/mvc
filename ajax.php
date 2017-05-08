@@ -57,21 +57,21 @@ switch ($action) {
         echo json_encode($usuario->deleteUsuario($_POST));
         break;
     case 'getEvento':
-        $evento = new eventoController($_POST['eventoId']);
+        $evento = new eventoController($_POST['eventoId'], null);
         echo json_encode($evento->getEvento());
         break;
     case 'addEvento':
-        $evento = new eventoController(null);
+        $evento = new eventoController(null, null);
         echo json_encode($evento->nuevoEvento($_POST));
         break;
 
     case 'updateEvento':
-        $evento = new eventoController($_POST['id_evento']);
+        $evento = new eventoController($_POST['id_evento'], null);
         echo json_encode($evento->updateEvento($_POST));
         break;
 
     case 'deleteEvento':
-        $evento = new eventoController($_POST['eventoId']);
+        $evento = new eventoController($_POST['eventoId'], null);
         echo json_encode($evento->deleteEvento($_POST));
         break;
 

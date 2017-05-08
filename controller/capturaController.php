@@ -4,13 +4,14 @@ include_once("sessionController.php");
 include_once("loginController.php");
 include_once("model/m_captura.php");
 
+
 class capturaController {
     private $idCaptura;
     private $model;
 
     public function __construct($idCaptura) {
-    $this->idCaptura= $idCaptura;
-	$this->model = new m_captura();
+        $this->idCaptura= $idCaptura;
+        $this->model = new m_captura();
     }
 
     public function index() {
@@ -35,7 +36,7 @@ class capturaController {
 
     public function nuevaCaptura($postData) {
         $result = array();
-        $errors = $this->validaDatos($postData);
+        $errors = false; // $this->validaDatos($postData);
 
         if ($errors) {
             $message = implode("<br>", $errors);
@@ -125,11 +126,12 @@ class capturaController {
         $idCaptura		= $data['idCaptura'];
 		$mesContable		= $data['mesContable'];
 		$referencia 		= $data['referencia'];
-        
+        /*
 		if ($this->esVacio($mesContable)) {
 			$errors[] = "Mes Contable no puede ser vacío";
 		}       
-        
+        */
+            
         if ($this->esVacio($referencia) ) {
 			$errors[] = "Referencia no puede ser vacío";
 		}        

@@ -72,7 +72,7 @@
                 </div>
                 <div class="input form-group">
                     <label class="control-label titulos" for="inputSaldo">Saldo:</label>
-                    <input required="" type="number" class="form-control" id="inputSaldo" placeholder="Saldo" min="0">
+                    <input type="number" class="form-control" id="inputSaldo" placeholder="Saldo" min="0" disabled required >
                 </div>
             </form>
             <!-- fin formulario -->
