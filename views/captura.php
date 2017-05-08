@@ -12,7 +12,7 @@
                             <th>Docto.Salida</th>
                             <th>Concepto</th>
                             <th>Cargo</th>
-                            <th>Saldo</th>
+                            <th>ID Saldo</th>
                         </tr>
                     </thead>
                    <tbody>
@@ -74,6 +74,7 @@
                     <label class="control-label titulos" for="inputSaldo">Saldo:</label>
                     <input type="number" class="form-control" value="<?php foreach ($saldo as $saldos): echo $saldos['saldo'];               endforeach; ?>" id="inputSaldo" placeholder="Saldo" min="0" disabled required>
                     <input type="hidden" class="form-control" value="<?php foreach ($saldo as $saldos): echo $saldos['saldo'];               endforeach; ?>" id="saldoBD"  min="0" >
+                    <input type="hidden" class="form-control" value="<?php foreach ($saldo as $saldos): echo $saldos['id_saldo'];               endforeach; ?>" id="IdSaldoBD"  min="0" >
                 </div>
             </form>
             <!-- fin formulario -->

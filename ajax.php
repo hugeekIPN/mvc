@@ -8,6 +8,7 @@ require_once "controller/programaController.php";
 require_once "controller/subprogramaController.php";
 require_once "controller/especieController.php";
 require_once 'controller/capturaController.php';
+require_once 'controller/saldoController.php';
 
 sessionController::startSession();
 
@@ -177,6 +178,12 @@ switch ($action) {
         break;
     
     /// FIN CRUD ESPECIES
+    
+    case 'addSaldo';
+        $saldo = new saldoController(null);
+        echo json_encode($saldo->nuevoSaldo($_POST));
+        break;
+        
     default:
         break;
 }

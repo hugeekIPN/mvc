@@ -65,6 +65,7 @@ class m_saldo{
     **/
     public function deleteSaldo($saldoId)  /// update Estado = eliminado
     {    
+        
         $this->db->delete("saldo", "id_saldo = :id", array( "id" => $saldoId ));        
         
         return true;

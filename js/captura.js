@@ -11,6 +11,7 @@ captura.elem ={
     concepto:       $("#inputConcepto"),
     cargo:          $("#inputCargo"),
     saldo:          $("#inputSaldo"),
+    IdSaldoBD:          $("#IdSaldoBD"),
     formulario:     $("#formulario-captura"),
     cont_datos:     $("#datos-capturas"),
     btn_nuevo:      $("#btn-new"),
@@ -91,8 +92,23 @@ captura.add = function(editMode){
                     docSalida:      data.docSalida.val(), 
                     concepto:       data.concepto.val(),
                     cargo:          data.cargo.val(),
-                    saldo:          data.cargo.val(),
+                    saldo:          data.IdSaldoBD.val(),
                     action: action
+				},
+                success: function(result){
+                if(result.status == "error"){
+                    utilerias.displayErrorServerMessage(elem.msj_server, result.message);
+                }
+                }
+		});
+        
+        $.ajax({
+			type: "post",
+			url: "ajax.php",
+			dataType: "json",
+			data: {
+                    saldo: data.saldo.val(),
+                    action: "addSaldo"
 				},
                 success: function(result){
                 if(result.status == "error"){
