@@ -175,6 +175,7 @@ switch ($action) {
         $captura = new capturaController($_POST['idCaptura']);
         echo json_encode($captura->deleteCaptura($_POST));
         break;
+    
     /// FIN CRUD ESPECIES
     default:
         break;

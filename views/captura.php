@@ -68,11 +68,12 @@
                 </div>
                 <div class="input form-group">
                     <label class="control-label titulos" for="inputCargo">Cargo:</label>
-                    <input required="" type="number" class="form-control" id="inputCargo" placeholder="Ingrese Cargo $0.0" min="0">
+                    <input required="" type="number" class="form-control" id="inputCargo" placeholder="Ingrese Cargo $0.0" min="0" onblur="captura.getCargo();">
                 </div>
                 <div class="input form-group">
                     <label class="control-label titulos" for="inputSaldo">Saldo:</label>
-                    <input type="number" class="form-control" id="inputSaldo" placeholder="Saldo" min="0" disabled required >
+                    <input type="number" class="form-control" value="<?php foreach ($saldo as $saldos): echo $saldos['saldo'];               endforeach; ?>" id="inputSaldo" placeholder="Saldo" min="0" disabled required>
+                    <input type="hidden" class="form-control" value="<?php foreach ($saldo as $saldos): echo $saldos['saldo'];               endforeach; ?>" id="saldoBD"  min="0" >
                 </div>
             </form>
             <!-- fin formulario -->

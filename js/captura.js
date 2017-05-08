@@ -207,3 +207,12 @@ captura.deleteCaptura = function () {
 captura.updateCaptura = function () {
     captura.add(true);
 };
+
+captura.getCargo = function () {
+    var data = captura.elem;
+    var saldo = $("#saldoBD").val();
+  
+    var cargo = data.cargo.val();
+    saldo = parseInt(saldo) + parseInt(cargo);
+    data.saldo.val(saldo);
+};

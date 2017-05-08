@@ -3,15 +3,19 @@
 include_once("sessionController.php");
 include_once("loginController.php");
 include_once("model/m_captura.php");
-
+include_once("model/m_saldo.php");
 
 class capturaController {
     private $idCaptura;
+    private $modelSaldo;
     private $model;
 
     public function __construct($idCaptura) {
         $this->idCaptura= $idCaptura;
         $this->model = new m_captura();
+
+        $this->modelSaldo = new m_saldo();
+        
     }
 
     public function index() {
@@ -25,6 +29,7 @@ class capturaController {
 
             $captura = $this->model->getAllCapturas();
 
+            $saldo = $this->modelSaldo->getUltimoSaldo();
             require_once("views/templates/header.php");
 
             require_once("views/templates/nav.php");
