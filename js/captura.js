@@ -25,6 +25,7 @@ captura.verCapturas = function(idCaptura){
     //*var action = "getCaptura";
     elementos.idCaptura.val(idCaptura);
     //utilerias.removeErrorMessages();
+    var idSaldo;
     
     $.ajax({
         type:   "post",
@@ -36,7 +37,7 @@ captura.verCapturas = function(idCaptura){
         },
         success: function(result){
 			var res = JSON.parse(result);
-
+            idSaldo = res.saldo;
 			if(res.status == "error"){
 				utilerias.displayErrorServerMessage(elem.msj_server, res.message);
 			}else{
@@ -45,7 +46,8 @@ captura.verCapturas = function(idCaptura){
                 elementos.btn_save.hide();
                 elementos.btn_borrar.show();
                 
-               
+                idSaldo = res.saldo;
+                
                 $("#view-id-captura").text(res.idCaptura);
                 $("#view-mes-contable").text(res.mesContable);
                 $("#view-referencia").text(res.referencia);
@@ -53,14 +55,33 @@ captura.verCapturas = function(idCaptura){
                 $("#view-Docto-Salida").text(res.docSalida);
                 $("#view-concepto").text(res.concepto);
                 $("#view-cargo").text(res.cargo);
-                $("#view-saldo").text(res.saldo);
-                
+               // $("#view-saldo").text(res.saldo);
+          
                 
                 elementos.formulario.hide();
                 elementos.cont_datos.show();
             }
         }
-    })
+    });
+    
+          $.ajax({
+			type: "post",
+			url: "ajax.php",
+			dataType: "json",
+			data: {
+                    saldoId: idSaldo,
+                    action: "getSaldo"
+				},
+                success: function(result){
+                if(result.status == "error"){
+                    utilerias.displayErrorServerMessage(elem.msj_server, result.message);
+                }else{
+                      $("#view-saldo").text(result.saldo);
+                  //document.getElementById("saldotd"+idSaldo).innerHTML = "$"+result.saldo;
+                        //location.reload();
+                    }
+                }
+		});
 };
 
 captura.add = function(editMode){
@@ -147,7 +168,7 @@ captura.editCaptura = function () {
                 elementos.btn_editar.hide();
                 
                   
-                 elementos.idCaptura.val(res.idCaptura);
+                elementos.idCaptura.val(res.idCaptura);
                 elementos.mesContable.val(res.mesContable);
                 elementos.referencia.val(res.referencia);
                 elementos.fecha_docSalida.val(res.fecha_docSalida);
@@ -232,3 +253,23 @@ captura.getCargo = function () {
     saldo = parseInt(saldo) + parseInt(cargo);
     data.saldo.val(saldo);
 };
+
+captura.getSaldo = function (idSaldo){
+      $.ajax({
+			type: "post",
+			url: "ajax.php",
+			dataType: "json",
+			data: {
+                    saldoId: idSaldo,
+                    action: "getSaldo"
+				},
+                success: function(result){
+                if(result.status == "error"){
+                    utilerias.displayErrorServerMessage(elem.msj_server, result.message);
+                }else{
+                      document.getElementById("saldotd"+idSaldo).innerHTML = "$"+result.saldo;
+                        //location.reload();
+                    }
+                }
+		});
+}

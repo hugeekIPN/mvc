@@ -68,6 +68,7 @@ class saldoController {
                 "status" => "error",
                 "message" => $message
             );
+            
         }else{
             $this->model->nuevoSaldo($postData);
             $result = array(
@@ -81,9 +82,9 @@ class saldoController {
 
 
 
-    public function getUsuario() 
+    public function getSaldo() 
     {
-    	return $this->model->getUsuario($this->userId);
+    	return $this->model->getSaldo($this->saldoId);
 	}
 
 
@@ -157,8 +158,6 @@ class saldoController {
 
         if($this->esVacio($saldo))
             $errors[] = "Saldo no puede ser vacío";
-
- 
 
         return $errors;
 

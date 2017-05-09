@@ -184,6 +184,12 @@ switch ($action) {
         echo json_encode($saldo->nuevoSaldo($_POST));
         break;
         
+    case 'getSaldo':
+        $saldo = new saldoController($_POST['saldoId']);
+        echo json_encode($saldo->getSaldo());
+        break;        
+
+        
     default:
         break;
 }

@@ -12,7 +12,7 @@
                             <th>Docto.Salida</th>
                             <th>Concepto</th>
                             <th>Cargo</th>
-                            <th>ID Saldo</th>
+                            <th>Saldo</th>
                         </tr>
                     </thead>
                    <tbody>
@@ -24,8 +24,10 @@
                             <td><?= $capturas['fecha_docSalida']; ?></td>
                             <td><?= $capturas['docSalida']; ?></td>
                             <td><?= $capturas['concepto']; ?></td>
-                            <td><?= $capturas['cargo']; ?></td>
-                            <td><?= $capturas['saldo']; ?></td>
+                            <td>$<?= $capturas['cargo']; ?></td>
+                            <td id="saldotd<?= $capturas['saldo']; ?>" onclick="captura.getSaldo(<?= $capturas['saldo']; ?>);">
+                                <?= $capturas['saldo'];?>
+                            </td>
                         </tr>	
                     <?php endforeach; ?>
                     </tbody>
