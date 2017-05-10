@@ -105,6 +105,38 @@ class Database extends PDO
         return $count;     
        
     }
+
+    /**
+    * Inserta un elemento a la  bd y regresa el id del elemento  insertado.
+    * @return id - el id del elemento insertado, en caso de error regresa 0
+    **/
+    public function insertLastId($table,$data){
+        $db = self::getInstance();
+        $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
+
+        ksort($data);
+
+        $fieldNames = implode('`, `',array_keys($data));
+        $fieldValues = ':'. implode(', :',array_keys($data));
+
+        $sth = $db->prepare("INSERT INTO $table (`$fieldNames`) VALUES ($fieldValues)");
+
+        foreach ($data as $key => $value){
+            $sth->bindValue(":$key",$value);
+        }
+
+        $sth->execute();
+        $idInserted = 0; // en caso de error, regresa id 0
+        if($sth->errorCode() == 0)
+            $idInserted =  $db->lastInsertId();
+        //else echo $sth->errorInfo()[2];
+
+        // print_r($db->errorInfo()); 
+        //  var_dump($sth);    
+        $sth->closeCursor();
+
+        return $idInserted;
+    }
     
    
     public function update($table, $data, $where, $whereBindArray = array())

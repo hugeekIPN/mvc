@@ -29,12 +29,12 @@ class m_saldo{
     /**
     * Guarda un nuevo usuario
     * @param Arreglo con los datos del usuario
-    * @return true si logra guardar los datos
+    * @return idSaldo - regresa el id del saldo insertado, 0 en caso de algun error
     **/
     
     public function nuevoSaldo($data)
     {                     
-       return $this->db->insert('saldo',  array (
+       return $this->db->insertLastId('saldo',  array (
             'saldo'         => $data['saldo']
         ));      
     }
