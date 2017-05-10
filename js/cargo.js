@@ -1,43 +1,41 @@
-var captura = {};
+var cargo = {};
 /**
-* Capturar inputs vista captura.php
+* cargor inputs vista cargo.php
 **/
-captura.elem ={
-    idCaptura:      $("#id-captura"),
+cargo.elem ={
+    idCargo:      $("#id-cargo"),
     mesContable:    $("#inputMesContable"),
     referencia:     $("#inputReferencia"),
-    fecha_docSalida:$("#inputFechaDoctoSalida"),
+   fecha_docSalida:$("#inputFechaDoctoSalida"),
     docSalida:      $("#inputDoctoSalida"),
     concepto:       $("#inputConcepto"),
     cargo:          $("#inputCargo"),
     saldo:          $("#inputSaldo"),
     IdSaldoBD:          $("#IdSaldoBD"),
-    formulario:     $("#formulario-captura"),
-    cont_datos:     $("#datos-capturas"),
+    formulario:     $("#formulario-cargo"),
+    cont_datos:     $("#datos-cargos"),
     btn_nuevo:      $("#btn-new"),
     btn_editar:     $("#btn-edit"),
     btn_save:       $("#btn-save"),
     btn_borrar:     $("#btn-delete"),
 };
 
-captura.verCapturas = function(idCaptura){
-    var elementos = captura.elem;
-    //*var action = "getCaptura";
-    elementos.idCaptura.val(idCaptura);
+cargo.verCargos = function(idCargo){
+    var elementos = cargo.elem;
+    //*var action = "getcargo";
+    elementos.idCargo.val(idCargo);
     //utilerias.removeErrorMessages();
-    var idSaldo;
-    
     $.ajax({
         type:   "post",
         url:    "ajax.php",
         data:   {
-            action:"getCaptura",
+            action:"getCargo",
             //*action: action,
-            idCaptura:  idCaptura
+            idCargo:  idCargo
         },
         success: function(result){
 			var res = JSON.parse(result);
-            idSaldo = res.saldo;
+            
 			if(res.status == "error"){
 				utilerias.displayErrorServerMessage(elem.msj_server, res.message);
 			}else{
@@ -46,11 +44,10 @@ captura.verCapturas = function(idCaptura){
                 elementos.btn_save.hide();
                 elementos.btn_borrar.show();
                 
-                $("#view-id-captura").text(res.idCaptura);
-                $("#view-mes-contable").text(res.mesContable);
-                $("#view-referencia").text(res.referencia);
-                $("#view-FechaDocto-Salida").text(res.fecha_docSalida);
-                $("#view-Docto-Salida").text(res.docSalida);
+                $("#view-id-cargo").text(res.id_cargo);
+                $("#view-mes-contable").text(res.mes_contable);
+                $("#view-FechaDocto-Salida").text(res.fecha_docto_salida);
+                $("#view-Docto-Salida").text(res.docto_salida);
                 $("#view-concepto").text(res.concepto);
                 $("#view-cargo").text(res.cargo);
                // $("#view-saldo").text(res.saldo);
@@ -62,41 +59,23 @@ captura.verCapturas = function(idCaptura){
         }
     });
     
-          $.ajax({
-			type: "post",
-			url: "ajax.php",
-			dataType: "json",
-			data: {
-                    saldoId: idSaldo,
-                    action: "getSaldo"
-				},
-                success: function(result){
-                if(result.status == "error"){
-                    utilerias.displayErrorServerMessage(elem.msj_server, result.message);
-                }else{
-                      $("#view-saldo").text(result.saldo);
-                  //document.getElementById("saldotd"+idSaldo).innerHTML = "$"+result.saldo;
-                        //location.reload();
-                    }
-                }
-		});
 };
 
-captura.add = function(editMode){
-	var data = captura.elem;
-	var action = "addCaptura";
+cargo.add = function(editMode){
+	var data = cargo.elem;
+	var action = "addCargo";
     
-    var idCaptura = 0;
+    var idcargo = 0;
     var forUpdate = false;
     
     if (editMode == true)
         forUpdate = true;
     
-	if((captura.validaDatos(data))){
+	if((cargo.validaDatos(data))){
         
         if ( editMode ) {
-            action = "updateCaptura";
-            idCaptura = $("#id-captura").val();
+            action = "updateCargo";
+            idCargo = $("#id-cargo").val();
         }    
         
         $.ajax({
@@ -122,7 +101,7 @@ captura.add = function(editMode){
 			url: "ajax.php",
 			dataType: "json",
 			data: {
-                    idCaptura:   idCaptura,
+                    idCargo:   idCargo,
                     mesContable:    data.mesContable.val(),
                     referencia:     data.referencia.val(),
                     fecha_docSalida: data.fecha_docSalida.val(),
@@ -144,9 +123,9 @@ captura.add = function(editMode){
 	}
 };
 
-captura.editCaptura = function () {
-    var elementos =  captura.elem;
-    var idCaptura = $("#view-id-captura").text();
+cargo.editcargo = function () {
+    var elementos =  cargo.elem;
+    var idcargo = $("#view-id-cargo").text();
     
     // utilerias.removeErrorMessages();
     
@@ -154,9 +133,9 @@ captura.editCaptura = function () {
         type:   "post",
         url:    "ajax.php",
         data:   {
-            action:"getCaptura",
+            action:"getCargo",
             //*action: action,
-            idCaptura:  idCaptura
+            idcargo:  idCargo
         },
        success: function(result){
                 var res = JSON.parse(result);
@@ -165,12 +144,12 @@ captura.editCaptura = function () {
                     utilerias.displayErrorServerMessage(elem.msj_server, res.message);
                 }else{
                 //mostramos y ocultamos los botones
-                elementos.btn_save.attr('onclick','captura.updateCaptura();');
+                elementos.btn_save.attr('onclick','cargo.updatecargo();');
                 elementos.btn_save.show();
                 elementos.btn_editar.hide();
                 
                   
-                elementos.idCaptura.val(res.idCaptura);
+                elementos.idcargo.val(res.idcargo);
                 elementos.mesContable.val(res.mesContable);
                 elementos.referencia.val(res.referencia);
                 elementos.fecha_docSalida.val(res.fecha_docSalida);
@@ -187,7 +166,7 @@ captura.editCaptura = function () {
 };
 
 
-captura.validaDatos = function (data) {
+cargo.validaDatos = function (data) {
     var valid = true;
     utilerias.removeErrorMessages();
     
@@ -219,9 +198,9 @@ captura.validaDatos = function (data) {
 };
 
 
-captura.deleteCaptura = function () {
-    var elementos = captura.elem;
-    var idCaptura = elementos.idCaptura.val();
+cargo.deleteCargo = function () {
+    var elementos = cargo.elem;
+    var idcargo = elementos.idcargo.val();
     var c = confirm('Está seguro de realizar la operación');
     if (c) {
         $.ajax({
@@ -229,8 +208,8 @@ captura.deleteCaptura = function () {
             url: "ajax.php",
             dataType: "json",
             data: {
-                action: "deleteCaptura",
-                idCaptura: idCaptura
+                action: "deleteCargo",
+                idcargo: idcargo
             },
            success: function(result){
                 if(result.status == "error"){
@@ -243,20 +222,22 @@ captura.deleteCaptura = function () {
     }
 };
 
-captura.updateCaptura = function () {
-    captura.add(true);
+cargo.updateCargo = function () {
+    cargo.add(true);
 };
 
-captura.getCargo = function () {
-    var data = captura.elem;
+
+cargo.getCargo = function () {
+    //var data = cargo.elem;
     var saldo = $("#saldoBD").val();
   
-    var cargo = data.cargo.val();
+    var cargo =  $("#inputCargo").val();
     saldo = parseInt(saldo) + parseInt(cargo);
-    data.saldo.val(saldo);
+    $("#inputSaldo").val(saldo);
 };
 
-captura.getSaldo = function (idSaldo){
+
+cargo.getSaldo = function (idSaldo){
       $.ajax({
 			type: "post",
 			url: "ajax.php",

@@ -7,7 +7,7 @@ require_once "controller/ProveedorController.php";
 require_once "controller/programaController.php";
 require_once "controller/subprogramaController.php";
 require_once "controller/especieController.php";
-require_once 'controller/capturaController.php';
+require_once 'controller/cargoController.php';
 require_once 'controller/saldoController.php';
 
 sessionController::startSession();
@@ -160,21 +160,21 @@ switch ($action) {
     /// FIN CRUD ESPECIES
     
     // CRUD ESPECIES
-    case 'addCaptura';
-        $captura = new capturaController($_POST['idCaptura']);
-        echo json_encode($captura->nuevaCaptura($_POST));
+    case 'addCargo';
+        $cargo = new cargoController($_POST['idCargo']);
+        echo json_encode($cargo->nuevoCargo($_POST));
         break;
-    case 'getCaptura';
-        $captura = new capturaController($_POST['idCaptura']);
-        echo json_encode($captura->getCaptura($_POST));
+    case 'getCargo';
+        $cargo = new cargoController($_POST['idCargo']);
+        echo json_encode($cargo->getCargo($_POST));
         break;
-    case 'updateCaptura':
-        $captura = new capturaController($_POST['idCaptura']);
-        echo json_encode($captura->updateCaptura($_POST));
+    case 'updateCargo':
+        $cargo = new cargoController($_POST['idCargo']);
+        echo json_encode($cargo->updateCargo($_POST));
         break;
-    case 'deleteCaptura':
-        $captura = new capturaController($_POST['idCaptura']);
-        echo json_encode($captura->deleteCaptura($_POST));
+    case 'deleteCargo':
+        $cargo = new cargoController($_POST['idCargo']);
+        echo json_encode($cargo->deleteCargo($_POST));
         break;
     
     /// FIN CRUD ESPECIES
@@ -185,7 +185,7 @@ switch ($action) {
         break;
         
     case 'getSaldo':
-        $saldo = new saldoController($_POST['saldoId']);
+        $saldo = new saldoController($_POST['idSaldo']);
         echo json_encode($saldo->getSaldo());
         break;        
 

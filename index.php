@@ -11,7 +11,7 @@ require_once("controller/programaController.php");
 require_once("controller/subprogramaController.php");
 require_once("controller/especieController.php");
 require_once("controller/apoyoController.php");
-require_once ("controller/capturaController.php");
+require_once ("controller/cargoController.php");
 
 
 sessionController::startSession(); 
@@ -26,7 +26,7 @@ $proveedor   = new ProveedorController("1");
 $especie= new EspecieController(null);
 $apoyo = new ApoyoGastoController(null, null, null);
 
-$captura = new capturaController(null);
+$cargo = new cargoController(null);
 
 $option=isset($_REQUEST['op']) ?  $_REQUEST['op']: null;
 
@@ -79,7 +79,7 @@ $option=isset($_REQUEST['op']) ?  $_REQUEST['op']: null;
         $apoyo->viewPage();
         break;
     case 'cargos' :
-        $captura -> index();
+        $cargo -> index();
         break;
 
     default:    

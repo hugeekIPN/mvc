@@ -7,7 +7,6 @@
                         <tr>
                             <th>ID Cargo</th>
                             <th>Mes Contable</th>
-                            <th>Referencia</th>
                             <th>Fecha Docto.Salida</th>
                             <th>Docto.Salida</th>
                             <th>Concepto</th>
@@ -16,17 +15,16 @@
                         </tr>
                     </thead>
                    <tbody>
-                    <?php foreach ($captura as $capturas): ?>
-                        <tr onclick="captura.verCapturas(<?=$capturas['idCaptura']; ?>);">
-                            <td><?= $capturas['idCaptura']; ?></td>
-                            <td><?= $capturas['mesContable']; ?></td>
-                            <td><?= $capturas['referencia']; ?></td>
-                            <td><?= $capturas['fecha_docSalida']; ?></td>
-                            <td><?= $capturas['docSalida']; ?></td>
-                            <td><?= $capturas['concepto']; ?></td>
-                            <td>$<?= $capturas['cargo']; ?></td>
-                            <td id="saldotd<?= $capturas['saldo']; ?>" onclick="captura.getSaldo(<?= $capturas['saldo']; ?>);">
-                                <?= $capturas['saldo'];?>
+                    <?php foreach ($cargo as $cargos): ?>
+                        <tr onclick="cargo.verCargos(<?=$cargos['id_cargo']; ?>);">
+                            <td><?= $cargos['id_cargo']; ?></td>
+                            <td><?= $cargos['mes_contable']; ?></td>
+                            <td><?= $cargos['fecha_docto_salida']; ?></td>
+                            <td><?= $cargos['docto_salida']; ?></td>
+                            <td><?= $cargos['concepto']; ?></td>
+                            <td>$<?= $cargos['cargo']; ?></td>
+                            <td id="saldotd<?= $cargos['saldo']; ?>" onclick="cargo.getSaldo(<?= $cargos['saldo']; ?>);">
+                                <?= $cargos['id_saldo'];?>
                             </td>
                         </tr>	
                     <?php endforeach; ?>
@@ -46,8 +44,8 @@
             </div>
 
             <!-- formulario -->
-            <form id="formulario-captura" class="formulario" >
-                <input type="hidden" name="id-captura" id="id-captura" class="titulos">
+            <form id="formulario-cargo" class="formulario" >
+                <input type="hidden" name="id-cargo" id="id-cargo" class="titulos">
                 <div class="input form-group">
                     <label class="control-label titulos" for="inputMesContable" >Mes Contable:</label>
                     <input required type="month" class="form-control" id="inputMesContable" min="2014-01-01" autofocus="">
@@ -70,7 +68,7 @@
                 </div>
                 <div class="input form-group">
                     <label class="control-label titulos" for="inputCargo">Cargo:</label>
-                    <input required="" type="number" class="form-control" id="inputCargo" placeholder="Ingrese Cargo $0.0" min="0" onblur="captura.getCargo();">
+                    <input required="" type="number" class="form-control" id="inputCargo" placeholder="Ingrese Cargo $0.0" min="0" onblur="cargo.getCargo();">
                 </div>
                 <div class="input form-group">
                     <label class="control-label titulos" for="inputSaldo">Saldo:</label>
@@ -82,9 +80,9 @@
             <!-- fin formulario -->
 
             <!-- datos a mostrar en texto plano -->
-            <div id="datos-capturas" hidden>
-                <p class="titulos"><strong>ID Captura</strong></p>		
-                <p class="id-captura id" id="view-id-captura"></p>
+            <div id="datos-cargos" hidden>
+                <p class="titulos"><strong>ID cargo</strong></p>		
+                <p class="id-cargo id" id="view-id-cargo"></p>
 
                 <p class="titulos">Mes Contable</p>	
                 <p id="view-mes-contable"></p>
@@ -122,19 +120,19 @@
                 </button>
             </section>
             <section >
-                <button id="btn-edit" onclick="captura.editCaptura();" hidden >
+                <button id="btn-edit" onclick="cargo.editCargo();" hidden >
                     <img src="assets/iconos/Recurso 7.png" alt="Editar">
                     <small >Editar</small>
                 </button>
             </section>
             <section >
-                <button id="btn-save" onclick="captura.add();"  >
+                <button id="btn-save" onclick="cargo.add();"  >
                     <img src="assets/iconos/Recurso 8.png" alt="Guardar">
                     <small>Guardar</small>
                 </button>
             </section>
             <section >
-                <button  id="btn-delete" onclick="captura.deleteCaptura();" hidden>
+                <button  id="btn-delete" onclick="cargo.deleteCargo();" hidden>
                     <img src="assets/iconos/Recurso 9.png" alt="Borrar">
                     <small>Borrar</small>
                 </button>
