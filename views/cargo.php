@@ -23,8 +23,8 @@
                             <td><?= $cargos['docto_salida']; ?></td>
                             <td><?= $cargos['concepto']; ?></td>
                             <td>$<?= $cargos['cargo']; ?></td>
-                            <td id="saldotd<?= $cargos['saldo']; ?>" onclick="cargo.getSaldo(<?= $cargos['saldo']; ?>);">
-                                <?= $cargos['id_saldo'];?>
+                            <td>
+                                <?= $cargos['saldo'];?>
                             </td>
                         </tr>	
                     <?php endforeach; ?>

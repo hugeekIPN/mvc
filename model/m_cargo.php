@@ -40,7 +40,7 @@ class m_cargo {
     }
     
     public function getAllCargos(){
-        $query  = "SELECT * FROM cargo";
+        $query  = "SELECT * FROM cargo as c INNER JOIN saldo as s ON c.id_saldo = s.id_saldo";
         $result = $this->db->select($query,array());
         if(count($result)>0)
             return $result;
