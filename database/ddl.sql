@@ -299,21 +299,3 @@ CREATE TABLE IF NOT EXISTS cargo
     ON DELETE NO ACTION
     ON UPDATE CASCADE
 )ENGINE=InnoDB  DEFAULT CHARSET=utf8;
-
-
--- -----------------------------------------------------
--- Table `captura`
--- -----------------------------------------------------
--- Desechar captura, es la misma que saldo
-Create Table If Not Exists `captura`(
-  `idCaptura` INT UNSIGNED NOT NULL AUTO_INCREMENT
-  ,`mesContable` varchar(250) Not Null
-  ,`referencia` int Not Null
-  ,`fecha_docSalida` date Not Null
-  ,`docSalida` varchar(250) Not Null
-  ,`concepto` varchar(250) Not Null
-  ,`cargo` Double Not Null
-  ,`saldo` Double Not Null
-  ,`fecha_creacion` DATETIME Null
-  ,`ultima_modi` TIMESTAMP Null
-);

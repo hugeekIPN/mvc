@@ -46,8 +46,6 @@ captura.verCapturas = function(idCaptura){
                 elementos.btn_save.hide();
                 elementos.btn_borrar.show();
                 
-                idSaldo = res.saldo;
-                
                 $("#view-id-captura").text(res.idCaptura);
                 $("#view-mes-contable").text(res.mesContable);
                 $("#view-referencia").text(res.referencia);
@@ -101,28 +99,6 @@ captura.add = function(editMode){
             idCaptura = $("#id-captura").val();
         }    
         
-		$.ajax({
-			type: "post",
-			url: "ajax.php",
-			dataType: "json",
-			data: {
-                    idCaptura:   idCaptura,
-                    mesContable:    data.mesContable.val(),
-                    referencia:     data.referencia.val(),
-                    fecha_docSalida: data.fecha_docSalida.val(),
-                    docSalida:      data.docSalida.val(), 
-                    concepto:       data.concepto.val(),
-                    cargo:          data.cargo.val(),
-                    saldo:          data.IdSaldoBD.val(),
-                    action: action
-				},
-                success: function(result){
-                if(result.status == "error"){
-                    utilerias.displayErrorServerMessage(elem.msj_server, result.message);
-                }
-                }
-		});
-        
         $.ajax({
 			type: "post",
 			url: "ajax.php",
@@ -135,10 +111,36 @@ captura.add = function(editMode){
                 if(result.status == "error"){
                     utilerias.displayErrorServerMessage(elem.msj_server, result.message);
                 }else{
-                        location.reload();
+                        var idSaldo= result.idSaldo;
+                      
                     }
                 }
 		});
+        
+		$.ajax({
+			type: "post",
+			url: "ajax.php",
+			dataType: "json",
+			data: {
+                    idCaptura:   idCaptura,
+                    mesContable:    data.mesContable.val(),
+                    referencia:     data.referencia.val(),
+                    fecha_docSalida: data.fecha_docSalida.val(),
+                    docSalida:      data.docSalida.val(), 
+                    concepto:       data.concepto.val(),
+                    cargo:          data.cargo.val(),
+                    saldo:   data.IdSaldoBD.val(),
+                    action: action
+				},
+                success: function(result){
+                if(result.status == "error"){
+                    utilerias.displayErrorServerMessage(elem.msj_server, result.message);
+                }else{  location.reload();
+                     }
+                }
+		});
+        
+
 	}
 };
 

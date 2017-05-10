@@ -78,7 +78,7 @@ $option=isset($_REQUEST['op']) ?  $_REQUEST['op']: null;
     case 'apoyos':
         $apoyo->viewPage();
         break;
-    case 'captura' :
+    case 'cargos' :
         $captura -> index();
         break;
 

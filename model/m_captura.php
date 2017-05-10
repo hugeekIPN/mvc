@@ -11,7 +11,7 @@ class m_captura {
     public function nuevaCaptura($data){
         $data['saldo']++;  // id saldo nuevo
         
-        $this->db->Insert('captura',array(
+        $this->db->Insert('cargo',array(
             'mesContable'       => $data['mesContable'],
             'referencia'        => $data['referencia'],
             'fecha_docSalida'   => $data['fecha_docSalida'],

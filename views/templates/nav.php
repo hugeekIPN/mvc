@@ -29,7 +29,7 @@
 			        <li><a href="index.php?op=apoyos">Apoyos</a></li>
 		    			<li><a href="#">Gastos</a></li>
 		  
-                    <li><a href="index.php?op=captura">Captura</a></li>
+                    <li><a href="index.php?op=cargos">Cargos</a></li>
 			    </ul>
 	      	</li>
 	      	<li class=" dropdown">

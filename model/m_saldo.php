@@ -33,12 +33,10 @@ class m_saldo{
     **/
     
     public function nuevoSaldo($data)
-    {             
-        $this->db->insert('saldo',  array (
+    {                     
+       return $this->db->insert('saldo',  array (
             'saldo'         => $data['saldo']
-        ));
-        
-       return true;       
+        ));      
     }
 
     /**

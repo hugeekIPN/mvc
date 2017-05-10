@@ -77,6 +77,35 @@ class Database extends PDO
        
     }
     
+       public function insertSaldo($table, $data)
+    {
+        $db = self::getInstance();
+        $db->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING );            
+
+        ksort($data);
+        
+        $fieldNames = implode('`, `', array_keys($data));
+        $fieldValues = ':' . implode(', :', array_keys($data));
+        
+        $sth = $db->prepare("INSERT INTO $table (`$fieldNames`) VALUES ($fieldValues)");
+       
+        
+        foreach ($data as $key => $value) {
+            $sth->bindValue(":$key", $value);
+        }
+                
+        $count = $sth->execute();  
+        
+        $sth = $db->prepare("SELECT LAST_INSERT_ID()");
+        $count = $sth->execute();  
+        // print_r($db->errorInfo()); 
+        //  var_dump($sth);    
+        $sth->closeCursor();  
+
+        return $count;     
+       
+    }
+    
    
     public function update($table, $data, $where, $whereBindArray = array())
     {

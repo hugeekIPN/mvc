@@ -5,7 +5,7 @@
                 <table id="example3" class="display" cellspacing="0" width="100%" class="table-hover">
                     <thead>
                         <tr>
-                            <th>ID Captura</th>
+                            <th>ID Cargo</th>
                             <th>Mes Contable</th>
                             <th>Referencia</th>
                             <th>Fecha Docto.Salida</th>
@@ -75,7 +75,7 @@
                 <div class="input form-group">
                     <label class="control-label titulos" for="inputSaldo">Saldo:</label>
                     <input type="number" class="form-control" value="<?php foreach ($saldo as $saldos): echo $saldos['saldo'];               endforeach; ?>" id="inputSaldo" placeholder="Saldo" min="0" disabled required>
-                    <input type="hidden" class="form-control" value="<?php foreach ($saldo as $saldos): echo $saldos['saldo'];               endforeach; ?>" id="saldoBD"  min="0" >
+                    <input type="hidden" class="form-control" value="<?php  foreach ($saldo as $saldos): echo $saldos['saldo'];               endforeach;  ?>" id="saldoBD"  min="0" >
                     <input type="hidden" class="form-control" value="<?php foreach ($saldo as $saldos): echo $saldos['id_saldo'];               endforeach; ?>" id="IdSaldoBD"  min="0" >
                 </div>
             </form>

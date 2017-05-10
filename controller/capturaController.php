@@ -29,13 +29,16 @@ class capturaController {
 
             $captura = $this->model->getAllCapturas();
 
+            
             $saldo = $this->modelSaldo->getUltimoSaldo();
+            
             require_once("views/templates/header.php");
 
             require_once("views/templates/nav.php");
             require_once("views/captura.php");
             require_once("views/templates/footer.php");
-        } else {    require_once("views/login.php");
+        } else {
+            require_once("views/login.php");
         }
     }
 
@@ -131,11 +134,11 @@ class capturaController {
         $idCaptura		= $data['idCaptura'];
 		$mesContable		= $data['mesContable'];
 		$referencia 		= $data['referencia'];
-        /*
+    
 		if ($this->esVacio($mesContable)) {
 			$errors[] = "Mes Contable no puede ser vacío";
 		}       
-        */
+        
             
         if ($this->esVacio($referencia) ) {
 			$errors[] = "Referencia no puede ser vacío";
