@@ -8,10 +8,10 @@
                             <th>ID Cargo</th>
                             <th>Mes Contable</th>
                             <th>Fecha Docto.Salida</th>
-                            <th>Docto.Salida</th>
+                            
                             <th>Concepto</th>
                             <th>Cargo</th>
-                            <th>Saldo</th>
+                       
                         </tr>
                     </thead>
                    <tbody>
@@ -19,13 +19,11 @@
                         <tr onclick="cargo.verCargos(<?=$cargos['id_cargo']; ?>);">
                             <td><?= $cargos['id_cargo']; ?></td>
                             <td><?= $cargos['mes_contable']; ?></td>
-                            <td><?= $cargos['fecha_docto_salida']; ?></td>
-                            <td><?= $cargos['docto_salida']; ?></td>
+                            <td><?= date('d-m-Y',strtotime($cargos['fecha_docto_salida'])); ?></td>
+                            
                             <td><?= $cargos['concepto']; ?></td>
                             <td>$<?= $cargos['cargo']; ?></td>
-                            <td>
-                                <?= $cargos['saldo'];?>
-                            </td>
+                  
                         </tr>	
                     <?php endforeach; ?>
                     </tbody>
