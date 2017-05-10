@@ -81,6 +81,11 @@ $option=isset($_REQUEST['op']) ?  $_REQUEST['op']: null;
     case 'cargos' :
         $cargo -> index();
         break;
+/*
+    case 'test':
+        var_dump($cargo->test()); 
+        break;
+        */
 
     default:    
         $login->index();

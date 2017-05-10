@@ -27,28 +27,15 @@ class m_cargo {
     public function getCargo($idCargo)
     {
         $result = $this->db->select(
-                "SELECT * FROM cargo WHERE id_cargo = :id",
-                array("id" => $idCargo));
-        if ( count($result) > 0 )
+            "SELECT *  
+            FROM cargo as c
+            INNER JOIN saldo as s ON c.id_saldo = s.id_saldo
+            WHERE id_cargo = :id",array("id" => $idCargo));   
+
+        if ( $result )
             return $result[0];
         else
             return array();
-        
-        
-                $result = array();
-        $query = "SELECT programas_id_programa as id_programa, p.saldo as saldo, s.id_subprograma,  s.nombre, s.descripcion, s.fecha_creacion, s.ultima_modificacion 
-            FROM gasto AS s            
-            INNER JOIN saldo as p on s.programas_id_programa=p.id_programa
-            WHERE s.id_subprograma = :id";
-
-        $select = $this->db->select($query,
-                    array ("id" => $id_subprograma)
-                  );
-
-        if ($select)
-            $result = $select[0];
-
-        return $result;
         
     }
     

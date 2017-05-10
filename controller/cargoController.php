@@ -148,6 +148,13 @@ class cargoController {
 		return $errors;
 
 	}
+
+    /**
+    * funcion para testear al estilo Isma
+    **/
+    public function test(){
+        return $this->model->getCargo(2);
+    }
 	
 }
 
