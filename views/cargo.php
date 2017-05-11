@@ -1,3 +1,4 @@
+<p class="titulos" style="margin-left:20%; margin-top: 20px; margin-bottom: 10px;">Saldo: $ <?php  echo number_format($saldo); ?>  M.N.</p>
 <div class="container col-xs-12 container-proveedor "onload="oCurrentValue.innerText = estado.isContentEditable;">
     <div class="form-group col-xs-8 izq">
         <div class="col-xs-12 registros">

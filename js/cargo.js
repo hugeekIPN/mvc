@@ -81,6 +81,7 @@ cargo.add = function(editMode){
             url: "ajax.php",
             dataType: "json",
             data: {
+                    idCargo : data.idCargo.val(),
                     mesContable:    data.mesContable.val(),
                     fecha_docSalida: data.fecha_docSalida.val(),
                     docSalida:      data.docSalida.val(), 
@@ -91,41 +92,13 @@ cargo.add = function(editMode){
                 success: function(result){
                 if(result.status == "error"){
                     utilerias.displayErrorServerMessage(elem.msj_server, result.message);
-                }else{  location.reload();
+                }else{  
+                        utilerias.displaySuccessMessage($("#mensajes-server"),result.message);
+                        location.reload();
                      }
                 }
         });
 	}
-};
-
-cargo.save = function(){
-    var data = cargo.elem;
-    
-    if((cargo.validaDatos(data))){
-        
-        $.ajax({
-            type: "post",
-            url: "ajax.php",
-            dataType: "json",
-            data: {
-                    mesContable:    data.mesContable.val(),
-                    fecha_docSalida: data.fecha_docSalida.val(),
-                    docSalida:      data.docSalida.val(), 
-                    concepto:       data.concepto.val(),
-                    cargo:          data.cargo.val(),
-                    action: "addCargo"
-                },
-                success: function(result){
-                if(result.status == "error"){
-                    utilerias.displayErrorServerMessage(elem.msj_server, result.message);
-                }else{  location.reload();
-                     }
-                }
-        });
-        
-
-    }
-
 };
 
 cargo.editCargo = function () {
@@ -198,7 +171,7 @@ cargo.validaDatos = function (data) {
 
 cargo.deleteCargo = function () {
     var elementos = cargo.elem;
-    var idcargo = elementos.idcargo.val();
+    var idCargo = elementos.idCargo.val();
     var c = confirm('Está seguro de realizar la operación');
     if (c) {
         $.ajax({
@@ -207,7 +180,7 @@ cargo.deleteCargo = function () {
             dataType: "json",
             data: {
                 action: "deleteCargo",
-                idcargo: idcargo
+                idCargo: idCargo
             },
            success: function(result){
                 if(result.status == "error"){
@@ -215,7 +188,7 @@ cargo.deleteCargo = function () {
                 }else{
                     location.reload();
                 }
-            }
+           }
         });
     }
 };
@@ -223,34 +196,3 @@ cargo.deleteCargo = function () {
 cargo.updateCargo = function () {
     cargo.add(true);
 };
-
-
-cargo.getCargo = function () {
-    //var data = cargo.elem;
-    var saldo = $("#saldoBD").val();
-  
-    var cargo =  $("#inputCargo").val();
-    saldo = parseInt(saldo) + parseInt(cargo);
-    $("#inputSaldo").val(saldo);
-};
-
-
-cargo.getSaldo = function (idSaldo){
-      $.ajax({
-			type: "post",
-			url: "ajax.php",
-			dataType: "json",
-			data: {
-                    saldoId: idSaldo,
-                    action: "getSaldo"
-				},
-                success: function(result){
-                if(result.status == "error"){
-                    utilerias.displayErrorServerMessage(elem.msj_server, result.message);
-                }else{
-                      document.getElementById("saldotd"+idSaldo).innerHTML = "$"+result.saldo;
-                        //location.reload();
-                    }
-                }
-		});
-}

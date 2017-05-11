@@ -47,15 +47,17 @@ class m_cargo {
     }
     
     public function updateCargo($updateData,$idCargo) {
-        $this->db->update("cargo", 
+       return $this->db->update("cargo", 
                     $updateData, 
-                    "idcargo = :id",
+                    "id_cargo = :id",
                     array( "id" => $idCargo)
                );
-        return true;
+        
     }
     
     public function deleteCargo($idCargo) {
-         return $this->db->delete("cargo","idcargo = :id", array("id" => $idCargo));
+        
+        return $this->db->delete("cargo","id_cargo = :id", array("id" => $idCargo));
+         
     }
 }

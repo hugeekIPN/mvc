@@ -175,9 +175,10 @@ Proveedores.addproveedor = function (editMode) {
 			success: function(result){
 				if(result.status == "error"){	      utilerias.displayErrorServerMessage($("#mensajes-server"),result.message);
 				}else {
+                    utilerias.displaySuccessMessage($("#mensajes-server"),result.message);
                     location.reload();
 					$("#formulario-usuario :input").val('');
-					utilerias.displaySuccessMessage($("#mensajes-server"),result.message);
+					
                     
                      
 				}
