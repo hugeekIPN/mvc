@@ -161,7 +161,7 @@ switch ($action) {
     
     // CRUD ESPECIES
     case 'addCargo';
-        $cargo = new cargoController($_POST['idCargo']);
+        $cargo = new cargoController(null);
         echo json_encode($cargo->nuevoCargo($_POST));
         break;
     case 'getCargo';

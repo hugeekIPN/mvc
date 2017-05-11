@@ -70,12 +70,13 @@ class saldoController {
             );
             
         }else{
-           $this->model->nuevoSaldo($postData);
+            $idSaldo = $this->model->nuevoSaldo($postData);
             
             
                  $result = array(
                     "status"=> "success",
-                    "message" => "Registro exitoso"
+                    "message" => "Registro exitoso",
+                    "idSaldo" => $idSaldo
                 );      
             
       

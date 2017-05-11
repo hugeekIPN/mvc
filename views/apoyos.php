@@ -37,8 +37,9 @@
 	    			<thead>
 	    				<tr>
 	    					<th>Folio</th>
-	    					<th>Nombre</th>
-	    					<th>Fecha</th>
+	    					<th>Concepto</th>
+	    					<th>Evento</th>
+	    					<th>Factura</th>
 	    				</tr>
 	    			</thead>
 	    			<tbody>

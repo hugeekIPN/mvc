@@ -5,13 +5,11 @@ var cargo = {};
 cargo.elem ={
     idCargo:      $("#id-cargo"),
     mesContable:    $("#inputMesContable"),
-    referencia:     $("#inputReferencia"),
    fecha_docSalida:$("#inputFechaDoctoSalida"),
     docSalida:      $("#inputDoctoSalida"),
     concepto:       $("#inputConcepto"),
     cargo:          $("#inputCargo"),
     saldo:          $("#inputSaldo"),
-    IdSaldoBD:          $("#IdSaldoBD"),
     formulario:     $("#formulario-cargo"),
     cont_datos:     $("#datos-cargos"),
     btn_nuevo:      $("#btn-new"),
@@ -65,7 +63,7 @@ cargo.add = function(editMode){
 	var data = cargo.elem;
 	var action = "addCargo";
     
-    var idcargo = 0;
+    var idCargo = 0;
     var forUpdate = false;
     
     if (editMode == true)
@@ -78,49 +76,56 @@ cargo.add = function(editMode){
             idCargo = $("#id-cargo").val();
         }    
         
-        $.ajax({
-			type: "post",
-			url: "ajax.php",
-			dataType: "json",
-			data: {
-                    saldo: data.saldo.val(),
-                    action: "addSaldo"
-				},
-                success: function(result){
-                if(result.status == "error"){
-                    utilerias.displayErrorServerMessage(elem.msj_server, result.message);
-                }else{
-                        var idSaldo= result.idSaldo;
-                      
-                    }
-                }
-		});
-        
 		$.ajax({
-			type: "post",
-			url: "ajax.php",
-			dataType: "json",
-			data: {
-                    idCargo:   idCargo,
+            type: "post",
+            url: "ajax.php",
+            dataType: "json",
+            data: {
                     mesContable:    data.mesContable.val(),
-                    referencia:     data.referencia.val(),
                     fecha_docSalida: data.fecha_docSalida.val(),
                     docSalida:      data.docSalida.val(), 
                     concepto:       data.concepto.val(),
                     cargo:          data.cargo.val(),
-                    saldo:   data.id_saldo.val(),
                     action: action
-				},
+                },
                 success: function(result){
                 if(result.status == "error"){
                     utilerias.displayErrorServerMessage(elem.msj_server, result.message);
                 }else{  location.reload();
                      }
                 }
-		});
+        });
+	}
+};
+
+cargo.save = function(){
+    var data = cargo.elem;
+    
+    if((cargo.validaDatos(data))){
+        
+        $.ajax({
+            type: "post",
+            url: "ajax.php",
+            dataType: "json",
+            data: {
+                    mesContable:    data.mesContable.val(),
+                    fecha_docSalida: data.fecha_docSalida.val(),
+                    docSalida:      data.docSalida.val(), 
+                    concepto:       data.concepto.val(),
+                    cargo:          data.cargo.val(),
+                    action: "addCargo"
+                },
+                success: function(result){
+                if(result.status == "error"){
+                    utilerias.displayErrorServerMessage(elem.msj_server, result.message);
+                }else{  location.reload();
+                     }
+                }
+        });
         
 
-	}
+    }
+
 };
 
 cargo.editCargo = function () {
@@ -173,10 +178,6 @@ cargo.validaDatos = function (data) {
     if ($.trim(data.mesContable.val())=="") {
         valid = false;
         utilerias.displayErrorMessage(data.mesContable,"Se debe ingresar mes contable");
-    }
-    if ($.trim(data.referencia.val())=="") {
-        valid = false;
-        utilerias.displayErrorMessage(data.referencia,"Se debe ingresar referencia");
     }
     if ($.trim(data.fecha_docSalida.val())=="") {
         valid = false;

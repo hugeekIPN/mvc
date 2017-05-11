@@ -66,7 +66,7 @@
                 </div>
                 <div class="input form-group">
                     <label class="control-label titulos" for="inputSaldo">Saldo:</label>
-                    <input type="number" class="form-control" value="<?php  echo $saldo['saldo'];            ?>" id="inputSaldo" placeholder="Saldo" min="0" disabled required>
+                    <input type="number" class="form-control" value="<?php  echo $saldo ?>" id="inputSaldo" placeholder="Saldo" min="0" disabled required>
                 </div>
             </form>
             <!-- fin formulario -->
@@ -91,7 +91,7 @@
                 
                 <p class="titulos">Cargo</p>
                 <p id="view-cargo"></p>
-                <p class="titulos">Saldo</p>
+                <p class="titulos">Saldo Capturado</p>
                 <p id="view-saldo"></p>
 <!--                
                 <p class="titulos">Saldo</p>

@@ -31,6 +31,7 @@ class cargoController {
             
             
             $saldo = $this->modelSaldo->getUltimoSaldo();
+            $saldo = $saldo? $saldo['saldo'] : 0;
             
             require_once("views/templates/header.php");
 
@@ -42,7 +43,7 @@ class cargoController {
         }
     }
 
-    public function nuevaCargo($postData) {
+    public function nuevoCargo($postData) {
         $result = array();
         $errors = false; // $this->validaDatos($postData);
 
@@ -53,6 +54,10 @@ class cargoController {
                 "status" => "error",
                 "message" => $message);
         } else {
+
+            $idSaldo = $this->realizarCargo($postData['cargo']);
+            $postData['saldo'] = $idSaldo;
+
             $this->model->nuevoCargo($postData);
 
             $result = array(
@@ -62,9 +67,20 @@ class cargoController {
         
         return $result;
     }
+
+    private function realizarCargo($cargo = 0){
+        $saldo = $this->modelSaldo->getUltimoSaldo();
+        $saldo = $saldo? $saldo['saldo'] : 0;
+        $nuevoSaldo = $saldo + $cargo;
+        $idNuevoSaldo = $this->modelSaldo->nuevoSaldo($nuevoSaldo);
+
+        return $idNuevoSaldo;
+    }
     
     public function getCargo() {
         $result = $this->model->getCargo($this->idCargo);
+        $fechaDoc = $result['fecha_docto_salida'];
+        $result['fecha_docto_salida'] = date('d-m-Y',strtotime($fechaDoc));
         if ($result) {
             $result['status'] = "success";
         } else {

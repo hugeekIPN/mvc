@@ -9,11 +9,9 @@ class m_cargo {
     }
     
     public function nuevoCargo($data){
-        $data['saldo']++;  // id saldo nuevo
-        
+               
         $this->db->insert('cargo',array(
             'mes_contable'       => $data['mesContable'],
-           // 'referencia'        => $data['referencia'],
             'fecha_docto_salida'   => $data['fecha_docSalida'],
             'docto_salida'         => $data['docSalida'],
             'concepto'          => $data['concepto'],

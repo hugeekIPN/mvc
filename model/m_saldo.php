@@ -32,10 +32,10 @@ class m_saldo{
     * @return idSaldo - regresa el id del saldo insertado, 0 en caso de algun error
     **/
     
-    public function nuevoSaldo($data)
+    public function nuevoSaldo($saldo)
     {                     
        return $this->db->insertLastId('saldo',  array (
-            'saldo'         => $data['saldo']
+            'saldo'         => $saldo
         ));      
     }
 
@@ -85,7 +85,7 @@ class m_saldo{
         $query = "SELECT * from saldo order by id_saldo desc limit 1";
         $result = $this->db->select($query, array());
         if(count($result)>0)
-            return $result;
+            return $result[0];
         else
             return 0;
     }
