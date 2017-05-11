@@ -28,6 +28,7 @@
                 $( "#datepicker4" ).datepicker();
                 $( "#datepicker5" ).datepicker();
                 $( "#datepicker6" ).datepicker();
+                $( "#inputFechaDoctoSalida").datepicker();
               } );
               </script>
      <script>

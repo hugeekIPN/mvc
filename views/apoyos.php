@@ -47,22 +47,9 @@
 	    						<td>1</td>
 	    						<td>unos</td>
 	    						<td>unos2</td>
+	    						<td>dato</td>
 	    					</tr>
-	    					<tr>
-	    						<td>1</td>
-	    						<td>unos</td>
-	    						<td>unos2</td>
-	    					</tr>
-	    					<tr>
-	    						<td>1</td>
-	    						<td>unos</td>
-	    						<td>unos2</td>
-	    					</tr>
-	    					<tr>
-	    						<td>1</td>
-	    						<td>unos</td>
-	    						<td>unos2</td>
-	    					</tr>
+	    					
 	    			</tbody>
 	    		</table>	
 	    	</div>   
