@@ -50,7 +50,7 @@ cargo.verCargos = function(idCargo){
                 $("#view-Docto-Salida").text(res.docto_salida);
                 $("#view-concepto").text(res.concepto);
                 $("#view-cargo").text(res.cargo);
-               // $("#view-saldo").text(res.saldo);
+                $("#view-saldo").text(res.saldo);
           
                 
                 elementos.formulario.hide();
@@ -108,7 +108,7 @@ cargo.add = function(editMode){
                     docSalida:      data.docSalida.val(), 
                     concepto:       data.concepto.val(),
                     cargo:          data.cargo.val(),
-                    saldo:   data.IdSaldoBD.val(),
+                    saldo:   data.id_saldo.val(),
                     action: action
 				},
                 success: function(result){
@@ -123,9 +123,9 @@ cargo.add = function(editMode){
 	}
 };
 
-cargo.editcargo = function () {
+cargo.editCargo = function () {
     var elementos =  cargo.elem;
-    var idcargo = $("#view-id-cargo").text();
+    var idCargo = $("#view-id-cargo").text();
     
     // utilerias.removeErrorMessages();
     
@@ -135,7 +135,7 @@ cargo.editcargo = function () {
         data:   {
             action:"getCargo",
             //*action: action,
-            idcargo:  idCargo
+            idCargo:  idCargo
         },
        success: function(result){
                 var res = JSON.parse(result);
@@ -144,16 +144,16 @@ cargo.editcargo = function () {
                     utilerias.displayErrorServerMessage(elem.msj_server, res.message);
                 }else{
                 //mostramos y ocultamos los botones
-                elementos.btn_save.attr('onclick','cargo.updatecargo();');
+                elementos.btn_save.attr('onclick','cargo.updateCargo();');
                 elementos.btn_save.show();
                 elementos.btn_editar.hide();
                 
                   
-                elementos.idcargo.val(res.idcargo);
-                elementos.mesContable.val(res.mesContable);
+                elementos.idCargo.val(res.id_cargo);
+                elementos.mesContable.val(res.mes_contable);
                 elementos.referencia.val(res.referencia);
-                elementos.fecha_docSalida.val(res.fecha_docSalida);
-                elementos.docSalida.val(res.docSalida);
+                elementos.fecha_docSalida.val(res.fecha_docto_salida);
+                elementos.docSalida.val(res.docto_salida);
                 elementos.concepto.val(res.concepto);
                 elementos.cargo.val(res.cargo);
                 elementos.saldo.val(res.saldo);

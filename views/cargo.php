@@ -46,11 +46,7 @@
                 <input type="hidden" name="id-cargo" id="id-cargo" class="titulos">
                 <div class="input form-group">
                     <label class="control-label titulos" for="inputMesContable" >Mes Contable:</label>
-                    <input required type="month" class="form-control" id="inputMesContable" min="2014-01-01" autofocus="">
-                </div>
-                <div class="input form-group">
-                    <label class="control-label titulos" for="inputReferencia">Referencia:</label>
-                    <input required type="number" class="form-control" id="inputReferencia" min="0" placeholder="N&uacute;mero referencia">
+                    <input required type="text" class="form-control" id="inputMesContable" autofocus="">
                 </div>
                 <div class="input form-group">
                     <label class="control-label titulos" for="inputFechaDoctoSalida">Fecha Docto Salida:</label>
@@ -70,9 +66,7 @@
                 </div>
                 <div class="input form-group">
                     <label class="control-label titulos" for="inputSaldo">Saldo:</label>
-                    <input type="number" class="form-control" value="<?php foreach ($saldo as $saldos): echo $saldos['saldo'];               endforeach; ?>" id="inputSaldo" placeholder="Saldo" min="0" disabled required>
-                    <input type="hidden" class="form-control" value="<?php  foreach ($saldo as $saldos): echo $saldos['saldo'];               endforeach;  ?>" id="saldoBD"  min="0" >
-                    <input type="hidden" class="form-control" value="<?php foreach ($saldo as $saldos): echo $saldos['id_saldo'];               endforeach; ?>" id="IdSaldoBD"  min="0" >
+                    <input type="number" class="form-control" value="<?php  echo $saldo['saldo'];            ?>" id="inputSaldo" placeholder="Saldo" min="0" disabled required>
                 </div>
             </form>
             <!-- fin formulario -->
@@ -85,8 +79,6 @@
                 <p class="titulos">Mes Contable</p>	
                 <p id="view-mes-contable"></p>
                 
-                <p class="titulos">Referencia</p>	
-                <p id="view-referencia"></p>
                 
                 <p class="titulos">Fecha Docto. Salida</p>	
                 <p id="view-FechaDocto-Salida"></p>

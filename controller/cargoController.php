@@ -28,7 +28,7 @@ class cargoController {
             $titulo = "cargos";
 
             $cargo = $this->model->getAllCargos();
-
+            
             
             $saldo = $this->modelSaldo->getUltimoSaldo();
             
