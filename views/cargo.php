@@ -50,11 +50,11 @@
                 </div>
                 <div class="input form-group">
                     <label class="control-label titulos" for="inputFechaDoctoSalida">Fecha Docto Salida:</label>
-                    <input required type="date" class="form-control" id="inputFechaDoctoSalida" min="2014-01-01">
+                    <input type="text" class="form-control" id="inputFechaDoctoSalida" >
                 </div> 
                 <div class="input form-group">
                     <label class="control-label titulos" for="inputDoctoSalida">Docto. Salida:</label>
-                    <input required type="text" class="form-control" id="inputDoctoSalida" placeholder="Documento Salida">
+                    <input  type="text" class="form-control" id="inputDoctoSalida" placeholder="Documento Salida">
                 </div>
                 <div class="input form-group">
                     <label class="control-label titulos" for="inputConcepto">Concepto:</label>

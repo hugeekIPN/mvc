@@ -156,7 +156,6 @@ cargo.editCargo = function () {
                   
                 elementos.idCargo.val(res.id_cargo);
                 elementos.mesContable.val(res.mes_contable);
-                elementos.referencia.val(res.referencia);
                 elementos.fecha_docSalida.val(res.fecha_docto_salida);
                 elementos.docSalida.val(res.docto_salida);
                 elementos.concepto.val(res.concepto);
