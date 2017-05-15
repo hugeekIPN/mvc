@@ -186,6 +186,7 @@ cargo.deleteCargo = function () {
                 if(result.status == "error"){
                     utilerias.displayErrorServerMessage(elem.msj_server, result.message);
                 }else{
+                    utilerias.displaySuccessMessage($("#mensajes-server"),result.message);
                     location.reload();
                 }
            }

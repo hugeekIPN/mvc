@@ -189,7 +189,7 @@
                                                                                                                                          
 					<div class="form-group ">
 					  <label class="control-label titulos" for="inputNumeroProveedores">Teléfono (10 dígitos) :</label>
-					  <input  type="text" class="form-control" id="inputNumeroProveedores" placeholder="Lada + Teléfono">
+					  <input  type="number" class="form-control" id="inputNumeroProveedores" placeholder="Lada + Teléfono">
 					</div>
 
 				</form>

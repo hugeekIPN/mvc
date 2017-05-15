@@ -103,12 +103,7 @@ Proveedores.verProveedor = function (proveedorId){
 
 Proveedores.pais = function (){
     var elem= Proveedores.elementos;
-    var valor = document.getElementById("inputPaisProveedores").value;
-    
-
-    
-    // var edos = ["Alabama", "Alaska", "Arizona", "Arkansas", "California", "Colorado", "Connecticut", "Delaware", "District Of Columbia", "Florida", "Georgia", "Hawaii", "Idaho", "Illinois", "Indiana", "Iowa", "Kansas", "Kentucky", "Louisiana", "Maine", "Maryland", "Massachusetts", "Michigan", "Minnesota", "Mississippi", "Missouri", "Montana", "Nebraska", "Nevada", "New Hampshire", "New Jersey", "New Mexico", "New York", "North Carolina", "North Dakota", "Ohio", "Oklahoma", "Oregon", "Pennsylvania", "Rhode Island", "South Carolina", "South Dakota", "Tennessee", "Texas", "Utah", "Vermont", "Virginia", "Washington", "West Virginia", "Wisconsin", "Wyoming" ];    
-    
+    var valor = document.getElementById("inputPaisProveedores").value;  
     
     if(valor=="México"){ 
         document.getElementById('inputEstadoProveedores_text').type = 'hidden';
@@ -295,6 +290,7 @@ Proveedores.deleteproveedor = function(){
 				if(result.status == "error")
 					utilerias.displayErrorMessage($("#mensajes-server"),result.message);
 			     else
+                     utilerias.displaySuccessMessage($("#mensajes-server"),result.message);
                      location.reload();
 			}
 		});
@@ -329,6 +325,12 @@ Proveedores.validaDatosproveedor = function(data,forUpdate){
     if(rfc.length < "12" || rfc.length > "14" ){
 		valid = false;
 		utilerias.displayErrorMessage(data.rfc,"El RFC no es válido");
+	}
+    
+      var tel = data.telefono.val();
+    if(tel.length < "10" || tel.length > "10" ){
+		valid = false;
+		utilerias.displayErrorMessage(data.telefono,"El teléfono no es válido. Recuerde agregar LADA.");
 	}
     
     if(data.correo_contacto.val() != ""){

@@ -67,9 +67,7 @@ class m_especie{
     **/
     public function deleteEspecie($id_especie)  /// update Estado = eliminado
     {    
-        $this->db->delete("especies", "id_especie = :id", array( "id" => $id_especie ));        
-        
-        return true;
+        return $this->db->delete("especies", "id_especie = :id", array( "id" => $id_especie ));          
     }
 
     /**

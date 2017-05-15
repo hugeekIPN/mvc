@@ -110,8 +110,19 @@ class EspecieController
 	* FALTA VALIDAR RELACIONES
 	**/
 	public function deleteEspecie(){
-		 $this->model->deleteEspecie($this->idEspecie);        
-        return true;
+        $result = array();
+        
+		if($this->model->deleteEspecie($this->idEspecie)){
+			$result = array(
+				"status" => "success",
+				"message" => "Registro eliminado");
+		}else{
+			$result = array(
+				"status" => "error",
+				"message" => "No se pudo realizar la operación");
+		}
+
+		return $result;
 	}
 
 
