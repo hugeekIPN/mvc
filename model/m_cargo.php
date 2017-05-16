@@ -60,4 +60,14 @@ class m_cargo {
         return $this->db->delete("cargo","id_cargo = :id", array("id" => $idCargo));
          
     }
+
+    public function update_Saldo($updateData,$idSaldo) {
+         return $this->db->update("saldo", 
+                    $updateData, 
+                    "id_saldo = :id",
+                    array( "id" => $idSaldo)
+               );
+    }
+    
+
 }
