@@ -116,23 +116,36 @@ class cargoController {
          $newData['cargo'] = $data['cargo'];
          $newData['id_saldo'] = $currentcargo['id_saldo'];
          
+         $currentcargo['saldo'] = ( $currentcargo['saldo'] - $currentcargo['cargo']) + $data['cargo'];
+         
          /* Actualiza saldo */
          $saldo = $this->modelSaldo->getUltimoSaldo();
          $saldo = $saldo? $saldo['saldo'] : 0;
          
+         
+        
+         
          $NewSaldo = ( $saldo - $currentcargo['cargo']) + $data['cargo'];
-         $this->modelSaldo->nuevoSaldo($NewSaldo);
+         
          /* Actualiza saldo */
          
          
          if($newData){
-             $this->model->updateCargo($newData, $this->idCargo);
-	     } 
-        $result = array(
-            "status" => "success",
-            "message" => "Registro actualizado");
-        
-         }
+             
+             $update= $this->model->updateCargo($newData, $this->idCargo);
+	         
+            if($update){
+                 $this->modelSaldo->nuevoSaldo($NewSaldo);
+                $result = array(
+                    "status" => "success",
+                    "message" => "Registro actualizado");
+
+                 }else{
+                    $result = array(
+                    "status" => "error");
+                }
+            }
+        }
          return $result;
     }
 

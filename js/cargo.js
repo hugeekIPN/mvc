@@ -50,7 +50,6 @@ cargo.verCargos = function(idCargo){
                 $("#view-cargo").text(res.cargo);
                 $("#view-saldo").text(res.saldo);
           
-                
                 elementos.formulario.hide();
                 elementos.cont_datos.show();
             }
@@ -69,7 +68,10 @@ cargo.add = function(editMode){
     if (editMode == true)
         forUpdate = true;
     
+    
+    
 	if((cargo.validaDatos(data))){
+        data.btn_save.attr('onclick',''); // Deshabilita 
         
         if ( editMode ) {
             action = "updateCargo";
@@ -93,6 +95,7 @@ cargo.add = function(editMode){
                 if(result.status == "error"){
                     utilerias.displayErrorServerMessage(elem.msj_server, result.message);
                 }else{  
+                        data.btn_save.attr('onclick','cargo.add();');
                         utilerias.displaySuccessMessage($("#mensajes-server"),result.message);
                         location.reload();
                      }

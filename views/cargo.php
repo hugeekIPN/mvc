@@ -1,4 +1,4 @@
-<p class="titulos" style="margin-left:20%; margin-top: 20px; margin-bottom: 10px;">Saldo: $ <?php  echo number_format($saldo); ?>  M.N.</p>
+<p class="titulos" style="margin-left:20%; margin-top: 20px; margin-bottom: 10px;">Saldo actual: $ <?php  echo number_format($saldo, 2); ?>  M.N.</p>
 <div class="container col-xs-12 container-proveedor "onload="oCurrentValue.innerText = estado.isContentEditable;">
     <div class="form-group col-xs-8 izq">
         <div class="col-xs-12 registros">
@@ -9,10 +9,8 @@
                             <th>ID Cargo</th>
                             <th>Mes Contable</th>
                             <th>Fecha Docto.Salida</th>
-                            
                             <th>Concepto</th>
                             <th>Cargo</th>
-                       
                         </tr>
                     </thead>
                    <tbody>
@@ -21,7 +19,6 @@
                             <td><?= $cargos['id_cargo']; ?></td>
                             <td><?= $cargos['mes_contable']; ?></td>
                             <td><?= date('d-m-Y',strtotime($cargos['fecha_docto_salida'])); ?></td>
-                            
                             <td><?= $cargos['concepto']; ?></td>
                             <td>$<?= $cargos['cargo']; ?></td>
                   
