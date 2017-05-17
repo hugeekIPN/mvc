@@ -9,6 +9,7 @@ require_once "controller/subprogramaController.php";
 require_once "controller/especieController.php";
 require_once 'controller/cargoController.php';
 require_once 'controller/saldoController.php';
+require_once 'controller/apoyoController.php';
 
 sessionController::startSession();
 
@@ -189,7 +190,25 @@ switch ($action) {
         echo json_encode($saldo->getSaldo());
         break;        
 
+      /// CRUD APOYOSGASTOS
+    case 'addApoyo';
+        $apoyo = new ApoyoGastoController(null);
+        echo json_encode($apoyo->nuevoApoyo($_POST));
+        break;
+    case 'getApoyo';
+        $apoyo = new ApoyoGastoController($_POST['idApoyo'], null,null);
+        echo json_encode($apoyo->getApoyoGasto());
+        break;
+    case 'updateApoyo':
+        $apoyo = new ApoyoGastoController($_POST['idApoyo']);
+        echo json_encode($apoyo->updateApoyo($_POST));
+        break;
+    case 'deleteApoyo':
+        $apoyo = new ApoyoGastoController($_POST['idApoyo']);
+        echo json_encode($cargo->deleteApoyo($_POST));
+        break;
         
+
     default:
         break;
 }

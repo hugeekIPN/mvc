@@ -17,7 +17,7 @@ class m_apoyo_gasto{
     public function getApoyoGasto($id_apoyo) 
     {
         $result = $this->db->select(
-                    "SELECT * FROM apoyos_gastos WHERE id_apoyo = :id",
+                    "SELECT * FROM apoyosgastos WHERE id_apoyo = :id",
                     array ("id" => $id_apoyo)
                   );
         if ( count($result) > 0 )
@@ -93,7 +93,7 @@ class m_apoyo_gasto{
     * Obtiene todos los apoyos_gastos de la base de datos
     **/
     public function getAllApoyosGastos(){
-        $query = "SELECT * from apoyos_gastos ORDER BY id_apoyo DESC";
+        $query = "SELECT * from apoyosgastos  ORDER BY id_apoyo DESC";
         $result = $this->db->select($query, array());
         if(count($result)>0)
             return $result;

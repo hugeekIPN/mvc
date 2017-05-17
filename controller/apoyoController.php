@@ -33,13 +33,9 @@ class ApoyoGastoController {
         if ($login->_isLoggedIn()) {
             $usuario = sessionController::get('username');
             $titulo = "Apoyos";
-
-            $apoyos = $this->model->getApoyoGasto();
-
             require_once("views/templates/header.php");
-
             require_once("views/templates/nav.php");
-            require_once("views/apoyos.php"); // Cual es?
+            require_once("views/apoyos.php");
             require_once("views/templates/footer.php");
         } else {
             require_once("views/login.php");
@@ -54,8 +50,10 @@ class ApoyoGastoController {
          $eventos = $this->modelEvento->getAllEventos();
         
          $proveedores = $this->modelProveedor->getAllProveedores();
-        require_once("views/templates/header.php");
+         $apoyo =  $this->model->getAllApoyosGastos();
 
+
+            require_once("views/templates/header.php");
             require_once("views/templates/nav.php");
             require_once("views/apoyos.php"); // Cual es?
             require_once("views/templates/footer.php");

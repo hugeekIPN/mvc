@@ -11,7 +11,7 @@
 					</button>
 			</section>
 		</div>
-		<section class="filtros col-xs-4 radios ">
+		<section class="filtros col-xs-4 radios " id="tipo">
 			<label class="radio-inline"><input type="radio" name="optradio">En espera</label>
 			<label class="radio-inline"><input type="radio" name="optradio">Activo</label>
 			<label class="radio-inline"><input type="radio" name="optradio">Cancelado</label>
@@ -42,15 +42,16 @@
 	    					<th>Factura</th>
 	    				</tr>
 	    			</thead>
-	    			<tbody>
-	    					<tr>
-	    						<td>1</td>
-	    						<td>unos</td>
-	    						<td>unos2</td>
-	    						<td>dato</td>
+	    			<?php foreach ($apoyo as $apoyos): ?>
+                        <tbody>
+	    					<tr onclick="apoyo.verApoyo(<?php echo $apoyos['id_apoyo']; ?>);">
+	    						<td><?= $apoyos['id_apoyo']; ?></td>
+	    						<td><?= $apoyos['concepto']; ?></td>
+	    						<td><?= $apoyos['eventos_id_evento']; ?></td>
+	    						<td><?= $apoyos['factura']; ?></td>
 	    					</tr>
-	    					
-	    			</tbody>
+	    				</tbody>
+                    <?php endforeach; ?>
 	    		</table>	
 	    	</div>   
 	</div>
@@ -91,13 +92,18 @@
 						</select>
 					</span>
 				<button class="btn btn-sm btn-danger pull-right" id="close">X</button>
-				 <span class="pull-right"><button class="btn btn-primary">Guardar</button></span>
+				<span class="pull-right margin_left"><button  onclick="cargo.deleteCargo();" class="btn btn-primary">Eliminar</button></span>
+				<span class="pull-right margin_left"><button onclick="apoyo.add();" class="btn btn-primary">Guardar</button></span>
+				<span class="pull-right margin_left"><button id="btn-add-apoyo" onclick="location.reload();" class="btn btn-primary">Nuevo</button></span>
+				
+				 
 				</h1>
 
 				<!-- formularios -->
 				<form id="formulario-libreto-ana-maria">
 			
-					
+					<input type="hidden" class="form-control" name="id-apoyo" id="id-apoyo" >
+
 					<div class=" form-group col-xs-6">
 						<label for="concepto">Concepto</label>
 						<input type="text" class="form-control" name="concepto" id="concepto" >
@@ -134,6 +140,7 @@
 						<label for="folio_apoyo">Folio</label>
 						<input type="text" class="form-control" name="folio_apoyo" id="folio_apoyo" >
 					</div>
+
 					<div class=" form-group col-xs-2">
 						<label for="frecuencia">Frecuencia</label>
 						<select type="text" class="form-control" name="frecuencia" id="frecuencia" >
@@ -260,7 +267,7 @@
 					</div>
 					<div class=" form-group col-xs-3">
 						<label for="fechadoctosalida">Fecha de documento de salida</label>
-						<input type="text" id="datepicker6" class="form-control" placeholder="Click">
+						<input type="text" id="fechadoctosalida" class="form-control" placeholder="Click">
 					</div >
 					 
 					<div class=" input form-group col-xs-3">
@@ -272,16 +279,12 @@
 						<input type="text" class="form-control" name="poliza" id="poliza" value="">
 					</div>
 					<div class=" input form-group col-xs-4">
-						<label for="cargo">Cargo</label>
-						<input type="text" class="form-control" name=cargo" id="cargo" value="">
+						<label for="abono">Abono</label>
+						<input type="text" class="form-control" name="abono" id="abono" value="">
 					</div>
 					<div class=" input form-group col-xs-4">
-						<label for="poliza">Abono</label>
-						<input type="text" class="form-control" name="poliza" id="poliza" value="">
-					</div>
-					<div class=" input form-group col-xs-4">
-						<label for="poliza">Saldo</label>
-						<input type="text" class="form-control" name="poliza" id="poliza" value="" disabled>
+						<label for="saldo">Saldo</label>
+						<input type="text" class="form-control" name="saldo" id="saldo" value="" disabled>
 					</div>
 				</form>
 					<button class="btn btn-primary pull-right">Guardar</button>
