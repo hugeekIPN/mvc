@@ -5,6 +5,8 @@ include_once("loginController.php");
 include_once("model/m_apoyo_gasto.php");
 include_once "model/m_evento.php";
 include_once("model/m_proveedor.php");
+include_once("model/m_saldo.php");
+
 /**
  * 
  */
@@ -16,6 +18,7 @@ class ApoyoGastoController {
     public $model;
     public $modelEvento;
     public $modelProveedor;
+    public $modelSaldo;
 
     public function __construct($idApoyo, $idEvento, $idProveedor) {
         $this->idApoyo = $idApoyo;
@@ -24,6 +27,7 @@ class ApoyoGastoController {
         $this->modelEvento = new m_evento();
         $this->idProveedor = $idProveedor;
         $this->modelProveedor = new m_proveedor();
+        $this->modelSaldo = new m_saldo();
     }
 
     public function index() {
@@ -52,6 +56,8 @@ class ApoyoGastoController {
          $proveedores = $this->modelProveedor->getAllProveedores();
          $apoyo =  $this->model->getAllApoyosGastos();
 
+         $saldo = $this->modelSaldo->getUltimoSaldo();
+         $saldo = $saldo? $saldo['saldo'] : 0;
 
             require_once("views/templates/header.php");
             require_once("views/templates/nav.php");
@@ -75,7 +81,7 @@ class ApoyoGastoController {
 
     public function nuevoApoyoGasto($postData) {
         $result = array();
-        $errors = $this->validaDatos($postData);
+        $errors = false; //$this->validaDatos($postData);
 
         if ($errors) {
             $message = implode("<br>", $errors);
@@ -84,6 +90,15 @@ class ApoyoGastoController {
                 "status" => "error",
                 "message" => $message);
         } else {
+            $saldo = $this->modelSaldo->getUltimoSaldo();
+            $saldo = $saldo? $saldo['saldo'] : 0;
+
+            $nuevoSaldo = $saldo - $postData['importe'];  /// ABONO
+
+            $idNuevoSaldo = $this->modelSaldo->nuevoSaldo($nuevoSaldo);
+
+            $postData['id_saldo'] = $idNuevoSaldo;
+
             $this->model->nuevoApoyoGasto($postData);
 
             $result = array(
@@ -198,10 +213,7 @@ class ApoyoGastoController {
 
     private function validaDatos($data) {
         $errors = array();
-
-        $apoyo_gasto            = $data['apoyo_gasto'];
-        $especies_id_especies   = $data['especies_id_especies'];
-        $anio                   = $data['anio'];
+/*
         $folio                  = $data['folio'];
         $tipo                   = $data['tipo'];
         $cantidad               = $data['cantidad'];
@@ -217,62 +229,11 @@ class ApoyoGastoController {
         $observaciones          = $data['observaciones'];
         $eventos_id_evento      = $data['evento_id_evento'];
         $estado                 = $data['estado'];
-        $fecha_creacion         = $data['fecha_creacion'];
-        $ultima_modificacion    = $data['ultima_modificacion'];
+*/
+        $importe = $data['importe'];
 
-        if ($this->esVacio($apoo_gasto)) {
-            $errors[] = "ApoyoGasto no puede ser vacío";
-        }
-        if ($this->esVacio($especies_id_especies)) {
-            $errors[] = "Especie no puede ser vacío";
-        }
-        if ($this->esVacio($anio)) {
-            $errors[] = "Año no puede ser vacío";
-        }
-        if ($this->esVacio($folio)) {
-            $errors[] = "Folio no puede ser vacío";
-        }
-        if ($this->esVacio($tipo)) {
-            $errors[] = "Tipo no puede ser vacío";
-        }
-        if ($this->esVacio($cantidad)) {
-            $errors[] = "Cantidad no puede ser vacío";
-        }
-        if ($this->esVacio($unidad)) {
-            $errors[] = "Unidad no puede ser vacío";
-        }
-        if ($this->esVacio($pais)) {
-            $errors[] = "País no puede ser vacío";
-        }
-        if ($this->esVacio($entidad)) {
-            $errors[] = "Entidad no puede ser vacío";
-        }
-        if ($this->esVacio($descripcion)) {
-            $errors[] = "Descripción no puede ser vacío";
-        }
-        if ($this->esVacio($moneda)) {
-            $errors[] = "Moneda no puede ser vacío";
-        }
-        if ($this->esVacio($tipo_cambio)) {
-            $errors[] = "Tipo_Cambio no puede ser vacío";
-        }
-        if ($this->esVacio($fcambio)) {
-            $errors[] = "fcambio no puede ser vacío";
-        }
-        if ($this->esVacio($freferencia)) {
-            $errors[] = "freferencia no puede ser vacío";
-        }
-        if ($this->esVacio($evento_id_evento)) {
-            $errors[] = "evento_id_evento no puede ser vacío";
-        }
-        if ($this->esVacio($estado)) {
-            $errors[] = "Estado no puede ser vacío";
-        }
-        if ($this->esVacio($fecha_creacion)) {
-            $errors[] = "fecha de cccreación no puede ser vacío";
-        }
-        if ($this->esVacio($ultima_modificacion)) {
-            $errors[] = "última modificación no puede ser vacío";
+        if ($this->esVacio($importe)) {
+            $errors[] = "Debe ingresar un importe";
         }
 
 

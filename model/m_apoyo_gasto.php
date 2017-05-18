@@ -17,8 +17,9 @@ class m_apoyo_gasto{
     public function getApoyoGasto($id_apoyo) 
     {
         $result = $this->db->select(
-                    "SELECT * FROM apoyosgastos WHERE id_apoyo = :id",
-                    array ("id" => $id_apoyo)
+                    "SELECT * FROM apoyosgastos as a 
+                    INNER JOIN saldo as s ON a.id_saldo = s.id_saldo 
+                    WHERE id_apoyo = :id",  array ("id" => $id_apoyo)
                   );
         if ( count($result) > 0 )
             return $result[0];
@@ -33,31 +34,39 @@ class m_apoyo_gasto{
     **/
     public function nuevoApoyoGasto($data)
     {             
-        $this->db->insert('apoyos_gastos',  array (
-            'apoyo_gasto'         => $data['apoyo-gasto'],  
-            'especies_id_especie'         => $data['especies_id_especie'], 
-            'anio'         => $data['anio'], 
-            'folio'         => $data['folio'], 
+        return $this->db->insert('apoyosgastos',  array ( 
             'tipo'         => $data['tipo'], 
-            'cantidad'         => $data['cantidad'], 
-            'unidad'         => $data['unidad'], 
+            'estatus'      => $data['estatus'],
+            'concepto'      => $data['concepto'],
+            'importe'         => $data['importe'],
+            'moneda'         => $data['moneda'], 
+            //'tipo_cambio'         => $data['tipo_cambio'], 
+            'id_saldo'         =>  $data['id_saldo'],
+            'mes_contable_anamaria'  => $data['mes_contable_anamaria'],
+            'mes_captura_anamaria'   => $data['mes_captura_anamaria'],
+            'referencia_anamaria'         => $data['referencia_anamaria'],
+            'folio'         => $data['folio'],
+            'frecuencia'         => $data['frecuencia'],
+            'eventos_id_evento'         => $data['eventos_id_evento'],
+            'id_proveedor'         => $data['id_proveedor'],
+            'id_donatario'         => '1', // $data['id_donatario'], 
+            'tipo_apoyo'         => $data['tipo_apoyo'], 
             'pais'         => $data['pais'], 
             'entidad'         => $data['entidad'], 
             'descripcion'         => $data['descripcion'], 
-            'moneda'         => $data['moneda'], 
-            'tipo_cambio'         => $data['tipo_cambio'], 
-            'fcambio'         => $data['fcambio'], 
-            'freferencia'         => $data['freferencia'], 
-            'fcaptura'         => $data['fcaptura'], 
             'observaciones'         => $data['observaciones'], 
-            'frecuencia'         => $data['frecuencia'], 
-            'eventos'         => $data['eventos'], 
-            'estado'         => $data['estado'],
-            'fecha_creacion'         => $data['fecha_creacion'],
-            'ultima_modificacion'         => $data['ultima_modificacion']
+            'factura'         => $data['factura'], 
+            'referencia'         => $data['referencia'], 
+           // 'unidad'         => $data['unidad'],
+            //'anio'         => $data['anio'], 
+             'mes_contabel_libretaflujo'         => $data['mes_contabel_libretaflujo'], 
+            'fecha_docto_salida'         => $data['fecha_docto_salida'], 
+            'docto_salida'         => $data['docto_salida'], 
+            'poliza'         => $data['poliza']
+
         ));
         
-       return true;       
+          
     }
 
     /**
@@ -93,12 +102,12 @@ class m_apoyo_gasto{
     * Obtiene todos los apoyos_gastos de la base de datos
     **/
     public function getAllApoyosGastos(){
-        $query = "SELECT * from apoyosgastos  ORDER BY id_apoyo DESC";
+        $query = "SELECT * from apoyosgastos as a INNER JOIN  eventos as e ON a.eventos_id_evento= e.id_evento ";
         $result = $this->db->select($query, array());
         if(count($result)>0)
             return $result;
         else
-            return null;
+            return array();
     }
 }
 

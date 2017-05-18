@@ -11,7 +11,7 @@
 					</button>
 			</section>
 		</div>
-		<section class="filtros col-xs-4 radios " id="tipo">
+		<section class="filtros col-xs-4 radios " id="status">
 			<label class="radio-inline"><input type="radio" name="optradio">En espera</label>
 			<label class="radio-inline"><input type="radio" name="optradio">Activo</label>
 			<label class="radio-inline"><input type="radio" name="optradio">Cancelado</label>
@@ -33,7 +33,7 @@
 	<!-- contenedor de tabla  -->
 	<div class="form-group col-xs-12 margin_top" >
 			<div class="cont">
-	    		<table id="example7" class="display" cellspacing="0" class="table-hover">
+	    		<table id="example7" class="display" cellspacing="0" class="table-hover" >
 	    			<thead>
 	    				<tr>
 	    					<th>Folio</th>
@@ -47,7 +47,7 @@
 	    					<tr onclick="apoyo.verApoyo(<?php echo $apoyos['id_apoyo']; ?>);">
 	    						<td><?= $apoyos['id_apoyo']; ?></td>
 	    						<td><?= $apoyos['concepto']; ?></td>
-	    						<td><?= $apoyos['eventos_id_evento']; ?></td>
+	    						<td><?= $apoyos['nombre']; ?></td>
 	    						<td><?= $apoyos['factura']; ?></td>
 	    					</tr>
 	    				</tbody>
@@ -83,18 +83,18 @@
 			<div id="cont-formulario-apoyo" class="form_apoyos">
 
 			<h1 class="titulo_centrado">Capturar Apoyos<span class=" form-group col-xs-2">
-						<select type="text" class="form-control" name="frecuencia" id="frecuencia" >
-							<option value="activo">Activo</option>
-							<option value="espera">Espera</option>
-							<option value="cancelado">Cancelado</option>
-							<option value="finalizado">Finalizado</option>
+						<select type="text" class="form-control" name="status" id="status" >
+							<option value="1">Activo</option>
+							<option value="2">Espera</option>
+							<option value="3">Cancelado</option>
+							<option value="4">Finalizado</option>
 														
 						</select>
 					</span>
 				<button class="btn btn-sm btn-danger pull-right" id="close">X</button>
 				<span class="pull-right margin_left"><button  onclick="cargo.deleteCargo();" class="btn btn-primary">Eliminar</button></span>
 				<span class="pull-right margin_left"><button onclick="apoyo.add();" class="btn btn-primary">Guardar</button></span>
-				<span class="pull-right margin_left"><button id="btn-add-apoyo" onclick="location.reload();" class="btn btn-primary">Nuevo</button></span>
+				<span class="pull-right margin_left"><button id="ver_apoyo" onclick="location.reload();" class="btn btn-primary">Nuevo</button></span>
 				
 				 
 				</h1>
@@ -111,7 +111,7 @@
 
 					<div class=" form-group col-xs-6">
 						<label for="abono">Abono</label>
-						<input type="text" class="form-control" name="abono" id="abono" >
+						<input type="text" onblur="apoyo.abono();" class="form-control" name="abono" id="abono" >
 					</div >
 					<h3 class="h3form">1.- Libreta Ana María</h3> 
 					<div class=" input form-group col-xs-3">
@@ -144,12 +144,12 @@
 					<div class=" form-group col-xs-2">
 						<label for="frecuencia">Frecuencia</label>
 						<select type="text" class="form-control" name="frecuencia" id="frecuencia" >
-							<option value="anual">Anual</option>
-							<option value="bimestral">Bimestral</option>
-							<option value="mensual">Mensual</option>
-							<option value="quincenal">Quincenal</option>
-							<option value="semanal">Semanal</option>
-							<option value="unico">Único</option>
+							<option value="6">Anual</option>
+							<option value="5">Bimestral</option>
+							<option value="4">Mensual</option>
+							<option value="3">Quincenal</option>
+							<option value="2">Semanal</option>
+							<option value="1">Único</option>
 						</select>
 					</div>
 					
@@ -175,8 +175,8 @@
 					<div class=" form-group col-xs-2">
 						<label for="Tipodeapoyo">Tipo de Apoyo</label>
 						<select type="text" class="form-control" name="Tipodeapoyo" id="Tipodeapoyo" >
-							<option value="especie">Especie</option>
-							<option value="importe">Importe</option>
+							<option value="2">Especie</option>
+							<option value="1">Importe</option>
 						</select>
 					</div >
 					<div class=" form-group col-xs-1">
@@ -199,7 +199,7 @@
 					</div>
 					<div class=" form-group col-xs-2">
 						<label for="importe_apoyo">Importe</label>
-						<input type="text" class="form-control" name="importe_apoyo" id="importe_apoyo" >
+						<input type="text" class="form-control" name="importe_apoyo" id="importe_apoyo" disabled="">
 					</div>
 					<div class=" form-group col-xs-2">
 						<label for="moneda_apoyo">Moneda</label>
@@ -280,14 +280,14 @@
 					</div>
 					<div class=" input form-group col-xs-4">
 						<label for="abono">Abono</label>
-						<input type="text" class="form-control" name="abono" id="abono" value="">
+						<input type="text" class="form-control" name="abono2" id="abono2" value="" disabled="">
 					</div>
 					<div class=" input form-group col-xs-4">
-						<label for="saldo">Saldo</label>
-						<input type="text" class="form-control" name="saldo" id="saldo" value="" disabled>
+						<label for="saldo">Saldo capturado:</label>
+						<input type="text" class="form-control" name="saldo" id="saldo" value="<?= $saldo; ?>" disabled>
 					</div>
 				</form>
-					<button class="btn btn-primary pull-right">Guardar</button>
+					<button onclick="apoyo.add();" class="btn btn-primary pull-right">Guardar</button>
 				
 				<!--Subir archivos -->
 				<div class="row subir-archivos">
