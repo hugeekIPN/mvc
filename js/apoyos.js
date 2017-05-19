@@ -16,6 +16,7 @@ apoyo.elem ={
     frecuencia:          $("#frecuencia"),
     evento:          $("#evento"),
     proveedor:          $("#proveedor"),
+    donatario:          $("#donatario"),
     Tipodeapoyo:          $("#Tipodeapoyo"),
     paises:          $("#paises"),
     estadooregion:          $("#estadooregion"),
@@ -30,7 +31,6 @@ apoyo.elem ={
     fechadoctosalida:          $("#fechadoctosalida"),
     documentosalida:          $("#documentosalida"),
     poliza:          $("#poliza"),
-    // abono:          $("#abono"),
     idSaldo: $("#saldo"),
 
     archivo_up_pdf:          $("#archivo_up_pdf"),
@@ -67,8 +67,8 @@ apoyo.verApoyo = function(idApoyo){
 				utilerias.displayErrorServerMessage(elem.msj_server, res.message);
 			}else{
                 //mostramos y ocultamos los botones
-                elementos.btn_editar.show();
-                elementos.btn_save.hide();
+                elementos.btn_save.show();
+                elementos.btn_save.attr('onclick','apoyo.updateApoyo();');
                 elementos.btn_borrar.show();
                 
                 elementos.status.val(res.estatus);
@@ -82,11 +82,14 @@ apoyo.verApoyo = function(idApoyo){
                 elementos.frecuencia.val(res.frecuencia);
                 elementos.evento.val(res.eventos_id_evento);
                 elementos.proveedor.val(res.id_proveedor);
+                elementos.donatario.val(res.id_donatario);
                 elementos.Tipodeapoyo.val(res.tipo_apoyo);
                 elementos.paises.val(res.pais);
                 elementos.estadooregion.val(res.entidad);
                 elementos.numerodefactura.val(res.factura);
                 elementos.importe_apoyo.val(res.importe);
+                elementos.abono.val(res.importe);
+                elementos.abono2.val(res.importe);
                 elementos.moneda_apoyo.val(res.moneda);
                 elementos.referencia_apoyo.val(res.referencia);
                 elementos.observaciones.val(res.observaciones);
@@ -95,9 +98,7 @@ apoyo.verApoyo = function(idApoyo){
                 elementos.fechadoctosalida.val(res.fecha_docto_salida);
                 elementos.documentosalida.val(res.docto_salida);
                 elementos.poliza.val(res.poliza);
-                elementos.saldo.val(res.saldo);
-                // elementos.formulario.hide();
-                // elementos.cont_datos.show();
+                elementos.idSaldo.val(res.saldo);
             }
         }
     });
@@ -121,7 +122,7 @@ apoyo.add = function(editMode){
         
         if ( editMode ) {
             action = "updateApoyo";
-            idApoyo = $("#id-apoyo").val();
+            idApoyo = data.idApoyo.val();
         }    
         
 		$.ajax({
@@ -143,6 +144,7 @@ apoyo.add = function(editMode){
                     frecuencia: data.frecuencia.val(),
                     eventos_id_evento: data.evento.val(),
                     id_proveedor: data.proveedor.val(),
+                    id_donatario: data.donatario.val(),
                     tipo_apoyo:    data.Tipodeapoyo.val(),
                     pais:       data.paises.val(),
                     entidad:    data.estadooregion.val(),
@@ -164,8 +166,8 @@ apoyo.add = function(editMode){
                     utilerias.displayErrorServerMessage(elem.msj_server, result.message);
                 }else{  
                         data.btn_save.attr('onclick','apoyo.add();');
-                      //  utilerias.displaySuccessMessage($("#mensajes-server"),result.message);
-                       // location.reload();
+                         utilerias.displaySuccessMessage($("#mensajes-server"),result.message);
+                         location.reload();
                      }
                 }
         });
@@ -193,7 +195,7 @@ apoyo.editapoyo = function () {
                     utilerias.displayErrorServerMessage(elem.msj_server, res.message);
                 }else{
                 //mostramos y ocultamos los botones
-                elementos.btn_save.attr('onclick','apoyo.updateapoyo();');
+                elementos.btn_save.attr('onclick','apoyo.updateApoyo();');
                 elementos.btn_save.show();
                 elementos.btn_editar.hide();
                 elementos.idapoyo.val(res.id_apoyo);
@@ -230,9 +232,9 @@ apoyo.validaDatos = function (data) {
 };
 
 
-apoyo.deleteapoyo = function () {
+apoyo.deleteApoyo = function () {
     var elementos = apoyo.elem;
-    var idapoyo = elementos.idapoyo.val();
+    var idApoyo = elementos.idApoyo.val();
     var c = confirm('Está seguro de realizar la operación');
     if (c) {
         $.ajax({
@@ -240,8 +242,8 @@ apoyo.deleteapoyo = function () {
             url: "ajax.php",
             dataType: "json",
             data: {
-                action: "deleteapoyo",
-                idapoyo: idapoyo
+                action: "deleteApoyo",
+                idApoyo: idApoyo
             },
            success: function(result){
                 if(result.status == "error"){
@@ -255,7 +257,7 @@ apoyo.deleteapoyo = function () {
     }
 };
 
-apoyo.updateapoyo = function () {
+apoyo.updateApoyo = function () {
     apoyo.add(true);
 };
 
@@ -264,4 +266,39 @@ apoyo.abono = function(){
 
     data.importe_apoyo.val(data.abono.val());
     data.abono2.val(data.abono.val());
+};
+
+
+apoyo.nuevo = function(){
+    var elementos = apoyo.elem;
+
+    elementos.btn_save.attr('onclick','apoyo.add();');
+
+    elementos.status.val(1);
+    elementos.concepto.val("");
+    elementos.abono.val();
+    elementos.reflibretaana.val("");
+    elementos.mescaptura.val("");
+    elementos.fechacaptura.val("");
+    elementos.mescontableana.val("");
+    elementos.folio_apoyo.val("");
+    elementos.frecuencia.val(1);
+    elementos.evento.val("");
+    elementos.proveedor.val("");
+    elementos.donatario.val("");
+    elementos.Tipodeapoyo.val(1);
+    elementos.paises.val("");
+    elementos.estadooregion.val("");
+    elementos.numerodefactura.val("");
+    elementos.importe_apoyo.val("");
+    elementos.abono.val("");
+    elementos.abono2.val("");
+    elementos.moneda_apoyo.val(1);
+    elementos.referencia_apoyo.val("");
+    elementos.observaciones.val("");
+    elementos.descripcionapoyo.val("");
+    elementos.mescontableflujo.val("");
+    elementos.fechadoctosalida.val("");
+    elementos.documentosalida.val("");
+    elementos.poliza.val("");
 };

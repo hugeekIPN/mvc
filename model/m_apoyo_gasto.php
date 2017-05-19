@@ -49,7 +49,7 @@ class m_apoyo_gasto{
             'frecuencia'         => $data['frecuencia'],
             'eventos_id_evento'         => $data['eventos_id_evento'],
             'id_proveedor'         => $data['id_proveedor'],
-            'id_donatario'         => '1', // $data['id_donatario'], 
+            'id_donatario'         => $data['id_donatario'], 
             'tipo_apoyo'         => $data['tipo_apoyo'], 
             'pais'         => $data['pais'], 
             'entidad'         => $data['entidad'], 
@@ -77,13 +77,12 @@ class m_apoyo_gasto{
     **/
     public function updateApoyoGasto($updateData, $id_apoyo)
     {    
-        $this->db->update("apoyos_gastos", 
+       return $this->db->update("apoyosgastos", 
                     $updateData, 
                     "id_apoyo = :id",
                     array( "id" => $id_apoyo )
                );
 
-        return true;
     }
 
     /**
@@ -93,7 +92,7 @@ class m_apoyo_gasto{
     **/
     public function deleteApoyoGasto($id_apoyo)  /// update Estado = eliminado
     {    
-        $this->db->delete("apoyos_gastos", "id_apoyo = :id", array( "id" => $id_apoyo ));        
+        $this->db->delete("apoyosgastos", "id_apoyo = :id", array( "id" => $id_apoyo ));        
         
         return true;
     }
@@ -102,7 +101,7 @@ class m_apoyo_gasto{
     * Obtiene todos los apoyos_gastos de la base de datos
     **/
     public function getAllApoyosGastos(){
-        $query = "SELECT * from apoyosgastos as a INNER JOIN  eventos as e ON a.eventos_id_evento= e.id_evento ";
+        $query = "SELECT * from apoyosgastos as a INNER JOIN  eventos as e ON a.eventos_id_evento= e.id_evento WHERE a.tipo=1";
         $result = $this->db->select($query, array());
         if(count($result)>0)
             return $result;

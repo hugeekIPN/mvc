@@ -1,5 +1,7 @@
 
 <!-- contenedor principal -->
+
+
 <div class="container col-xs-12 container-proveedor "onload="oCurrentValue.innerText = estado.isContentEditable;">
 <div id="datable">
 	<div class="row col-xs-12 opciones_apoyos ">
@@ -82,7 +84,8 @@
 			<!-- contenedor formulario -->
 			<div id="cont-formulario-apoyo" class="form_apoyos">
 
-			<h1 class="titulo_centrado">Capturar Apoyos<span class=" form-group col-xs-2">
+			<h1 class="titulo_centrado">Capturar Apoyos <SPAN style="font-size: 16px;">SALDO ACTUAL:<?= number_format($saldo,2); ?></SPAN><span class=" form-group col-xs-2">
+
 						<select type="text" class="form-control" name="status" id="status" >
 							<option value="1">Activo</option>
 							<option value="2">Espera</option>
@@ -92,9 +95,9 @@
 						</select>
 					</span>
 				<button class="btn btn-sm btn-danger pull-right" id="close">X</button>
-				<span class="pull-right margin_left"><button  onclick="cargo.deleteCargo();" class="btn btn-primary">Eliminar</button></span>
-				<span class="pull-right margin_left"><button onclick="apoyo.add();" class="btn btn-primary">Guardar</button></span>
-				<span class="pull-right margin_left"><button id="ver_apoyo" onclick="location.reload();" class="btn btn-primary">Nuevo</button></span>
+				<span class="pull-right margin_left"><button  onclick="apoyo.deleteApoyo();" class="btn btn-primary" id="btn-delete">Eliminar</button></span>
+				<span class="pull-right margin_left"><button onclick="apoyo.add();" class="btn btn-primary" id="btn-save">Guardar</button></span>
+				<span class="pull-right margin_left"><button id="btn-new" onclick="apoyo.nuevo();" class="btn btn-primary">Nuevo</button></span>
 				
 				 
 				</h1>
@@ -170,6 +173,15 @@
 							<?php endforeach;?>
 						</select>
 					</div >
+
+					<div class=" form-group col-xs-2">
+						<label for="donatario">Donatario</label>
+						<select type="text" class="form-control" name="donatario" id="donatario" >
+							<?php foreach ($donatarios as $donatario): ?>
+								<option value="<?=$donatario['id_proveedor'];?>"><?php echo $donatario['razon_social']; ?></option>
+							<?php endforeach;?>
+						</select>
+					</div >
 					 
 					
 					<div class=" form-group col-xs-2">
@@ -204,9 +216,9 @@
 					<div class=" form-group col-xs-2">
 						<label for="moneda_apoyo">Moneda</label>
 						<select type="text" class="form-control" name="moneda_apoyo" id="moneda_apoyo" >
-							<option value="">Moneda Nacional</option>
-							<option value="">Dólares Americanos</option>
-							<option value="">Euro</option>
+							<option value="1">Moneda Nacional</option>
+							<option value="2">Dólares Americanos</option>
+							<option value="3">Euro</option>
 						</select>
 					</div >
 					<div class=" form-group col-xs-2">
@@ -230,28 +242,28 @@
 				<!--INICIO IMPRIMIBLES -->
 				<div class="row imprimibles">
 					<div class=" input form-group col-xs-2">
-						<button>
+						<button onclick="window.location.href='index.php?op=cuenta'">
 							<figure><img src="assets/iconos/Recurso 13.png" alt="Cuentas por pagar"></figure>
 							<p>Cuenta por pagar</p>
 						</button>
 						
 					</div>
 					<div class=" input form-group col-xs-2">
-						<button>
+						<button onclick="window.location.href='index.php?op=poliza'">
 							<figure><img src="assets/iconos/Recurso 16.png" alt="Póliza sin cheque"></figure>
 							<p>Póliza sin cheque</p>
 						</button>
 						
 					</div>
 					<div class=" input form-group col-xs-2">
-						<button>
+						<button onclick="window.location.href='index.php?op=solicitud'">
 							<figure><img src="assets/iconos/Recurso 17.png" alt="transferencia"></figure>
 						
 						<p>Transferencia</p>
 						</button>
 					</div>
 					<div class=" input form-group col-xs-2">
-						<button>
+						<button onclick="window.location.href='index.php?op=cheque'">
 							<figure><img src="assets/iconos/Recurso 15.png" alt="Cheque"></figure>
 						
 						<p>Cheque</p>

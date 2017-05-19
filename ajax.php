@@ -200,12 +200,12 @@ switch ($action) {
         echo json_encode($apoyo->getApoyoGasto());
         break;
     case 'updateApoyo':
-        $apoyo = new ApoyoGastoController($_POST['idApoyo']);
-        echo json_encode($apoyo->updateApoyo($_POST));
+        $apoyo = new ApoyoGastoController($_POST['idApoyo'], null,null);
+        echo json_encode($apoyo->updateApoyoGasto($_POST));
         break;
     case 'deleteApoyo':
-        $apoyo = new ApoyoGastoController($_POST['idApoyo']);
-        echo json_encode($cargo->deleteApoyo($_POST));
+        $apoyo = new ApoyoGastoController($_POST['idApoyo'],null,null);
+        echo json_encode($apoyo->deleteApoyoGasto($_POST));
         break;
         
 

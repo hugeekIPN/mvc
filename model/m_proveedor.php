@@ -98,4 +98,15 @@ class m_proveedor
 			return array();
 	}
 
+	public function getAll($tipo){
+		$query = "SELECT * from proveedores where tipo=".$tipo;
+
+		$result = $this->db->select($query, array());
+
+		if($result)
+			return $result;
+		else
+			return array();
+	}
+
 }

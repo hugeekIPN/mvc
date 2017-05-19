@@ -53,7 +53,9 @@ class ApoyoGastoController {
           
          $eventos = $this->modelEvento->getAllEventos();
         
-         $proveedores = $this->modelProveedor->getAllProveedores();
+         $proveedores = $this->modelProveedor->getAll(1);
+         $donatarios = $this->modelProveedor->getAll(2);
+
          $apoyo =  $this->model->getAllApoyosGastos();
 
          $saldo = $this->modelSaldo->getUltimoSaldo();
@@ -115,7 +117,7 @@ class ApoyoGastoController {
 
     public function updateApoyoGasto($data) {
         $result = array();
-        $errors = $this->validaDatos($postData);
+        $errors = $this->validaDatos($data);
 
         if ($errors) {
             $message = implode("<br>", $errors);
@@ -128,71 +130,64 @@ class ApoyoGastoController {
 
             $newData = array();
 
-            if ($currentApoyo['apoyo-gasto'] != $data['apoyo_gasto'])
-                $newData['apoyo_gasto'] = $data['apoyo_gasto'];
 
-            if ($currentApoyo['especies_id_especie'] != $data['especies_id_especie'])
-                $newData['especies_id_especie'] = $data['especies_id_especie'];
-
-            if ($currentApoyo['anio'] != $data['anio'])
-                $newData['anio'] = $data['anio'];
-
-            if ($currentApoyo['folio'] != $data['folio'])
-                $newData['folio'] = $data['folio'];
-
-            if ($currentApoyo['tipo'] != $data['tipo'])
+           // if ($currentApoyo['concepto'] != $data['concepto'])
+            if (!$this->esVacio($data['id_saldo']))
+                $newData['id_saldo'] = $data['id_saldo'];
+             if (!$this->esVacio($data['estatus']))
+                $newData['estatus'] = $data['estatus'];
+             if (!$this->esVacio($data['tipo']))
                 $newData['tipo'] = $data['tipo'];
-
-            if ($currentApoyo['cantidad'] != $data['cantidad'])
-                $newData['cantidad'] = $data['cantidad'];
-
-            if ($currentApoyo['unidad'] != $data['unidad'])
-                $newData['unidad'] = $data['unidad'];
-
-            if ($currentApoyo['pais'] != $data['pais'])
-                $newData['pais'] = $data['pais'];
-
-            if ($currentApoyo['entidad'] != $data['entidad'])
-                $newData['entidad'] = $data['entidad'];
-
-            if ($currentApoyo['descripcion'] != $data['descripcion'])
-                $newData['descripcion'] = $data['descripcion'];
-
-            if ($currentApoyo['moneda'] != $data['moneda'])
-                $newData['moneda'] = $data['moneda'];
-
-            if ($currentApoyo['tipo_cambio'] != $data['tipo_cambio'])
-                $newData['tipo_cambio'] = $data['tipo_cambio'];
-
-            if ($currentApoyo['fcambio'] != $data['fcambio'])
-                $newData['fcambio'] = $data['fcambio'];
-
-            if ($currentApoyo['freferencia'] != $data['freferencia'])
-                $newData['freferencia'] = $data['freferencia'];
-
-            if ($currentApoyo['fcaptura'] != $data['fcaptura'])
-                $newData['fcaptura'] = $data['fcaptura'];
-
-            if ($currentApoyo['observaciones'] != $data['observaciones'])
-                $newData['obsevaciones'] = $data['observaciones'];
-
-            if ($currentApoyo['frecuencia'] != $data['frecuencia'])
+             if (!$this->esVacio($data['concepto']))
+                $newData['concepto'] = $data['concepto'];
+             if (!$this->esVacio($data['importe']))
+                $newData['importe'] = $data['importe'];
+             if (!$this->esVacio($data['referencia_anamaria']))
+                $newData['referencia_anamaria'] = $data['referencia_anamaria'];
+             //if (!$this->esVacio($data['mes_captura_anamaria']))
+             //   $newData['mes_captura_anamaria'] = $data['mes_captura_anamaria'];
+            // if (!$this->esVacio($data['fecha_captura_anamaria']))
+              //  $newData['fecha_captura_anamaria'] = $data['fecha_captura_anamaria'];
+             //if (!$this->esVacio($data['mes_contable_anamaria']))
+             //   $newData['mes_contable_anamaria'] = $data['mes_contable_anamaria'];
+             if (!$this->esVacio($data['folio']))
+                $newData['folio'] = $data['folio'];
+             if (!$this->esVacio($data['frecuencia']))
                 $newData['frecuencia'] = $data['frecuencia'];
+             if (!$this->esVacio($data['eventos_id_evento']))
+                $newData['eventos_id_evento'] = $data['eventos_id_evento'];
+             if (!$this->esVacio($data['id_proveedor']))
+                $newData['id_proveedor'] = $data['id_proveedor'];
+             if (!$this->esVacio($data['id_donatario']))
+                $newData['id_donatario'] = $data['id_donatario'];
+             if (!$this->esVacio($data['tipo_apoyo']))
+                $newData['tipo_apoyo'] = $data['tipo_apoyo'];
+             if (!$this->esVacio($data['pais']))
+                $newData['pais'] = $data['pais'];
+             if (!$this->esVacio($data['entidad']))
+                $newData['entidad'] = $data['entidad'];
+             if (!$this->esVacio($data['factura']))
+                $newData['factura'] = $data['factura'];
+             if (!$this->esVacio($data['moneda']))
+                $newData['moneda'] = $data['moneda'];
+             if (!$this->esVacio($data['referencia']))
+                $newData['referencia'] = $data['referencia'];
+             if (!$this->esVacio($data['observaciones']))
+                $newData['observaciones'] = $data['observaciones'];
+             if (!$this->esVacio($data['descripcion']))
+                $newData['descripcion'] = $data['descripcion'];
+           //  if (!$this->esVacio($data['mes_contabel_anamaria']))
+             //   $newData['mes_contabel_anamaria'] = $data['mes_contabel_anamaria'];
+             if (!$this->esVacio($data['fecha_docto_salida']))
+                $newData['fecha_docto_salida'] = $data['fecha_docto_salida'];
+             if (!$this->esVacio($data['docto_salida']))
+                $newData['docto_salida'] = $data['docto_salida'];
+             if (!$this->esVacio($data['poliza']))
+                $newData['poliza'] = $data['poliza'];
 
-            if ($currentApoyo['eventos_id_evento'] != $data['eventos_id_eventos'])
-                $newData['eventos_id_eventos'] = $data['eventos_id_evento'];
-
-            if ($currentApoyo['estado'] != $data['estado'])
-                $newData['estado'] = $data['estado'];
-
-            if ($currentApoyo['fecha_creacion'] != $data['fecha_creacion'])
-                $newData['fecha_creacion'] = $data['fecha_creacion'];
-
-            if ($currentApoyo['ultima_modificacion'] != $data['ultima_modificacion'])
-                $newData['ultima_modificacion'] = $data['ultim_modificacion'];
 
             if ($newData) {
-                $this->model->updateApoyoGasto($newData, $this->idApoyo);
+                $this->model->updateApoyoGasto($NewData, $this->idApoyo);
             }
 
             $result = array(
@@ -207,8 +202,28 @@ class ApoyoGastoController {
      * FALTA VALIDAR RELACIONES
      * */
     public function deleteApoyoGasto() {
-        $this->model->deleteApoyoGasto($this->idApoyo);
-        return true;
+        $currentApoyo = $this->model->getApoyoGasto($this->idApoyo);    
+        $saldo = $this->modelSaldo->getUltimoSaldo();
+            $saldo = $saldo? $saldo['saldo'] : 0;
+
+        $actualizaSaldo = $saldo + $currentApoyo['importe'];
+        
+          
+         $this->modelSaldo->deleteSaldo($currentApoyo['id_saldo']);
+
+        if ($this->model->deleteApoyoGasto($this->idApoyo)) {
+
+                $this->modelSaldo->nuevoSaldo($actualizaSaldo);
+
+                $result = array(
+                    "status" => "success",
+                    "message"=> "Registro eliminado");
+        }else{
+            $result = array(
+                "status" => "error",
+                "message"=> "No se pudo realizar la operación");
+        }
+        return $result;
     }
 
     private function validaDatos($data) {
@@ -231,6 +246,7 @@ class ApoyoGastoController {
         $estado                 = $data['estado'];
 */
         $importe = $data['importe'];
+
 
         if ($this->esVacio($importe)) {
             $errors[] = "Debe ingresar un importe";
