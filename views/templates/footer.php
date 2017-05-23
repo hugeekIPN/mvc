@@ -25,7 +25,8 @@
               $( function() {
                 $( "#datepicker" ).datepicker();
                 $( "#datepicker2" ).datepicker();
-                $( "#datepicker3" ).datepicker();
+                $( "#fechacaptura" ).datepicker();
+                $("#fechadoctosalida").datepicker();
                 $( "#datepicker4" ).datepicker();
                 $( "#datepicker5" ).datepicker();
                 $( "#datepicker6" ).datepicker();

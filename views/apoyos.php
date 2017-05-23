@@ -7,13 +7,13 @@
 	<div class="row col-xs-12 opciones_apoyos ">
 		<div class="iconos_h col-xs-2">
 			<section class="nuevo ">
-					<button id="btn-add-apoyo" onclick="">
+					<button id="btn-add-apoyo" onclick="apoyo.nuevo();">
 						<img src="assets/iconos/Recurso 11.png" alt="Agregar un nuevo apoyo">
 						<small>Nuevo</small>
 					</button>
 			</section>
 		</div>
-		<section class="filtros col-xs-4 radios " id="status">
+		<section class="filtros col-xs-4 radios " >
 			<label class="radio-inline"><input type="radio" name="optradio">En espera</label>
 			<label class="radio-inline"><input type="radio" name="optradio">Activo</label>
 			<label class="radio-inline"><input type="radio" name="optradio">Cancelado</label>
@@ -85,6 +85,8 @@
 			<div id="cont-formulario-apoyo" class="form_apoyos">
 
 			<h1 class="titulo_centrado">Capturar Apoyos <SPAN style="font-size: 16px;">SALDO ACTUAL:<?= number_format($saldo,2); ?></SPAN><span class=" form-group col-xs-2">
+			
+						<input type="hidden" name="tipo" id="tipo" value="1">
 
 						<select type="text" class="form-control" name="status" id="status" >
 							<option value="1">Activo</option>
@@ -114,7 +116,7 @@
 
 					<div class=" form-group col-xs-6">
 						<label for="abono">Abono</label>
-						<input type="text" onblur="apoyo.abono();" class="form-control" name="abono" id="abono" >
+						<input type="text" onblur="apoyo.abono();" class="form-control" name="abono" id="abono" value="0.00" >
 					</div >
 					<h3 class="h3form">1.- Libreta Ana María</h3> 
 					<div class=" input form-group col-xs-3">
@@ -128,7 +130,7 @@
 					</div>
 					<div class="form-group col-xs-3">
 					<label for="fechacaptura">Fecha de Captura</label>
-					 <input type="text" id="datepicker5" name="fechacaptura" class="form-control" placeholder="Fecha">
+					 <input type="text" id="fechacaptura" name="fechacaptura" class="form-control" placeholder="Fecha">
 					</div>
 					<div class="form-group col-xs-3">
 					<label for="mescontableana">Mes contable</label>
@@ -299,7 +301,7 @@
 						<input type="text" class="form-control" name="saldo" id="saldo" value="<?= $saldo; ?>" disabled>
 					</div>
 				</form>
-					<button onclick="apoyo.add();" class="btn btn-primary pull-right">Guardar</button>
+					<button onclick="apoyo.add();" class="btn btn-primary pull-right" id="btn-save2">Guardar</button>
 				
 				<!--Subir archivos -->
 				<div class="row subir-archivos">

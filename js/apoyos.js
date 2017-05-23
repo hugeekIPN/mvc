@@ -5,6 +5,7 @@ var apoyo = {};
 apoyo.elem ={
     idApoyo:      $("#id-apoyo"),
     status:    $("#status"),
+    tipo:    $("#tipo"),
     concepto:    $("#concepto"),
     abono:        $("#abono"),
     abono2:        $("#abono2"),
@@ -42,6 +43,7 @@ apoyo.elem ={
     btn_nuevo:      $("#btn-new"),
     btn_editar:     $("#btn-edit"),
     btn_save:       $("#btn-save"),
+    btn_save2:       $("#btn-save2"),
     btn_borrar:     $("#btn-delete"),
 };
 
@@ -69,6 +71,7 @@ apoyo.verApoyo = function(idApoyo){
                 //mostramos y ocultamos los botones
                 elementos.btn_save.show();
                 elementos.btn_save.attr('onclick','apoyo.updateApoyo();');
+                elementos.btn_save2.attr('onclick','apoyo.updateApoyo();');
                 elementos.btn_borrar.show();
                 
                 elementos.status.val(res.estatus);
@@ -118,8 +121,6 @@ apoyo.add = function(editMode){
     
     
 	if((apoyo.validaDatos(data))){
-        data.btn_save.attr('onclick',''); // Deshabilita 
-        
         if ( editMode ) {
             action = "updateApoyo";
             idApoyo = data.idApoyo.val();
@@ -133,10 +134,10 @@ apoyo.add = function(editMode){
                     idApoyo : data.idApoyo.val(),
                     id_saldo: data.idSaldo.val(),
                     estatus: data.status.val(),
-                    tipo: 1, //data.tipo.val(), // APOYO
+                    tipo: data.tipo.val(), // APOYO
                     concepto: data.concepto.val(),
                     importe:  data.abono.val(),
-                    referencia_anamaria: data.reflibretaana.val(),
+                    //referencia_anamaria: data.reflibretaana.val(),
                     mes_captura_anamaria: data.mescaptura.val(),
                     fecha_captura_anamaria: data.fechacaptura.val(),
                     mes_contable_anamaria: data.mescontableana.val(),
@@ -164,8 +165,9 @@ apoyo.add = function(editMode){
                 success: function(result){
                 if(result.status == "error"){
                     utilerias.displayErrorServerMessage(elem.msj_server, result.message);
+                     
+                    
                 }else{  
-                        data.btn_save.attr('onclick','apoyo.add();');
                          utilerias.displaySuccessMessage($("#mensajes-server"),result.message);
                          location.reload();
                      }
@@ -196,6 +198,7 @@ apoyo.editapoyo = function () {
                 }else{
                 //mostramos y ocultamos los botones
                 elementos.btn_save.attr('onclick','apoyo.updateApoyo();');
+                elementos.btn_save2.attr('onclick','apoyo.updateApoyo();');
                 elementos.btn_save.show();
                 elementos.btn_editar.hide();
                 elementos.idapoyo.val(res.id_apoyo);
@@ -226,6 +229,18 @@ apoyo.validaDatos = function (data) {
     if ($.trim(data.abono.val())=="") {
         valid = false;
         utilerias.displayErrorMessage(data.abono,"Se debe ingresar un abono");
+    }
+    if ($.trim(data.proveedor.val())=="") {
+        valid = false;
+        utilerias.displayErrorMessage(data.proveedor,"Debe existir un proveedor");
+    }
+    if ($.trim(data.donatario.val())=="") {
+        valid = false;
+        utilerias.displayErrorMessage(data.donatario,"Debe existir un donatario");
+    }
+    if ($.trim(data.evento.val())=="") {
+        valid = false;
+        utilerias.displayErrorMessage(data.evento,"Debe ingresar un evento");
     }
 
     return valid;
@@ -261,6 +276,34 @@ apoyo.updateApoyo = function () {
     apoyo.add(true);
 };
 
+
+apoyo.cargaArchivo = function () {
+var Data = new FormData(formArvhivos);
+    if(window.XMLHttpRequest) {
+        var Req = new XMLHttpRequest();
+    }else if(window.ActiveXObject) {
+        var Req = new ActiveXObject("Microsoft.XMLHTTP");
+    }
+    
+
+    Req.onload = function(Event) {
+        if (Req.status == 200) {
+            var st = JSON.parse(Req.responseText);
+            
+            if(st.success){
+
+            }else{
+                
+            }
+        } else {
+                console.log(Req.status); //Vemos que paso.
+        }
+    };    
+    
+    //Enviamos la petición
+    Req.send(Data);
+};
+
 apoyo.abono = function(){
     var data = apoyo.elem;
 
@@ -273,10 +316,11 @@ apoyo.nuevo = function(){
     var elementos = apoyo.elem;
 
     elementos.btn_save.attr('onclick','apoyo.add();');
+    elementos.btn_save2.attr('onclick','apoyo.add();');
 
     elementos.status.val(1);
     elementos.concepto.val("");
-    elementos.abono.val();
+    elementos.abono.val("0.00");
     elementos.reflibretaana.val("");
     elementos.mescaptura.val("");
     elementos.fechacaptura.val("");

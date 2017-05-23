@@ -56,7 +56,8 @@ class ApoyoGastoController {
          $proveedores = $this->modelProveedor->getAll(1);
          $donatarios = $this->modelProveedor->getAll(2);
 
-         $apoyo =  $this->model->getAllApoyosGastos();
+         $apoyo =  $this->model->getAllApoyosGastos_type(1);
+         $gasto =  $this->model->getAllApoyosGastos_type(2);
 
          $saldo = $this->modelSaldo->getUltimoSaldo();
          $saldo = $saldo? $saldo['saldo'] : 0;
@@ -100,7 +101,8 @@ class ApoyoGastoController {
             $idNuevoSaldo = $this->modelSaldo->nuevoSaldo($nuevoSaldo);
 
             $postData['id_saldo'] = $idNuevoSaldo;
-
+            $postData['referencia_anamaria'] = $postData['idApoyo'];
+            
             $this->model->nuevoApoyoGasto($postData);
 
             $result = array(
@@ -129,11 +131,9 @@ class ApoyoGastoController {
             $currentApoyo = $this->model->getApoyoGasto($this->idApoyo);
 
             $newData = array();
+           unset($newData['action']);
 
-
-           // if ($currentApoyo['concepto'] != $data['concepto'])
-            if (!$this->esVacio($data['id_saldo']))
-                $newData['id_saldo'] = $data['id_saldo'];
+            
              if (!$this->esVacio($data['estatus']))
                 $newData['estatus'] = $data['estatus'];
              if (!$this->esVacio($data['tipo']))
@@ -142,14 +142,12 @@ class ApoyoGastoController {
                 $newData['concepto'] = $data['concepto'];
              if (!$this->esVacio($data['importe']))
                 $newData['importe'] = $data['importe'];
-             if (!$this->esVacio($data['referencia_anamaria']))
-                $newData['referencia_anamaria'] = $data['referencia_anamaria'];
-             //if (!$this->esVacio($data['mes_captura_anamaria']))
-             //   $newData['mes_captura_anamaria'] = $data['mes_captura_anamaria'];
-            // if (!$this->esVacio($data['fecha_captura_anamaria']))
-              //  $newData['fecha_captura_anamaria'] = $data['fecha_captura_anamaria'];
-             //if (!$this->esVacio($data['mes_contable_anamaria']))
-             //   $newData['mes_contable_anamaria'] = $data['mes_contable_anamaria'];
+            if (!$this->esVacio($data['mes_captura_anamaria']))
+                $newData['mes_captura_anamaria'] = $data['mes_captura_anamaria'];
+            if (!$this->esVacio($data['fecha_captura_anamaria']))
+                $newData['fecha_captura_anamaria'] = $data['fecha_captura_anamaria'];
+             if (!$this->esVacio($data['mes_contable_anamaria']))
+                $newData['mes_contable_anamaria'] = $data['mes_contable_anamaria'];
              if (!$this->esVacio($data['folio']))
                 $newData['folio'] = $data['folio'];
              if (!$this->esVacio($data['frecuencia']))
@@ -159,7 +157,8 @@ class ApoyoGastoController {
              if (!$this->esVacio($data['id_proveedor']))
                 $newData['id_proveedor'] = $data['id_proveedor'];
              if (!$this->esVacio($data['id_donatario']))
-                $newData['id_donatario'] = $data['id_donatario'];
+                $newData['id_donatario'] = $data['id_donatario'];   
+
              if (!$this->esVacio($data['tipo_apoyo']))
                 $newData['tipo_apoyo'] = $data['tipo_apoyo'];
              if (!$this->esVacio($data['pais']))
@@ -176,8 +175,8 @@ class ApoyoGastoController {
                 $newData['observaciones'] = $data['observaciones'];
              if (!$this->esVacio($data['descripcion']))
                 $newData['descripcion'] = $data['descripcion'];
-           //  if (!$this->esVacio($data['mes_contabel_anamaria']))
-             //   $newData['mes_contabel_anamaria'] = $data['mes_contabel_anamaria'];
+             if (!$this->esVacio($data['mes_contabel_libretaflujo']))
+                $newData['mes_contabel_libretaflujo'] = $data['mes_contabel_libretaflujo'];
              if (!$this->esVacio($data['fecha_docto_salida']))
                 $newData['fecha_docto_salida'] = $data['fecha_docto_salida'];
              if (!$this->esVacio($data['docto_salida']))
@@ -187,7 +186,7 @@ class ApoyoGastoController {
 
 
             if ($newData) {
-                $this->model->updateApoyoGasto($NewData, $this->idApoyo);
+                $this->model->updateApoyoGasto($newData, $this->idApoyo);
             }
 
             $result = array(
@@ -228,47 +227,32 @@ class ApoyoGastoController {
 
     private function validaDatos($data) {
         $errors = array();
-/*
-        $folio                  = $data['folio'];
-        $tipo                   = $data['tipo'];
-        $cantidad               = $data['cantidad'];
-        $unidad                 = $data['unidad'];
-        $pais                   = $data['pais'];
-        $entidad                = $data['entidad'];
-        $descripcion            = $data['descripcion'];
-        $moneda                 = $data['moneda'];
-        $tipo_cambio            = $data['tipo_cambio'];
-        $fcambio                = $data['fcambio'];
-        $freferencia            = $data['freferencia'];
-        $fcaptura               = $data['fcaptura'];
-        $observaciones          = $data['observaciones'];
-        $eventos_id_evento      = $data['evento_id_evento'];
-        $estado                 = $data['estado'];
-*/
-        $importe = $data['importe'];
 
+        $importe = $data['importe'];
+        $concepto = $data['concepto'];
+        $proveedor = $data['id_proveedor'];
+        $donatario = $data['id_donatario'];
+        $evento = $data['eventos_id_evento'];
 
         if ($this->esVacio($importe)) {
             $errors[] = "Debe ingresar un importe";
         }
 
+        if ($this->esVacio($concepto)) {
+            $errors[] = "Debe ingresar un concepto";
+        }
 
-        // Las validaciones son en caso de que se proporcionen. Hay que definirlo.
-        //if ($rfc && (strlen($rfc) != 12))  {
-        //	$errors[] = "Formato de rfc no válido";
-        //}
-        //if($telefono && !preg_match("/^[0-9]{10}$/", $telefono)){
-        //	$errors[] = "Formtao de teléfono no válido";
-        //}
-        //if($cp && !preg_match("/^[0-9]{5}$/", subject)){
-        //	$errors[] = "Formato de cp no válido";
-        //}
-        //if($tipo && !($tipo == 1 || $tipo == 2)){
-        //	$errors[] = "Tipo de proveedor no válido";
-        //}
-        //if($correo_contacto && !filter_var($correo_contacto, FILTER_VALIDATE_EMAIL)){
-        //	$errors[] "Formato de correo de contacto incorrecto";
-        //}
+        if ($this->esVacio($proveedor)) {
+            $errors[] = "Debe ingresar un proveedor";
+        }
+
+        if ($this->esVacio($donatario)) {
+            $errors[] = "Debe ingresar un donatario";
+        }
+
+        if ($this->esVacio($evento)) {
+            $errors[] = "Debe ingresar un evento";
+        }
 
         return $errors;
     }

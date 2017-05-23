@@ -326,12 +326,13 @@ Proveedores.validaDatosproveedor = function(data,forUpdate){
 		valid = false;
 		utilerias.displayErrorMessage(data.rfc,"El RFC no es válido");
 	}
-    
-      var tel = data.telefono.val();
-    if(tel.length < "10" || tel.length > "10" ){
-		valid = false;
-		utilerias.displayErrorMessage(data.telefono,"El teléfono no es válido. Recuerde agregar LADA.");
-	}
+    if(data.telefono.val() != ""){
+          var tel = data.telefono.val();
+        if(tel.length < "10" || tel.length > "10" ){
+    		valid = false;
+    		utilerias.displayErrorMessage(data.telefono,"El teléfono no es válido. Recuerde agregar LADA.");
+    	}
+    }
     
     if(data.correo_contacto.val() != ""){
         if(!Proveedores.mailValido(data.correo_contacto.val())){

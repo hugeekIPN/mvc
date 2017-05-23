@@ -179,7 +179,7 @@ CREATE TABLE IF NOT EXISTS `apoyosgastos` (
   ,`mes_contable_anamaria` VARCHAR(16)
   ,`mes_captura_anamaria` VARCHAR(16)
   ,`fecha_captura_anamaria` DATETIME DEFAULT CURRENT_TIMESTAMP  
-  ,`referencia_anamaria` VARCHAR(32)
+  ,`referencia_anamaria` INT UNSIGNED NOT NULL
 
   -- campos de captura apoyo
   ,`folio` VARCHAR(255) NULL COMMENT 'Folio asignado internamente por el usuario\n'

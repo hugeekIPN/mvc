@@ -108,6 +108,15 @@ class m_apoyo_gasto{
         else
             return array();
     }
+
+    public function getAllApoyosGastos_type($type){
+        $query = "SELECT * from apoyosgastos as a INNER JOIN  eventos as e ON a.eventos_id_evento= e.id_evento WHERE a.tipo=".$type;
+        $result = $this->db->select($query, array());
+        if(count($result)>0)
+            return $result;
+        else
+            return array();
+    }
 }
 
 ?>
