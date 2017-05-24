@@ -128,7 +128,19 @@ class ApoyoGastoController {
                 "status" => "error",
                 "message" => $message);
         } else {
-            $currentApoyo = $this->model->getApoyoGasto($this->idApoyo);
+            $currentApoyo = $this->model->getApoyoGasto($this->idApoyo);   
+            $saldo = $this->modelSaldo->getUltimoSaldo();
+            $saldo = $saldo? $saldo['saldo'] : 0;
+
+            $actualizaSaldo = ($saldo + $currentApoyo['importe']) - $data['importe'];
+
+            $currentSaldo = $this->modelSaldo->getSaldo($currentApoyo['id_saldo']);
+
+            $saldoCapturado= ($currentSaldo['saldo'] + $currentApoyo['importe']) - $data['importe'] ;
+
+            $updateDataSaldo = array();
+            $updateDataSaldo['saldo'] = $saldoCapturado;
+
 
             $newData = array();
            unset($newData['action']);
@@ -185,7 +197,12 @@ class ApoyoGastoController {
                 $newData['poliza'] = $data['poliza'];
 
 
+
             if ($newData) {
+
+                $this->modelSaldo->updateSaldo($updateDataSaldo, $currentApoyo['id_saldo']);
+                $this->modelSaldo->nuevoSaldo($actualizaSaldo);
+
                 $this->model->updateApoyoGasto($newData, $this->idApoyo);
             }
 
