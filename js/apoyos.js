@@ -21,6 +21,7 @@ apoyo.elem ={
     Tipodeapoyo:          $("#Tipodeapoyo"),
     paises:          $("#paises"),
     estadooregion:          $("#estadooregion"),
+    estado:         $("#estado"),
     numerodefactura:          $("#numerodefactura"),
     importe_apoyo:          $("#importe_apoyo"),
     moneda_apoyo:          $("#moneda_apoyo"),
@@ -277,32 +278,27 @@ apoyo.updateApoyo = function () {
 };
 
 
-apoyo.cargaArchivo = function () {
-var Data = new FormData(formArvhivos);
-    if(window.XMLHttpRequest) {
-        var Req = new XMLHttpRequest();
-    }else if(window.ActiveXObject) {
-        var Req = new ActiveXObject("Microsoft.XMLHTTP");
-    }
-    
-
-    Req.onload = function(Event) {
-        if (Req.status == 200) {
-            var st = JSON.parse(Req.responseText);
-            
-            if(st.success){
-
-            }else{
-                
-            }
-        } else {
-                console.log(Req.status); //Vemos que paso.
-        }
-    };    
-    
-    //Enviamos la petición
-    Req.send(Data);
-};
+ $(function(){
+        $("#formArchivos").on("submit", function(e){
+            e.preventDefault();
+            var f = $(this);
+            var formData = new FormData(document.getElementById("formArchivos"));
+            formData.append("dato", "valor");
+            //formData.append(f.attr("name"), $(this)[0].files[0]);
+            $.ajax({
+                url: "views/recibe.php",
+                type: "post",
+                dataType: "html",
+                data: formData,
+                cache: false,
+                contentType: false,
+         processData: false
+            })
+                .done(function(res){
+                    $("#mensaje").html("Respuesta: " + res);
+                });
+        });
+    });
 
 apoyo.abono = function(){
     var data = apoyo.elem;
@@ -345,4 +341,26 @@ apoyo.nuevo = function(){
     elementos.fechadoctosalida.val("");
     elementos.documentosalida.val("");
     elementos.poliza.val("");
+};
+
+apoyo.pais = function (){
+    var elem = apoyo.elem;
+    var valor = document.getElementById("paises").value;  
+    
+    if(valor=="México"){ 
+        document.getElementById('otro_text').type = 'hidden';
+        document.getElementById('estado').type = 'hidden';
+        
+    }else{
+       if(valor=="Otro"){ 
+             document.getElementById('estadooregion').type = 'hidden';
+              document.getElementById('otro_text').type = "text";
+            document.getElementById('estado').type = 'text';
+
+         } else{
+                document.getElementById('otro_text').type = 'hidden';
+                document.getElementById('estadooregion').type = 'hidden';
+                document.getElementById('estado').type = 'text';
+         }
+    }
 };

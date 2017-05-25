@@ -171,7 +171,8 @@
                             <option value="México">México</option>
                             <option value="EUA">EUA</option>
                             <option value="Otro">Otro</option>
-                        </select>
+                      </select>
+                      <input required type="hidden" class="form-control" id="otro_text">
 					</div>
 					<div class="form-group ">
 					  <label class="control-label titulos" for="inputCodigoPostalProveedores">Código Postal:</label>

@@ -21,6 +21,7 @@ Proveedores.elementos = {
     pais : $("#inputPaisProveedores"),
     estado : $("#inputEstadoProveedores"),
     estado_text : $("#inputEstadoProveedores_text"),
+    otro_text:  $("#otro_text"),
     cp : $("#inputCodigoPostalProveedores"),
     contacto: $("#inputContactoNombreProveedores"),
     correo_contacto : $("#inputContactoProveedores"),
@@ -85,7 +86,7 @@ Proveedores.verProveedor = function (proveedorId){
             $("#vista-colonia").text(res.colonia);
 			$("#vista-calle").text(res.calle);
             $("#vista-delega").text(res.delegacion);
-            $("#vista-pais").text(res.pais);
+                 $("#vista-pais").text(res.pais);           
             $("#vista-entidad").text(res.entidad);
             $("#vista-cp").text(res.cp);
             $("#vista-contacto").text(res.contacto);
@@ -107,12 +108,23 @@ Proveedores.pais = function (){
     
     if(valor=="México"){ 
         document.getElementById('inputEstadoProveedores_text').type = 'hidden';
+        document.getElementById('otro_text').type = 'hidden';
         elem.estado.show();
         
     }else{
-         document.getElementById('inputEstadoProveedores_text').type = 'text';
-        elem.estado.hide();
+       if(valor=="Otro"){ 
+             document.getElementById('inputEstadoProveedores_text').type = 'text';
+              document.getElementById('otro_text').type = "text";
+
+            elem.estado.hide();
+         } else{
+                document.getElementById('otro_text').type = 'hidden';
+                document.getElementById('inputEstadoProveedores_text').type = 'text';
+                elem.estado.hide();
+         }
     }
+    
+
 };
 
 Proveedores.addproveedor = function (editMode) {
@@ -124,11 +136,16 @@ Proveedores.addproveedor = function (editMode) {
 
     var pais = document.getElementById("inputPaisProveedores").value;
     var estado = null;
-    
+
     if(pais=="México"){
          estado = document.getElementById("inputEstadoProveedores").value;  
     }else{
-         estado = document.getElementById("inputEstadoProveedores_text").value;  
+        if(pais=="Otro"){
+           pais = document.getElementById('otro_text').value;
+           estado = document.getElementById("inputEstadoProveedores_text").value;  
+        }else{
+            estado = document.getElementById("inputEstadoProveedores_text").value;  
+        }
     }
     
     if ( editMode == true)
@@ -159,7 +176,7 @@ Proveedores.addproveedor = function (editMode) {
                     colonia: data.colonia.val(),
                     calle: data.calle.val(),
                     delegacion: data.delegacion.val(),
-                    pais: data.pais.val(),
+                    pais: pais,
                     entidad: estado,
                     cp: data.cp.val(),
                     contacto: data.contacto.val(),
@@ -231,8 +248,9 @@ Proveedores.editproveedor = function(){
 			data.referencia.val(res.referencia);   
             data.plaza.val(res.plaza);     
             data.calle.val(res.calle);    
-            data.delegacion.val(res.delegacion);    
-            data.pais.val(res.pais);       
+            data.delegacion.val(res.delegacion); 
+
+                  
             data.cp.val(res.cp); 
             data.colonia.val(res.colonia);  
             data.calle.val(res.calle);
@@ -241,13 +259,26 @@ Proveedores.editproveedor = function(){
                 {
                    elem.estado.show();
                    document.getElementById('inputEstadoProveedores_text').type = 'hidden';
-                   data.estado.val(res.entidad);   
+                   data.estado.val(res.entidad); 
+                   data.pais.val(res.pais);   
                 }else{
-                    document.getElementById('inputEstadoProveedores_text').type = 'text';
-                    elem.estado.hide();
-                    data.estado_text.val(res.entidad);
+                    if(res.pais=="EUA"){
+                        document.getElementById('inputEstadoProveedores_text').type = 'text';
+                        elem.estado.hide();
+                        data.estado_text.val(res.entidad);
+                        data.pais.val(res.pais); 
+
+                    }else{
+                         document.getElementById('inputEstadoProveedores_text').type = 'text';
+                         data.estado.val(res.entidad);
+                         data.otro_text.val(res.pais);
+                         document.getElementById('otro_text').type = 'text';
+                         elem.estado.hide();
+                         
+                         data.pais.val("Otro"); 
+                    }
                 }
-            
+
             
             data.contacto.val(res.contacto);   
             data.correo_contacto.val(res.correo_contacto);   

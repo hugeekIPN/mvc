@@ -224,12 +224,13 @@ class ApoyoGastoController {
 
         $actualizaSaldo = $saldo + $currentApoyo['importe'];
         
-          
-         $this->modelSaldo->deleteSaldo($currentApoyo['id_saldo']);
+          $idSaldoCapturado = $currentApoyo['id_saldo'];
+        
 
         if ($this->model->deleteApoyoGasto($this->idApoyo)) {
 
                 $this->modelSaldo->nuevoSaldo($actualizaSaldo);
+                $this->modelSaldo->deleteSaldo($idSaldoCapturado);
 
                 $result = array(
                     "status" => "success",
@@ -285,5 +286,7 @@ class ApoyoGastoController {
         else
             return false;
     }
+
+    
 
 }
