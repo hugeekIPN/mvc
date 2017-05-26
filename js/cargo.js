@@ -95,7 +95,7 @@ cargo.add = function(editMode){
                 if(result.status == "error"){
                     utilerias.displayErrorServerMessage(elem.msj_server, result.message);
                 }else{  
-                        data.btn_save.attr('onclick','cargo.add();');
+                        //data.btn_save.attr('onclick','cargo.add();');
                       //  utilerias.displaySuccessMessage($("#mensajes-server"),result.message);
                         location.reload();
                      }

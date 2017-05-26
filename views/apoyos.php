@@ -356,16 +356,14 @@
 						</thead>
 						<tbody>
 
-						<?php foreach ($archivo as $archivos): ?>
 						  <tr class="success">
 						  	<td  id="id_upload">1</td>
-						  	<td id="u_pdf"><?php if($archivos['pdf']): ?>
-						  	<a href="#"><?= $archivos['pdf']; ?></a><?php else: ?><button class="btn btn-primary">Subir</button><?php endif; ?></td>
-						  	<td id="u_xml"><?php if($archivos['xml']): ?><a href="#"> <?= $archivos['xml']; ?></a><?php else: ?><button class="btn btn-primary">Subir</button><?php endif; ?></td>
+						  	<td id="u_pdf"><button class="btn btn-primary">Subir</button></td>
+						  	<td id="u_xml"><a href="#">Archivo.xml</a><button class="btn btn-primary">Subir</button></td>
 						  	<td id="actualizar_fila_u"><button class="btn btn-primary">Actualizar</button></td>
 						  	<td id="borrar_fila_u"><button class="btn btn-danger">Eliminar</button></td>
 						  </tr>						  
-	                    <?php endforeach; ?>
+
 
 						</tbody>
 					</table>
