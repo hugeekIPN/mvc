@@ -104,9 +104,40 @@ apoyo.verApoyo = function(idApoyo){
                 elementos.documentosalida.val(res.docto_salida);
                 elementos.poliza.val(res.poliza);
                 elementos.idSaldo.val(res.saldo);
+
+                apoyo.showArchivos(res.archivos);
+                //alert(res.archivos[1].id_archivos);
+
             }
         }
     });
+
+
+    apoyo.showArchivos = function(archivos){
+        var tabla = $("#tabla-archivos");
+
+        var fila = '<tr class="success">'
+                        +'<td  id="id_upload">1</td>'
+                        +'<td id="u_pdf"><button class="btn btn-primary">Subir</button></td>'
+                        +'<td id="u_xml"><a href="#">Archivo.xml</a><button class="btn btn-primary">Subir</button></td>'
+                        +'<td id="actualizar_fila_u"><button class="btn btn-primary">Actualizar</button></td>'
+                        +'<td id="borrar_fila_u"><button class="btn btn-danger">Eliminar</button></td>'
+                    +'</tr>';
+
+        archivos.forEach(function(a){
+            buttonPdf = '<button class="btn btn-primary">Subir</button>';
+            buttonXml ='<button class="btn btn-primary">Subir</button>';
+            pdf = (a.pdf)? a.pdf : buttonPdf;
+            xml = (a.xml)? a.xml : buttonXml;
+            tabla.append('<tr class="success">'
+                        +'<td  id="id_upload">'+a.id_archivos+'</td>'
+                        +'<td id="u_pdf"><a href="#">'+pdf+'</a></td>'
+                        +'<td id="u_xml"><a href="#">'+xml+'</a></td>'
+                        +'<td id="actualizar_fila_u"><button class="btn btn-primary">Actualizar</button></td>'
+                        +'<td id="borrar_fila_u"><button class="btn btn-danger">Eliminar</button></td>'
+                    +'</tr>');
+        });
+    }
   
   /*
     $.ajax({

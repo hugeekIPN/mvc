@@ -346,7 +346,7 @@
 				<!--Subir archivos -->
 				<div class="row subir-archivos">
 					<h3>Subir Archivos PDF y XML</h3>
-					<table class="table table-striped center">
+					<table class="table table-striped center" id="tabla-archivos">
 						<thead>
 							<td>Núm.</td>
 							<td>PDF</td>
@@ -355,16 +355,7 @@
 							<td>Eliminar</td>
 						</thead>
 						<tbody>
-
-						  <tr class="success">
-						  	<td  id="id_upload">1</td>
-						  	<td id="u_pdf"><button class="btn btn-primary">Subir</button></td>
-						  	<td id="u_xml"><a href="#">Archivo.xml</a><button class="btn btn-primary">Subir</button></td>
-						  	<td id="actualizar_fila_u"><button class="btn btn-primary">Actualizar</button></td>
-						  	<td id="borrar_fila_u"><button class="btn btn-danger">Eliminar</button></td>
-						  </tr>						  
-
-
+						
 						</tbody>
 					</table>
 					<form id="formArchivos" enctype="multipart/form-dat" method="post"> 
