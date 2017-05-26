@@ -396,8 +396,14 @@
 						<label for="archivo_up_xml" class="cargar btn-success"> Nuevo XML</label>
 						<input class="inputfile" type="file" id="archivo_up_xml" accept=".xml" name="archivo_xml">	
 						</div>
+						<input class="input" type="hidden" id="id_apoyo_gasto"  name="id_apoyo_gasto" value="">
 
-						<input class="submit" type="submit" id="submitArchivos"  name="submitArchivos" onclick="apoyo.cargaArchivo();">	
+
+
+
+
+						
+						<input class="submit" type="submit" id="submitArchivos"  name="submitArchivos" >	
 					</form>
 					<div id="mensaje"></div>
 					

@@ -10,6 +10,7 @@ require_once "controller/especieController.php";
 require_once 'controller/cargoController.php';
 require_once 'controller/saldoController.php';
 require_once 'controller/apoyoController.php';
+require_once 'controller/archivoController.php';
 
 sessionController::startSession();
 
@@ -207,7 +208,24 @@ switch ($action) {
         $apoyo = new ApoyoGastoController($_POST['idApoyo'],null,null);
         echo json_encode($apoyo->deleteApoyoGasto($_POST));
         break;
-        
+     
+    // CRUD ARCHIVOS
+    case 'nuevoArchivo';
+        $archivo = new archivoController(null);
+        echo json_encode($archivo->nuevoArchivo($_POST));
+        break;
+    case 'getArchivo';
+        $archivo = new archivoController(null);
+        echo json_encode($archivo->getArchivo($_POST));
+        break;
+    case 'updateArchivo':
+        $archivo = new archivoController(null);
+        echo json_encode($archivo->updateArchivo($_POST));
+        break;
+    case 'deleteArchivo':
+        $archivo = new archivoController(null);
+        echo json_encode($archivo->deleteArchivo($_POST));
+        break;   
 
     default:
         break;

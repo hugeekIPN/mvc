@@ -4,6 +4,7 @@ var apoyo = {};
 **/
 apoyo.elem ={
     idApoyo:      $("#id-apoyo"),
+    id_apoyo_gasto: $("#id_apoyo_gasto"),
     status:    $("#status"),
     tipo:    $("#tipo"),
     concepto:    $("#concepto"),
@@ -74,7 +75,7 @@ apoyo.verApoyo = function(idApoyo){
                 elementos.btn_save.attr('onclick','apoyo.updateApoyo();');
                 elementos.btn_save2.attr('onclick','apoyo.updateApoyo();');
                 elementos.btn_borrar.show();
-                
+                elementos.id_apoyo_gasto.val(res.id_apoyo);
                 elementos.status.val(res.estatus);
                 elementos.concepto.val(res.concepto);
                 elementos.abono.val(res.importe);
@@ -283,22 +284,24 @@ apoyo.updateApoyo = function () {
             e.preventDefault();
             var f = $(this);
             var formData = new FormData(document.getElementById("formArchivos"));
-            formData.append("dato", "valor");
+            formData.append("action", "nuevoArchivo");
             //formData.append(f.attr("name"), $(this)[0].files[0]);
+            
             $.ajax({
-                url: "views/recibe.php",
+
+                url: "ajax.php",
                 type: "post",
                 dataType: "html",
                 data: formData,
                 cache: false,
                 contentType: false,
-         processData: false
+                 processData: false
             })
                 .done(function(res){
                     $("#mensaje").html("Respuesta: " + res);
                 });
         });
-    });
+ });
 
 apoyo.abono = function(){
     var data = apoyo.elem;
