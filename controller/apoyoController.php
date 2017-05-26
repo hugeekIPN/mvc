@@ -64,8 +64,9 @@ class ApoyoGastoController {
 
          $saldo = $this->modelSaldo->getUltimoSaldo();
          $saldo = $saldo? $saldo['saldo'] : 0;
+         
 
-         $archivo = $this->modelArchivo-> getAllArchivos($this->idApoyo);
+        
 
             require_once("views/templates/header.php");
             require_once("views/templates/nav.php");
@@ -119,8 +120,21 @@ class ApoyoGastoController {
     }
 
     public function getApoyoGasto() {
-        return $this->model->getApoyoGasto($this->idApoyo);
+        $archivos = $this->modelArchivo-> getAllArchivos($this->idApoyo);
+        $result = $this->model->getApoyoGasto($this->idApoyo);
+
+        if($result){
+            $result["status"] = "success";
+            $result["archivos"] = $archivos;
+        }else{
+            $result = array(
+                "status" => "error",
+                "message" => "No se encontró el apoyo");
+        }
+
+        return $result;
     }
+
 
     public function updateApoyoGasto($data) {
         $result = array();
