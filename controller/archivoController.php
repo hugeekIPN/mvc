@@ -42,7 +42,7 @@ class archivoController
 
 	public function nuevoArchivo($postData){
 		$result = array();
-		$errors = false;// $this->validaDatos($postData);
+		$errors =  $this->validaDatos($postData);
 
 		if($errors){
 			$message = implode("<br>", $errors);
@@ -70,8 +70,6 @@ class archivoController
 						$rutaTemporal=$_FILES['archivo_xml']['tmp_name'];
 						$nombreImagen=$_FILES['archivo_xml']['name'];
 						$rutaDestino=$rutaEnServidor.'/'.$nombreImagen;
-						
-						$this->model->nuevoArchivo($postData);
 						move_uploaded_file($rutaTemporal, $rutaDestino);
 
 				}
@@ -112,13 +110,6 @@ class archivoController
 			if($currentarchivo['estado'] != $data['estado'])
 				$newData['estado'] = $data['estado'];
 
-			if($currentarchivo['fecha_creacion'] != $data['fecha_creacion'])
-				$newData['fecha_creacion'] = $data['fecha_creacion'];
-
-			if($currentarchivo['ultima_modificacion'] != $data['ultima_modificacion'])
-				$newData['ultima_modificacion'] = $data['ultima_modificacion'];
-
-	     
 			if($newData){
 				$this->model->updatearchivo($newData, $this->idArchivo);
 			}
@@ -135,10 +126,10 @@ class archivoController
 	/**
 	* FALTA VALIDAR RELACIONES
 	**/
-	public function deletearchivo(){
+	public function deleteArchivo(){
         $result = array();
         
-		if($this->model->deletearchivo($this->idArchivo)){
+		if($this->model->deleteArchivo($this->idArchivo)){
 			$result = array(
 				"status" => "success",
 				"message" => "Registro eliminado");
@@ -155,20 +146,13 @@ class archivoController
 	private function validaDatos($data){
 		$errors = array();
 
-		$descripcion		= $data['descripcion'];
-		$estado		= "1";
-		//$fecha_creacion			= $data['fecha_creacion'];
-		//$utima_modificacion = $data['ultima_modificacion'];
+		$id_apoyo_gasto		= $data['id_apoyo_gasto'];
 		
 
-		if ($this->esVacio($descripcion)) {
-			$errors[] = "Descripción no puede ser vacío";
+		if ($this->esVacio($id_apoyo_gasto)) {
+			$errors[] = "Todo archivo debe estar asociado a un Apoyo o Gasto";
 		}
         
-        if ($this->esVacio($estado)) {
-			$errors[] = "Estado no puede ser vacío";
-		}
-
 
 		return $errors;
 

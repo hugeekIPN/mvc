@@ -351,42 +351,22 @@
 							<td>Núm.</td>
 							<td>PDF</td>
 							<td>XML</td>
+							<td>Actualizar</td>
 							<td>Eliminar</td>
 						</thead>
 						<tbody>
+
+						<?php foreach ($archivo as $archivos): ?>
 						  <tr class="success">
 						  	<td  id="id_upload">1</td>
-						  	<td id="u_pdf"><button class="btn btn-primary">Subir</button></td>
-						  	<td id="u_xml"><a href="#">Archivo.xml</a></td>
+						  	<td id="u_pdf"><?php if($archivos['pdf']): ?>
+						  	<a href="#"><?= $archivos['pdf']; ?></a><?php else: ?><button class="btn btn-primary">Subir</button><?php endif; ?></td>
+						  	<td id="u_xml"><?php if($archivos['xml']): ?><a href="#"> <?= $archivos['xml']; ?></a><?php else: ?><button class="btn btn-primary">Subir</button><?php endif; ?></td>
+						  	<td id="actualizar_fila_u"><button class="btn btn-primary">Actualizar</button></td>
 						  	<td id="borrar_fila_u"><button class="btn btn-danger">Eliminar</button></td>
-						  </tr>
-						  
-						  <tr class="warning">
-						  	<td id="id_upload">2</td>
-						  	<td id="u_pdf"><a href="#">Archivo.pdf</a></td>
-						  	<td id="u_xml"><button class="btn btn-primary">Subir</button></td>
-						  	<td id="borrar_fila_u"><button class="btn btn-danger">Eliminar</button></td>
-						  </tr>
-						  <tr class="success">
-						  	<td  id="id_upload">3</td>
-						  	<td id="u_pdf">
-								<label for="archivo_pdf" class="btn-primary cargar"> Subir</label>
-								<input class="inputfile" type="file"  accept=".pdf" name="archivo_pdf">	
-						  	</td>
-						  	<td id="u_xml"><a href="#">Archivo.xml</a></td>
-						  	<td id="borrar_fila_u"><button class="btn btn-danger">Eliminar</button></td>
-						  </tr>
-						  
-						  <tr class="warning">
-						  	<td id="id_upload">4</td>
-						  	<td id="u_pdf"><a href="#">Archivo.pdf</a></td>
-						  	<td id="u_xml">
-						  		<label for="archivo_xml" class="btn-primary cargar"> Subir</label>
-								<input class="inputfile" type="file"  accept=".xml" name="archivo_xml">	
-							</td>
-						  	<td id="borrar_fila_u"><button class="btn btn-danger">Eliminar</button></td>
-						  </tr>
-						  
+						  </tr>						  
+	                    <?php endforeach; ?>
+
 						</tbody>
 					</table>
 					<form id="formArchivos" enctype="multipart/form-dat" method="post"> 
@@ -397,12 +377,6 @@
 						<input class="inputfile" type="file" id="archivo_up_xml" accept=".xml" name="archivo_xml">	
 						</div>
 						<input class="input" type="hidden" id="id_apoyo_gasto"  name="id_apoyo_gasto" value="">
-
-
-
-
-
-						
 						<input class="submit" type="submit" id="submitArchivos"  name="submitArchivos" >	
 					</form>
 					<div id="mensaje"></div>

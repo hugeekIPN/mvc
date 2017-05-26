@@ -107,7 +107,27 @@ apoyo.verApoyo = function(idApoyo){
             }
         }
     });
+  
+  /*
+    $.ajax({
+        type:   "post",
+        url:    "ajax.php",
+        data:   {
+            action:"getAll_apoyosgastos",
+            idApoyo:  idApoyo
+        },
+        success: function(result){
+            var res = JSON.parse(result);
+            
+            if(res.status == "error"){
+                utilerias.displayErrorServerMessage(elem.msj_server, res.message);
+            }else{
+
+            }
+        }
+    });
     
+    */
 };
 
 apoyo.add = function(editMode){
@@ -351,16 +371,18 @@ apoyo.pais = function (){
     var valor = document.getElementById("paises").value;  
     
     if(valor=="México"){ 
+        elem.estadooregion.show();
         document.getElementById('otro_text').type = 'hidden';
         document.getElementById('estado').type = 'hidden';
         
     }else{
        if(valor=="Otro"){ 
-             document.getElementById('estadooregion').type = 'hidden';
+             elem.estadooregion.hide();
               document.getElementById('otro_text').type = "text";
             document.getElementById('estado').type = 'text';
 
          } else{
+                elem.estadooregion.hide();
                 document.getElementById('otro_text').type = 'hidden';
                 document.getElementById('estadooregion').type = 'hidden';
                 document.getElementById('estado').type = 'text';

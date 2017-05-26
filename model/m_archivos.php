@@ -14,10 +14,10 @@ class m_archivo{
     * @param id_archivo - El id del archivo
     * @return Los datos del archivo en caso de éxito, null en caso contrario
     **/
-    public function getarchivo($id_archivo) 
+    public function getArchivo($id_archivo) 
     {
         $result = $this->db->select(
-                    "SELECT * FROM archivos WHERE id_archivo = :id",
+                    "SELECT * FROM archivos WHERE id_archivos = :id",
                     array ("id" => $id_archivo)
                   );
         if ( count($result) > 0 )
@@ -37,7 +37,7 @@ class m_archivo{
         $this->db->insert('archivos',  array (
             'id_apoyo_gasto'    => $data['id_apoyo_gasto'],
             'pdf' => $_FILES['archivo_pdf']['name'],
-            'xml' => $_FILES['archivo_xml']['name'],  
+            'xml' => $_FILES['archivo_xml']['name']  
         ));
               
     }
@@ -48,11 +48,11 @@ class m_archivo{
     * @param id_archivo - El id del archivo 
     * @return true si logra actualizar
     **/
-    public function updatearchivo($updateData, $id_archivo)
+    public function updateArchivo($updateData, $id_archivo)
     {    
         $this->db->update("archivos", 
                     $updateData, 
-                    "id_archivo = :id",
+                    "id_archivos = :id",
                     array( "id" => $id_archivo )
                );
 
@@ -64,17 +64,19 @@ class m_archivo{
     * @param id_archivo - el id del archivo a eliminar
     * @return true si logra insertarlo
     **/
-    public function deletearchivo($id_archivo)  /// update Estado = eliminado
+    public function deleteArchivo($id_archivo)  /// update Estado = eliminado
     {    
-        return $this->db->delete("archivos", "id_archivo = :id", array( "id" => $id_archivo ));          
+        return $this->db->delete("archivos", "id_archivos = :id", array( "id" => $id_archivo ));          
     }
 
     /**
     * Obtiene todos los archivos de la base de datos
     **/
-    public function getAllarchivos(){
-        $query = "SELECT * from archivos ORDER BY id_archivo DESC";
-        $result = $this->db->select($query, array());
+
+    public function getAllArchivos($idApoyo){
+        $query = "SELECT * from archivos WHERE id_apoyo_gasto = :id ";
+
+        $result = $this->db->select($query, array( "id" => $idApoyo ));
         if(count($result)>0)
             return $result;
         else

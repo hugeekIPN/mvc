@@ -6,6 +6,7 @@ include_once("model/m_apoyo_gasto.php");
 include_once "model/m_evento.php";
 include_once("model/m_proveedor.php");
 include_once("model/m_saldo.php");
+include_once("model/m_archivos.php");
 
 /**
  * 
@@ -19,6 +20,7 @@ class ApoyoGastoController {
     public $modelEvento;
     public $modelProveedor;
     public $modelSaldo;
+    public $modelArchivo;
 
     public function __construct($idApoyo, $idEvento, $idProveedor) {
         $this->idApoyo = $idApoyo;
@@ -28,6 +30,7 @@ class ApoyoGastoController {
         $this->idProveedor = $idProveedor;
         $this->modelProveedor = new m_proveedor();
         $this->modelSaldo = new m_saldo();
+        $this->modelArchivo = new m_archivo();
     }
 
     public function index() {
@@ -61,6 +64,8 @@ class ApoyoGastoController {
 
          $saldo = $this->modelSaldo->getUltimoSaldo();
          $saldo = $saldo? $saldo['saldo'] : 0;
+
+         $archivo = $this->modelArchivo-> getAllArchivos($this->idApoyo);
 
             require_once("views/templates/header.php");
             require_once("views/templates/nav.php");
