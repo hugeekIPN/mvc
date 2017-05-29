@@ -53,15 +53,35 @@ class archivoController
 		}else{
 			
 
-			if(($_FILES['archivo_pdf']['tmp_name'])!=""){
-				print_r($_FILES);
+				if(($_FILES['archivo_pdf']['tmp_name'])!=""){
 
-				$rutaEnServidor='archivos/pdf';
-				$rutaTemporal=$_FILES['archivo_pdf']['tmp_name'];
-				$nombreImagen=$_FILES['archivo_pdf']['name'];
-				$rutaDestino=$rutaEnServidor.'/'.$nombreImagen;
-				move_uploaded_file($rutaTemporal, $rutaDestino);
-				
+					$rutaEnServidor='archivos/pdf';
+					$rutaTemporal=$_FILES['archivo_pdf']['tmp_name'];
+					$nombreImagen=$_FILES['archivo_pdf']['name'];
+					$rutaDestino=$rutaEnServidor.'/'.$nombreImagen;
+
+
+						$currentArchivo = $this->model->getPDF($nombreImagen);
+
+					 	if($currentArchivo){
+
+							$errors = array();
+							$errors[] = "El documento PDF ya existe, por favor cambie el nombre.";
+
+							$message = implode("<br>", $errors);
+
+							$result = array(
+								"status" => "error",
+								"message" => $message );
+
+						}else{
+							move_uploaded_file($rutaTemporal, $rutaDestino);
+							$this->model->nuevoArchivo($postData);
+							$result = array(
+									"status" => "success",
+									"message" => "Registro exitoso");
+							}
+				}
 
 				if(($_FILES['archivo_xml']['tmp_name'])!=""){
 						print_r($_FILES);
@@ -70,20 +90,36 @@ class archivoController
 						$rutaTemporal=$_FILES['archivo_xml']['tmp_name'];
 						$nombreImagen=$_FILES['archivo_xml']['name'];
 						$rutaDestino=$rutaEnServidor.'/'.$nombreImagen;
-						move_uploaded_file($rutaTemporal, $rutaDestino);
+						
+						$currentArchivo = $this->model->getXML($nombreImagen);
 
+					 	if($currentArchivo){
+
+							$errors = array();
+							$errors[] = "El documento XML ya existe, por favor cambie el nombre. ";
+
+							$message = implode("<br>", $errors);
+
+							$result = array(
+								"status" => "error",
+								"message" => $message );
+
+						}else{
+							move_uploaded_file($rutaTemporal, $rutaDestino);
+							$this->model->nuevoArchivo($postData);
+							$result = array(
+									"status" => "success",
+									"message" => "Registro exitoso");
+						}
 				}
-
-				$this->model->nuevoArchivo($postData);
-			}
-
-			$result = array(
-				"status" => "success",
-				"message" => "Registro exitoso");
+				return $result;
 		}
+}
 
-		return $result;
-	}
+				
+		
+
+
 
 	public function getarchivo(){
 		return $this->model->getarchivo($this->idArchivo);
@@ -147,12 +183,30 @@ class archivoController
 		$errors = array();
 
 		$id_apoyo_gasto		= $data['id_apoyo_gasto'];
+		$pdf		= $_FILES['archivo_pdf']['name'];
+		$xml		= $_FILES['archivo_xml']['name'];
+
 		
 
 		if ($this->esVacio($id_apoyo_gasto)) {
 			$errors[] = "Todo archivo debe estar asociado a un Apoyo o Gasto";
 		}
+
+		if ($this->esVacio($pdf)) {
+			$errors[] = "Debe agregar un PDF";
+		}else{
+			$tipoFile = $_FILES['archivo_pdf']['type'];
+			if($tipoFile != "application/pdf")
+				$errors[] = "El archivo no es de tipo PDF";
+		}
         
+        if ($this->esVacio($xml)) {
+			$errors[] = "Debe agregar un XML";
+		}else{
+			$tipoFile = $_FILES['archivo_xml']['type'];
+			if($tipoFile != "text/xml")
+				$errors[] = "El archivo no es de tipo XML";
+		}
 
 		return $errors;
 

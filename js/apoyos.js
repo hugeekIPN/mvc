@@ -89,8 +89,31 @@ apoyo.verApoyo = function(idApoyo){
                 elementos.proveedor.val(res.id_proveedor);
                 elementos.donatario.val(res.id_donatario);
                 elementos.Tipodeapoyo.val(res.tipo_apoyo);
-                elementos.paises.val(res.pais);
-                elementos.estadooregion.val(res.entidad);
+
+                if(res.pais=="México"){
+                    elementos.paises.val(res.pais); 
+                    elementos.estadooregion.show();
+                    elementos.estadooregion.val(res.entidad);
+
+                    document.getElementById('otro_text').type = 'hidden';
+                }else{
+                    if(res.pais=="EUA"){
+                        elementos.estadooregion.hide();
+                        elementos.paises.val(res.pais);
+                        document.getElementById('otro_text').type = 'hidden';
+                        document.getElementById('estado').type = 'text'; 
+                        document.getElementById("estado").value= res.entidad;                           
+                    }else{
+                        elementos.paises.val("Otro");
+                        elementos.estadooregion.hide();
+                        document.getElementById('otro_text').type = 'text';
+                        document.getElementById('otro_text').value= res.pais;
+                        document.getElementById('estado').type = 'text';
+                        document.getElementById("estado").value= res.entidad;  
+                    }
+
+                }
+                
                 elementos.numerodefactura.val(res.factura);
                 elementos.importe_apoyo.val(res.importe);
                 elementos.abono.val(res.importe);
@@ -98,7 +121,6 @@ apoyo.verApoyo = function(idApoyo){
                 elementos.moneda_apoyo.val(res.moneda);
                 elementos.referencia_apoyo.val(res.referencia);
                 elementos.observaciones.val(res.observaciones);
-                elementos.descripcionapoyo.val(res.descripcion);
                 elementos.mescontableflujo.val(res.mes_contabel_libretaflujo);
                 elementos.fechadoctosalida.val(res.fecha_docto_salida);
                 elementos.documentosalida.val(res.docto_salida);
@@ -124,6 +146,8 @@ apoyo.verApoyo = function(idApoyo){
                         +'<td id="borrar_fila_u"><button class="btn btn-danger">Eliminar</button></td>'
                     +'</tr>';
 
+        $("#tbodyid").empty();  // Limpia contenido de tbody de
+
         archivos.forEach(function(a){
             buttonPdf = '<button class="btn btn-primary">Subir</button>';
             buttonXml ='<button class="btn btn-primary">Subir</button>';
@@ -131,34 +155,12 @@ apoyo.verApoyo = function(idApoyo){
             xml = (a.xml)? a.xml : buttonXml;
             tabla.append('<tr class="success">'
                         +'<td  id="id_upload">'+a.id_archivos+'</td>'
-                        +'<td id="u_pdf"><a href="#">'+pdf+'</a></td>'
-                        +'<td id="u_xml"><a href="#">'+xml+'</a></td>'
-                        +'<td id="actualizar_fila_u"><button class="btn btn-primary">Actualizar</button></td>'
-                        +'<td id="borrar_fila_u"><button class="btn btn-danger">Eliminar</button></td>'
+                        +'<td id="u_pdf"><a href="archivos/pdf/'+pdf+'" target="_blank">'+pdf+'</a></td>'
+                        +'<td id="u_xml"><a href="archivos/pdf/'+xml+'" target="_blank">'+xml+'</a></td>'
+                        +'<td id="borrar_fila_u"><button class="btn btn-danger" onclick="apoyo.deleteArchivo('+a.id_archivos+');">Eliminar</button></td>'
                     +'</tr>');
-        });
+        })
     }
-  
-  /*
-    $.ajax({
-        type:   "post",
-        url:    "ajax.php",
-        data:   {
-            action:"getAll_apoyosgastos",
-            idApoyo:  idApoyo
-        },
-        success: function(result){
-            var res = JSON.parse(result);
-            
-            if(res.status == "error"){
-                utilerias.displayErrorServerMessage(elem.msj_server, res.message);
-            }else{
-
-            }
-        }
-    });
-    
-    */
 };
 
 apoyo.add = function(editMode){
@@ -171,8 +173,20 @@ apoyo.add = function(editMode){
     if (editMode == true)
         forUpdate = true;
     
-    
-    
+    var paises = data.paises.val();
+    var estado = null;
+
+    if(paises=="México"){
+         estado = data.estadooregion.val();  
+    }else{
+        if(paises=="Otro"){
+           paises = document.getElementById('otro_text').value;
+           estado = document.getElementById("estado").value;  
+        }else{
+            estado = document.getElementById("estado").value;  
+        }
+    }
+
 	if((apoyo.validaDatos(data))){
         if ( editMode ) {
             action = "updateApoyo";
@@ -200,14 +214,13 @@ apoyo.add = function(editMode){
                     id_proveedor: data.proveedor.val(),
                     id_donatario: data.donatario.val(),
                     tipo_apoyo:    data.Tipodeapoyo.val(),
-                    pais:       data.paises.val(),
-                    entidad:    data.estadooregion.val(),
+                    pais:       paises,
+                    entidad:    estado,
                     factura:    data.numerodefactura.val(), /// ¡???
                     // data.importe_apoyo.val(),
                     moneda: data.moneda_apoyo.val(),
                     referencia: data.referencia_apoyo.val(),
                     observaciones: data.observaciones.val(),
-                    descripcion: data.descripcionapoyo.val(),
                     mes_contabel_libretaflujo: data.mescontableflujo.val(),
                     fecha_docto_salida:  data.fechadoctosalida.val(),
                     docto_salida:    data.documentosalida.val(),
@@ -262,12 +275,13 @@ apoyo.editapoyo = function () {
                 elementos.apoyo.val(res.apoyo);
                 elementos.saldo.val(res.saldo);
                 
-                  elementos.formulario.show();
+                elementos.formulario.show();
                 elementos.cont_datos.hide();
             }
         }
     });
 };
+
 
 
 apoyo.validaDatos = function (data) {
@@ -279,18 +293,12 @@ apoyo.validaDatos = function (data) {
         valid = false;
         utilerias.displayErrorMessage(data.concepto,"Se debe ingresar un concepto");
     }
-    if ($.trim(data.abono.val())=="") {
+
+    if ($.trim(data.proveedor.val())=="" && $.trim(data.donatario.val())=="") {
         valid = false;
-        utilerias.displayErrorMessage(data.abono,"Se debe ingresar un abono");
+        utilerias.displayErrorMessage(data.proveedor,"Debe existir un proveedor o un donatario");
     }
-    if ($.trim(data.proveedor.val())=="") {
-        valid = false;
-        utilerias.displayErrorMessage(data.proveedor,"Debe existir un proveedor");
-    }
-    if ($.trim(data.donatario.val())=="") {
-        valid = false;
-        utilerias.displayErrorMessage(data.donatario,"Debe existir un donatario");
-    }
+    
     if ($.trim(data.evento.val())=="") {
         valid = false;
         utilerias.displayErrorMessage(data.evento,"Debe ingresar un evento");
@@ -329,30 +337,6 @@ apoyo.updateApoyo = function () {
     apoyo.add(true);
 };
 
-
- $(function(){
-        $("#formArchivos").on("submit", function(e){
-            e.preventDefault();
-            var f = $(this);
-            var formData = new FormData(document.getElementById("formArchivos"));
-            formData.append("action", "nuevoArchivo");
-            //formData.append(f.attr("name"), $(this)[0].files[0]);
-            
-            $.ajax({
-
-                url: "ajax.php",
-                type: "post",
-                dataType: "html",
-                data: formData,
-                cache: false,
-                contentType: false,
-                 processData: false
-            })
-                .done(function(res){
-                    $("#mensaje").html("Respuesta: " + res);
-                });
-        });
- });
 
 apoyo.abono = function(){
     var data = apoyo.elem;
@@ -412,7 +396,7 @@ apoyo.pais = function (){
               document.getElementById('otro_text').type = "text";
             document.getElementById('estado').type = 'text';
 
-         } else{
+         }else{
                 elem.estadooregion.hide();
                 document.getElementById('otro_text').type = 'hidden';
                 document.getElementById('estadooregion').type = 'hidden';
@@ -420,3 +404,125 @@ apoyo.pais = function (){
          }
     }
 };
+
+
+
+apoyo.validaArchivos = function () {
+     var data = apoyo.elem;
+    var valid = true;
+    utilerias.removeErrorMessages();
+    
+    
+    if ($.trim(data.archivo_up_pdf.val())=="") {
+        valid = false;
+        utilerias.displayErrorMessage(data.archivo_up_pdf,"Se debe ingresar un PDF");
+    }
+    if ($.trim(data.archivo_up_xml.val())=="") {
+        valid = false;
+        utilerias.displayErrorMessage(data.archivo_up_xml,"Se debe ingresar un XML");
+    }
+
+    return valid;
+};
+
+
+apoyo.deleteArchivo = function (idArchivo) {
+    var data = apoyo.elem;
+
+    var c = confirm('Está seguro de realizar la operación');
+    if (c) {
+        $.ajax({
+            type: "post",
+            url: "ajax.php",
+            dataType: "json",
+            data: {
+                action: "deleteArchivo",
+                idArchivo: idArchivo
+            },
+           success: function(result){
+                if(result.status == "error"){
+                    utilerias.displayErrorServerMessage(elem.msj_server, result.message);
+                }else{
+                    utilerias.displaySuccessMessage($("#mensajes-server"),result.message);
+                    location.reload();
+                }
+           }
+        });
+    }
+};
+
+
+apoyo.updateArchivo = function(idArchivo){
+    var data = apoyo.elem;
+    var action = "updateArchivo";
+
+
+            $.ajax({
+            type: "post",
+            url: "ajax.php",
+            dataType: "json",
+            data: {
+                    idArchivo : idArchivo,
+                    pdf: data.archivo_up_pdf.val(),
+                    xml: data.archivo_up_xml.val(),
+
+                    action: action
+                },
+                success: function(result){
+                if(result.status == "error"){
+                    utilerias.displayErrorServerMessage(elem.msj_server, result.message);
+                }else{  
+                         utilerias.displaySuccessMessage($("#mensajes-server"),result.message);
+                         location.reload();
+                     }
+                }
+        });
+
+};
+
+
+apoyo.addArchivos = function(){
+    if(apoyo.validaArchivos()){
+        var formData = new FormData(document.getElementById("formArchivos"));
+                formData.append("action", "nuevoArchivo");
+                //formData.append(f.attr("name"), $(this)[0].files[0]);
+                
+                $.ajax({
+
+                    url: "ajax.php",
+                    type: "post",
+                    dataType: "html",
+                    data: formData,
+                    cache: false,
+                    contentType: false,
+                     processData: false
+                })
+                    .done(function(res){
+                        $("#mensaje").html("Respuesta: " + res);
+                    });
+    }
+};
+
+/*
+
+            var f = $(this);
+            var formData = new FormData(document.getElementById("formArchivos"));
+            formData.append("action", "nuevoArchivo");
+            //formData.append(f.attr("name"), $(this)[0].files[0]);
+            
+            $.ajax({
+
+                url: "ajax.php",
+                type: "post",
+                dataType: "html",
+                data: formData,
+                cache: false,
+                contentType: false,
+                 processData: false
+            })
+                .done(function(res){
+                    $("#mensaje").html("Respuesta: " + res);
+                });
+        });
+ });
+*/

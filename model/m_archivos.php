@@ -82,6 +82,31 @@ class m_archivo{
         else
             return array();
     }
+
+
+       public function getPDF($nombre) 
+    {
+        $result = $this->db->select(
+                    "SELECT * FROM archivos WHERE pdf = :name",
+                    array ("name" => $nombre)
+                  );
+        if ( count($result) > 0 )
+            return $result[0];
+        else
+            return null;
+    }
+
+     public function getXML($nombre) 
+    {
+        $result = $this->db->select(
+                    "SELECT * FROM archivos WHERE xml = :name",
+                    array ("name" => $nombre)
+                  );
+        if ( count($result) > 0 )
+            return $result[0];
+        else
+            return null;
+    }
 }
 
 ?>

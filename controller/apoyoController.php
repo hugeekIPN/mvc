@@ -90,7 +90,7 @@ class ApoyoGastoController {
 
     public function nuevoApoyoGasto($postData) {
         $result = array();
-        $errors = false; //$this->validaDatos($postData);
+        $errors = $this->validaDatos($postData);
 
         if ($errors) {
             $message = implode("<br>", $errors);
@@ -204,8 +204,6 @@ class ApoyoGastoController {
                 $newData['referencia'] = $data['referencia'];
              if (!$this->esVacio($data['observaciones']))
                 $newData['observaciones'] = $data['observaciones'];
-             if (!$this->esVacio($data['descripcion']))
-                $newData['descripcion'] = $data['descripcion'];
              if (!$this->esVacio($data['mes_contabel_libretaflujo']))
                 $newData['mes_contabel_libretaflujo'] = $data['mes_contabel_libretaflujo'];
              if (!$this->esVacio($data['fecha_docto_salida']))
@@ -271,20 +269,13 @@ class ApoyoGastoController {
         $donatario = $data['id_donatario'];
         $evento = $data['eventos_id_evento'];
 
-        if ($this->esVacio($importe)) {
-            $errors[] = "Debe ingresar un importe";
-        }
-
         if ($this->esVacio($concepto)) {
             $errors[] = "Debe ingresar un concepto";
         }
 
-        if ($this->esVacio($proveedor)) {
-            $errors[] = "Debe ingresar un proveedor";
-        }
 
-        if ($this->esVacio($donatario)) {
-            $errors[] = "Debe ingresar un donatario";
+        if ($this->esVacio($donatario) && $this->esVacio($proveedor)) {
+            $errors[] = "Debe ingresar un proveedor o un donatario";
         }
 
         if ($this->esVacio($evento)) {

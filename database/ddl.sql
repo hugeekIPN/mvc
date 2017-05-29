@@ -185,8 +185,8 @@ CREATE TABLE IF NOT EXISTS `apoyosgastos` (
   ,`folio` VARCHAR(255) NULL COMMENT 'Folio asignado internamente por el usuario\n'
   ,`frecuencia` TINYINT DEFAULT 1 COMMENT '1 unico 2 semanal 3 quincenal 4 mensual 5 bimestral 6 anual'
   ,`eventos_id_evento` INT UNSIGNED NOT NULL
-  ,`id_proveedor` INT UNSIGNED NOT NULL
-  ,`id_donatario` INT UNSIGNED NOT NULL
+  ,`id_proveedor` INT UNSIGNED 
+  ,`id_donatario` INT UNSIGNED 
   ,`tipo_apoyo` TINYINT DEFAULT 1 COMMENT '1 importe 2 especie'
   ,`pais` VARCHAR(45) NULL
   ,`entidad` VARCHAR(45) NULL

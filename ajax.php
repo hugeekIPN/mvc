@@ -223,7 +223,7 @@ switch ($action) {
         echo json_encode($archivo->updateArchivo($_POST));
         break;
     case 'deleteArchivo':
-        $archivo = new archivoController(null);
+        $archivo = new archivoController($_POST['idArchivo']);
         echo json_encode($archivo->deleteArchivo($_POST));
         break;   
 

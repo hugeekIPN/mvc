@@ -272,11 +272,6 @@
 						<textarea rows="1" type="text" class="form-control" name="observaciones" id="observaciones" >
 						</textarea>
 					</div>
-					<div class=" input form-group col-xs-6">
-						<label for="descripcionapoyo">Descripción de Apoyo</label>
-						<textarea   rows="1" class="form-control" name="descripcionapoyo" id="descripcionapoyo" >
-						</textarea>
-					</div>
 					
 
 				</form>
@@ -351,10 +346,9 @@
 							<td>Núm.</td>
 							<td>PDF</td>
 							<td>XML</td>
-							<td>Actualizar</td>
 							<td>Eliminar</td>
 						</thead>
-						<tbody>
+						<tbody id="tbodyid">
 						
 						</tbody>
 					</table>
@@ -366,7 +360,7 @@
 						<input class="inputfile" type="file" id="archivo_up_xml" accept=".xml" name="archivo_xml">	
 						</div>
 						<input class="input" type="hidden" id="id_apoyo_gasto"  name="id_apoyo_gasto" value="">
-						<input class="submit" type="submit" id="submitArchivos"  name="submitArchivos" >	
+						<button onclick="apoyo.addArchivos();" class="btn btn-primary" id="submit_archivos" type="submit">Guardar</button>
 					</form>
 					<div id="mensaje"></div>
 					

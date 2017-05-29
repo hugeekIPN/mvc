@@ -53,7 +53,6 @@ class m_apoyo_gasto{
             'tipo_apoyo'         => $data['tipo_apoyo'], 
             'pais'         => $data['pais'], 
             'entidad'         => $data['entidad'], 
-            'descripcion'         => $data['descripcion'], 
             'observaciones'         => $data['observaciones'], 
             'factura'         => $data['factura'], 
             'referencia'         => $data['referencia'], 
