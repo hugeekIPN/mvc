@@ -171,6 +171,7 @@ CREATE TABLE IF NOT EXISTS `apoyosgastos` (
   ,`estatus` TINYINT DEFAULT 1  COMMENT  '1 activo, 2 espera, 3 cancelado, 4 finalizado'
   ,`concepto` VARCHAR(512)
   ,`importe` DECIMAL(11,2) DEFAULT 0
+  ,`importe_ext` DECIMAL(11,2)
   ,`moneda` TINYINT DEFAULT 1 COMMENT '1 mn 2 usd 3 euros'
   ,`tipo_cambio` VARCHAR(45)
   ,`id_saldo` INT UNSIGNED NOT NULL
@@ -184,16 +185,16 @@ CREATE TABLE IF NOT EXISTS `apoyosgastos` (
   -- campos de captura apoyo
   ,`folio` VARCHAR(255) NULL COMMENT 'Folio asignado internamente por el usuario\n'
   ,`frecuencia` TINYINT DEFAULT 1 COMMENT '1 unico 2 semanal 3 quincenal 4 mensual 5 bimestral 6 anual'
-  ,`eventos_id_evento` INT UNSIGNED NOT NULL
+  ,`id_especie` INT UNSIGNED 
   ,`id_proveedor` INT UNSIGNED 
   ,`id_donatario` INT UNSIGNED 
   ,`tipo_apoyo` TINYINT DEFAULT 1 COMMENT '1 importe 2 especie'
   ,`pais` VARCHAR(45) NULL
   ,`entidad` VARCHAR(45) NULL
-  ,`descripcion` VARCHAR(512)
   ,`observaciones` VARCHAR(512)
   ,`factura` VARCHAR(32)
   ,`referencia` VARCHAR(32)  
+  ,`cantidad` INT NULL 
   ,`unidad` VARCHAR(45) NULL COMMENT 'Unidad en la que se cuantificará el apoyo\n'
   ,`anio` INT NULL  
   
@@ -209,6 +210,11 @@ CREATE TABLE IF NOT EXISTS `apoyosgastos` (
   ,CONSTRAINT `fk_apoyo_proveedor`
     FOREIGN KEY (`id_proveedor`)
     REFERENCES `proveedores` (`id_proveedor`)
+    ON DELETE NO ACTION
+    ON UPDATE CASCADE
+  ,CONSTRAINT `fk_apoyo_especies`
+    FOREIGN KEY (`id_especie`)
+    REFERENCES `especies` (`id_especie`)
     ON DELETE NO ACTION
     ON UPDATE CASCADE
   ,CONSTRAINT `fk_apoyo_donatario`
