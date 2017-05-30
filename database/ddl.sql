@@ -7,9 +7,9 @@
 
 DROP TABLE IF EXISTS `proveedores_apoyos-gastos`;
 DROP TABLE IF EXISTS cargo;
-DROP TABLE IF EXISTS saldo;
 DROP TABLE IF EXISTS archivos;
 DROP TABLE IF EXISTS `apoyosgastos` ;
+DROP TABLE IF EXISTS saldo;
 DROP TABLE IF EXISTS `eventos` ;
 DROP TABLE IF EXISTS `subprogramas` ;
 DROP TABLE IF EXISTS `programas` ;
@@ -189,6 +189,7 @@ CREATE TABLE IF NOT EXISTS `apoyosgastos` (
   ,`id_proveedor` INT UNSIGNED 
   ,`id_donatario` INT UNSIGNED 
   ,`tipo_apoyo` TINYINT DEFAULT 1 COMMENT '1 importe 2 especie'
+  ,`id_evento` INT UNSIGNED
   ,`pais` VARCHAR(45) NULL
   ,`entidad` VARCHAR(45) NULL
   ,`observaciones` VARCHAR(512)
@@ -228,7 +229,7 @@ CREATE TABLE IF NOT EXISTS `apoyosgastos` (
     ON DELETE NO ACTION
     ON UPDATE CASCADE
   ,CONSTRAINT `fk_apoyo_eventos`
-    FOREIGN KEY (`eventos_id_evento`)
+    FOREIGN KEY (`id_evento`)
     REFERENCES `eventos` (`id_evento`)
     ON DELETE NO ACTION
     ON UPDATE CASCADE
