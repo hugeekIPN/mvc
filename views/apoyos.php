@@ -170,6 +170,7 @@
 					<div class=" form-group col-xs-2">
 						<label for="proveedor">Proveedor</label>
 						<select type="text" class="form-control" name="proveedor" id="proveedor" >
+							<option value="0" selected>---Seleccione un proveedor------</option>
 							<?php foreach ($proveedores as $proveedor): ?>
 								<option value="<?=$proveedor['id_proveedor'];?>"><?php echo $proveedor['razon_social']; ?></option>
 							<?php endforeach;?>
@@ -179,6 +180,7 @@
 					<div class=" form-group col-xs-2">
 						<label for="donatario">Donatario</label>
 						<select type="text" class="form-control" name="donatario" id="donatario" >
+							<option value="0" selected>---Seleccione un donatario------</option>
 							<?php foreach ($donatarios as $donatario): ?>
 								<option value="<?=$donatario['id_proveedor'];?>"><?php echo $donatario['razon_social']; ?></option>
 							<?php endforeach;?>
@@ -188,11 +190,44 @@
 					
 					<div class=" form-group col-xs-2">
 						<label for="Tipodeapoyo">Tipo de Apoyo</label>
-						<select type="text" class="form-control" name="Tipodeapoyo" id="Tipodeapoyo" >
+						<select type="text" class="form-control" name="Tipodeapoyo" id="Tipodeapoyo" onchange="apoyo.tipoApoyo();">
 							<option value="2">Especie</option>
 							<option value="1">Importe</option>
 						</select>
 					</div >
+
+					<div class=" form-group col-xs-2" id="especie_div">
+						<label for="especie">Especie</label>
+						<select type="text" class="form-control" name="id_especie" id="id_especie">
+							<?php foreach ($especies as $especie): ?>
+								<option value="<?=$especie['id_especie'];?>"><?php echo $especie['descripcion']; ?></option>
+							<?php endforeach;?>
+						</select>
+					</div >
+
+					<div class=" form-group col-xs-2" id="cantidad_div">
+						<label for="cantidad">Cantidad:</label>
+						<input type="number" class="form-control" name="cantidad" id="cantidad">
+					</div>
+
+					<div class=" form-group col-xs-2" id="unidad_div">
+						<label for="unidad">Unidad</label>
+						<select type="text" class="form-control" name="unidad" id="unidad" onchange="apoyo.otro();">
+							<option value="Otro">otro</option>
+							<option value="1">bolsa</option>
+							<option value="2">caja</option>
+							<option value="3">gr.</option>
+							<option value="4">kg.</option>
+							<option value="5">lts.</option>
+							<option value="6">pza.</option>
+							<option value="7">ton.</option>
+						</select>
+					</div >
+					<div class=" form-group col-xs-2" id="otra_especie_div">
+						<label for="otro">Otro:</label>
+						<input type="text" class="form-control" name="otra_especie" id="otra_especie">
+					</div>
+					
 					<div class=" form-group col-xs-1">
 						<label for="paises">País</label>
 						<select type="text" class="form-control" name="paises" id="paises" onchange="apoyo.pais();" >
@@ -272,8 +307,18 @@
 						<textarea rows="1" type="text" class="form-control" name="observaciones" id="observaciones" >
 						</textarea>
 					</div>
-					
 
+					<div class=" form-group col-xs-2">
+						<select type="text" class="form-control" name="anio" id="anio" onchange="apoyo.filtro();">
+						 	<?php $anio= date("Y"); 
+						 		for($a=2000; $a<=$anio; $a++)
+						 		  { ?>
+									<option value="<?php echo $a; ?>"><?php echo $a; ?></option>
+							<?php } ?>
+						</select>
+					</div >
+					
+					<button onclick="apoyo.add();" class="btn btn-primary pull-right" id="btn-save3">Agregar >></button>
 				</form>
 				</div>
 				<!--INICIO IMPRIMIBLES -->
@@ -329,7 +374,7 @@
 					</div>
 					<div class=" input form-group col-xs-4">
 						<label for="abono">Abono</label>
-						<input type="text" class="form-control" name="abono2" id="abono2" value="" disabled="">
+						<input type="text" class="form-control" name="abono2" id="abono2" value="" disabled="" value="0">
 					</div>
 					<div class=" input form-group col-xs-4">
 						<label for="saldo">Saldo capturado:</label>

@@ -13,33 +13,41 @@ apoyo.elem ={
     reflibretaana:      $("#reflibretaana"),
     mescaptura:       $("#mescaptura"),
     fechacaptura:          $("#fechacaptura"),
-    mescontableana:          $("#mescontableana"),
-    folio_apoyo:          $("#folio_apoyo"),
-    frecuencia:          $("#frecuencia"),
-    evento:          $("#evento"),
+    mescontableana:       $("#mescontableana"),
+    folio_apoyo:         $("#folio_apoyo"),
+    frecuencia:         $("#frecuencia"),
+    evento:            $("#evento"),
     proveedor:          $("#proveedor"),
     donatario:          $("#donatario"),
+    especie:             $("#id_especie"),
+    especie_div:          $("#especie_div"),
     Tipodeapoyo:          $("#Tipodeapoyo"),
-    paises:          $("#paises"),
+    cantidad:             $("#cantidad"),
+    cantidad_div:          $("#cantidad_div"),
+    otra_especie:          $("#otra_especie"),
+    otra_especie_div:       $("#otra_especie_div"),
+    unidad:                 $("#unidad"),
+    unidad_div:             $("#unidad_div"),
+    paises:                 $("#paises"),
     estadooregion:          $("#estadooregion"),
-    estado:         $("#estado"),
-    numerodefactura:          $("#numerodefactura"),
+    estado:                 $("#estado"),
+    numerodefactura:         $("#numerodefactura"),
     importe_apoyo:          $("#importe_apoyo"),
     moneda_apoyo:          $("#moneda_apoyo"),
-    referencia_apoyo:          $("#referencia_apoyo"),
-    observaciones:          $("#observaciones"),
-    descripcionapoyo:          $("#descripcionapoyo"),
+    referencia_apoyo:      $("#referencia_apoyo"),
+    observaciones:         $("#observaciones"),
+    descripcionapoyo:      $("#descripcionapoyo"),
 
     mescontableflujo:          $("#mescontableflujo"),
     fechadoctosalida:          $("#fechadoctosalida"),
-    documentosalida:          $("#documentosalida"),
+    documentosalida:           $("#documentosalida"),
     poliza:          $("#poliza"),
-    idSaldo: $("#saldo"),
+    idSaldo:         $("#saldo"),
 
     archivo_up_pdf:          $("#archivo_up_pdf"),
     archivo_up_xml:          $("#archivo_up_xml"),
     
-
+    anio:            $("#anio"),
     formulario:     $("#formulario-apoyo"),
    // cont_datos:     $("#datos-apoyos"),
     btn_nuevo:      $("#btn-new"),
@@ -85,13 +93,47 @@ apoyo.verApoyo = function(idApoyo){
                 elementos.mescontableana.val(res.mes_contable_anamaria);
                 elementos.folio_apoyo.val(res.folio);
                 elementos.frecuencia.val(res.frecuencia);
-                elementos.evento.val(res.eventos_id_evento);
+                elementos.evento.val(res.id_evento);
                 elementos.proveedor.val(res.id_proveedor);
                 elementos.donatario.val(res.id_donatario);
-                elementos.Tipodeapoyo.val(res.tipo_apoyo);
+
+                if(res.tipo_apoyo=="2"){  // especie
+                    elementos.unidad.val(res.unidad);
+                    elementos.cantidad.val(res.cantidad);
+                    elementos.especie.val(res.id_especie);
+                    elementos.especie.show();
+                    elementos.especie_div.show();
+                    elementos.unidad.show();
+                    elementos.unidad_div.show();
+                    elementos.cantidad.show();
+                    elementos.cantidad_div.show();
+
+                    var unidad = res.unidad;
+
+                    if(isNaN(unidad)){
+                        elementos.unidad.val("Otro");
+                        elementos.otra_especie.val(res.unidad);
+                        elementos.otra_especie.show();
+                        elementos.otra_especie_div.show();
+                    }else{
+                       elementos.otra_especie.hide();
+                        elementos.otra_especie_div.hide();     
+                    }
+                    
+                }else{
+                    elementos.especie.hide();
+                    elementos.especie_div.hide();
+                    elementos.unidad.hide();
+                    elementos.unidad_div.hide();
+                    elementos.cantidad.hide();
+                    elementos.cantidad_div.hide();
+                    elementos.otra_especie.hide();
+                    elementos.otra_especie_div.hide();
+                }
+                     elementos.Tipodeapoyo.val(res.tipo_apoyo);
 
                 if(res.pais=="México"){
-                    elementos.paises.val(res.pais); 
+                    elementos.paises.val(res.pais);  
                     elementos.estadooregion.show();
                     elementos.estadooregion.val(res.entidad);
 
@@ -126,6 +168,8 @@ apoyo.verApoyo = function(idApoyo){
                 elementos.documentosalida.val(res.docto_salida);
                 elementos.poliza.val(res.poliza);
                 elementos.idSaldo.val(res.saldo);
+
+
 
                 apoyo.showArchivos(res.archivos);
                 //alert(res.archivos[1].id_archivos);
@@ -187,6 +231,20 @@ apoyo.add = function(editMode){
         }
     }
 
+    var tipo = data.Tipodeapoyo.val();
+    var cantidad = null;
+    var unidad = null;
+
+
+    if(tipo=="2"){
+         cantidad = data.cantidad.val(); 
+         unidad = data.unidad.val();
+
+         if(unidad=="Otro"){
+            unidad = data.otra_especie.val();
+         } 
+    }
+
 	if((apoyo.validaDatos(data))){
         if ( editMode ) {
             action = "updateApoyo";
@@ -210,13 +268,16 @@ apoyo.add = function(editMode){
                     mes_contable_anamaria: data.mescontableana.val(),
                     folio: data.folio_apoyo.val(),
                     frecuencia: data.frecuencia.val(),
-                    eventos_id_evento: data.evento.val(),
+                    id_especie: data.especie.val(),
                     id_proveedor: data.proveedor.val(),
                     id_donatario: data.donatario.val(),
+                    id_evento: data.evento.val(),
                     tipo_apoyo:    data.Tipodeapoyo.val(),
+                    unidad:    unidad,
+                    cantidad: cantidad,
                     pais:       paises,
                     entidad:    estado,
-                    factura:    data.numerodefactura.val(), /// ¡???
+                    factura:    data.numerodefactura.val(), 
                     // data.importe_apoyo.val(),
                     moneda: data.moneda_apoyo.val(),
                     referencia: data.referencia_apoyo.val(),
@@ -351,7 +412,6 @@ apoyo.nuevo = function(){
 
     elementos.btn_save.attr('onclick','apoyo.add();');
     elementos.btn_save2.attr('onclick','apoyo.add();');
-
     elementos.status.val(1);
     elementos.concepto.val("");
     elementos.abono.val("0.00");
@@ -361,9 +421,9 @@ apoyo.nuevo = function(){
     elementos.mescontableana.val("");
     elementos.folio_apoyo.val("");
     elementos.frecuencia.val(1);
-    elementos.evento.val("");
-    elementos.proveedor.val("");
-    elementos.donatario.val("");
+    elementos.evento.val(1);
+    elementos.proveedor.val(0);
+    elementos.donatario.val(0);
     elementos.Tipodeapoyo.val(1);
     elementos.paises.val("");
     elementos.estadooregion.val("");
@@ -379,6 +439,15 @@ apoyo.nuevo = function(){
     elementos.fechadoctosalida.val("");
     elementos.documentosalida.val("");
     elementos.poliza.val("");
+
+    elementos.unidad.hide();
+    elementos.unidad_div.hide();
+    elementos.otra_especie.hide();
+    elementos.otra_especie_div.hide();
+    elementos.cantidad.hide();
+    elementos.cantidad_div.hide();
+    elementos.especie.hide();
+    elementos.especie_div.hide();
 };
 
 apoyo.pais = function (){
@@ -424,6 +493,80 @@ apoyo.validaArchivos = function () {
 
     return valid;
 };
+
+apoyo.tipoApoyo = function () {
+     var data = apoyo.elem;
+
+     var tipo= data.Tipodeapoyo.val();
+    
+    if(tipo == "2"){
+        /// especie
+        data.unidad.show();
+        data.unidad_div.show();
+        //data.otra_especie.show();
+        data.cantidad.show();
+        data.cantidad_div.show();
+        data.especie.show();
+        data.especie_div.show();
+    }else{
+        data.especie.hide();
+        data.especie_div.hide();
+        data.unidad.hide();
+        data.unidad_div.hide();
+        data.otra_especie.hide();
+        data.otra_especie_div.hide();
+        data.cantidad.hide();
+        data.cantidad_div.hide();
+    }
+    
+};
+
+apoyo.otro = function () {
+     var data = apoyo.elem;
+
+     var unidad= data.unidad.val();
+    
+    if(unidad == "Otro"){
+        data.otra_especie.show();
+        data.otra_especie_div.show();
+    }else{
+        data.otra_especie.hide();
+        data.otra_especie_div.hide();
+    }
+    
+};
+
+apoyo.filtro = function () {
+
+    var data = apoyo.elem;
+
+    var evento= data.evento.val();
+    var anio = data.anio.val();
+
+    $.ajax({
+        type:   "post",
+        url:    "ajax.php",
+        data:   {
+            action:"getApoyoEventos",
+            id_evento: evento,
+            anio: anio
+        },
+        success: function(result){
+            var res = JSON.parse(result);
+            
+            if(res.status == "error"){
+                utilerias.displayErrorServerMessage(elem.msj_server, res.message);
+            }else{
+
+                //apoyo.showEventos(res.archivos);
+                //alert(res.archivos[1].id_archivos);
+
+            }
+        }
+    });
+
+};
+
 
 
 apoyo.deleteArchivo = function (idArchivo) {
@@ -485,8 +628,7 @@ apoyo.addArchivos = function(){
     if(apoyo.validaArchivos()){
         var formData = new FormData(document.getElementById("formArchivos"));
                 formData.append("action", "nuevoArchivo");
-                //formData.append(f.attr("name"), $(this)[0].files[0]);
-                
+                //formData.append(f.attr("name"), $(this)[0].files[0]);              
                 $.ajax({
 
                     url: "ajax.php",

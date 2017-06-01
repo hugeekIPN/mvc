@@ -87,7 +87,7 @@ include_once("model/m_login.php");
 
      public function logout() {
    		sessionController::destroySession();
-   		header('Location: '.SCRIPT_URL.'index.php', TRUE, 302);       
+   		header('Location: index.php', TRUE, 302);       
     }
 
 

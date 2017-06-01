@@ -7,6 +7,7 @@ include_once "model/m_evento.php";
 include_once("model/m_proveedor.php");
 include_once("model/m_saldo.php");
 include_once("model/m_archivos.php");
+include_once("model/m_especie.php");
 
 /**
  * 
@@ -21,12 +22,14 @@ class ApoyoGastoController {
     public $modelProveedor;
     public $modelSaldo;
     public $modelArchivo;
+    public $modelEspecie;
 
     public function __construct($idApoyo, $idEvento, $idProveedor) {
         $this->idApoyo = $idApoyo;
         $this->model = new m_apoyo_gasto;
         $this->idEvento = $idEvento;
         $this->modelEvento = new m_evento();
+        $this->modelEspecie = new m_especie();
         $this->idProveedor = $idProveedor;
         $this->modelProveedor = new m_proveedor();
         $this->modelSaldo = new m_saldo();
@@ -61,6 +64,8 @@ class ApoyoGastoController {
 
          $apoyo =  $this->model->getAllApoyosGastos_type(1);
          $gasto =  $this->model->getAllApoyosGastos_type(2);
+
+         $especies = $this->modelEspecie->getAllEspecies();
 
          $saldo = $this->modelSaldo->getUltimoSaldo();
          $saldo = $saldo? $saldo['saldo'] : 0;
@@ -99,16 +104,28 @@ class ApoyoGastoController {
                 "status" => "error",
                 "message" => $message);
         } else {
-            $saldo = $this->modelSaldo->getUltimoSaldo();
-            $saldo = $saldo? $saldo['saldo'] : 0;
 
-            $nuevoSaldo = $saldo - $postData['importe'];  /// ABONO
-
-            $idNuevoSaldo = $this->modelSaldo->nuevoSaldo($nuevoSaldo);
-
-            $postData['id_saldo'] = $idNuevoSaldo;
-            $postData['referencia_anamaria'] = $postData['idApoyo'];
+            if(!($postData['importe']))          
+                $postData['importe'] = 0;
+            if(!($postData['id_proveedor']))          
+                $postData['id_proveedor'] = 0;
+            if(!($postData['id_donatario']))          
+                $postData['id_donatario'] = 0;
             
+
+               $saldo = $this->modelSaldo->getUltimoSaldo();
+                $saldo = $saldo? $saldo['saldo'] : 0;
+
+                $nuevoSaldo = $saldo - $postData['importe'];  /// ABONO
+                $idNuevoSaldo = $this->modelSaldo->nuevoSaldo($nuevoSaldo);
+                $postData['id_saldo'] = $idNuevoSaldo;
+
+
+            $idUltimoApoyo = $this->model->getUltimoApoyo();
+            $idUltimoApoyo = $idUltimoApoyo? $idUltimoApoyo['id_apoyo'] : 0;
+
+            $postData['referencia_anamaria'] = $idUltimoApoyo +1;
+
             $this->model->nuevoApoyoGasto($postData);
 
             $result = array(
@@ -135,6 +152,21 @@ class ApoyoGastoController {
         return $result;
     }
 
+
+    public function getApoyoEventos($data) {
+        $result = $this->model-> getApoyoEventos($data['id_evento'], $data['anio']);
+
+        if($result){
+            $result["status"] = "success";
+            // $result["eventos"] = $result;
+        }else{
+            $result = array(
+                "status" => "error",
+                "message" => "No se encontró el evento");
+        }
+
+        return $result;
+    }
 
     public function updateApoyoGasto($data) {
         $result = array();
@@ -183,15 +215,20 @@ class ApoyoGastoController {
                 $newData['folio'] = $data['folio'];
              if (!$this->esVacio($data['frecuencia']))
                 $newData['frecuencia'] = $data['frecuencia'];
-             if (!$this->esVacio($data['eventos_id_evento']))
-                $newData['eventos_id_evento'] = $data['eventos_id_evento'];
+             if (!$this->esVacio($data['id_especie']))
+                $newData['id_especie'] = $data['id_especie'];
+             if (!$this->esVacio($data['id_evento']))
+                $newData['id_evento'] = $data['id_evento'];
              if (!$this->esVacio($data['id_proveedor']))
                 $newData['id_proveedor'] = $data['id_proveedor'];
              if (!$this->esVacio($data['id_donatario']))
                 $newData['id_donatario'] = $data['id_donatario'];   
-
              if (!$this->esVacio($data['tipo_apoyo']))
                 $newData['tipo_apoyo'] = $data['tipo_apoyo'];
+            if (!$this->esVacio($data['unidad']))
+                $newData['unidad'] = $data['unidad'];
+            if (!$this->esVacio($data['cantidad']))
+                $newData['cantidad'] = $data['cantidad'];
              if (!$this->esVacio($data['pais']))
                 $newData['pais'] = $data['pais'];
              if (!$this->esVacio($data['entidad']))
@@ -267,7 +304,7 @@ class ApoyoGastoController {
         $concepto = $data['concepto'];
         $proveedor = $data['id_proveedor'];
         $donatario = $data['id_donatario'];
-        $evento = $data['eventos_id_evento'];
+        $evento = $data['id_evento'];
 
         if ($this->esVacio($concepto)) {
             $errors[] = "Debe ingresar un concepto";

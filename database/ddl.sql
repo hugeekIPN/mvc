@@ -198,7 +198,7 @@ CREATE TABLE IF NOT EXISTS `apoyosgastos` (
   ,`cantidad` INT NULL 
   ,`unidad` VARCHAR(45) NULL COMMENT 'Unidad en la que se cuantificará el apoyo\n'
   ,`anio` INT NULL  
-  
+  ,`fecha_recibo` DATETIME DEFAULT CURRENT_TIMESTAMP
   -- campos libreta flujo
   ,`mes_contabel_libretaflujo` VARCHAR(16)
   ,`fecha_docto_salida` DATETIME DEFAULT CURRENT_TIMESTAMP

@@ -208,6 +208,10 @@ switch ($action) {
         $apoyo = new ApoyoGastoController($_POST['idApoyo'],null,null);
         echo json_encode($apoyo->deleteApoyoGasto($_POST));
         break;
+    case 'getApoyoEventos';
+        $apoyo = new ApoyoGastoController(null, null,null);
+        echo json_encode($apoyo->getApoyoEventos($_POST));
+        break;
      
     // CRUD ARCHIVOS
     case 'nuevoArchivo';
