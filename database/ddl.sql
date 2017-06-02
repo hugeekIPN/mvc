@@ -175,13 +175,11 @@ CREATE TABLE IF NOT EXISTS `apoyosgastos` (
   ,`moneda` TINYINT DEFAULT 1 COMMENT '1 mn 2 usd 3 euros'
   ,`tipo_cambio` VARCHAR(45)
   ,`id_saldo` INT UNSIGNED NOT NULL
-  
   -- campos de libreta anamaria
   ,`mes_contable_anamaria` VARCHAR(16)
   ,`mes_captura_anamaria` VARCHAR(16)
   ,`fecha_captura_anamaria` DATETIME DEFAULT CURRENT_TIMESTAMP  
   ,`referencia_anamaria` INT UNSIGNED NOT NULL
-
   -- campos de captura apoyo
   ,`folio` VARCHAR(255) NULL COMMENT 'Folio asignado internamente por el usuario\n'
   ,`frecuencia` TINYINT DEFAULT 1 COMMENT '1 unico 2 semanal 3 quincenal 4 mensual 5 bimestral 6 anual'
@@ -204,7 +202,6 @@ CREATE TABLE IF NOT EXISTS `apoyosgastos` (
   ,`fecha_docto_salida` DATETIME DEFAULT CURRENT_TIMESTAMP
   ,`docto_salida` VARCHAR(64)
   ,`poliza` VARCHAR(32)  
-
   ,`fecha_creacion` DATETIME DEFAULT CURRENT_TIMESTAMP
   ,`ultima_modificacion` DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP  
   ,PRIMARY KEY (`id_apoyo`)

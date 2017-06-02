@@ -328,7 +328,7 @@
 				<!--INICIO IMPRIMIBLES -->
 				<div class="row imprimibles">
 					<div class=" input form-group col-xs-2">
-						<button onclick="window.location.href='index.php?op=cuenta'">
+						<button  data-toggle="modal" data-target="#myModal">
 							<figure><img src="assets/iconos/Recurso 13.png" alt="Cuentas por pagar"></figure>
 							<p>Cuenta por pagar</p>
 						</button>
@@ -446,3 +446,55 @@
 <!-- fin contenedor principal -->
 
 
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Cuenta por pagar</h4>
+      </div>
+      <div class="modal-body">
+      
+					
+					<form id="formArchivos" enctype="multipart/form-dat" method="post"> 
+						<div class=" center">
+						<label for="cuenta_nombre" > Cuenta a nombre de: </label>
+						<select type="text" class="form-control" name="cuenta_nombre" id="cuenta_nombre" >
+							<option value="0" selected>---Seleccione un proveedor------</option>
+							<?php foreach ($proveedores as $proveedor): ?>
+								<option value="<?=$proveedor['id_proveedor'];?>"><?php echo $proveedor['razon_social']; ?></option>
+							<?php endforeach;?>
+						</select>
+						<br/>
+						<label for="tipo_cambio"> Tipo de cambio: </label>
+						<input class="input" type="text" id="tipo_cambio" name="tipo_cambio">	
+						a <select type="text" class="form-control" name="moneda_modal" id="moneda_modal" >
+							<option value="1">Moneda Nacional</option>
+							<option value="2">Dólares Americanos</option>
+							<option value="3">Euro</option>
+						   </select>
+						</div>
+						<br/>
+						<label for="fecha_cambio"> Fecha de cambio: </label>
+						<input class="input" type="text" id="fecha_cambio" name="fecha_cambio">	
+						<br/>
+						<label for="fecha_cambio"> Firma: </label>
+						
+						<select type="text" class="form-control"  type="text" id="firma_cambio" name="firma_cambio">
+							<option value="Lic. Arturo Elías Ayub">Lic. Arturo Elías Ayub</option>
+						</select>
+						</div>
+
+
+						
+					</form>
+     
+      <div class="modal-footer">
+        <button onclick="apoyo.addArchivos();" class="btn btn-primary" id="submit_archivos" type="submit">Aceptar</button>
+      </div>
+    </div>
+
+  </div>
+</div>

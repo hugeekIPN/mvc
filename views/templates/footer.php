@@ -24,15 +24,16 @@
         </script>
      <script>
               $( function() {
-                $( "#datepicker" ).datepicker();
-                $( "#datepicker2" ).datepicker();
-                $( "#fechacaptura" ).datepicker();
-                $("#fechadoctosalida").datepicker();
-                $("#fecharecibo").datepicker();
-                $( "#datepicker4" ).datepicker();
-                $( "#datepicker5" ).datepicker();
-                $( "#datepicker6" ).datepicker();
-                $( "#inputFechaDoctoSalida").datepicker();
+                $( "#datepicker" ).datepicker({ dateFormat: 'yy-mm-dd'});
+                $( "#datepicker2" ).datepicker({ dateFormat: 'yy-mm-dd'});
+                $( "#fechacaptura" ).datepicker({ dateFormat: 'yy-mm-dd'});
+                $("#fechadoctosalida").datepicker({ dateFormat: 'yy-mm-dd'});
+                $("#fecharecibo").datepicker({ dateFormat: 'yy-mm-dd'});
+                $( "#datepicker4" ).datepicker({ dateFormat: 'yy-mm-dd'});
+                $( "#datepicker5" ).datepicker({ dateFormat: 'yy-mm-dd'});
+                $( "#datepicker6" ).datepicker({ dateFormat: 'yy-mm-dd'});
+                $( "#fecha_cambio" ).datepicker({ dateFormat: 'yy-mm-dd'});
+                
               } );
               </script>
      <script>

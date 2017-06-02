@@ -201,6 +201,8 @@ class ApoyoGastoController {
                 $newData['concepto'] = $data['concepto'];
              if (!$this->esVacio($data['importe']))
                 $newData['importe'] = $data['importe'];
+             if (!$this->esVacio($data['importe_ext']))
+                $newData['importe_ext'] = $data['importe_ext'];
             if (!$this->esVacio($data['mes_captura_anamaria']))
                 $newData['mes_captura_anamaria'] = $data['mes_captura_anamaria'];
             if (!$this->esVacio($data['fecha_captura_anamaria']))

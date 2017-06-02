@@ -40,7 +40,7 @@ apoyo.elem ={
     descripcionapoyo:      $("#descripcionapoyo"),
 
     mescontableflujo:          $("#mescontableflujo"),
-    fecha_docto_salida:          $("#fechadoctosalida"),
+    fechadoctosalida:          $("#fechadoctosalida"),
     documentosalida:           $("#documentosalida"),
     poliza:          $("#poliza"),
     idSaldo:         $("#saldo"),
@@ -159,9 +159,16 @@ apoyo.verApoyo = function(idApoyo){
                 }
                 
                 elementos.numerodefactura.val(res.factura);
-                elementos.importe_apoyo.val(res.importe);
-                elementos.abono.val(res.importe);
-                elementos.abono2.val(res.importe);
+
+                if(res.importe<=0){
+                    elementos.importe_apoyo.val(res.importe_ext);
+                    elementos.abono.val(res.importe_ext);
+                    elementos.abono2.val(res.importe_ext);
+                }else{
+                    elementos.importe_apoyo.val(res.importe);
+                    elementos.abono.val(res.importe);
+                    elementos.abono2.val(res.importe);
+                }      
                 elementos.moneda_apoyo.val(res.moneda);
                 elementos.referencia_apoyo.val(res.referencia);
                 elementos.observaciones.val(res.observaciones);
@@ -247,6 +254,16 @@ apoyo.add = function(editMode){
          } 
     }
 
+    var importe = null;
+    var importe_ext = null;
+    var moneda = data.moneda_apoyo.val();
+
+    if(moneda == "1"){
+         importe = data.abono.val();
+    }else{
+        importe_ext = data.abono.val();
+    }
+
 	if((apoyo.validaDatos(data))){
         if ( editMode ) {
             action = "updateApoyo";
@@ -263,8 +280,10 @@ apoyo.add = function(editMode){
                     estatus: data.status.val(),
                     tipo: data.tipo.val(), // APOYO
                     concepto: data.concepto.val(),
-                    importe:  data.abono.val(),
-                    //referencia_anamaria: data.reflibretaana.val(),
+
+                    importe:  importe,
+                    importe_ext:  importe_ext,
+                    
                     mes_captura_anamaria: data.mescaptura.val(),
                     fecha_captura_anamaria: data.fechacaptura.val(),
                     mes_contable_anamaria: data.mescontableana.val(),
@@ -558,6 +577,7 @@ apoyo.filtro = function () {
             var res = JSON.parse(result);
             
             if(res.status == "error"){
+                $("#tbodyid_eventos").empty();
                // utilerias.displayErrorServerMessage(data.msj_server, res.message);
             }else{
 

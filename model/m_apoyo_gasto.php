@@ -40,6 +40,7 @@ class m_apoyo_gasto{
             'estatus'      => $data['estatus'],
             'concepto'      => $data['concepto'],
             'importe'         => $data['importe'],
+            'importe_ext'         => $data['importe_ext'],
             'moneda'         => $data['moneda'], 
             //'tipo_cambio'         => $data['tipo_cambio'], 
             'id_saldo'         =>  $data['id_saldo'],
