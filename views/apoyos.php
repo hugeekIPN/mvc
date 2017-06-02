@@ -186,7 +186,7 @@
 							<?php endforeach;?>
 						</select>
 					</div >
-					 
+
 					
 					<div class=" form-group col-xs-2">
 						<label for="Tipodeapoyo">Tipo de Apoyo</label>
@@ -302,6 +302,10 @@
 						<label for="referencia_apoyo">Referencia</label>
 						<input type="text" class="form-control" name="referencia_apoyo" id="referencia_apoyo" >
 					</div>
+					<div class=" form-group col-xs-3">
+						<label for="fecharecibo">Fecha de recibo</label>
+						<input type="text" id="fecharecibo" class="form-control" placeholder="Click">
+					</div >
 					<div class=" form-group col-xs-6">
 						<label for="observaciones">Observaciones</label>
 						<textarea rows="1" type="text" class="form-control" name="observaciones" id="observaciones" >
@@ -352,6 +356,27 @@
 					</button>
 					</div>
 				</div><!-- Fin de imprimibles -->
+
+				<div class="form-group col-xs-12 margin_top" id="tabla_eventos_div">
+							<div class="cont">
+					    		<table id="tabla_eventos" class="display" cellspacing="0" class="table-hover" >
+					    			<thead>
+					    				<tr>
+					    					<th>Folio</th>
+					    					<th>Concepto</th>
+					    					<th>Evento</th>
+					    					<th>Factura</th>
+					    				</tr>
+
+					    			</thead>
+					    			<tbody id="tbodyid_eventos">
+
+                              		</tbody>
+					    		</table>	
+					    	</div>   
+				</div>
+
+
 				<form id="formulario-libretaflujo">
 					<h3 class="h3form">3.- Libreta Flujo </h3>
 					
@@ -360,8 +385,9 @@
 					 <input type="text" id="mescontableflujo" name="mescontableflujo" class="form-control" >
 					</div>
 					<div class=" form-group col-xs-3">
-						<label for="fechadoctosalida">Fecha de documento de salida</label>
-						<input type="text" id="fechadoctosalida" class="form-control" placeholder="Click">
+						<label for="
+						">Fecha de documento de salida</label>
+						<input type="text" id="fechadoctosalida" name="fechadoctosalida" class="form-control" placeholder="Click">
 					</div >
 					 
 					<div class=" input form-group col-xs-3">

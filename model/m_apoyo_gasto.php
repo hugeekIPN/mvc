@@ -27,16 +27,6 @@ class m_apoyo_gasto{
             return null;
     }
 
-    public function getApoyoEventos($evento, $anio) 
-    {
-        $result = $this->db->select(
-                    "Select * from apoyosgastos where id_evento = 2 and fecha_creacion like '%2017%';",  array ("anio" => $anio, "id" => $evento)
-                  );
-        if ( count($result) > 0 )
-            return $result;
-        else
-            return null;
-    }
 
     /**
     * Guarda un nuevo apoyo_gasto
@@ -68,9 +58,9 @@ class m_apoyo_gasto{
             'observaciones'         => $data['observaciones'], 
             'factura'         => $data['factura'], 
             'referencia'         => $data['referencia'], 
+            'fecha_recibo'     => $data['fecha_recibo'], 
             'unidad'         => $data['unidad'],
             'cantidad'      => $data['cantidad'],
-            //'anio'         => $data['anio'], 
              'mes_contabel_libretaflujo'         => $data['mes_contabel_libretaflujo'], 
             'fecha_docto_salida'         => $data['fecha_docto_salida'], 
             'docto_salida'         => $data['docto_salida'], 
@@ -120,6 +110,18 @@ class m_apoyo_gasto{
         else
             return array();
     }
+
+    public function getApoyoEventos($evento, $anio) 
+    {
+        $result = $this->db->select(
+                    "SELECT a.id_apoyo, a.concepto, e.nombre, a.factura  FROM apoyosgastos as a INNER JOIN eventos as e ON a.id_evento=e.id_evento WHERE a.id_evento = :id and year(a.fecha_recibo) = :anio",  array ("anio" => $anio, "id" => $evento)
+                  );
+        if ( count($result) > 0 )
+            return $result;
+        else
+            return null;
+    }
+
 
     public function getAllApoyosGastos_type($type){
         $query = "SELECT * from apoyosgastos as a INNER JOIN  eventos as e ON a.id_evento= e.id_evento WHERE a.tipo=".$type;

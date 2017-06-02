@@ -13,6 +13,7 @@ apoyo.elem ={
     reflibretaana:      $("#reflibretaana"),
     mescaptura:       $("#mescaptura"),
     fechacaptura:          $("#fechacaptura"),
+    fecharecibo:    $("#fecharecibo"),
     mescontableana:       $("#mescontableana"),
     folio_apoyo:         $("#folio_apoyo"),
     frecuencia:         $("#frecuencia"),
@@ -39,7 +40,7 @@ apoyo.elem ={
     descripcionapoyo:      $("#descripcionapoyo"),
 
     mescontableflujo:          $("#mescontableflujo"),
-    fechadoctosalida:          $("#fechadoctosalida"),
+    fecha_docto_salida:          $("#fechadoctosalida"),
     documentosalida:           $("#documentosalida"),
     poliza:          $("#poliza"),
     idSaldo:         $("#saldo"),
@@ -96,6 +97,7 @@ apoyo.verApoyo = function(idApoyo){
                 elementos.evento.val(res.id_evento);
                 elementos.proveedor.val(res.id_proveedor);
                 elementos.donatario.val(res.id_donatario);
+                elementos.fecharecibo.val(res.fecha_recibo);
 
                 if(res.tipo_apoyo=="2"){  // especie
                     elementos.unidad.val(res.unidad);
@@ -281,6 +283,7 @@ apoyo.add = function(editMode){
                     // data.importe_apoyo.val(),
                     moneda: data.moneda_apoyo.val(),
                     referencia: data.referencia_apoyo.val(),
+                    fecha_recibo: data.fecharecibo.val(),
                     observaciones: data.observaciones.val(),
                     mes_contabel_libretaflujo: data.mescontableflujo.val(),
                     fecha_docto_salida:  data.fechadoctosalida.val(),
@@ -542,7 +545,7 @@ apoyo.filtro = function () {
 
     var evento= data.evento.val();
     var anio = data.anio.val();
-
+    if(evento && anio){
     $.ajax({
         type:   "post",
         url:    "ajax.php",
@@ -555,8 +558,33 @@ apoyo.filtro = function () {
             var res = JSON.parse(result);
             
             if(res.status == "error"){
-                utilerias.displayErrorServerMessage(elem.msj_server, res.message);
+               // utilerias.displayErrorServerMessage(data.msj_server, res.message);
             }else{
+
+
+                var tabla = $("#tabla_eventos");
+
+                var fila = '<tr class="success">'
+                                    +'<td  id="id_upload">1</td>'
+                                    +'<td id="u_pdf"><button class="btn btn-primary">Subir</button></td>'
+                                    +'<td id="u_xml"><a href="#">Archivo.xml</a><button class="btn btn-primary">Subir</button></td>'
+                                    +'<td id="actualizar_fila_u"><button class="btn btn-primary">Actualizar</button></td>'
+                                    +'<td id="borrar_fila_u"><button class="btn btn-danger">Eliminar</button></td>'
+                                +'</tr>';
+
+                                
+
+                $("#tbodyid_eventos").empty();  // Limpia contenido de tbody de
+
+                res.forEach(function(r){
+                    tabla.append('<tr onclick="apoyo.verApoyo('+r.id_apoyo+');">'
+                                +'<td>'+r.id_apoyo+'</td>'
+                                +'<td >'+r.concepto+'</a></td>'
+                                +'<td >'+r.nombre+'</td>'
+                                +'<td >'+r.factura+'</td>'
+                                +'</tr>');
+                })
+                
 
                 //apoyo.showEventos(res.archivos);
                 //alert(res.archivos[1].id_archivos);
@@ -564,7 +592,7 @@ apoyo.filtro = function () {
             }
         }
     });
-
+    }
 };
 
 

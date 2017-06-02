@@ -156,15 +156,11 @@ class ApoyoGastoController {
     public function getApoyoEventos($data) {
         $result = $this->model-> getApoyoEventos($data['id_evento'], $data['anio']);
 
-        if($result){
-            $result["status"] = "success";
-            // $result["eventos"] = $result;
-        }else{
+        if(!$result){
             $result = array(
                 "status" => "error",
                 "message" => "No se encontró el evento");
         }
-
         return $result;
     }
 
@@ -239,6 +235,8 @@ class ApoyoGastoController {
                 $newData['moneda'] = $data['moneda'];
              if (!$this->esVacio($data['referencia']))
                 $newData['referencia'] = $data['referencia'];
+            if (!$this->esVacio($data['fecha_recibo']))
+                $newData['fecha_recibo'] = $data['fecha_recibo'];
              if (!$this->esVacio($data['observaciones']))
                 $newData['observaciones'] = $data['observaciones'];
              if (!$this->esVacio($data['mes_contabel_libretaflujo']))

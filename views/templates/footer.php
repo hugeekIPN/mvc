@@ -18,6 +18,7 @@
         }); 
         $(function() {
         $("#example7").DataTable({dom: 'Bfrtip',  buttons: ['excel']} );
+        $("#tabla_eventos").DataTable({dom: 'Bfrtip',  buttons: ['excel']} );
         }); 
        
         </script>
@@ -27,6 +28,7 @@
                 $( "#datepicker2" ).datepicker();
                 $( "#fechacaptura" ).datepicker();
                 $("#fechadoctosalida").datepicker();
+                $("#fecharecibo").datepicker();
                 $( "#datepicker4" ).datepicker();
                 $( "#datepicker5" ).datepicker();
                 $( "#datepicker6" ).datepicker();
