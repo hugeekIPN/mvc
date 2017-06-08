@@ -2,8 +2,19 @@
 
 // Composer's auto-loading functionality
 require 'vendor/autoload.php';
+include_once("convierte.php");
 
 use Dompdf\Dompdf;
+
+ $convierte   = new NumberToLetterConverter();
+
+$donatario=isset($_REQUEST['donatario']) ?  $_REQUEST['donatario']: $donatario;
+$proveedor=isset($_REQUEST['proveedor']) ?  $_REQUEST['proveedor']: null;
+$concepto = isset($_REQUEST['concepto']) ?  $_REQUEST['concepto']: null;
+
+$abono = isset($_REQUEST['abono']) ?  $_REQUEST['abono']: null;
+$money= $convierte->to_word(intval($abono), "MXN");
+
 
 $html = '<!DOCTYPE html>
 <html lang="us">
@@ -13,7 +24,7 @@ $html = '<!DOCTYPE html>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     
-    <meta name="description" content="Solicitud de transferencia electrónica" >
+    <meta name="description" content="Póliza Sin Cheque" >
     <meta name="author" content="CTIN">
 
     <title>Solicitud de transferencia electrónica</title>
@@ -30,13 +41,14 @@ $html = '<!DOCTYPE html>
 <br/><br/>
 
 <p style="text-align: center;">
-    BEST BUDDIES DE MÉXICO, A.C. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $658,990.88 <br/>
-    (SEISCIENTOS CINCUENTA Y OCHO MIL NOVECIENTOS NOVENTA PESOS 88/100 M.N.)
+    '.strtoupper($proveedor).', A.C. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $'.$abono.' <br/>
+    ('.$money.' 88/100 M.N.) <br/>
+    
 </p>
 <br/><br/><br/>
 <h3 style="text-align:center;"> CONCEPTO </h3>
 <hr style="color: gray;" />
-<p style="text-align: center; margin: 0px; padding: 0px;">Best Buddies / Donativo para gastos  del mes de Noviembre 2016. "AMISTAD" </p>
+<p style="text-align: center; margin: 0px; padding: 0px;">'.$proveedor.'/ '.$concepto.' </p>
 <hr style="color: gray;" />
 
 

@@ -335,21 +335,21 @@
 						
 					</div>
 					<div class=" input form-group col-xs-2">
-						<button onclick="window.location.href='index.php?op=poliza'">
+						<button onclick="apoyo.verPolizaSinCheque();">
 							<figure><img src="assets/iconos/Recurso 16.png" alt="Póliza sin cheque"></figure>
 							<p>Póliza sin cheque</p>
 						</button>
 						
 					</div>
 					<div class=" input form-group col-xs-2">
-						<button onclick="window.location.href='index.php?op=solicitud'">
+						<button data-toggle="modal" data-target="#modal_transf">
 							<figure><img src="assets/iconos/Recurso 17.png" alt="transferencia"></figure>
 						
 						<p>Transferencia</p>
 						</button>
 					</div>
 					<div class=" input form-group col-xs-2">
-						<button onclick="window.location.href='index.php?op=cheque'">
+						<button onclick=apoyo.verCheque();">
 							<figure><img src="assets/iconos/Recurso 15.png" alt="Cheque"></figure>
 						
 						<p>Cheque</p>
@@ -491,6 +491,166 @@
 						
 					</form>
      
+      <div class="modal-footer">
+        <button onclick="apoyo.addArchivos();" class="btn btn-primary" id="submit_archivos" type="submit">Aceptar</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Cuenta por pagar</h4>
+      </div>
+      <div class="modal-body">
+      
+					
+					<form id="formArchivos" enctype="multipart/form-dat" method="post"> 
+						<div class=" center">
+						<label for="cuenta_nombre" > Cuenta a nombre de: </label>
+						<select type="text" class="form-control" name="cuenta_nombre" id="cuenta_nombre" >
+							<option value="0" selected>---Seleccione un proveedor------</option>
+							<?php foreach ($proveedores as $proveedor): ?>
+								<option value="<?=$proveedor['id_proveedor'];?>"><?php echo $proveedor['razon_social']; ?></option>
+							<?php endforeach;?>
+						</select>
+						<br/>
+						<label for="tipo_cambio"> Tipo de cambio: </label>
+						<input class="input" type="text" id="tipo_cambio" name="tipo_cambio">	
+						a <select type="text" class="form-control" name="moneda_modal" id="moneda_modal" >
+							<option value="1">Moneda Nacional</option>
+							<option value="2">Dólares Americanos</option>
+							<option value="3">Euro</option>
+						   </select>
+						</div>
+						<br/>
+						<label for="fecha_cambio"> Fecha de cambio: </label>
+						<input class="input" type="text" id="fecha_cambio" name="fecha_cambio">	
+						<br/>
+						<label for="fecha_cambio"> Firma: </label>
+						
+						<select type="text" class="form-control"  type="text" id="firma_cambio" name="firma_cambio">
+							<option value="Lic. Arturo Elías Ayub">Lic. Arturo Elías Ayub</option>
+						</select>
+						</div>
+
+
+						
+					</form>
+     
+      <div class="modal-footer">
+        <button onclick="apoyo.addArchivos();" class="btn btn-primary" id="submit_archivos" type="submit">Aceptar</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Cuenta por pagar</h4>
+      </div>
+      <div class="modal-body">
+      
+					
+					<form id="formArchivos" enctype="multipart/form-dat" method="post"> 
+						<div class=" center">
+						<label for="cuenta_nombre" > Cuenta a nombre de: </label>
+						<select type="text" class="form-control" name="cuenta_nombre" id="cuenta_nombre" >
+							<option value="0" selected>---Seleccione un proveedor------</option>
+							<?php foreach ($proveedores as $proveedor): ?>
+								<option value="<?=$proveedor['id_proveedor'];?>"><?php echo $proveedor['razon_social']; ?></option>
+							<?php endforeach;?>
+						</select>
+						<br/>
+						<label for="tipo_cambio"> Tipo de cambio: </label>
+						<input class="input" type="text" id="tipo_cambio" name="tipo_cambio">	
+						a <select type="text" class="form-control" name="moneda_modal" id="moneda_modal" >
+							<option value="1">Moneda Nacional</option>
+							<option value="2">Dólares Americanos</option>
+							<option value="3">Euro</option>
+						   </select>
+						</div>
+						<br/>
+						<label for="fecha_cambio"> Fecha de cambio: </label>
+						<input class="input" type="text" id="fecha_cambio" name="fecha_cambio">	
+						<br/>
+						<label for="fecha_cambio"> Firma: </label>
+						
+						<select type="text" class="form-control"  type="text" id="firma_cambio" name="firma_cambio">
+							<option value="Lic. Arturo Elías Ayub">Lic. Arturo Elías Ayub</option>
+						</select>
+						</div>						
+					</form>
+     
+      <div class="modal-footer">
+        <button onclick="apoyo.addArchivos();" class="btn btn-primary" id="submit_archivos" type="submit">Aceptar</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div id="modal_transf" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Carta de transferencia</h4>
+      </div>
+      <div class="modal-body">
+      
+					
+					<form id="formArchivos" enctype="multipart/form-dat" method="post"> 
+						<div class=" center">
+						<label for="cuenta_nombre" > Carta a nombre de: </label>
+						<select type="text" class="form-control" name="carta_nombre" id="carta_nombre" >
+							<option value="0" selected>---Seleccione un proveedor------</option>
+							<?php foreach ($proveedores as $proveedor): ?>
+								<option value="<?=$proveedor['id_proveedor'];?>"><?php echo $proveedor['razon_social']; ?></option>
+							<?php endforeach;?>
+						</select>
+						<br/>
+						<label for="tipo_transf"> Tipo de transferencia: </label>
+						 <select type="text" class="form-control" name="tipo_transf" id="tipo_transf" >
+							<option value="1">Interbancario</option>
+							<option value="2">SPEUA</option>
+							<option value="3">Traspaso de Fondos</option>
+						   </select>
+						</div>
+						<br/>
+
+						<label for="tipo_transf"> Mostrar: </label>
+						 <select type="text" class="form-control" name="mostrar_transf" id="mostrar_transf" >
+							<option value="1">Concepto</option>
+							<option value="2">Referencia</option>
+						   </select>
+						</div>
+						<br/>
+						<label for="fecha_cambio"> Firma: </label>
+						
+						<select type="text" class="form-control"  type="text" id="firma_transf" name="firma_transf">
+							<option value="Sra. Gabriela Blasquez y/o Sra. Jaqueline Vinay">Sra. Gabriela Blasquez y/o Sra. Jaqueline Vinay </option>
+							<option value="Lic. Arturo Elías Ayub">Lic. Arturo Elías Ayub</option>
+						</select>
+
+						</div>					
+					</form>
+
       <div class="modal-footer">
         <button onclick="apoyo.addArchivos();" class="btn btn-primary" id="submit_archivos" type="submit">Aceptar</button>
       </div>

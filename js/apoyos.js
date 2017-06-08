@@ -693,6 +693,53 @@ apoyo.addArchivos = function(){
     }
 };
 
+
+apoyo.verPolizaSinCheque = function(){
+
+var data = apoyo.elem;
+
+/*
+    var postData = 
+                {
+                    "proveedor": data.proveedor.val(),
+                    "donatario": data.donatario.val(),
+                    "abono": data.abono.val()
+                };
+    var dataString = JSON.stringify(postData);
+*/
+var prov = document.getElementById("proveedor");
+var dona = document.getElementById("donatario");
+
+    var idApoyo = data.idApoyo.val();
+    var proveedor= prov.options[prov.selectedIndex].text;
+    var donatario= dona.options[dona.selectedIndex].text;
+    var abono= data.abono.val();
+    var concepto= data.concepto.val();
+
+    
+           /*   $.ajax({
+                    type: "post",
+                    url: "views/poliza_sin_cheque.php",
+                    dataType: "json",
+                    data: {
+                            proveedor: data.proveedor.val(),
+                            donatario: data.donatario.val(),
+                            abono: data.abono.val()
+                        },
+                        success:  function (response) {
+                                setTimeout(window.location='index.php?op=poliza',3000);
+                        }
+                                                       
+                });
+              */
+
+
+             // window.location.href='index.php?op=poliza';
+    //setTimeout(window.location='index.php?op=poliza',3000);
+    window.open('index.php?op=poliza&concepto='+concepto+'&proveedor='+proveedor+'&donatario='+donatario+'&abono='+abono,'_blank');
+};
+
+
 /*
 
             var f = $(this);
