@@ -44,7 +44,7 @@ apoyo.elem ={
     documentosalida:           $("#documentosalida"),
     poliza:          $("#poliza"),
     idSaldo:         $("#saldo"),
-
+    tabla_eventos_div : $("#tabla_eventos_div"),
     archivo_up_pdf:          $("#archivo_up_pdf"),
     archivo_up_xml:          $("#archivo_up_xml"),
     
@@ -80,6 +80,9 @@ apoyo.verApoyo = function(idApoyo){
 				utilerias.displayErrorServerMessage(elem.msj_server, res.message);
 			}else{
                 //mostramos y ocultamos los botones
+                elementos.btn_save.text("Actualizar");
+                elementos.btn_save2.text("Actualizar");
+                elementos.tabla_eventos_div.hide();
                 elementos.btn_save.show();
                 elementos.btn_save.attr('onclick','apoyo.updateApoyo();');
                 elementos.btn_save2.attr('onclick','apoyo.updateApoyo();');
@@ -154,6 +157,7 @@ apoyo.verApoyo = function(idApoyo){
                         document.getElementById('otro_text').value= res.pais;
                         document.getElementById('estado').type = 'text';
                         document.getElementById("estado").value= res.entidad;  
+
                     }
 
                 }
@@ -259,9 +263,10 @@ apoyo.add = function(editMode){
     var moneda = data.moneda_apoyo.val();
 
     if(moneda == "1"){
-         importe = data.abono.val();
+         
+        if(data.abono.val()) importe = data.abono.val(); else  importe = "0.00";
     }else{
-        importe_ext = data.abono.val();
+        if(data.abono.val()) importe_ext = data.abono.val(); else  importe_ext = "0.00";
     }
 
 	if((apoyo.validaDatos(data))){
@@ -431,7 +436,8 @@ apoyo.abono = function(){
 
 apoyo.nuevo = function(){
     var elementos = apoyo.elem;
-
+    elementos.btn_save.text("Guardar");
+    elementos.btn_save2.text("Guardar");
     elementos.btn_save.attr('onclick','apoyo.add();');
     elementos.btn_save2.attr('onclick','apoyo.add();');
     elementos.status.val(1);
@@ -470,6 +476,8 @@ apoyo.nuevo = function(){
     elementos.cantidad_div.hide();
     elementos.especie.hide();
     elementos.especie_div.hide();
+
+    elementos.tabla_eventos_div.hide();
 };
 
 apoyo.pais = function (){
@@ -581,6 +589,7 @@ apoyo.filtro = function () {
                // utilerias.displayErrorServerMessage(data.msj_server, res.message);
             }else{
 
+                data.tabla_eventos_div.show();
 
                 var tabla = $("#tabla_eventos");
 
@@ -715,7 +724,7 @@ var data = apoyo.elem;
     var donatario= dona.options[dona.selectedIndex].text;
     var abono= data.abono.val();
     var concepto= data.concepto.val();
-
+ if(abono) abono= data.abono.val(); else abono = 0.00;
     
            /*   $.ajax({
                     type: "post",
@@ -749,7 +758,7 @@ apoyo.verCuenta = function(){
     var tipo= document.getElementById("tipo_cambio").value;
     var fecha= document.getElementById("fecha_cambio").value;
     var concepto= document.getElementById("concepto").value;
-
+ if(abono) abono= data.abono.val(); else abono = 0.00;
     evento = evento.options[evento.selectedIndex].text;
     firma = firma.options[firma.selectedIndex].text;
     cuenta = cuenta.options[cuenta.selectedIndex].text;
@@ -778,6 +787,7 @@ apoyo.verTransf = function(){
     var firma= firma.options[firma.selectedIndex].text;
     var carta= carta.options[carta.selectedIndex].text;
     var abono= data.abono.val();
+    if(abono) abono= data.abono.val(); else abono = 0.00;
     var concepto= data.concepto.val();
     var cuenta=null;
     var banco=null;
@@ -804,6 +814,19 @@ apoyo.verTransf = function(){
         }
     });
 
+};
+
+apoyo.verCheque = function(){
+
+    var nombre= document.getElementById("proveedor");
+    var abono= document.getElementById("abono").value;
+    var concepto= document.getElementById("concepto").value;
+    var descripcion= document.getElementById("observaciones").value;
+ if(abono) abono= data.abono.val(); else abono = 0.00;
+    nombre = nombre.options[nombre.selectedIndex].text;
+
+    
+    window.open('index.php?op=cheque&abono='+abono+'&concepto='+concepto+'&nombre='+nombre+'&descripcion='+descripcion,'_blank');
 };
 
 

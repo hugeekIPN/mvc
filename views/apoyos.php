@@ -350,7 +350,7 @@
 						</button>
 					</div>
 					<div class=" input form-group col-xs-2">
-						<button onclick=apoyo.verCheque();">
+						<button onclick="apoyo.verCheque();">
 							<figure><img src="assets/iconos/Recurso 15.png" alt="Cheque"></figure>
 						
 						<p>Cheque</p>

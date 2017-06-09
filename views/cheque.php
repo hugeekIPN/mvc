@@ -2,8 +2,27 @@
 
 // Composer's auto-loading functionality
 require 'vendor/autoload.php';
+include_once("convierte.php");
 
 use Dompdf\Dompdf;
+
+$convierte   = new NumberToLetterConverter();
+
+$nombre=isset($_REQUEST['nombre']) ?  $_REQUEST['nombre']: null;
+$concepto = isset($_REQUEST['concepto']) ?  $_REQUEST['concepto']: null;
+$descripcion = isset($_REQUEST['descripcion']) ?  $_REQUEST['descripcion']: null;
+
+if(isset($_REQUEST['abono'])){
+    $abono = $_REQUEST['abono'];
+    $money= $convierte->to_word(intval($abono), "MXN");
+    $aux = (string) $abono;
+    $decimal = substr( $aux, strpos( $aux, "." ) );
+}else{
+    $abono = 0.00;
+    $money = null;
+    $decimal= null;
+}
+
 
 $html = '<!DOCTYPE html>
 <html lang="es">
@@ -43,8 +62,8 @@ FECHA '.date("Y-M-D").'<br>
 <p style="font-size:14px; color:black; float:left;">
 <span style="color: gray; font-size:12px;">PAGUESE POR ESTE CHEQUE A:</span> <br><br>
 <span style="float:left;">TELEFONOS DE MEXICO S.A. DE C.V.</span>
-<span style="float:right;"> $ 709,491.68 </span><br><br>
-<span style="color: black; font-size:14px;">SETESCIENTOS NUEVE MIL CUATROCIENTOS NOVENTA Y UN PESO 68/100 M.N.</span><br>
+<span style="float:right;"> $'.number_format($abono,2).' </span><br><br>
+<span style="color: black; font-size:14px;">'.$money.' '.$decimal.'/100 M.N.</span><br>
 </p>
 <br><br><br><br>
 
@@ -61,8 +80,8 @@ FECHA '.date("Y-M-D").'<br>
     </tr>
     <tr>
         <td><br><br>19/12/16<br><br></td>
-        <td>Beca Digital / Servicios Infinitum del mes de Noviembre de 2016 </td>
-        <td>$709,491.68</td>
+        <td>'.$concepto.' / '.$descripcion.' </td>
+        <td>$'.number_format($abono,2).'</td>
     </tr>
 <table>
 <table border="0" class="codifica">

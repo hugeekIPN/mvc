@@ -2,25 +2,28 @@
 
 // Composer's auto-loading functionality
 require 'vendor/autoload.php';
-
 include_once("convierte.php");
 
 use Dompdf\Dompdf;
 
- $convierte   = new NumberToLetterConverter();
- $fecha=isset($_REQUEST['fecha']) ?  $_REQUEST['fecha']: null;
+$convierte   = new NumberToLetterConverter();
+$fecha=isset($_REQUEST['fecha']) ?  $_REQUEST['fecha']: null;
 $cuenta=isset($_REQUEST['cuenta']) ?  $_REQUEST['cuenta']: null;
 $firma=isset($_REQUEST['firma']) ?  $_REQUEST['firma']: null;
 $moneda = isset($_REQUEST['moneda']) ?  $_REQUEST['moneda']: null;
 $evento = isset($_REQUEST['evento']) ?  $_REQUEST['evento']: null;
 $concepto = isset($_REQUEST['concepto']) ?  $_REQUEST['concepto']: null;
-$abono = isset($_REQUEST['abono']) ?  $_REQUEST['abono']: null;
-$money= $convierte->to_word(intval($abono), "MXN");
 
-
-$aux = (string) $abono;
-$decimal = substr( $aux, strpos( $aux, "." ) );
-
+if(isset($_REQUEST['abono'])){
+    $abono = $_REQUEST['abono'];
+    $money= $convierte->to_word(intval($abono), "MXN");
+    $aux = (string) $abono;
+    $decimal = substr( $aux, strpos( $aux, "." ) );
+}else{
+    $abono = 0.00;
+    $money = null;
+    $decimal= null;
+}
 
 $html = '<!DOCTYPE html>
 <html lang="es">
