@@ -707,8 +707,8 @@ var data = apoyo.elem;
                 };
     var dataString = JSON.stringify(postData);
 */
-var prov = document.getElementById("proveedor");
-var dona = document.getElementById("donatario");
+    var prov = document.getElementById("proveedor");
+    var dona = document.getElementById("donatario");
 
     var idApoyo = data.idApoyo.val();
     var proveedor= prov.options[prov.selectedIndex].text;
@@ -738,6 +738,74 @@ var dona = document.getElementById("donatario");
     //setTimeout(window.location='index.php?op=poliza',3000);
     window.open('index.php?op=poliza&concepto='+concepto+'&proveedor='+proveedor+'&donatario='+donatario+'&abono='+abono,'_blank');
 };
+
+apoyo.verCuenta = function(){
+
+    var cuenta= document.getElementById("cuenta_nombre");
+    var firma= document.getElementById("firma_cambio");
+    var moneda= document.getElementById("moneda_modal");
+    var evento= document.getElementById("evento");
+    var abono= document.getElementById("abono").value;
+    var tipo= document.getElementById("tipo_cambio").value;
+    var fecha= document.getElementById("fecha_cambio").value;
+    var concepto= document.getElementById("concepto").value;
+
+    evento = evento.options[evento.selectedIndex].text;
+    firma = firma.options[firma.selectedIndex].text;
+    cuenta = cuenta.options[cuenta.selectedIndex].text;
+    moneda = moneda.options[moneda.selectedIndex].text;
+
+    
+    window.open('index.php?op=cuenta&abono='+abono+'&concepto='+concepto+'&cuenta='+cuenta+'&firma='+firma+'&moneda='+moneda+'&tipo='+tipo+'&fecha='+fecha+'&evento='+evento,'_blank');
+};
+
+apoyo.verTransf = function(){
+
+    var data = apoyo.elem;
+    var proveedor= document.getElementById("proveedor").value;
+    var carta= document.getElementById("carta_nombre");
+    var firma= document.getElementById("firma_transf");
+    var tipo= document.getElementById("tipo_transf");
+    var mostrar= document.getElementById("mostrar_transf");
+
+    var evento= document.getElementById("evento");
+    var abono= document.getElementById("abono").value;
+    
+    if(!proveedor) proveedor = document.getElementById("donatario").value;
+
+    var tipo= tipo.options[tipo.selectedIndex].text;
+    var mostrar= mostrar.options[mostrar.selectedIndex].text;
+    var firma= firma.options[firma.selectedIndex].text;
+    var carta= carta.options[carta.selectedIndex].text;
+    var abono= data.abono.val();
+    var concepto= data.concepto.val();
+    var cuenta=null;
+    var banco=null;
+    var sucursal=null;
+    var plaza=null;
+
+    $.ajax({
+        type: "POST",
+        url: "ajax.php",
+        data: {
+            action: "getProveedor",
+            id_proveedor : proveedor
+        },
+        success: function(result){
+            var res = JSON.parse(result);
+            
+            cuenta= res.cuenta;
+            banco= res.banco;
+            sucursal= res.sucursal;
+            plaza= res.plaza;
+
+            setTimeout(window.open('index.php?op=solicitud&plaza='+plaza+'&sucursal='+sucursal+'&banco='+banco+'&cuenta='+cuenta+'&carta='+carta+'&firma='+firma+'&tipo='+tipo+'&mostrar='+mostrar+'&abono='+abono+'&concepto='+concepto,'_blank'), 3000);
+
+        }
+    });
+
+};
+
 
 
 /*

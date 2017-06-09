@@ -3,7 +3,24 @@
 // Composer's auto-loading functionality
 require 'vendor/autoload.php';
 
+include_once("convierte.php");
+
 use Dompdf\Dompdf;
+
+ $convierte   = new NumberToLetterConverter();
+ $fecha=isset($_REQUEST['fecha']) ?  $_REQUEST['fecha']: null;
+$cuenta=isset($_REQUEST['cuenta']) ?  $_REQUEST['cuenta']: null;
+$firma=isset($_REQUEST['firma']) ?  $_REQUEST['firma']: null;
+$moneda = isset($_REQUEST['moneda']) ?  $_REQUEST['moneda']: null;
+$evento = isset($_REQUEST['evento']) ?  $_REQUEST['evento']: null;
+$concepto = isset($_REQUEST['concepto']) ?  $_REQUEST['concepto']: null;
+$abono = isset($_REQUEST['abono']) ?  $_REQUEST['abono']: null;
+$money= $convierte->to_word(intval($abono), "MXN");
+
+
+$aux = (string) $abono;
+$decimal = substr( $aux, strpos( $aux, "." ) );
+
 
 $html = '<!DOCTYPE html>
 <html lang="es">
@@ -37,27 +54,27 @@ México, D.F. a '.date("Y-M-D").'                              Consecutivo: <str
 <br/><br/>
 
 <p style="text-align: left;">
-  Beneficiario: BEST BUDDIES DE MÉXICO, A.C.
+  Beneficiario: '.$cuenta.', A.C.
 </p>
 <br/><br/><br/>
 <pre>
-Importe: $658,990.88   
-<br>Letra: <strong>seicientos cincuenta y ocho mil novecientos noventa pesos 88/100 M.N.</strong>
+Importe: $'.number_format($abono,2).' 
+<br>Letra: <strong>'.$money.' '.$decimal.'/100 M.N.</strong>
 </pre>
 <br><br>
 <p>
-Evento / Concepto: <strong>Best Buddies / Donativo para gastos del mes de Noviembre 2016. "AMISTAD" </strong>
+Evento / Concepto: <strong>'.$evento.'/ '.$concepto.' </strong>
 </p>
 <br><br>
 <pre>
 Observaciones:
 <br><br><br>
-    Factura: <strong>BBM67</strong>                                                             Fecha: <strong>09/06/2916</strong>
+    Factura: <strong>BBM67</strong>                                                             Fecha: <strong>'.$fecha.'</strong>
     <br><br><br><br><br>
 
 _________________________                                  _____________________________
 Firma del solicitante                                                                Firma de Vo.Bo.
-C.P Mario Pérez Tejeda Rojas                                             Lic. Arturo Elías Ayub
+Lic. Socorro Castillo Puebla                                           '.$firma.'
 </pre>
 
 </body>

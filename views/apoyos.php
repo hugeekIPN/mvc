@@ -313,6 +313,7 @@
 					</div>
 
 					<div class=" form-group col-xs-2">
+						<label for="anio_filtro">Año:</label>
 						<select type="text" class="form-control" name="anio" id="anio" onchange="apoyo.filtro();">
 						 	<?php $anio= date("Y"); 
 						 		for($a=2000; $a<=$anio; $a++)
@@ -492,7 +493,7 @@
 					</form>
      
       <div class="modal-footer">
-        <button onclick="apoyo.addArchivos();" class="btn btn-primary" id="submit_archivos" type="submit">Aceptar</button>
+        <button onclick="apoyo.verCuenta();" class="btn btn-primary" id="submit_archivos" type="submit">Aceptar</button>
       </div>
     </div>
 
@@ -545,7 +546,7 @@
 					</form>
      
       <div class="modal-footer">
-        <button onclick="apoyo.addArchivos();" class="btn btn-primary" id="submit_archivos" type="submit">Aceptar</button>
+        <button onclick="apoyo.verTransf();" class="btn btn-primary" id="submit_archivos" type="submit">Aceptar</button>
       </div>
     </div>
 
@@ -596,7 +597,7 @@
 					</form>
      
       <div class="modal-footer">
-        <button onclick="apoyo.addArchivos();" class="btn btn-primary" id="submit_archivos" type="submit">Aceptar</button>
+        <button onclick="apoyo.verCuenta();" class="btn btn-primary" id="submit_archivos" type="submit">Aceptar</button>
       </div>
     </div>
 
@@ -634,7 +635,7 @@
 						</div>
 						<br/>
 
-						<label for="tipo_transf"> Mostrar: </label>
+						<label for="mostrar_transf"> Mostrar: </label>
 						 <select type="text" class="form-control" name="mostrar_transf" id="mostrar_transf" >
 							<option value="1">Concepto</option>
 							<option value="2">Referencia</option>
@@ -652,7 +653,7 @@
 					</form>
 
       <div class="modal-footer">
-        <button onclick="apoyo.addArchivos();" class="btn btn-primary" id="submit_archivos" type="submit">Aceptar</button>
+        <button onclick="apoyo.verTransf();" class="btn btn-primary" id="submit_archivos" type="submit">Aceptar</button>
       </div>
     </div>
 
