@@ -70,7 +70,6 @@ class ApoyoGastoController {
          $saldo = $this->modelSaldo->getUltimoSaldo();
          $saldo = $saldo? $saldo['saldo'] : 0;
          
-
         
 
             require_once("views/templates/header.php");
@@ -122,9 +121,11 @@ class ApoyoGastoController {
 
 
             $idUltimoApoyo = $this->model->getUltimoApoyo();
+            $ultimaRef = $idUltimoApoyo?  $idUltimoApoyo['referencia_anamaria'] : 0;
             $idUltimoApoyo = $idUltimoApoyo? $idUltimoApoyo['id_apoyo'] : 0;
+            
+            $postData['referencia_anamaria'] = $ultimaRef +1;
 
-            $postData['referencia_anamaria'] = $idUltimoApoyo +1;
 
             $this->model->nuevoApoyoGasto($postData);
 
@@ -276,10 +277,9 @@ class ApoyoGastoController {
         $saldo = $this->modelSaldo->getUltimoSaldo();
             $saldo = $saldo? $saldo['saldo'] : 0;
 
-        $actualizaSaldo = $saldo + $currentApoyo['importe'];
-        
-          $idSaldoCapturado = $currentApoyo['id_saldo'];
-        
+          $actualizaSaldo = $saldo + $currentApoyo['importe']; 
+          $idSaldoCapturado = $currentApoyo['id_saldo']; 
+         $this->modelArchivo-> deleteArchivo_Apoyo($this->idApoyo);
 
         if ($this->model->deleteApoyoGasto($this->idApoyo)) {
 

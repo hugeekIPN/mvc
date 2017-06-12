@@ -165,4 +165,21 @@ class Database extends PDO
 
         return $count;
     }
+
+    public function deleteAll($table, $where, $bind = array())
+    {
+        $db = self::getInstance();
+
+        $sth = $db->prepare("DELETE FROM $table WHERE $where ");
+        
+        foreach ($bind as $key => $value) {
+            $sth->bindValue(":$key", $value);
+        }
+        
+        $count = $sth->execute();
+
+        $sth->closeCursor();
+
+        return $count;
+    }
 }

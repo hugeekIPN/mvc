@@ -69,6 +69,11 @@ class m_archivo{
         return $this->db->delete("archivos", "id_archivos = :id", array( "id" => $id_archivo ));          
     }
 
+    public function deleteArchivo_Apoyo($id_apoyo)  /// update Estado = eliminado
+    {    
+        return $this->db->deleteAll("archivos", "id_apoyo_gasto = :id_apoyo", array( "id_apoyo" => $id_apoyo ));          
+    }
+
     /**
     * Obtiene todos los archivos de la base de datos
     **/

@@ -213,7 +213,7 @@ apoyo.verApoyo = function(idApoyo){
             tabla.append('<tr class="success">'
                         +'<td  id="id_upload">'+a.id_archivos+'</td>'
                         +'<td id="u_pdf"><a href="archivos/pdf/'+pdf+'" target="_blank">'+pdf+'</a></td>'
-                        +'<td id="u_xml"><a href="archivos/pdf/'+xml+'" target="_blank">'+xml+'</a></td>'
+                        +'<td id="u_xml"><a href="archivos/xml/'+xml+'" target="_blank">'+xml+'</a></td>'
                         +'<td id="borrar_fila_u"><button class="btn btn-danger" onclick="apoyo.deleteArchivo('+a.id_archivos+');">Eliminar</button></td>'
                     +'</tr>');
         })
@@ -644,7 +644,9 @@ apoyo.deleteArchivo = function (idArchivo) {
                     utilerias.displayErrorServerMessage(elem.msj_server, result.message);
                 }else{
                     utilerias.displaySuccessMessage($("#mensajes-server"),result.message);
-                    location.reload();
+
+                    $("#tbodyid").empty();  
+                    verApoyo(data.idApoyo.val());
                 }
            }
         });
@@ -682,6 +684,8 @@ apoyo.updateArchivo = function(idArchivo){
 
 
 apoyo.addArchivos = function(){
+    var data = apoyo.elem;
+
     if(apoyo.validaArchivos()){
         var formData = new FormData(document.getElementById("formArchivos"));
                 formData.append("action", "nuevoArchivo");
@@ -695,10 +699,17 @@ apoyo.addArchivos = function(){
                     cache: false,
                     contentType: false,
                      processData: false
-                })
-                    .done(function(res){
-                        $("#mensaje").html("Respuesta: " + res);
-                    });
+                     ,
+                    success: function(result){
+                    if(result.status == "error"){
+                        utilerias.displayErrorServerMessage(elem.msj_server, result.message);
+
+                    }else{  
+                             utilerias.displaySuccessMessage($("#mensajes-server"),result.message);
+                             verApoyo(data.idApoyo.val());
+                         }
+                    }
+                });
     }
 };
 
