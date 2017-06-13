@@ -55,7 +55,7 @@ class ApoyoGastoController {
 
     public function viewPage(){
         $usuario = "dummy";
-            $titulo = "Apoyos";
+        $titulo = "Apoyos";
           
          $eventos = $this->modelEvento->getAllEventos();
         
@@ -269,6 +269,58 @@ class ApoyoGastoController {
         return $result;
     }
 
+ public function updateImporte_ApoyoGasto($data) {
+        $result = array();
+        $errors = false;
+
+        if ($errors) {
+            $message = implode("<br>", $errors);
+
+            $result = array(
+                "status" => "error",
+                "message" => $message);
+        } else {
+            $currentApoyo = $this->model->getApoyoGasto($this->idApoyo);   
+            $saldo = $this->modelSaldo->getUltimoSaldo();
+            $saldo = $saldo? $saldo['saldo'] : 0;
+
+            $tipo = (int) $data['tipo'];
+
+            $newData = array();
+            unset($newData['action']);
+
+            $importe =  $tipo * $currentApoyo['importe_ext'];
+            $actualizaSaldo = $saldo - $importe;
+            $newData['importe'] = $importe;
+            $newData['moneda']  = $data['moneda'];
+                 
+
+           
+
+            $currentSaldo = $this->modelSaldo->getSaldo($currentApoyo['id_saldo']);
+
+            $updateDataSaldo = array();
+            $updateDataSaldo['saldo'] = $actualizaSaldo;
+
+
+            
+
+
+            if ($newData) {
+
+                $this->modelSaldo->updateSaldo($updateDataSaldo, $currentApoyo['id_saldo']);
+                $this->modelSaldo->nuevoSaldo($actualizaSaldo);
+
+                $this->model->updateApoyoGasto($newData, $this->idApoyo);
+            }
+
+            $result = array(
+                "status" => "success",
+                "message" => "Registro actualizado");
+        }
+
+        return $result;
+    }
     /**
      * FALTA VALIDAR RELACIONES
      * */

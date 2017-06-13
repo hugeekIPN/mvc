@@ -23,6 +23,12 @@ if(isset($_REQUEST['abono'])){
     $decimal= null;
 }
 
+$dias = array("Domingo","Lunes","Martes","Miercoles","Jueves","Viernes","Sábado");
+$meses = array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
+$mes = (int)date("m");
+if($mes >0) $mes--;
+$fecha = date("d").' de '.$meses[$mes].' del '.date("Y");
+
 
 $html = '<!DOCTYPE html>
 <html lang="es">
@@ -55,7 +61,7 @@ R.F.C. FTE-951227-NS5<br>
 </p>
 <p style="font-size:12px; color:gray;float:right; ">
 CHEQUE No. <span style="color:red; font-size:16;">0006330</span><br>
-FECHA '.date("Y-M-D").'<br>
+FECHA '.$fecha.'<br>
 </p>
 
 <br><br><br><br>

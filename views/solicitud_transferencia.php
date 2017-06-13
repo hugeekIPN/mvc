@@ -9,7 +9,7 @@ use Dompdf\Dompdf;
 
  $convierte   = new NumberToLetterConverter();
 
-$carta=isset($_REQUEST['carta']) ?  $_REQUEST['carta']: null;
+$proveedor=isset($_REQUEST['proveedor']) ?  $_REQUEST['proveedor']: null;
 $firma=isset($_REQUEST['firma']) ?  $_REQUEST['firma']: null;
 $tipo = isset($_REQUEST['tipo']) ?  $_REQUEST['tipo']: null;
 $mostrar = isset($_REQUEST['mostrar']) ?  $_REQUEST['mostrar']: null;
@@ -18,6 +18,7 @@ $cuenta = isset($_REQUEST['cuenta']) ?  $_REQUEST['cuenta']: null;
 $plaza = isset($_REQUEST['plaza']) ?  $_REQUEST['plaza']: null;
 $banco = isset($_REQUEST['banco']) ?  $_REQUEST['banco']: null;
 $sucursal = isset($_REQUEST['sucursal']) ?  $_REQUEST['sucursal']: null;
+$referencia = isset($_REQUEST['referencia']) ?  $_REQUEST['referencia']: null;
 
 if($tipo == "Interbancario") $texto = "Transferencia Electrónica de Fondos Vía Pago
 Interbancario";
@@ -35,7 +36,18 @@ if(isset($_REQUEST['abono'])){
 	$decimal= null;
 }
 
+if($firma =="Sra. Gabriela Blasquez y/o Sra. Jaqueline Vinay"){
+	$firma = "Sra. Gabriela Blasquez y/o Sra. Jaqueline Vinay<br/>
+Coordinadoras Fundación Telmex, A.C.<br/>";
+}else{
+	$firma = "Lic. Arturo Elías Ayub<br/>";
+}
 
+$dias = array("Domingo","Lunes","Martes","Miercoles","Jueves","Viernes","Sábado");
+$meses = array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
+$mes = (int)date("m");
+if($mes >0) $mes--;
+$fecha = date("d").' de '.$meses[$mes].' del '.date("Y");
 
 
 $html = '<!DOCTYPE html>
@@ -59,7 +71,7 @@ $html = '<!DOCTYPE html>
 <hr style="color: gray;" />
 <p style="text-align: center; margin: 0px; padding: 0px;">Parque Vía No. 198, Col. Cuahtémoc, Delegación Cuauhtémoc, C.P. 06599, México, D.F.</p>
 <hr style="color: gray;" />
-<p style="text-align: right;">México, D.F. a '.strftime("%A, %d de %B de %Y")  .' </p>
+<p style="text-align: right;">México, D.F. a '.$fecha.' </p>
 <p style="text-align: right;">Ref: FT/1230/16 </p>
 <br/><br/>
 <strong>GERENCIA DE TESORERÍA</strong><br/>
@@ -74,13 +86,14 @@ Por medio de la presente solicitamos se realice la siguiente <strong>'.$texto.'<
 <p>
 a favor de: <br/><br/>
 
-BENEFICIARIO.- '.$carta.', A.C. <br/><br/>
+BENEFICIARIO.- '.$proveedor.', A.C. <br/><br/>
 
 CUENTA NO.- '.$cuenta.'<br/><br/>
 BANCO.- '.$banco.'<br/><br/>
 SUCURSAL.- '.$sucursal.'<br/><br/>
 PLAZA.- '.$plaza.'<br/><br/>
 CONCEPTO.- '.$concepto.'<br/><br/>
+REFERENCIA.- '.$referencia.'<br/><br/>
 <span style="text-decoration: underline;">NOTA: CON FECHA VALOR IGUAL A LA FECHA DE RECEPCIÓN POR EL BANCO</span><br/><br/>
 
 Agradecemos gentilmente la atención que se sirva brindar a este asunto<br/><br/>
@@ -88,8 +101,7 @@ Agradecemos gentilmente la atención que se sirva brindar a este asunto<br/><br/
 Atentamente,<br/><br/><br/>
 
 
-'.$firma.'<br/>
-Coordinadoras Fundación Telmex, A.C.<br/>
+'.$firma.'
 </p>
 
 </body>

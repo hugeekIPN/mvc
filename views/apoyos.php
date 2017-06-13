@@ -461,13 +461,6 @@
 					
 					<form id="formArchivos" enctype="multipart/form-dat" method="post"> 
 						<div class=" center">
-						<label for="cuenta_nombre" > Cuenta a nombre de: </label>
-						<select type="text" class="form-control" name="cuenta_nombre" id="cuenta_nombre" >
-							<option value="0" selected>---Seleccione un proveedor------</option>
-							<?php foreach ($proveedores as $proveedor): ?>
-								<option value="<?=$proveedor['id_proveedor'];?>"><?php echo $proveedor['razon_social']; ?></option>
-							<?php endforeach;?>
-						</select>
 						<br/>
 						<label for="tipo_cambio"> Tipo de cambio: </label>
 						<input class="input" type="text" id="tipo_cambio" name="tipo_cambio">	
@@ -618,13 +611,6 @@
 					
 					<form id="formArchivos" enctype="multipart/form-dat" method="post"> 
 						<div class=" center">
-						<label for="cuenta_nombre" > Carta a nombre de: </label>
-						<select type="text" class="form-control" name="carta_nombre" id="carta_nombre" >
-							<option value="0" selected>---Seleccione un proveedor------</option>
-							<?php foreach ($proveedores as $proveedor): ?>
-								<option value="<?=$proveedor['id_proveedor'];?>"><?php echo $proveedor['razon_social']; ?></option>
-							<?php endforeach;?>
-						</select>
 						<br/>
 						<label for="tipo_transf"> Tipo de transferencia: </label>
 						 <select type="text" class="form-control" name="tipo_transf" id="tipo_transf" >

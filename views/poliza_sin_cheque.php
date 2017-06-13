@@ -20,6 +20,13 @@ $aux = (string) $abono;
 $decimal = substr( $aux, strpos( $aux, "." ) );
 
 
+$dias = array("Domingo","Lunes","Martes","Miercoles","Jueves","Viernes","Sábado");
+$meses = array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
+$mes = (int)date("m");
+if($mes >0) $mes--;
+$fecha = date("d").' de '.$meses[$mes].' del '.date("Y");
+
+
 $html = '<!DOCTYPE html>
 <html lang="us">
 
@@ -41,7 +48,7 @@ $html = '<!DOCTYPE html>
 <hr style="color: gray;" />
 <br><br>
 <h1 style="text-align:center;"> POLIZA SIN CHEQUE </h1><br/><br/>
-<p style="text-align: right;">México, D.F. a '.strftime("%A, %d de %B de %Y")  .' </p>
+<p style="text-align: right;">México, D.F. a '.$fecha.' </p>
 <br/><br/>
 
 <p style="text-align: center;">

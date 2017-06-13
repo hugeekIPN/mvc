@@ -7,12 +7,16 @@ include_once("convierte.php");
 use Dompdf\Dompdf;
 
 $convierte   = new NumberToLetterConverter();
-$fecha=isset($_REQUEST['fecha']) ?  $_REQUEST['fecha']: null;
-$cuenta=isset($_REQUEST['cuenta']) ?  $_REQUEST['cuenta']: null;
+$fecha_recibo=isset($_REQUEST['fecha']) ?  $_REQUEST['fecha']: null;
 $firma=isset($_REQUEST['firma']) ?  $_REQUEST['firma']: null;
 $moneda = isset($_REQUEST['moneda']) ?  $_REQUEST['moneda']: null;
 $evento = isset($_REQUEST['evento']) ?  $_REQUEST['evento']: null;
 $concepto = isset($_REQUEST['concepto']) ?  $_REQUEST['concepto']: null;
+$referencia = isset($_REQUEST['referencia']) ?  $_REQUEST['referencia']: null;
+$proveedor = isset($_REQUEST['proveedor']) ?  $_REQUEST['proveedor']: null;
+$factura = isset($_REQUEST['factura']) ?  $_REQUEST['factura']: null;
+$observaciones = isset($_REQUEST['observaciones']) ?  $_REQUEST['observaciones']: null;
+
 
 if(isset($_REQUEST['abono'])){
     $abono = $_REQUEST['abono'];
@@ -24,6 +28,14 @@ if(isset($_REQUEST['abono'])){
     $money = null;
     $decimal= null;
 }
+
+
+$dias = array("Domingo","Lunes","Martes","Miercoles","Jueves","Viernes","Sábado");
+$meses = array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
+$mes = (int)date("m");
+if($mes >0) $mes--;
+$fecha = date("d").' de '.$meses[$mes].' del '.date("Y");
+
 
 $html = '<!DOCTYPE html>
 <html lang="es">
@@ -53,11 +65,11 @@ $html = '<!DOCTYPE html>
 <hr style="color: gray;" />
 <br><br>
 <pre style="text-align:left;">
-México, D.F. a '.date("Y-M-D").'                              Consecutivo: <strong>FTBR/Afsch/1230/16</strong></pre>
+México, D.F. a '.$fecha.'                              Consecutivo: <strong>Ref:'.$referencia.'</strong></pre>
 <br/><br/>
 
 <p style="text-align: left;">
-  Beneficiario: '.$cuenta.', A.C.
+  Beneficiario: '.$proveedor.', A.C.
 </p>
 <br/><br/><br/>
 <pre>
@@ -70,9 +82,9 @@ Evento / Concepto: <strong>'.$evento.'/ '.$concepto.' </strong>
 </p>
 <br><br>
 <pre>
-Observaciones:
+Observaciones: '.$observaciones.'
 <br><br><br>
-    Factura: <strong>BBM67</strong>                                                             Fecha: <strong>'.$fecha.'</strong>
+    Factura: <strong>'.$factura.'</strong>                                                             Fecha: <strong>'.$fecha_recibo.'</strong>
     <br><br><br><br><br>
 
 _________________________                                  _____________________________

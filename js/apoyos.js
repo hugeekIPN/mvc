@@ -761,45 +761,85 @@ var data = apoyo.elem;
 
 apoyo.verCuenta = function(){
 
+    var data = apoyo.elem;
+
     var cuenta= document.getElementById("cuenta_nombre");
     var firma= document.getElementById("firma_cambio");
     var moneda= document.getElementById("moneda_modal");
     var evento= document.getElementById("evento");
     var abono= document.getElementById("abono").value;
     var tipo= document.getElementById("tipo_cambio").value;
-    var fecha= document.getElementById("fecha_cambio").value;
+    var fecha= document.getElementById("fecharecibo").value;
     var concepto= document.getElementById("concepto").value;
- if(abono) abono= data.abono.val(); else abono = 0.00;
+    var referencia = document.getElementById("referencia_apoyo").value;
+    var proveedor = document.getElementById("proveedor");
+    var donatario = document.getElementById("donatario");
+    var factura = document.getElementById("numerodefactura").value;
+    var observaciones = document.getElementById("observaciones").value;
+
+    proveedor = proveedor.options[proveedor.selectedIndex].text;
+   if(!proveedor) proveedor = donatario.options[donatario.selectedIndex].text;
+
+ if(abono) abono= abono; else abono = 0.00;
     evento = evento.options[evento.selectedIndex].text;
     firma = firma.options[firma.selectedIndex].text;
     cuenta = cuenta.options[cuenta.selectedIndex].text;
     moneda = moneda.options[moneda.selectedIndex].text;
 
+  if(moneda == "1"){
+        $.ajax({
+                type: "post",
+                url: "ajax.php",
+                dataType: "json",
+                data: {
+                        idApoyo : data.idApoyo.val(),
+                        tipo : tipo,
+                        moneda: moneda,
+                        folio: data.folio_apoyo.val(),
+                        action: "updateImporteApoyo"
+                    },
+                    success: function(result){
+                    if(result.status == "error"){
+                        utilerias.displayErrorServerMessage(elem.msj_server, result.message);
+                         
+                        
+                    }else{  
+                             utilerias.displaySuccessMessage($("#mensajes-server"),result.message);
+                               window.open('index.php?op=cuenta&observaciones='+observaciones+'&factura='+factura+'&proveedor='+proveedor+'&referencia='+referencia+'&abono='+abono+'&concepto='+concepto+'&cuenta='+cuenta+'&firma='+firma+'&moneda='+moneda+'&tipo='+tipo+'&fecha='+fecha+'&evento='+evento,'_blank');
+                         }
+                    }
+            });
+   }else{
+            window.open('index.php?op=cuenta&observaciones='+observaciones+'&factura='+factura+'&proveedor='+proveedor+'&referencia='+referencia+'&abono='+abono+'&concepto='+concepto+'&cuenta='+cuenta+'&firma='+firma+'&moneda='+moneda+'&tipo='+tipo+'&fecha='+fecha+'&evento='+evento,'_blank');
+   }
     
-    window.open('index.php?op=cuenta&abono='+abono+'&concepto='+concepto+'&cuenta='+cuenta+'&firma='+firma+'&moneda='+moneda+'&tipo='+tipo+'&fecha='+fecha+'&evento='+evento,'_blank');
+
+    
+   
 };
 
 apoyo.verTransf = function(){
 
     var data = apoyo.elem;
     var proveedor= document.getElementById("proveedor").value;
-    var carta= document.getElementById("carta_nombre");
     var firma= document.getElementById("firma_transf");
     var tipo= document.getElementById("tipo_transf");
     var mostrar= document.getElementById("mostrar_transf");
-
+    var referencia= document.getElementById("referencia_apoyo").value;
     var evento= document.getElementById("evento");
     var abono= document.getElementById("abono").value;
     
     if(!proveedor) proveedor = document.getElementById("donatario").value;
+    
 
     var tipo= tipo.options[tipo.selectedIndex].text;
     var mostrar= mostrar.options[mostrar.selectedIndex].text;
     var firma= firma.options[firma.selectedIndex].text;
-    var carta= carta.options[carta.selectedIndex].text;
     var abono= data.abono.val();
-    if(abono) abono= data.abono.val(); else abono = 0.00;
-    var concepto= data.concepto.val();
+    if(abono) abono= abono; else abono = 0.00;
+    var concepto = null;
+    if(mostrar=="2") concepto = referencia; else
+             concepto= data.concepto.val();
     var cuenta=null;
     var banco=null;
     var sucursal=null;
@@ -819,8 +859,9 @@ apoyo.verTransf = function(){
             banco= res.banco;
             sucursal= res.sucursal;
             plaza= res.plaza;
+            proveedor = res.razon_social;
 
-            setTimeout(window.open('index.php?op=solicitud&plaza='+plaza+'&sucursal='+sucursal+'&banco='+banco+'&cuenta='+cuenta+'&carta='+carta+'&firma='+firma+'&tipo='+tipo+'&mostrar='+mostrar+'&abono='+abono+'&concepto='+concepto,'_blank'), 3000);
+            setTimeout(window.open('index.php?op=solicitud&plaza='+plaza+'&sucursal='+sucursal+'&banco='+banco+'&cuenta='+cuenta+'&proveedor='+proveedor+'&firma='+firma+'&tipo='+tipo+'&mostrar='+mostrar+'&abono='+abono+'&concepto='+concepto,'_blank'), 3000);
 
         }
     });

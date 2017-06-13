@@ -80,7 +80,7 @@ class archivoController
 							$result = array(
 									"status" => "success",
 									"message" => "Registro exitoso");
-							}
+						}
 				}
 
 				if(($_FILES['archivo_xml']['tmp_name'])!=""){
