@@ -13,11 +13,15 @@ $proveedor=isset($_REQUEST['proveedor']) ?  $_REQUEST['proveedor']: $donatario;
 $concepto = isset($_REQUEST['concepto']) ?  $_REQUEST['concepto']: null;
 
 $abono = isset($_REQUEST['abono']) ?  $_REQUEST['abono']: 0;
+$abono = number_format($abono, 2);
 $money= $convierte->to_word(intval($abono), "MXN");
 
+//$abono= (float) $abono;
+//$entero= floor($abono);
+//$decimal = $abono - $entero;
 
-$aux = (string) $abono;
-$decimal = substr( $aux, strpos( $aux, "." ) );
+$decimales = explode(".",$abono);
+$decimal= $decimales[1];
 
 
 $dias = array("Domingo","Lunes","Martes","Miercoles","Jueves","Viernes","Sábado");

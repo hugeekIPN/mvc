@@ -12,23 +12,26 @@ $firma=isset($_REQUEST['firma']) ?  $_REQUEST['firma']: null;
 $moneda = isset($_REQUEST['moneda']) ?  $_REQUEST['moneda']: null;
 $evento = isset($_REQUEST['evento']) ?  $_REQUEST['evento']: null;
 $concepto = isset($_REQUEST['concepto']) ?  $_REQUEST['concepto']: null;
-$referencia = isset($_REQUEST['referencia']) ?  $_REQUEST['referencia']: null;
+$folio = isset($_REQUEST['folio']) ?  $_REQUEST['folio']: null;
 $proveedor = isset($_REQUEST['proveedor']) ?  $_REQUEST['proveedor']: null;
 $factura = isset($_REQUEST['factura']) ?  $_REQUEST['factura']: null;
 $observaciones = isset($_REQUEST['observaciones']) ?  $_REQUEST['observaciones']: null;
 
 
-if(isset($_REQUEST['abono'])){
+if(isset($_REQUEST['abono']) && $_REQUEST['abono'] != "0" ){
     $abono = $_REQUEST['abono'];
     $money= $convierte->to_word(intval($abono), "MXN");
-    $aux = (string) $abono;
-    $decimal = substr( $aux, strpos( $aux, "." ) );
+   // $decimal = substr( $aux, strpos( $aux, "." ) );
+     
+    $abono = number_format($abono, 2);
+    $decimales = explode(".",$abono);
+    $decimal= $decimales[1];
+   
 }else{
     $abono = 0.00;
-    $money = null;
-    $decimal= null;
+    $money = "";
+    $decimal= "00";
 }
-
 
 $dias = array("Domingo","Lunes","Martes","Miercoles","Jueves","Viernes","Sábado");
 $meses = array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
@@ -65,7 +68,7 @@ $html = '<!DOCTYPE html>
 <hr style="color: gray;" />
 <br><br>
 <pre style="text-align:left;">
-México, D.F. a '.$fecha.'                              Consecutivo: <strong>Ref:'.$referencia.'</strong></pre>
+México, D.F. a '.$fecha.'                              Consecutivo: <strong>Ref:'.$folio.'</strong></pre>
 <br/><br/>
 
 <p style="text-align: left;">

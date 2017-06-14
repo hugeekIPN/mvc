@@ -179,12 +179,12 @@ class ApoyoGastoController {
             $currentApoyo = $this->model->getApoyoGasto($this->idApoyo);   
             $saldo = $this->modelSaldo->getUltimoSaldo();
             $saldo = $saldo? $saldo['saldo'] : 0;
-
-            $actualizaSaldo = ($saldo + $currentApoyo['importe']) - $data['importe'];
+            $importe = (float) $data['importe'];
+            $actualizaSaldo = ($saldo + $currentApoyo['importe']) - $importe;
 
             $currentSaldo = $this->modelSaldo->getSaldo($currentApoyo['id_saldo']);
 
-            $saldoCapturado= ($currentSaldo['saldo'] + $currentApoyo['importe']) - $data['importe'] ;
+            $saldoCapturado= ($currentSaldo['saldo'] + $currentApoyo['importe']) - $importe ;
 
             $updateDataSaldo = array();
             $updateDataSaldo['saldo'] = $saldoCapturado;
@@ -201,7 +201,7 @@ class ApoyoGastoController {
              if (!$this->esVacio($data['concepto']))
                 $newData['concepto'] = $data['concepto'];
              if (!$this->esVacio($data['importe']))
-                $newData['importe'] = $data['importe'];
+                $newData['importe'] = $importe;
              if (!$this->esVacio($data['importe_ext']))
                 $newData['importe_ext'] = $data['importe_ext'];
             if (!$this->esVacio($data['mes_captura_anamaria']))
@@ -316,6 +316,7 @@ class ApoyoGastoController {
 
             $result = array(
                 "status" => "success",
+                "importe" => $importe,
                 "message" => "Registro actualizado");
         }
 

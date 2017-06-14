@@ -164,14 +164,20 @@ apoyo.verApoyo = function(idApoyo){
                 
                 elementos.numerodefactura.val(res.factura);
 
-                if(res.importe<=0){
+                if(res.importe== "0.00" ){
                     elementos.importe_apoyo.val(res.importe_ext);
                     elementos.abono.val(res.importe_ext);
                     elementos.abono2.val(res.importe_ext);
                 }else{
-                    elementos.importe_apoyo.val(res.importe);
-                    elementos.abono.val(res.importe);
-                    elementos.abono2.val(res.importe);
+                    if(res.importe_ext != "" || res.importe_ext != null){
+                        elementos.importe_apoyo.val(res.importe);
+                        elementos.abono.val(res.importe);
+                        elementos.abono2.val(res.importe); 
+                    }else{
+                        elementos.importe_apoyo.val(res.importe_ext);
+                        elementos.abono.val(res.importe_ext);
+                        elementos.abono2.val(res.importe_ext);
+                    }                    
                 }      
                 elementos.moneda_apoyo.val(res.moneda);
                 elementos.referencia_apoyo.val(res.referencia);
@@ -771,11 +777,12 @@ apoyo.verCuenta = function(){
     var tipo= document.getElementById("tipo_cambio").value;
     var fecha= document.getElementById("fecharecibo").value;
     var concepto= document.getElementById("concepto").value;
-    var referencia = document.getElementById("referencia_apoyo").value;
+    var folio = document.getElementById("folio_apoyo").value;
     var proveedor = document.getElementById("proveedor");
     var donatario = document.getElementById("donatario");
     var factura = document.getElementById("numerodefactura").value;
     var observaciones = document.getElementById("observaciones").value;
+    var moneda = document.getElementById("moneda_modal").value;
 
     proveedor = proveedor.options[proveedor.selectedIndex].text;
    if(!proveedor) proveedor = donatario.options[donatario.selectedIndex].text;
@@ -784,7 +791,7 @@ apoyo.verCuenta = function(){
     evento = evento.options[evento.selectedIndex].text;
     firma = firma.options[firma.selectedIndex].text;
     cuenta = cuenta.options[cuenta.selectedIndex].text;
-    moneda = moneda.options[moneda.selectedIndex].text;
+
 
   if(moneda == "1"){
         $.ajax({
@@ -800,17 +807,16 @@ apoyo.verCuenta = function(){
                     },
                     success: function(result){
                     if(result.status == "error"){
-                        utilerias.displayErrorServerMessage(elem.msj_server, result.message);
-                         
-                        
+                        utilerias.displayErrorServerMessage(elem.msj_server, result.message);                      
                     }else{  
+                            abono = result.importe;
                              utilerias.displaySuccessMessage($("#mensajes-server"),result.message);
-                               window.open('index.php?op=cuenta&observaciones='+observaciones+'&factura='+factura+'&proveedor='+proveedor+'&referencia='+referencia+'&abono='+abono+'&concepto='+concepto+'&cuenta='+cuenta+'&firma='+firma+'&moneda='+moneda+'&tipo='+tipo+'&fecha='+fecha+'&evento='+evento,'_blank');
+                            window.open('index.php?op=cuenta&observaciones='+observaciones+'&factura='+factura+'&proveedor='+proveedor+'&folio='+folio+'&abono='+abono+'&concepto='+concepto+'&cuenta='+cuenta+'&firma='+firma+'&moneda='+moneda+'&tipo='+tipo+'&fecha='+fecha+'&evento='+evento,'_blank');
                          }
                     }
             });
    }else{
-            window.open('index.php?op=cuenta&observaciones='+observaciones+'&factura='+factura+'&proveedor='+proveedor+'&referencia='+referencia+'&abono='+abono+'&concepto='+concepto+'&cuenta='+cuenta+'&firma='+firma+'&moneda='+moneda+'&tipo='+tipo+'&fecha='+fecha+'&evento='+evento,'_blank');
+            window.open('index.php?op=cuenta&observaciones='+observaciones+'&factura='+factura+'&proveedor='+proveedor+'&folio='+folio+'&abono='+abono+'&concepto='+concepto+'&cuenta='+cuenta+'&firma='+firma+'&moneda='+moneda+'&tipo='+tipo+'&fecha='+fecha+'&evento='+evento,'_blank');
    }
     
 
@@ -826,8 +832,10 @@ apoyo.verTransf = function(){
     var tipo= document.getElementById("tipo_transf");
     var mostrar= document.getElementById("mostrar_transf");
     var referencia= document.getElementById("referencia_apoyo").value;
+    var folio= document.getElementById("folio_apoyo").value;
     var evento= document.getElementById("evento");
     var abono= document.getElementById("abono").value;
+    var concepto= document.getElementById("concepto").value;
     
     if(!proveedor) proveedor = document.getElementById("donatario").value;
     
@@ -837,9 +845,8 @@ apoyo.verTransf = function(){
     var firma= firma.options[firma.selectedIndex].text;
     var abono= data.abono.val();
     if(abono) abono= abono; else abono = 0.00;
-    var concepto = null;
-    if(mostrar=="2") concepto = referencia; else
-             concepto= data.concepto.val();
+
+    
     var cuenta=null;
     var banco=null;
     var sucursal=null;
@@ -860,8 +867,9 @@ apoyo.verTransf = function(){
             sucursal= res.sucursal;
             plaza= res.plaza;
             proveedor = res.razon_social;
+            concepto = res.concepto;
 
-            setTimeout(window.open('index.php?op=solicitud&plaza='+plaza+'&sucursal='+sucursal+'&banco='+banco+'&cuenta='+cuenta+'&proveedor='+proveedor+'&firma='+firma+'&tipo='+tipo+'&mostrar='+mostrar+'&abono='+abono+'&concepto='+concepto,'_blank'), 3000);
+            setTimeout(window.open('index.php?op=solicitud&plaza='+plaza+'&sucursal='+sucursal+'&banco='+banco+'&cuenta='+cuenta+'&proveedor='+proveedor+'&firma='+firma+'&tipo='+tipo+'&mostrar='+mostrar+'&referencia='+referencia+'&folio='+folio+'&abono='+abono+'&concepto='+concepto,'_blank'), 3000);
 
         }
     });
@@ -874,7 +882,7 @@ apoyo.verCheque = function(){
     var abono= document.getElementById("abono").value;
     var concepto= document.getElementById("concepto").value;
     var descripcion= document.getElementById("observaciones").value;
- if(abono) abono= data.abono.val(); else abono = 0.00;
+ if(!abono) abono = 0.00;
     nombre = nombre.options[nombre.selectedIndex].text;
 
     

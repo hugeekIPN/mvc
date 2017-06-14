@@ -19,21 +19,32 @@ $plaza = isset($_REQUEST['plaza']) ?  $_REQUEST['plaza']: null;
 $banco = isset($_REQUEST['banco']) ?  $_REQUEST['banco']: null;
 $sucursal = isset($_REQUEST['sucursal']) ?  $_REQUEST['sucursal']: null;
 $referencia = isset($_REQUEST['referencia']) ?  $_REQUEST['referencia']: null;
+$folio = isset($_REQUEST['folio']) ?  $_REQUEST['folio']: null;
+
+$referencia= "REFERENCIA.- ".$referencia."<br/><br/>
+";
+
+$concepto= "CONCEPTO.- ".$concepto."<br/><br/>";
+
+if($mostrar=="Referencia") $CoR = $referencia; else $CoR = $concepto;
 
 if($tipo == "Interbancario") $texto = "Transferencia Electrónica de Fondos Vía Pago
 Interbancario";
 if($tipo== "SPEUA")  $texto =  "Transferencia Electrónica de Fondos Vía SPEUA";
 if($tipo== "Traspaso de Fondos")  $texto =  "Traspaso de Fondos";
 
-if(isset($_REQUEST['abono'])){
-	$abono = $_REQUEST['abono'];
-	$money= $convierte->to_word(intval($abono), "MXN");
-	$aux = (string) $abono;
-	$decimal = substr( $aux, strpos( $aux, "." ) );
+if(isset($_REQUEST['abono']) && $_REQUEST['abono'] != "0" ){
+    $abono = $_REQUEST['abono'];
+    $money= $convierte->to_word(intval($abono), "MXN");
+    $abono = number_format($abono, 2);
+    $decimales = explode(".",$abono);
+    $decimal= $decimales[1];
+   
+
 }else{
-	$abono = null;
-	$money = null;
-	$decimal= null;
+    $abono = 0.00;
+    $money =null;
+    $decimal= null;
 }
 
 if($firma =="Sra. Gabriela Blasquez y/o Sra. Jaqueline Vinay"){
@@ -72,7 +83,7 @@ $html = '<!DOCTYPE html>
 <p style="text-align: center; margin: 0px; padding: 0px;">Parque Vía No. 198, Col. Cuahtémoc, Delegación Cuauhtémoc, C.P. 06599, México, D.F.</p>
 <hr style="color: gray;" />
 <p style="text-align: right;">México, D.F. a '.$fecha.' </p>
-<p style="text-align: right;">Ref: FT/1230/16 </p>
+<p style="text-align: right;">Ref: '.$folio.' </p>
 <br/><br/>
 <strong>GERENCIA DE TESORERÍA</strong><br/>
 <strong>PRESENTE.</strong>
@@ -92,8 +103,8 @@ CUENTA NO.- '.$cuenta.'<br/><br/>
 BANCO.- '.$banco.'<br/><br/>
 SUCURSAL.- '.$sucursal.'<br/><br/>
 PLAZA.- '.$plaza.'<br/><br/>
-CONCEPTO.- '.$concepto.'<br/><br/>
-REFERENCIA.- '.$referencia.'<br/><br/>
+'.$CoR.'
+
 <span style="text-decoration: underline;">NOTA: CON FECHA VALOR IGUAL A LA FECHA DE RECEPCIÓN POR EL BANCO</span><br/><br/>
 
 Agradecemos gentilmente la atención que se sirva brindar a este asunto<br/><br/>
