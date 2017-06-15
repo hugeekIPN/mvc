@@ -92,7 +92,7 @@ $html = '<!DOCTYPE html>
 Por medio de la presente solicitamos se realice la siguiente <strong>'.$texto.'</strong> con cargo a la cuenta No. 011 03600 0017 a nombre de Fundación Telmex, A.C. por la Cantidad de:
 </p>
 
-<p><strong>$'.number_format($abono,2).' ('.$money.' '.$decimal.'/100 M.N.)</strong></p>
+<p><strong>$'.$abono.' ('.$money.' '.$decimal.'/100 M.N.)</strong></p>
 
 <p>
 a favor de: <br/><br/>

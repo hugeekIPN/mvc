@@ -284,7 +284,7 @@ class ApoyoGastoController {
             $saldo = $this->modelSaldo->getUltimoSaldo();
             $saldo = $saldo? $saldo['saldo'] : 0;
 
-            $tipo = (int) $data['tipo'];
+            $tipo = (float) $data['tipo_cambio'];
 
             $newData = array();
             unset($newData['action']);
@@ -293,7 +293,8 @@ class ApoyoGastoController {
             $actualizaSaldo = $saldo - $importe;
             $newData['importe'] = $importe;
             $newData['moneda']  = $data['moneda'];
-                 
+            $newData['tipo_cambio'] = $data['tipo_cambio'];
+            $newData['fecha_cambio'] = $data['fecha_cambio'];    
 
            
 

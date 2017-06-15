@@ -13,13 +13,10 @@ $proveedor=isset($_REQUEST['proveedor']) ?  $_REQUEST['proveedor']: $donatario;
 $concepto = isset($_REQUEST['concepto']) ?  $_REQUEST['concepto']: null;
 
 $abono = isset($_REQUEST['abono']) ?  $_REQUEST['abono']: 0;
-$abono = number_format($abono, 2);
+
 $money= $convierte->to_word(intval($abono), "MXN");
 
-//$abono= (float) $abono;
-//$entero= floor($abono);
-//$decimal = $abono - $entero;
-
+$abono = number_format($abono, 2);
 $decimales = explode(".",$abono);
 $decimal= $decimales[1];
 
@@ -56,7 +53,7 @@ $html = '<!DOCTYPE html>
 <br/><br/>
 
 <p style="text-align: center;">
-    '.strtoupper($proveedor).', A.C. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $'.number_format($abono,2).' <br/>
+    '.strtoupper($proveedor).', A.C. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $'.$abono.' <br/>
     ('.$money.' '.$decimal.'/100 M.N.) <br/>
     
 </p>
