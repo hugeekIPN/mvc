@@ -173,7 +173,7 @@ CREATE TABLE IF NOT EXISTS `apoyosgastos` (
   ,`importe` DECIMAL(11,2) DEFAULT 0
   ,`importe_ext` DECIMAL(11,2)
   ,`moneda` TINYINT DEFAULT 1 COMMENT '1 mn 2 usd 3 euros'
-  ,`tipo_cambio` VARCHAR(45)
+  ,`tipo_cambio` DECIMAL(11,2) DEFAULT 0
   ,`id_saldo` INT UNSIGNED NOT NULL
   -- campos de libreta anamaria
   ,`mes_contable_anamaria` VARCHAR(16)
@@ -197,6 +197,9 @@ CREATE TABLE IF NOT EXISTS `apoyosgastos` (
   ,`unidad` VARCHAR(45) NULL COMMENT 'Unidad en la que se cuantificará el apoyo\n'
   ,`anio` INT NULL  
   ,`fecha_recibo` DATETIME DEFAULT CURRENT_TIMESTAMP
+  ,`fecha_cambio` DATETIME DEFAULT CURRENT_TIMESTAMP -- fecha tipo de cambio
+  ,`fecha_ref` DATETIME DEFAULT CURRENT_TIMESTAMP
+
   -- campos libreta flujo
   ,`mes_contabel_libretaflujo` VARCHAR(16)
   ,`fecha_docto_salida` DATETIME DEFAULT CURRENT_TIMESTAMP
