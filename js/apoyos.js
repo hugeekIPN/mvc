@@ -783,6 +783,7 @@ apoyo.verCuenta = function(){
     var factura = document.getElementById("numerodefactura").value;
     var observaciones = document.getElementById("observaciones").value;
     var moneda = document.getElementById("moneda_modal").value;
+    var fecha_cambio = document.getElementById("fecha_cambio").value;
 
     proveedor = proveedor.options[proveedor.selectedIndex].text;
    if(!proveedor) proveedor = donatario.options[donatario.selectedIndex].text;
@@ -800,7 +801,8 @@ apoyo.verCuenta = function(){
                 dataType: "json",
                 data: {
                         idApoyo : data.idApoyo.val(),
-                        tipo : tipo,
+                        tipo_cambio : tipo,
+                        fecha_cambio: fecha,
                         moneda: moneda,
                         folio: data.folio_apoyo.val(),
                         action: "updateImporteApoyo"

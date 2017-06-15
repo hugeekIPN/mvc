@@ -11,6 +11,7 @@ $convierte   = new NumberToLetterConverter();
 $nombre=isset($_REQUEST['nombre']) ?  $_REQUEST['nombre']: null;
 $concepto = isset($_REQUEST['concepto']) ?  $_REQUEST['concepto']: null;
 $descripcion = isset($_REQUEST['descripcion']) ?  $_REQUEST['descripcion']: null;
+$concepto = isset($_REQUEST['concepto']) ?  $_REQUEST['concepto']: null;
 
 if(isset($_REQUEST['abono'])){
     $abono = $_REQUEST['abono'];
@@ -45,57 +46,54 @@ $html = '<!DOCTYPE html>
     <style>
         p, pre{
             font-family: sans-serif;
-        
         }
-   
     </style>
     
 </head>
-
 <body>
 <p style="font-size:12px; color:gray; float:left;">
-<span style="font-size:14px; color:gray; font-weight:bold; float:left;">FUNDACIÓN TELMEX A. C.</span><br>
-PARQUE VIA No. 198 COL. CUAHTEMOC<br>
-DELEGACION CUAUHTEMOC, C.P. 06599<br>
-R.F.C. FTE-951227-NS5<br>
+<span style="font-size:14px; color:gray; font-weight:bold; float:left;">
+</span><br>
+<br>
+<br>
+<br>
 </p>
 <p style="font-size:12px; color:gray;float:right; ">
-CHEQUE No. <span style="color:red; font-size:16;">0006330</span><br>
+<span style="color:red; font-size:16;">&nbsp;</span><br>
 FECHA '.$fecha.'<br>
 </p>
 
 <br><br><br><br>
 <p style="font-size:14px; color:black; float:left;">
-<span style="color: gray; font-size:12px;">PAGUESE POR ESTE CHEQUE A:</span> <br><br>
-<span style="float:left;">TELEFONOS DE MEXICO S.A. DE C.V.</span>
-<span style="float:right;"> $'.number_format($abono,2).' </span><br><br>
+<span style="color: gray; font-size:12px;"></span> <br><br>
+<span style="float:left;">'.$nombre.'</span>
+<span style="float:right;"> $'.$abono.' </span><br><br>
 <span style="color: black; font-size:14px;">'.$money.' '.$decimal.'/100 M.N.</span><br>
 </p>
 <br><br><br><br>
 
-<p style="font-size:12px; color:gray; text-align:center;">SUPLICAMOS DESPRENDER ESTE TALON ANTES DE PRESENTAR EL CHEQUE</p>
-
-<span style="font-size:14px; color:gray; font-weight:bold; float:left;">FUNDACIÓN TELMEX, A.C. </span><span  style="float:right; color:red; font-size:16;">0006330</span>
-
+<p style="font-size:12px; color:gray; text-align:center;"></p>
+<br><br><br><br><br><br><br><br>
+<br><br><br><br>
 <br><br>
 <table border="0">
     <tr>
-        <th>FECHA</th>
-        <th>CONCEPTO</th>
-        <th>CANTIDAD</th>
+        <th></th>
+        <th></th>
+        <th></th>
     </tr>
     <tr>
-        <td><br><br>19/12/16<br><br></td>
-        <td>'.$concepto.' / '.$descripcion.' </td>
-        <td>$'.number_format($abono,2).'</td>
+        <td width="130px"><br><br>19/12/16<br><br></td>
+        <td width="400px" style="text-align:center;"><br>'.$concepto.' / '.$descripcion.' </td>
+        <td width="180px" style="text-align:right;"><br>$'.$abono.'</td>
     </tr>
 <table>
 <table border="0" class="codifica">
     <tr>
-        <th>No. DE CUENTA</th>
-        <th>CODIFICACION</th>
-        <th>DEBE</th>
-        <th>HABER</th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
     </tr>
     <tr>
         <td rowspan="2" height="300px"><br><br><br><br></td>
@@ -104,14 +102,14 @@ FECHA '.$fecha.'<br>
         <td><br><br><br><br> </td>
     </tr>
     <tr>
-        <td height="50px">TOTAL: </td>
+        <td height="50px"></td>
         <td><br><br><br></td>
     </tr>
     <tr>    
-        <td>HECHO POR:</td>
-        <td>REVISO:</td>
-        <td>AUTORIZO:</td>
-        <td>CONTABILIZO:</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
     </tr>
     
 <table>
