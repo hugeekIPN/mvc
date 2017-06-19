@@ -54,7 +54,7 @@ class ApoyoGastoController {
 
 
     public function viewPage(){
-        $usuario = "dummy";
+        $usuario = sessionController::get('username');;
         $titulo = "Apoyos";
           
          $eventos = $this->modelEvento->getAllEventos();

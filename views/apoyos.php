@@ -1,8 +1,8 @@
 
-<!-- contenedor principal -->
+<!-- contenedor principal -->	
+<div class="container container-proveedor">
+</div>
 
-
-<div class="container col-xs-12 container-proveedor "onload="oCurrentValue.innerText = estado.isContentEditable;">
 <div id="datable">
 	<div class="row col-xs-12 opciones_apoyos ">
 		<div class="iconos_h col-xs-2">
@@ -14,10 +14,16 @@
 			</section>
 		</div>
 		<section class="filtros col-xs-4 radios " >
-			<label class="radio-inline"><input type="radio" name="optradio">En espera</label>
+			<label class="radio-inline"><input type="radio" name="optradio">Todos</label>
 			<label class="radio-inline"><input type="radio" name="optradio">Activo</label>
 			<label class="radio-inline"><input type="radio" name="optradio">Cancelado</label>
 		</section>
+
+		<section class="filtros col-xs-4">
+			<span> Folio:</span>
+			<input type="text" id="folio" name="">
+		</section>
+
 		<section class="filtros col-xs-4 fechas">
 			<span class="rango_fechas pull-left">Rango de Fechas</span>
 			<div class="form-group col-xs-3">
@@ -32,8 +38,23 @@
 			<button type="button" class="btn btn-primary btn-lg">Buscar</button>
 		</section>
 	</div>
+	<br/>
+	<div class="row col-xs-12">
+		<div class="col-xs-2">
+			<label for="anio_filtro">Filtro Activo:</label>
+		</div>
+		<div class="form-group col-xs-2">			
+			<select type="text" class="form-control" name="anio" id="anio" onchange="apoyo.filtro();">
+				<?php $anio= date("Y"); 
+				for($a=2000; $a<=$anio; $a++)
+					{ ?>
+				<option value="<?php echo $a; ?>"><?php echo $a; ?></option>
+				<?php } ?>
+			</select>		
+		</div>
+	</div>
 	<!-- contenedor de tabla  -->
-	<div class="form-group col-xs-12 margin_top" >
+	<div class="form-group col-xs-12" >
 			<div class="cont">
 	    		<table id="example7" class="display" cellspacing="0" class="table-hover" >
 	    			<thead>
@@ -69,18 +90,20 @@
 			<div class="reporte form-group col-xs-2">
 				<button class="btn btn-primary"> Generar reporte</button>
 			</div>
-		</section>
+	</section>
+
 </div>
 	<!-- fin contenedor de tabla -->
 
 
 	<!-- cotenedor para el form de apoyos-->
-	<div class="form-group col-xs-12 contenedor_apoyos" id="contenedor-apoyos">
+	<div class="contenedor_apoyos" id="contenedor-apoyos">
 
 			<!-- para errores del back  -->
 			<div class="">
 				<div id="mensajes-server"></div>
 			</div>   
+
 			<!-- contenedor formulario -->
 			<div id="cont-formulario-apoyo" class="form_apoyos">
 
@@ -104,10 +127,7 @@
 				 
 				</h1>
 
-				<!-- formularios -->
-
-				<?php include 'forms/libretaAnaMariaForm.php'; ?>
-				
+				<!-- formularios -->				
 				<?php include 'forms/capturaForm.php'; ?>
 
 				<?php include 'forms/libretaFlujoForm.php'; ?>	
@@ -137,34 +157,6 @@
 
 				
 					<button onclick="apoyo.add();" class="btn btn-primary pull-right" id="btn-save2">Guardar</button>
-				
-				<!--Subir archivos -->
-				<div class="row subir-archivos">
-					<h3>Subir Archivos PDF y XML</h3>
-					<table class="table table-striped center" id="tabla-archivos">
-						<thead>
-							<td>Núm.</td>
-							<td>PDF</td>
-							<td>XML</td>
-							<td>Eliminar</td>
-						</thead>
-						<tbody id="tbodyid">
-						
-						</tbody>
-					</table>
-					<form id="formArchivos" enctype="multipart/form-dat" method="post"> 
-						<div class=" center">
-						<label for="archivo_up_pdf" class="cargar  btn-success"> Nuevo PDF</label>
-						<input class="inputfile" type="file" id="archivo_up_pdf" accept=".pdf" name="archivo_pdf">
-						<label for="archivo_up_xml" class="cargar btn-success"> Nuevo XML</label>
-						<input class="inputfile" type="file" id="archivo_up_xml" accept=".xml" name="archivo_xml">	
-						</div>
-						<input class="input" type="hidden" id="id_apoyo_gasto"  name="id_apoyo_gasto" value="">
-						<button onclick="apoyo.addArchivos();" class="btn btn-primary" id="submit_archivos" type="submit">Guardar</button>
-					</form>
-					<div id="mensaje"></div>
-					
-				<!-- Fin de subir archivos -->
 
 			</div>
 			<!-- fin formulario -->

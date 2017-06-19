@@ -168,18 +168,14 @@ DROP TABLE IF EXISTS `apoyosgastos` ;
 CREATE TABLE IF NOT EXISTS `apoyosgastos` (
   `id_apoyo` INT UNSIGNED NOT NULL AUTO_INCREMENT
   ,`tipo` TINYINT DEFAULT 1 COMMENT '1-Apoyo\n2-Gasto\n'
-  ,`estatus` TINYINT DEFAULT 1  COMMENT  '1 activo, 2 espera, 3 cancelado, 4 finalizado'
+  ,`estatus` TINYINT DEFAULT 1  COMMENT  '1 activo, 2 cancelado'
   ,`concepto` VARCHAR(512)
   ,`importe` DECIMAL(11,2) DEFAULT 0
-  ,`importe_ext` DECIMAL(11,2)
+  ,`importe_ext` DECIMAL(11,2) DEFAULT 0
   ,`moneda` TINYINT DEFAULT 1 COMMENT '1 mn 2 usd 3 euros'
   ,`tipo_cambio` DECIMAL(11,2) DEFAULT 0
   ,`id_saldo` INT UNSIGNED NOT NULL
-  -- campos de libreta anamaria
-  ,`mes_contable_anamaria` VARCHAR(16)
-  ,`mes_captura_anamaria` VARCHAR(16)
-  ,`fecha_captura_anamaria` DATETIME DEFAULT CURRENT_TIMESTAMP  
-  ,`referencia_anamaria` INT UNSIGNED NOT NULL
+
   -- campos de captura apoyo
   ,`folio` VARCHAR(255) NULL COMMENT 'Folio asignado internamente por el usuario\n'
   ,`frecuencia` TINYINT DEFAULT 1 COMMENT '1 unico 2 semanal 3 quincenal 4 mensual 5 bimestral 6 anual'

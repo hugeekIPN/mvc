@@ -17,8 +17,8 @@
 
         }); 
         $(function() {
-        $("#example7").DataTable({dom: 'Bfrtip',  buttons: ['excel']} );
-        $("#tabla_eventos").DataTable({dom: 'Bfrtip',  buttons: ['excel']} );
+        $("#example7").DataTable();
+        $("#tabla_eventos").DataTable();
         }); 
        
         </script>
@@ -51,6 +51,6 @@
         });
      </script>
     <script src="assets/js/jquery-ui.min.js"></script>
-    
+
 </body>
 </html>	

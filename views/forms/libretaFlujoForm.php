@@ -1,5 +1,5 @@
 <form id="formulario-libretaflujo">
-	<h3 class="h3form">3.- Libreta Flujo </h3>
+	<h3 class="h3form">Libreta Flujo </h3>
 	
 	<div class="form-group col-xs-3">
 		<label for="mescontableflujo">Mes contable</label>

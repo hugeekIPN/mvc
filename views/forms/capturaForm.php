@@ -1,11 +1,20 @@
-<form id="formulario-captura-apoyos">
-	<h3 class="h3form">2.- Captura Apoyos</h3>
+<form id="formulario-captura-apoyos">	
 
-	<div class="row form-group">
+	<div class=" form-group col-xs-12">
+		<label for="concepto">Descripcion apoyo</label>
+		<input type="text" class="form-control" name="concepto" id="concepto" >
+	</div>
+	
+	<div class="row">
 
 		<div class=" form-group col-xs-2">
 			<label for="folio_apoyo">Folio</label>
 			<input type="text" class="form-control" name="folio_apoyo" id="folio_apoyo" >
+		</div>
+
+		<div class="form-group col-xs-2">
+			<label for="fechacaptura">Fecha de Captura</label>
+			<input type="text" id="fechacaptura" name="fechacaptura" class="form-control" placeholder="Fecha">
 		</div>
 
 		<div class=" form-group col-xs-2">
@@ -20,7 +29,7 @@
 			</select>
 		</div>
 
-		<div class=" form-group col-xs-3">
+		<div class=" form-group col-xs-2">
 			<label for="evento">Evento</label>
 			<select type="text" class="form-control" name="evento" id="evento" >
 				<?php foreach ($eventos as $evento): ?>
@@ -39,7 +48,7 @@
 			</select>
 		</div >
 
-		<div class=" form-group col-xs-3">
+		<div class=" form-group col-xs-2">
 			<label for="donatario">Donatario</label>
 			<select type="text" class="form-control" name="donatario" id="donatario" >
 				<option value="0" selected>---Seleccione un donatario------</option>
@@ -48,8 +57,6 @@
 				<?php endforeach;?>
 			</select>
 		</div >
-
-
 	</div>
 
 
@@ -148,7 +155,7 @@
 	</div >
 
 	<div class=" form-group col-xs-2">
-		<label for="numerodefactura">Número de Factura</label>
+		<label for="numerodefactura">Número de referencia</label>
 		<input type="text" class="form-control" name="numerodefactura" id="numerodefactura" >
 	</div>
 	<div class=" form-group col-xs-2">
@@ -163,12 +170,9 @@
 			<option value="3">Euro</option>
 		</select>
 	</div >
-	<div class=" form-group col-xs-2">
-		<label for="referencia_apoyo">Referencia</label>
-		<input type="text" class="form-control" name="referencia_apoyo" id="referencia_apoyo" >
-	</div>
+	
 	<div class=" form-group col-xs-3">
-		<label for="fecharecibo">Fecha de recibo</label>
+		<label for="fecharecibo">Fecha de referencia</label>
 		<input type="text" id="fecharecibo" class="form-control" placeholder="Click">
 	</div >
 	<div class=" form-group col-xs-6">
