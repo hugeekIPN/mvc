@@ -131,7 +131,6 @@ CREATE TABLE IF NOT EXISTS `eventos` (
   ,`nombre` VARCHAR(128)
   ,`subprogramas_idsubprogramas` INT UNSIGNED NOT NULL
   ,`descripcion` VARCHAR(512)
-  ,`ciudad` VARCHAR(128)
   ,id_estado INT UNSIGNED
   ,`fecha_creacion` DATETIME DEFAULT CURRENT_TIMESTAMP
   ,`ultima_modificacion` DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP

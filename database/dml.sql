@@ -32,7 +32,53 @@ VALUES(1,'unico')
 -- -----------------------------------------------------
 -- CATALOGO DE PAISES
 -- -----------------------------------------------------
-
+INSERT INTO pais(id_pais,nombre,acronimo)
+VALUES(1,"México","MX");
 -- -----------------------------------------------------
 -- CATALOGO DE ESTADOS
 -- -----------------------------------------------------
+INSERT INTO estado(id_estado,nombre,id_pais)
+VALUES(1,"Ciudad de México",1);
+
+-- -----------------------------------------------------
+-- PROGRAMAS
+-- -----------------------------------------------------
+INSERT INTO programas(id_programa,nombre,descripcion)
+VALUES(1,"programa de prueba","nombre de programa de prueba");
+
+-- -----------------------------------------------------
+-- SUBPROGRAMAS
+-- -----------------------------------------------------
+INSERT INTO subprogramas(id_subprograma,programas_id_programa, nombre,descripcion)
+VALUES(1,1,"este es un subprogramas","descripcion del subprograma de prueba");
+
+-- -----------------------------------------------------
+-- EVENTOS
+-- -----------------------------------------------------
+INSERT INTO eventos(id_evento,nombre,subprogramas_idsubprogramas,descripcion)
+VALUES(1,"nombre del evento",1,"descripcion del evento");
+
+
+-- -----------------------------------------------------
+-- PROVEEDORES
+-- -----------------------------------------------------
+INSERT INTO proveedores(id_proveedor,razon_social,rfc,telefono)
+VALUES(1,"ACADEMIA DE MUSICA DEL PALACIO DE MINERIA, A.C.","AMP850419U45","55109821")
+,(2,"GRUPO ZAMACONA, S.A. DE C.V.","unrfc","1234567890")
+,(3,"HIM IMPLANTES COCLEARES","00133009914","1234567890");
+
+
+-- -----------------------------------------------------
+-- APOYOS
+-- -----------------------------------------------------
+INSERT INTO apoyosgastos(id_apoyo,concepto,folio,referencia,id_proveedor,id_frecuencia_apoyo,id_estado,id_moneda,id_evento)
+VALUES (1
+	,"Suministro gasolina vehículo programa de conservación mariposa monarca"
+	,"123folio"
+	,"123referencia"
+	,1 -- proveedor
+	,1 -- frecuencia
+	,1 -- estado
+	,1 -- moneda
+	,1 -- evento
+	);

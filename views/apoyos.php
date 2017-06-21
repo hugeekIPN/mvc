@@ -59,6 +59,7 @@
 	    		<table id="example7" class="display" cellspacing="0" class="table-hover" >
 	    			<thead>
 	    				<tr>
+	    					<th hidden>id</th>
 	    					<th>Folio</th>
 	    					<th>Concepto</th>
 	    					<th>Evento</th>
@@ -68,6 +69,7 @@
 	    			<?php foreach ($apoyo as $apoyos): ?>
                         <tbody>
 	    					<tr onclick="apoyo.verApoyo(<?php echo $apoyos['id_apoyo']; ?>);">
+	    						<td hidden>id</td>
 	    						<td><?= $apoyos['id_apoyo']; ?></td>
 	    						<td><?= $apoyos['concepto']; ?></td>
 	    						<td><?= $apoyos['nombre']; ?></td>
