@@ -83,12 +83,8 @@ class Database extends PDO
         return $count;     
        
     }
-    
 
-    /**
-    * Inserta un elemento a la  bd y regresa el id del elemento  insertado.
-    * @return id - el id del elemento insertado, en caso de error regresa 0
-    **/
+
     public function insertLastId($table,$data){
         $db = self::getInstance();
         $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);

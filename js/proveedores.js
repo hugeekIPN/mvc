@@ -12,6 +12,7 @@ Proveedores.elementos = {
     rfc : $("#inputRFCProveedores"),
     cuenta : $("#inputCuentaProveedores"),
 	banco : $("#inputBancoProveedores"),
+    clabe : $("#inputCLABEProveedores"),    
 	sucursal : $("#inputSucursalProveedores"),
     referencia : $("#inputReferenciaProveedores"),
     plaza : $("#inputPlazaProveedores"),
@@ -169,10 +170,11 @@ Proveedores.addproveedor = function (editMode) {
                     tipo: data.tipo.val(),
                     rfc : data.rfc.val(),
                     cuenta : data.cuenta.val(),
-                    banco : data.banco.val(),
-                    sucursal: data.sucursal.val(),
+                    clabe : data.clabe.val(),
+                    banco : data.banco.val(), 
+                    sucursal: data.sucursal.val(), 
                     plaza: data.plaza.val(),
-                    referencia: data.referencia.val(),
+                    referencia: data.referencia.val(), 
                     colonia: data.colonia.val(),
                     calle: data.calle.val(),
                     delegacion: data.delegacion.val(),
@@ -357,6 +359,19 @@ Proveedores.validaDatosproveedor = function(data,forUpdate){
 		valid = false;
 		utilerias.displayErrorMessage(data.rfc,"El RFC no es válido");
 	}
+
+    var clabe = data.clabe.val();
+    if(clabe.length == "18" ){
+        valid = false;
+        utilerias.displayErrorMessage(data.clabe,"La CLABE no es válida");
+    }
+
+    var cuenta = data.cuenta.val();
+    if(cuenta.length == "11" ){
+        valid = false;
+        utilerias.displayErrorMessage(data.cuenta,"El número de cuenta no es válido");
+    }
+
     if(data.telefono.val() != ""){
           var tel = data.telefono.val();
         if(tel.length < "10" || tel.length > "10" ){
