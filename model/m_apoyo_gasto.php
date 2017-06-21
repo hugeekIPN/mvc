@@ -10,21 +10,53 @@ class m_apoyo_gasto{
     }
 
     /**
-    * Obtiene un apoyo_gasto por id
+    * Obtiene un apoyo_gasto por id, en caso de no proporcionar id se obtienen todos los apoyos
     * @param id_apoyo - El id del usuario
-    * @return Los datos del usuario en caso de éxito, null en caso contrario
+    * @return Los datos del usuario en caso de éxito, array vacio en caso contrario
     **/
-    public function getApoyoGasto($id_apoyo) 
+    public function getApoyoGasto($id_apoyo=null) 
     {
-        $result = $this->db->select(
-                    "SELECT * FROM apoyosgastos as a 
-                    INNER JOIN saldo as s ON a.id_saldo = s.id_saldo 
-                    WHERE id_apoyo = :id",  array ("id" => $id_apoyo)
-                  );
-        if ( count($result) > 0 )
-            return $result[0];
-        else
-            return null;
+        $result= [];
+
+        if($id_apoyo){
+            $query = $this->db->select(
+                        "SELECT * FROM apoyosgastos as a 
+                        INNER JOIN saldo as s ON a.id_saldo = s.id_saldo 
+                        WHERE id_apoyo = :id",  array ("id" => $id_apoyo)
+                      );
+            if ($query)
+                $result = $query[0];
+        }else{
+            $query = $this->db->select(
+                "SELECT 
+                 a.id_apoyo
+                 ,a.tipo
+                 ,a.estatus
+                 ,a.concepto
+                 ,a.importe
+                 ,a.importe_ext
+                 ,a.tipo_cambio
+                 ,a.folio
+                 ,a.observaciones
+                 ,a.referencia
+                 ,a.mes_contable
+                 ,a.docto_salida
+                 ,a.poliza
+                 ,a.fecha_referencia
+                 ,a.fecha_docto_salida
+                 ,a.fecha_creacion
+                 ,a.ultima_modificacion
+                 ,p.id_proveedor
+                 ,p.tipo as tipo_proveedor
+                 ,p.razon_social
+                 FROM apoyosgastos as a
+                 INNER JOIN proveedores as p ON a.id_proveedor = p.id_proveedor"                
+                 );
+            if($query)
+                $result = $query;
+        }
+
+        return $result;
     }
 
 

@@ -78,14 +78,15 @@ $option=isset($_REQUEST['op']) ?  $_REQUEST['op']: null;
     case 'apoyos':
         $apoyo->viewPage();
         break;
+
+    // json con todos los apoyos, es para el dataTable
+    case 'getApoyos':
+        echo json_encode($apoyo->getApoyos());
+        break;
+        
     case 'cargos' :
         $cargo -> index();
         break;
-/*
-    case 'test':
-        var_dump($cargo->test()); 
-        break;
-        */
 
     default:    
         $login->index();

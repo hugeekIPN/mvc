@@ -52,6 +52,38 @@ class ApoyoGastoController {
         }
     }
 
+    /**
+    * funcion para obtener todos los apoyos.
+    * sirve para poblar el datatable mediante ajax, en el ajax se envía como json
+    * @return array con todos los apoyos registrados
+    **/
+    public function getApoyos(){
+        /*
+        Se obtienen los sig datos del model:
+        .id_apoyo
+         ,a.tipo
+         ,a.estatus
+         ,a.concepto
+         ,a.importe
+         ,a.importe_ext
+         ,a.tipo_cambio
+         ,a.folio
+         ,a.observaciones
+         ,a.referencia
+         ,a.mes_contable
+         ,a.docto_salida
+         ,a.poliza
+         ,a.fecha_referencia
+         ,a.fecha_docto_salida
+         ,a.fecha_creacion
+         ,a.ultima_modificacion
+         ,p.id_proveedor
+         ,p.tipo as tipo_proveedor
+         ,p.razon_social
+        */
+        return [ "data" => $this->model->getApoyoGasto() ];
+    }
+
 
     public function viewPage(){
         $usuario = sessionController::get('username');;
@@ -78,19 +110,6 @@ class ApoyoGastoController {
             require_once("views/templates/footer.php");
     }
 
-    public function test(){
-        $usuario = 'dummy';
-        $titulo = "Apoyos";
-
-        $apoyos = array();
-
-        require_once("views/templates/header.php");
-
-        require_once("views/templates/nav.php");
-        require_once("views/datepicker.php"); 
-        require_once("views/templates/footer.php");        
-
-    }
 
     public function nuevoApoyoGasto($postData) {
         $result = array();
