@@ -81,7 +81,7 @@ $option=isset($_REQUEST['op']) ?  $_REQUEST['op']: null;
 
     // json con todos los apoyos, es para el dataTable
     case 'getApoyos':
-        echo json_encode($apoyo->getApoyos());
+        echo json_encode($apoyo->getApoyosForTable());
         break;
         
     case 'cargos' :

@@ -1,3 +1,4 @@
+SET NAMES 'utf8';
 
 INSERT INTO usuarios (email,nombre,password) VALUES ('usuario','dummy','inseguro');
 
