@@ -19,7 +19,7 @@ class m_proveedor
 	public function getProveedor($idProveedor)
 	{		
 		$result = $this->db->select(
-			"SELECT * FROM proveedores WHERE id_proveedor = :id",
+			"SELECT * FROM proveedores as p INNER JOIN cuenta_bancaria as c ON c.id_proveedor = p.id_proveedor   WHERE p.id_proveedor = :id",
 			array("id" => $idProveedor)
 			);
 

@@ -91,24 +91,31 @@ class ProveedorController
 		}else{
             
 			$currentProveedor = $this->model->getProveedor($this->idProveedor);
+			$currentBanco = $this->modelCuenta->getCuenta($this->idProveedor);
 
 			$newData = array();
+			$newDataCuenta = array();
 
 			if($currentProveedor['razon_social']!=$data['razon_social'])
 				$newData['razon_social']=$data['razon_social'];
 
-			if($currentProveedor['referencia'] != $data['referencia'])
-				$newData['referencia'] = $data['referencia'];
+			if($currentBanco['referencia'] != $data['referencia'])
+				$newDataCuenta['referencia'] = $data['referencia'];
 
-			if($currentProveedor['cuenta'] != $data['cuenta'])
-				$newData['cuenta'] = $data['cuenta'];
+			if($currentBanco['cuenta'] != $data['cuenta'])
+				$newDataCuenta['cuenta'] = $data['cuenta'];
 
-			if($currentProveedor['banco'] != $data['banco'])
-				$newData['banco'] = $data['banco'];
+			if($currentBanco['clabe'] != $data['clabe'])
+				$newDataCuenta['clabe'] = $data['clabe'];
 
-			if($currentProveedor['sucursal'] != $data['sucursal'])
-				$newData['sucursal'] = $data['sucursal'];
+			if($currentBanco['banco'] != $data['banco'])
+				$newDataCuenta['banco'] = $data['banco'];
 
+			if($currentBanco['sucursal'] != $data['sucursal'])
+				$newDataCuenta['sucursal'] = $data['sucursal'];
+
+			if($currentBanco['plaza'] != $data['plaza'])
+				$newDataCuenta['plaza'] = $data['plaza'];
 
 			if($currentProveedor['rfc'] != $data['rfc'])
 				$newData['rfc'] = $data['rfc'];
@@ -126,11 +133,10 @@ class ProveedorController
 			if($currentProveedor['delegacion'] != $data['delegacion'])
 				$newData['delegacion'] = $data['delegacion'];
 
-			if($currentProveedor['pais'] != $data['pais'])
-				$newData['pais'] = $data['pais'];
+		
 
-			if($currentProveedor['entidad'] != $data['entidad'])
-				$newData['entidad'] = $data['entidad'];
+			if($currentProveedor['id_estado'] != $data['entidad'])
+				$newData['id_estado'] = $data['entidad'];
 
 
 			if($currentProveedor['correo_contacto'] != $data['correo_contacto'])
@@ -138,10 +144,7 @@ class ProveedorController
             
             if($currentProveedor['tipo'] != $data['tipo'])
 				$newData['tipo'] = $data['tipo'];
-            
-            if($currentProveedor['plaza'] != $data['plaza'])
-				$newData['plaza'] = $data['plaza'];
-            
+                        
             if($currentProveedor['colonia'] != $data['colonia'])
 				$newData['colonia'] = $data['colonia'];
 
@@ -150,6 +153,7 @@ class ProveedorController
             
 			if($newData){
 				$this->model->updateProveedor($newData, $this->idProveedor);
+				$this->modelCuenta->updateCuenta($newDataCuenta, $this->idProveedor);
 			}
 
 			$result = array(
@@ -168,6 +172,7 @@ class ProveedorController
         $result = array();
         
 		if($this->model->eliminarProveedor($this->idProveedor)){
+			/// eliminar cuenta_banco
 			$result = array(
 				"status" => "success",
 				"message" => "Registro eliminado");

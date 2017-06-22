@@ -79,6 +79,7 @@ Proveedores.verProveedor = function (proveedorId){
             $("#vista-rfc").text(res.rfc);
             $("#vista-cuenta").text(res.cuenta);
             $("#vista-banco").text(res.banco);
+            $("#vista-clabe").text(res.clabe);
             $("#vista-sucursal").text(res.sucursal);
             $("#vista-plaza").text(res.plaza);
             $("#vista-referencia").text(res.referencia);
@@ -191,10 +192,7 @@ Proveedores.addproveedor = function (editMode) {
 				}else {
                     utilerias.displaySuccessMessage($("#mensajes-server"),result.message);
                     location.reload();
-					$("#formulario-usuario :input").val('');
-					
-                    
-                     
+					$("#formulario-usuario :input").val('');                                     
 				}
 			}
 		});		
@@ -224,8 +222,6 @@ Proveedores.editproveedor = function(){
 	$("#vista-datos").hide();
     $("#vista-datos2").hide();
     
-
-    
 	utilerias.removeErrorMessages();
 	
 
@@ -245,7 +241,9 @@ Proveedores.editproveedor = function(){
             data.tipo.val(res.tipo);
 			data.razon_social.val(res.razon_social);
             data.cuenta.val(res.cuenta);
-			data.banco.val(res.banco); data.sucursal.val(res.sucursal);
+			data.clabe.val(res.clabe); 
+            data.banco.val(res.banco); 
+            data.sucursal.val(res.sucursal);
             data.rfc.val(res.rfc);    
 			data.referencia.val(res.referencia);   
             data.plaza.val(res.plaza);     
