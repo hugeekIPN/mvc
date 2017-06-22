@@ -3,6 +3,7 @@
 include_once("sessionController.php");
 include_once("loginController.php");
 include_once("model/m_proveedor.php");
+include_once("model/m_CuentaBancaria.php");
 
 
 /**
@@ -12,11 +13,13 @@ class ProveedorController
 {
 	private $idProveedor;
 	public $model;
+	public $modelCuenta;
 	
 	public function __construct($idProveedor)
 	{
 		$this->idProveedor = $idProveedor;
 		$this->model = new m_proveedor();
+		$this->modelCuenta = new m_Cuenta_bancaria();
 	}
 
 	public function index(){
@@ -50,7 +53,18 @@ class ProveedorController
 				"status" => "error",
 				"message" => $message );
 		}else{
-			$this->model->nuevoProveedor($postData);
+			$lastID= $this->model->nuevoProveedor($postData);
+			
+			$newData = array();
+			$newData['cuenta'] = $postData['cuenta'];
+			$newData['banco'] = $postData['banco'];
+			$newData['referencia'] = $postData['referencia'];
+			$newData['clabe'] = $postData['clabe'];
+			$newData['plaza'] = $postData['plaza'];
+			$newData['sucursal'] = $postData['sucursal'];
+			$newData['id_proveedor'] = $lastID;
+
+			$this->modelCuenta->nuevoCuenta_bancaria($newData);
 
 			$result = array(
 				"status" => "success",

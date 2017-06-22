@@ -61,6 +61,10 @@
 					  <input required type="text" class="form-control" id="inputCuentaProveedores">
 					</div>
 					<div class="form-group ">
+					  <label class="control-label titulos" for="inputCLABEProveedores">CLABE:</label>
+					  <input required type="text" class="form-control" id="inputCLABEProveedores">
+					</div>
+					<div class="form-group ">
 					  <label class="control-label titulos" for="inputBancoProveedores">Banco:</label>
 					  <input required type="text" class="form-control" id="inputBancoProveedores">
 					</div>
@@ -127,38 +131,38 @@
 					  <label class="control-label titulos" for="inputEstadoProveedores">Estado:</label>
                                                                                        
                         <select name="state" class="form-control" id="inputEstadoProveedores">
-                        <option value="Aguascalientes">Aguascalientes</option>
-                        <option value="Baja California">Baja California</option>
-                        <option value="Baja California Sur">Baja California Sur</option>
-                        <option value="Campeche">Campeche</option>
-                        <option value="Chiapas">Chiapas</option>
-                        <option value="Chihuahua">Chihuahua</option>
-                        <option value="Coahuila">Coahuila</option>
-                        <option value="Colima">Colima</option>
-                        <option value="Ciudad de México" selected>Ciudad de México</option>
-                        <option value="Durango">Durango</option>
-                        <option value="Estado de México">Estado de México</option>
-                        <option value="Guanajuato">Guanajuato</option>
-                        <option value="Guerrero">Guerrero</option>
-                        <option value="Hidalgo">Hidalgo</option>
-                        <option value="Jalisco">Jalisco</option>
-                        <option value="Michoacán">Michoacán</option>
-                        <option value="Morelos">Morelos</option>
-                        <option value="Nayarit">Nayarit</option>
-                        <option value="Nuevo León">Nuevo León</option>
-                        <option value="Oaxaca">Oaxaca</option>
-                        <option value="Puebla">Puebla</option>
-                        <option value="Querétaro">Querétaro</option>
-                        <option value="Quintana Roo">Quintana Roo</option>
-                        <option value="San Luis Potosí">San Luis Potosí</option>
-                        <option value="Sinaloa">Sinaloa</option>
-                        <option value="Sonora">Sonora</option>
-                        <option value="Tabasco">Tabasco</option>
-                        <option value="Tamaulipas">Tamaulipas</option>
-                        <option value="Tlaxcala">Tlaxcala</option>
-                        <option value="Veracruz">Veracruz</option>
-                        <option value="Yucatán">Yucatán</option>
-                        <option value="Zacatecas">Zacatecas</option>
+                        <option value="1">Aguascalientes</option>
+                        <option value="2">Baja California</option>
+                        <option value="3">Baja California Sur</option>
+                        <option value="4">Campeche</option>
+                        <option value="5">Chiapas</option>
+                        <option value="6">Chihuahua</option>
+                        <option value="7">Coahuila</option>
+                        <option value="8">Colima</option>
+                        <option value="9" selected>Ciudad de México</option>
+                        <option value="10">Durango</option>
+                        <option value="11">Estado de México</option>
+                        <option value="12">Guanajuato</option>
+                        <option value="13">Guerrero</option>
+                        <option value="14">Hidalgo</option>
+                        <option value="15">Jalisco</option>
+                        <option value="16">Michoacán</option>
+                        <option value="17">Morelos</option>
+                        <option value="18">Nayarit</option>
+                        <option value="19">Nuevo León</option>
+                        <option value="20">Oaxaca</option>
+                        <option value="21">Puebla</option>
+                        <option value="22">Querétaro</option>
+                        <option value="23">Quintana Roo</option>
+                        <option value="24">San Luis Potosí</option>
+                        <option value="25">Sinaloa</option>
+                        <option value="26">Sonora</option>
+                        <option value="27">Tabasco</option>
+                        <option value="28">Tamaulipas</option>
+                        <option value="29">Tlaxcala</option>
+                        <option value="30">Veracruz</option>
+                        <option value="31">Yucatán</option>
+                        <option value="32">Zacatecas</option>
                         </select>
                                                  
                         <input type="hidden" class="form-control" id="inputEstadoProveedores_text">                         

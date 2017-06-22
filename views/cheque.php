@@ -16,8 +16,10 @@ $concepto = isset($_REQUEST['concepto']) ?  $_REQUEST['concepto']: null;
 if(isset($_REQUEST['abono'])){
     $abono = $_REQUEST['abono'];
     $money= $convierte->to_word(intval($abono), "MXN");
-    $aux = (string) $abono;
-    $decimal = substr( $aux, strpos( $aux, "." ) );
+    $abono = number_format($abono, 2);
+    $decimales = explode(".",$abono);
+    $decimal= $decimales[1];
+
 }else{
     $abono = 0.00;
     $money = null;

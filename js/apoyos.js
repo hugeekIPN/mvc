@@ -784,15 +784,17 @@ apoyo.verCuenta = function(){
     var observaciones = document.getElementById("observaciones").value;
     var moneda = document.getElementById("moneda_modal").value;
     var fecha_cambio = document.getElementById("fecha_cambio").value;
-
+    
+       
     proveedor = proveedor.options[proveedor.selectedIndex].text;
-   if(!proveedor) proveedor = donatario.options[donatario.selectedIndex].text;
+
+ if(!proveedor) proveedor = donatario.options[donatario.selectedIndex].text;
 
  if(abono) abono= abono; else abono = 0.00;
     evento = evento.options[evento.selectedIndex].text;
     firma = firma.options[firma.selectedIndex].text;
     cuenta = cuenta.options[cuenta.selectedIndex].text;
-
+ 
 
   if(moneda == "1"){
         $.ajax({
@@ -811,7 +813,9 @@ apoyo.verCuenta = function(){
                     if(result.status == "error"){
                         utilerias.displayErrorServerMessage(elem.msj_server, result.message);                      
                     }else{  
+                         if(result.importe != "0.00")
                             abono = result.importe;
+
                              utilerias.displaySuccessMessage($("#mensajes-server"),result.message);
                             window.open('index.php?op=cuenta&observaciones='+observaciones+'&factura='+factura+'&proveedor='+proveedor+'&folio='+folio+'&abono='+abono+'&concepto='+concepto+'&cuenta='+cuenta+'&firma='+firma+'&moneda='+moneda+'&tipo='+tipo+'&fecha='+fecha+'&evento='+evento,'_blank');
                          }
