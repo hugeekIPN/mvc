@@ -81,7 +81,7 @@ class ApoyoGastoController {
          ,p.tipo as tipo_proveedor
          ,p.razon_social
         */
-        return [ "data" => $this->model->getApoyoGasto() ];
+        return [ "data" => $this->model->getApoyosForTable() ];
     }
 
 

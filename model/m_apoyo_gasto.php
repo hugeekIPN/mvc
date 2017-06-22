@@ -9,6 +9,36 @@ class m_apoyo_gasto{
         $this->db = Database::getInstance();
     }
 
+    /*
+    * Funcion para poblar el dataTable de apoyos.
+    * Se obtiene mediante ajax 
+    * @return arrray indexado con los datos necesarios para el dataTable
+    **/
+    public function getApoyosForTable($tipo=0){
+        $result = [];
+        $query = $this->db->select(
+                "SELECT 
+                 a.id_apoyo
+                 ,a.folio
+                 ,a.concepto
+                 ,a.referencia
+                 ,e.nombre
+                 ,a.tipo_cambio 
+                 ,p.razon_social
+                 ,a.fecha_creacion
+                 ,estatus(a.estatus)
+                 FROM apoyosgastos as a
+                 INNER JOIN proveedores as p ON a.id_proveedor = p.id_proveedor   
+                 INNER JOIN eventos as e ON a.id_evento = e.id_evento
+                 WHERE p.tipo = :tipo "
+                 ,["tipo"=>$tipo]
+                 ,PDO::FETCH_NUM);
+            if($query)
+                $result = $query;
+        return $result;
+
+    }
+
     /**
     * Obtiene un apoyo_gasto por id, en caso de no proporcionar id se obtienen todos los apoyos
     * @param id_apoyo - El id del usuario

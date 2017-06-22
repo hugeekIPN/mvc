@@ -301,16 +301,23 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
 )ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
 
--- -----------------------------------------------------
--- Table saldo --Por definir
--- -----------------------------------------------------
-DROP TABLE IF EXISTS saldo;
 
-CREATE TABLE IF NOT EXISTS saldo
-(
-  id_saldo INT UNSIGNED NOT NULL AUTO_INCREMENT
-  ,saldo DECIMAL(11,2)
-  ,`fecha_creacion` DATETIME DEFAULT CURRENT_TIMESTAMP
-  ,`ultima_modificacion` DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP  
-  ,PRIMARY KEY (id_saldo)
-)ENGINE=InnoDB  DEFAULT CHARSET=utf8;
+-- -----------------------------------------------------
+-- Funciones
+-- -----------------------------------------------------
+
+
+/**
+*
+**/
+DROP FUNCTION IF EXISTS estatus;
+DELIMITER //
+CREATE FUNCTION estatus(n INT)
+  RETURNS VARCHAR(9)
+  BEGIN
+    DECLARE s VARCHAR(9) DEFAULT 'Activo';
+    IF  n=1 THEN SET s = 'Cancelado';   
+    END IF;
+    RETURN s;
+  END //
+DELIMITER ;
