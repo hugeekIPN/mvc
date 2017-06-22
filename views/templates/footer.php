@@ -16,8 +16,7 @@
         $("#example1,#example2,#example3,#example4,#example5,#example6").DataTable();
 
         }); 
-        $(function() {
-        $("#example7").DataTable();
+        $(function() {        
         $("#tabla_eventos").DataTable();
         }); 
        

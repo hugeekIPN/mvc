@@ -56,27 +56,31 @@
 	<!-- contenedor de tabla  -->
 	<div class="form-group col-xs-12" >
 			<div class="cont">
-	    		<table id="example7" class="display" cellspacing="0" class="table-hover" >
+	    		<table id="tabla-apoyos" class="display" cellspacing="0" class="table-hover" >
 	    			<thead>
 	    				<tr>
 	    					<th hidden>id</th>
 	    					<th>Folio</th>
 	    					<th>Concepto</th>
+	    					<th>Referencia</th>
 	    					<th>Evento</th>
-	    					<th>Factura</th>
+	    					<th>Proveedor/donador</th>
+	    					<th>Fecha captura</th>
+	    					<th>Estatus</th>
 	    				</tr>
 	    			</thead>
-	    			<?php foreach ($apoyo as $apoyos): ?>
-                        <tbody>
-	    					<tr onclick="apoyo.verApoyo(<?php echo $apoyos['id_apoyo']; ?>);">
-	    						<td hidden>id</td>
-	    						<td><?= $apoyos['id_apoyo']; ?></td>
-	    						<td><?= $apoyos['concepto']; ?></td>
-	    						<td><?= $apoyos['nombre']; ?></td>
-	    						<td><?= $apoyos['factura']; ?></td>
-	    					</tr>
-	    				</tbody>
-                    <?php endforeach; ?>
+	    			<tfoot>
+	    				<tr>
+	    					<th hidden>id</th>
+	    					<th>Folio</th>
+	    					<th>Concepto</th>
+	    					<th>Referencia</th>
+	    					<th>Evento</th>
+	    					<th>Proveedor/donador</th>
+	    					<th>Fecha captura</th>
+	    					<th>Estatus</th>
+	    				</tr>
+	    			</tfood>
 	    		</table>	
 	    	</div>   
 	</div>

@@ -51,7 +51,8 @@ class m_apoyo_gasto{
                  ,p.razon_social
                  FROM apoyosgastos as a
                  INNER JOIN proveedores as p ON a.id_proveedor = p.id_proveedor"                
-                 );
+                 ,[]
+                 ,PDO::FETCH_NUM);
             if($query)
                 $result = $query;
         }

@@ -82,3 +82,15 @@ VALUES (1
 	,1 -- moneda
 	,1 -- evento
 	);
+
+INSERT INTO apoyosgastos(id_apoyo,concepto,folio,referencia,id_proveedor,id_frecuencia_apoyo,id_estado,id_moneda,id_evento)
+VALUES (2
+	,"nuevo apoyo"
+	,"123folio"
+	,"123referencia"
+	,1 -- proveedor
+	,1 -- frecuencia
+	,1 -- estado
+	,1 -- moneda
+	,1 -- evento
+	);
