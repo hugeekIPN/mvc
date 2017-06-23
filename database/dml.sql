@@ -116,8 +116,8 @@ VALUES (1
 	);
 
 INSERT INTO apoyosgastos(id_apoyo,concepto,folio,referencia,id_proveedor,id_frecuencia_apoyo,id_estado,id_moneda,id_evento)
-VALUES (2
-	,"nuevo apoyo"
+VALUES (3
+	,"Saldo honorarios por la emisión de dictamenes del imss e infonavit 2003"
 	,"123folio"
 	,"123referencia"
 	,1 -- proveedor

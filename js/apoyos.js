@@ -1,4 +1,8 @@
 var apoyo = {};
+
+apoyo.tabla = $('#tabla-apoyos').DataTable( {
+    ajax: "index.php?op=getApoyos"
+} );
 /**
 * apoyor inputs vista apoyo.php
 **/
@@ -57,6 +61,10 @@ apoyo.elem ={
     btn_save2:       $("#btn-save2"),
     btn_borrar:     $("#btn-delete"),
 };
+
+apoyo.loadTable = function(){
+    apoyo.tabla.ajax.reload();
+}
 
 apoyo.verApoyo = function(idApoyo){
     var elementos = apoyo.elem;

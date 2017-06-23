@@ -59,7 +59,7 @@
 	    		<table id="tabla-apoyos" class="display" cellspacing="0" class="table-hover" >
 	    			<thead>
 	    				<tr>
-	    					<th hidden>id</th>
+	    					<th style="display:none;">id</th>
 	    					<th>Folio</th>
 	    					<th>Concepto</th>
 	    					<th>Referencia</th>
@@ -71,7 +71,7 @@
 	    			</thead>
 	    			<tfoot>
 	    				<tr>
-	    					<th hidden>id</th>
+	    					<th style="display: none">id</th>
 	    					<th>Folio</th>
 	    					<th>Concepto</th>
 	    					<th>Referencia</th>

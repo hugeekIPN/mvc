@@ -24,12 +24,12 @@ class m_apoyo_gasto{
                  ,a.referencia
                  ,e.nombre
                  ,p.razon_social
-                 ,a.fecha_creacion
+                 ,date(a.fecha_creacion)
                  ,estatus(a.estatus)
                  FROM apoyosgastos as a
                  INNER JOIN proveedores as p ON a.id_proveedor = p.id_proveedor   
                  INNER JOIN eventos as e ON a.id_evento = e.id_evento
-                 WHERE p.tipo = :tipo "
+                 WHERE a.tipo = :tipo "
                  ,["tipo"=>$tipo]
                  ,PDO::FETCH_NUM);
             if($query)
