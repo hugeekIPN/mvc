@@ -96,6 +96,8 @@
                     <p id="vista-rfc"></p>
                     <p class="titulos"><strong>Cuenta</strong></p>            
                     <p id="vista-cuenta"></p>
+                    <p class="titulos"><strong>CLABE</strong></p>
+                    <p id="vista-clabe"></p>
                     <p class="titulos"><strong>Banco</strong></p>
                     <p id="vista-banco"></p>
                     <p class="titulos"><strong>Sucursal</strong></p>
