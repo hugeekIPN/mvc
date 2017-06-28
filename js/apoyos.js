@@ -3,6 +3,12 @@ var apoyo = {};
 apoyo.tabla = $('#tabla-apoyos').DataTable( {
     ajax: "index.php?op=getApoyos"
 } );
+
+$('#tabla-apoyos tbody').on('click','tr',function(){
+    apoyos.verApoyo($(this).find('td').first().text());
+});
+
+
 /**
 * apoyor inputs vista apoyo.php
 **/

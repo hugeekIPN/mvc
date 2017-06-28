@@ -12,6 +12,7 @@ class m_apoyo_gasto{
     /*
     * Funcion para poblar el dataTable de apoyos.
     * Se obtiene mediante ajax 
+    * @param tipo es el tipo del apoyo. 0-apoyo 1-gasto
     * @return arrray indexado con los datos necesarios para el dataTable
     **/
     public function getApoyosForTable($tipo=0){
@@ -19,7 +20,6 @@ class m_apoyo_gasto{
         $query = $this->db->select(
                 "SELECT 
                  a.id_apoyo
-                 ,a.folio
                  ,a.concepto
                  ,a.referencia
                  ,e.nombre

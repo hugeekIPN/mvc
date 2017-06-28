@@ -233,7 +233,7 @@ CREATE TABLE IF NOT EXISTS `apoyosgastos` (
   ,`importe` DECIMAL(11,2) DEFAULT 0
   ,`importe_ext` DECIMAL(11,2) DEFAULT 0  
   ,`tipo_cambio` DECIMAL(11,2) DEFAULT 0
-  ,`folio` VARCHAR(16) NULL COMMENT 'folio automatico\n'
+  -- ,`folio` VARCHAR(16) NULL COMMENT 'folio automatico,\n' (El folio es el id)
   ,`observaciones` VARCHAR(512)
   ,`referencia` VARCHAR(32)  COMMENT 'numero de referencia'
   -- campos libreta flujo
