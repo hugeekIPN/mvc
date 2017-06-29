@@ -78,7 +78,7 @@ class ProveedorController
 
 			/* Consultar si existe el estado, sino agregarlo */
 			
-			$Estado = $this->modelEstado->getAll($Data['nombre']);
+			$Estado = $this->modelEstado->getAll($Data['estado']);
 
 			if($Estado)  $idEstado = $Estado['id_estado'];
 				else 
@@ -152,11 +152,6 @@ class ProveedorController
 
 			if($currentProveedor['delegacion'] != $data['delegacion'])
 				$newData['delegacion'] = $data['delegacion'];
-
-		
-
-			if($currentProveedor['id_estado'] != $data['entidad'])
-				$newData['id_estado'] = $data['entidad'];
 
 
 			if($currentProveedor['correo_contacto'] != $data['correo_contacto'])

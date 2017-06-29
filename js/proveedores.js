@@ -139,9 +139,7 @@ Proveedores.addproveedor = function (editMode) {
     if(pais=="México"){
          estado = data.estado.val();  
     }else{
-            estado = Proveedores.idEstado(data.estado.val());
-
-            alert(estado);
+            estado = Proveedores.idEstado(data.estado_text.val());
             /// si existe devuelve id de estado, sino insertalo y devuelve id
     }
     
@@ -200,6 +198,7 @@ Proveedores.idEstado = function(estado){
             dataType: "json",
             data: {                
                     estado: estado,
+                    id_pais: 2,
                     action : "idEstado"
                 },
                 success: function(result){
