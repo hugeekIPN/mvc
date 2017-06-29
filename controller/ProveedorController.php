@@ -4,7 +4,7 @@ include_once("sessionController.php");
 include_once("loginController.php");
 include_once("model/m_proveedor.php");
 include_once("model/m_CuentaBancaria.php");
-
+include_once("model/m_estado.php");
 
 /**
 * 
@@ -20,12 +20,12 @@ class ProveedorController
 		$this->idProveedor = $idProveedor;
 		$this->model = new m_proveedor();
 		$this->modelCuenta = new m_Cuenta_bancaria();
+		$this->modelEstado= new m_estado();
 	}
 
 	public function index(){
 
 		$login = new loginController();
-
 		if($login->_isLoggedIn()){
 			$usuario = sessionController::get('username');
 			$titulo = "Proveedores y Donatarios";
@@ -70,6 +70,26 @@ class ProveedorController
 				"status" => "success",
 				"message" => "Registro exitoso");
 		}
+
+		return $result;
+	}
+
+	public function addEstado($Data){
+
+			/* Consultar si existe el estado, sino agregarlo */
+			
+			$Estado = $this->modelEstado->getAll($Data['nombre']);
+
+			if($Estado)  $idEstado = $Estado['id_estado'];
+				else 
+					$idEstado = $this->modelEstado->nuevoEstado($Data);
+
+
+			$result = array(
+				"status" => "success",
+				"message" => "Registro exitoso",
+				"estado" =>  $idEstado
+			 );
 
 		return $result;
 	}
@@ -143,7 +163,7 @@ class ProveedorController
 				$newData['correo_contacto'] = $data['correo_contacto'];
             
             if($currentProveedor['tipo'] != $data['tipo'])
-				$newData['tipo'] = $data['tipo'];
+				$newData['tipo'] = 1; // (int) $data['tipo'];
                         
             if($currentProveedor['colonia'] != $data['colonia'])
 				$newData['colonia'] = $data['colonia'];
@@ -201,8 +221,6 @@ class ProveedorController
 		$colonia			= $data['colonia'];
 		$cp					= $data['cp'];
 		$delegacion			= $data['delegacion'];
-		$pais				= $data['pais'];
-		$entidad			= $data['entidad'];
 		$tipo				= $data['tipo'];
 		$contacto			= $data['contacto'];
 		$correo_contacto	= $data['correo_contacto'];

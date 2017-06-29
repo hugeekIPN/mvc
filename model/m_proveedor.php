@@ -76,7 +76,6 @@ class m_proveedor
 	{
 		return $this->db->delete("proveedores","id_proveedor = :id",
 			array("id"=>$idProveedor));
-            
 	}
 
 	public function getAllProveedores(){

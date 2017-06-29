@@ -95,6 +95,11 @@ switch ($action) {
         $proveedor = new ProveedorController($_POST['proveedorId']);
         echo json_encode($proveedor->deleteProveedor($_POST));
         break;
+
+    case 'idEstado':
+        $proveedor = new ProveedorController(null);
+        echo json_encode($proveedor->addEstado($_POST));
+        break;  
 /// Crud Programas
     case 'addPrograma':
         $programa = new programaController(null);
@@ -234,6 +239,7 @@ switch ($action) {
         $archivo = new archivoController($_POST['idArchivo']);
         echo json_encode($archivo->deleteArchivo($_POST));
         break;   
+   
 
     default:
         break;

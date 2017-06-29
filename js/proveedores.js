@@ -88,7 +88,7 @@ Proveedores.verProveedor = function (proveedorId){
             $("#vista-colonia").text(res.colonia);
 			$("#vista-calle").text(res.calle);
             $("#vista-delega").text(res.delegacion);
-                 $("#vista-pais").text(res.pais);           
+              //   $("#vista-pais").text(res.pais);           
             $("#vista-entidad").text(res.entidad);
             $("#vista-cp").text(res.cp);
             $("#vista-contacto").text(res.contacto);
@@ -112,7 +112,6 @@ Proveedores.pais = function (){
         document.getElementById('inputEstadoProveedores_text').type = 'hidden';
         document.getElementById('otro_text').type = 'hidden';
         elem.estado.show();
-        
     }else{
        if(valor=="Otro"){ 
              document.getElementById('inputEstadoProveedores_text').type = 'text';
@@ -125,8 +124,6 @@ Proveedores.pais = function (){
                 elem.estado.hide();
          }
     }
-    
-
 };
 
 Proveedores.addproveedor = function (editMode) {
@@ -140,14 +137,12 @@ Proveedores.addproveedor = function (editMode) {
     var estado = null;
 
     if(pais=="México"){
-         estado = document.getElementById("inputEstadoProveedores").value;  
+         estado = data.estado.val();  
     }else{
-        if(pais=="Otro"){
-           pais = document.getElementById('otro_text').value;
-           estado = document.getElementById("inputEstadoProveedores_text").value;  
-        }else{
-            estado = document.getElementById("inputEstadoProveedores_text").value;  
-        }
+            estado = Proveedores.idEstado(data.estado.val());
+
+            alert(estado);
+            /// si existe devuelve id de estado, sino insertalo y devuelve id
     }
     
     if ( editMode == true)
@@ -165,7 +160,7 @@ Proveedores.addproveedor = function (editMode) {
 			type: "POST",
 			url: "ajax.php",
 			dataType: "json",
-			data: {                
+			data: {                 
                     id_proveedor : proveedorId,
                     razon_social : data.razon_social.val(),
                     tipo: data.tipo.val(),
@@ -179,7 +174,6 @@ Proveedores.addproveedor = function (editMode) {
                     colonia: data.colonia.val(),
                     calle: data.calle.val(),
                     delegacion: data.delegacion.val(),
-                    pais: pais,
                     entidad: estado,
                     cp: data.cp.val(),
                     contacto: data.contacto.val(),
@@ -198,6 +192,25 @@ Proveedores.addproveedor = function (editMode) {
 		});		
     }
 };
+
+Proveedores.idEstado = function(estado){
+        $.ajax({
+            type: "POST",
+            url: "ajax.php",
+            dataType: "json",
+            data: {                
+                    estado: estado,
+                    action : "idEstado"
+                },
+                success: function(result){
+                if(result.status == "error"){         
+                    utilerias.displayErrorServerMessage($("#mensajes-server"),result.message);
+                }else{
+                    return result.estado;                                    
+                }
+            }
+        });         
+}
 
 
 Proveedores.editproveedor = function(){
@@ -255,14 +268,14 @@ Proveedores.editproveedor = function(){
             data.colonia.val(res.colonia);  
             data.calle.val(res.calle);
             
-            if(res.pais == "México")
+            if(res.estado <= "32")
                 {
                    elem.estado.show();
                    document.getElementById('inputEstadoProveedores_text').type = 'hidden';
                    data.estado.val(res.entidad); 
                    data.pais.val(res.pais);   
                 }else{
-                    if(res.pais=="EUA"){
+                    if(res.estado >"32"){
                         document.getElementById('inputEstadoProveedores_text').type = 'text';
                         elem.estado.hide();
                         data.estado_text.val(res.entidad);
