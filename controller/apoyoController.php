@@ -61,7 +61,6 @@ class ApoyoGastoController {
         /*
         Se obtienen los sig datos del model:
          id_apoyo
-         folio
          concepto
          referencia (es lo mismo que numero de referencia)
          nombre del evento
@@ -145,12 +144,11 @@ class ApoyoGastoController {
     }
 
     public function getApoyoGasto() {
-        $archivos = $this->modelArchivo-> getAllArchivos($this->idApoyo);
-        $result = $this->model->getApoyoGasto($this->idApoyo);
+        
+        $result = $this->model->getApoyoById($this->idApoyo);
 
         if($result){
             $result["status"] = "success";
-            $result["archivos"] = $archivos;
         }else{
             $result = array(
                 "status" => "error",

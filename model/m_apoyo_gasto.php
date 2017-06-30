@@ -13,6 +13,7 @@ class m_apoyo_gasto{
     * Funcion para poblar el dataTable de apoyos.
     * Se obtiene mediante ajax 
     * @param tipo es el tipo del apoyo. 0-apoyo 1-gasto
+    
     * @return arrray indexado con los datos necesarios para el dataTable
     **/
     public function getApoyosForTable($tipo=0){
@@ -53,8 +54,7 @@ class m_apoyo_gasto{
         ,a.concepto
         ,a.importe
         ,a.importe_ext
-        ,a.tipo_cambio
-        ,a.folio
+        ,a.tipo_cambio        
         ,a.observaciones
         ,a.referencia
         ,a.mes_contable
@@ -67,9 +67,22 @@ class m_apoyo_gasto{
         ,p.id_proveedor
         ,p.tipo as tipo_proveedor
         ,p.razon_social
+        ,e.nombre as evento
+        ,e.id_evento
+        ,a.id_especie_apoyo
+        ,f.id_frecuencia_apoyo 
+        ,f.nombre as frecuencia
+        ,a.id_estado
+        ,st.nombre
+        ,a.id_moneda
+        ,m.acronimo
+        ,m.nombre
         FROM apoyosgastos as a
         INNER JOIN proveedores as p ON a.id_proveedor = p.id_proveedor   
-        INNER JOIN eventos as e ON a.id_evento = e.id_evento
+        INNER JOIN eventos as e ON a.id_evento = e.id_evento        
+        INNER JOIN frecuencia_apoyo AS f ON f.id_frecuencia_apoyo = a.id_frecuencia_apoyo
+        INNER JOIN estado AS st ON st.id_estado = a.id_estado
+        INNER JOIN moneda AS m ON m.id_moneda = a.id_moneda
         WHERE a.id_apoyo = :id AND p.tipo = :tipo ";
 
         $data = $this->db->select($query,["id"=>$id_apoyo,"tipo"=>$tipo]);

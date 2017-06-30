@@ -5,7 +5,7 @@ apoyo.tabla = $('#tabla-apoyos').DataTable( {
 } );
 
 $('#tabla-apoyos tbody').on('click','tr',function(){
-    apoyos.verApoyo($(this).find('td').first().text());
+    apoyo.verApoyo($(this).find('td').first().text());
 });
 
 

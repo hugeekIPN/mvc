@@ -221,26 +221,7 @@ switch ($action) {
         $apoyo = new ApoyoGastoController(null, null,null);
         echo json_encode($apoyo->getApoyoEventos($_POST));
         break;
-     
-    // CRUD ARCHIVOS
-    case 'nuevoArchivo';
-        $archivo = new archivoController(null);
-        echo json_encode($archivo->nuevoArchivo($_POST));
-        break;
-    case 'getArchivo';
-        $archivo = new archivoController(null);
-        echo json_encode($archivo->getArchivo($_POST));
-        break;
-    case 'updateArchivo':
-        $archivo = new archivoController(null);
-        echo json_encode($archivo->updateArchivo($_POST));
-        break;
-    case 'deleteArchivo':
-        $archivo = new archivoController($_POST['idArchivo']);
-        echo json_encode($archivo->deleteArchivo($_POST));
-        break;   
-   
-
+        
     default:
         break;
 }
