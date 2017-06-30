@@ -29,18 +29,18 @@ class m_estado
 	public function nuevoEstado($data){
 		return $this->db->insertLastId('estado',
 			array(
-				'nombre'		=> $data['nombre'],
-				'id_pais'				=> $data['id_pais'],
+				'nombre'		=> $data['estado'],
+				'id_pais'				=> 2,
 				));
 	}
 
 	public function getAll($nombre){
-		$query = "SELECT * from estado where nombre=".$nombre;
+		$query = "SELECT * from estado where nombre='$nombre'";
 
 		$result = $this->db->select($query, array());
 
 		if($result)
-			return $result;
+			return $result[0];
 		else
 			return null;
 	}
