@@ -1,8 +1,39 @@
 	<nav class=" menu">
 	  <div class="container-fluid">
 
-	    <div class="navbar-header col-xs-4 ">
+	    <div class="navbar-header col-xs-3 ">
+	      <div class="col-xs-2 pull-left">
+	      	<a href="index.php" class="pull-left home">INICIO</a>
+	      	
+	      </div>
 	      <ul class="nav navazul">
+	      	<li class=" dropdown">
+		      	<a href="#" class="dropbtn2">
+					<img src="assets/iconos/Recurso 1.png" alt="Consulta">
+		      		<p>Consulta</p>
+		      	</a>
+		      	<ul class="nav dropdown-content2">
+			        <li><a href="index.php?op=especies">Especies</a></li>
+		    			
+		    			<li><a href="index.php?op=proveedores">Proveedores/Donatarios</a></li>
+		    			<li><a href="index.php?op=users">Usuarios</a></li>   			
+		    			<li><a href="index.php?op=programas">Programas</a></li>
+		    			<li><a href="index.php?op=subprogramas">Subprogramas</a></li>
+		    			<li><a href="index.php?op=eventos">Eventos</a></li>
+			    </ul>
+	      	</li>
+	      	<li class=" dropdown">
+		      	<a href="#"  class="dropbtn2" >
+					<img src="assets/iconos/Recurso 2.png" alt="Captura">
+		      		<p>Captura</p>
+		      	</a>
+		      	<ul class="nav dropdown-content2">
+			        <li><a href="index.php?op=apoyos">Apoyos</a></li>
+		    			<li><a href="#">Gastos</a></li>
+		  
+                    <li><a href="index.php?op=cargos">Cargos</a></li>
+			    </ul>
+	      	</li>
 	      	<li class=" dropdown">
 		      	<a href="#" class="dropbtn2">
 					<img src="assets/iconos/Recurso 3.png" alt="Reportes">
@@ -20,50 +51,29 @@
 		    			<li><a href="#">Evento por Programa</a></li>
 			    </ul>
 	      	</li>
-	      	<li class=" dropdown">
-		      	<a href="#"  class="dropbtn2" >
-					<img src="assets/iconos/Recurso 2.png" alt="Captura">
-		      		<p>Captura</p>
-		      	</a>
-		      	<ul class="nav dropdown-content2">
-			        <li><a href="index.php?op=apoyos">Apoyos</a></li>
-		    			<li><a href="#">Gastos</a></li>
-		  
-                    <li><a href="index.php?op=cargos">Cargos</a></li>
-			    </ul>
-	      	</li>
-	      	<li class=" dropdown">
-		      	<a href="#" class="dropbtn2">
-					<img src="assets/iconos/Recurso 1.png" alt="Consulta">
-		      		<p>Consulta</p>
-		      	</a>
-		      	<ul class="nav dropdown-content2">
-			        <li><a href="index.php?op=especies">Especies</a></li>
-		    			
-		    			<li><a href="index.php?op=proveedores">Proveedores/Donatarios</a></li>
-		    			<li><a href="index.php?op=users">Usuarios</a></li>   			
-		    			<li><a href="index.php?op=programas">Programas</a></li>
-		    			<li><a href="index.php?op=subprogramas">Subprogramas</a></li>
-		    			<li><a href="index.php?op=eventos">Eventos</a></li>
-			    </ul>
-	      	</li>
+	      	
 	      </ul>
 	    </div>
-
 	    <div class="col-xs-4 titulo">
-	    	<p class=""><?php echo $titulo; ?></p>
-	    	
+	    	<p class=""><?php echo $titulo; ?></p>	    	
 	    </div>
-
-	    <div class="col-xs-4 ">
+		<div class="col-xs-2 usuarios-name">
+	    	<p class="">Usuario:</p>
+	    	<p class="nombre-u"><strong><?php echo $usuario; ?>Samuel Cassstro</strong></p>
+	    </div>
+		<div class="col-xs-1">
+	    			<p class="date"><?php echo date("d / m / Y"); ?></p>
+	    </div>
+	    <div class="col-xs-1 ">
 		    <ul class="nav nav-right">
-		    	<li class="col-xs-4">
+		    	<!--<li class="col-xs-4">
 			      	<a href="#" >
 						<img src="assets/iconos/Recurso5.png" alt="Ayuda">
 			      		<p>Ayuda</p>
 			      	</a>
-		      	</li>
-		      	<li class="col-xs-4">
+		      	</li>-->
+		
+		      	<li class="col-xs-3">
 			      	<a href="index.php?op=logout" class="salir">
 						<img src="assets/iconos/Recurso6.png" alt="Salir">
 			      		<p>Salir</p>
@@ -71,6 +81,7 @@
 		      	</li>
 		    </ul>
 	    </div>
+	    
 
 	    
 	  </div>

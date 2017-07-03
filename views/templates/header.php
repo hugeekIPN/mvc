@@ -29,7 +29,7 @@
  	
 </head>
 <body>
-	<nav class="navbar header">
+	<!--<nav class="navbar header">
 	  <div class="container-fluid">
 	    <div class="navbar-header col-xs-4 header1 ">
 	      <a class="navbar-brand" href="#">
@@ -49,6 +49,6 @@
 	    
 	  </div>
 	</nav>
-
+ -->
 
 <!-- banner (logo, usuario y fecha)-->

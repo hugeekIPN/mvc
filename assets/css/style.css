@@ -180,7 +180,7 @@ body{
 		margin: 0 0 0 160px;
 	}
 /*=====HEADER======*/	
-	nav.header{
+	/*nav.header{
 		-webkit-box-shadow: 1px 4px 13px -2px rgba(50, 50, 50, 0.71);
 		-moz-box-shadow:1px 4px 13px -2px rgba(50, 50, 50, 0.71);
 		box-shadow:1px 4px 13px -2px rgba(50, 50, 50, 0.71);
@@ -189,13 +189,13 @@ body{
 
 	}
 		div.logo2{
-			margin:0 0 10px 10px; 
+			
 		}
 			div.logo2 img{
-				width: 180px;
-				height: 35.4px;
+				width: 126px;
+				height: 24.78px;
 				margin-right: 50px;
-				margin-top: 5%;
+				margin-top: 3%;
 			}
 		div.header2{
 			text-align: center;
@@ -210,7 +210,7 @@ body{
 			text-align: right;
 		}
 
-
+*/
 /*=======INDEX=======*/
 	/*botones ayuda, salir*/
 	
@@ -322,6 +322,24 @@ body{
 		background: #0090D2;
 		z-index: -2;
 		}
+		.home{
+			color:white;
+			font-size: 18px;
+			text-align: center;
+			margin:20px 20px 0 -15px;
+			text-decoration: none;
+		}
+		a.home:hover{
+			background: #0090D6 !important;
+			font-family: fundacion-b !important;
+			text-decoration: none !important;
+		}
+		.nombre-u{
+			font-size: 16px;
+		}
+		navbar-header{
+			width: auto;
+		}
 
 			ul.navazul li{
 				text-align: center;
@@ -333,17 +351,26 @@ body{
 				color: white;
 
 			}
+			div.usuarios-name{
+				margin:7px 10px 0 0;
+				color: white;
+				font-family: fundacion-l;
+				font-size: 18px;
+				text-align: center;
 
+			}
+			nav .col-xs-3{
+				margin-left: 0;
+			}
 			div.titulo p{
 				color: white;
-				font-size: 32px;
+				font-size: 30px;
 				font-family: fundacion-l;
-				padding-top: 15px;
+				padding-top: 10px;
 				text-align: center;
 			}
 
-			ul.nav-right{
-				margin-left:15%; 
+			ul.nav-right{ 
 				text-align: center;
 			}
 				ul.nav-right li{
@@ -386,6 +413,11 @@ body{
 						    display: block;
 
 						}
+			.date{
+				color: white;
+				font-family: fundacion-l;
+				padding-top: 20px;
+			}
 	/*=======Buscador=======*/
 
 			.search-form .form-group {
@@ -524,7 +556,7 @@ body{
 		.dropdown {
 		    position: relative;
 		    display: inline-block;
-		    float: right;
+		    float: left;
 		    font-family: fundacion-l;
 		}
 
