@@ -1,10 +1,19 @@
 <form id="formulario-captura-apoyos">	
 
-	<div class=" form-group col-xs-12">
+	<div class=" form-group col-xs-10">
 		<label for="concepto">Descripcion apoyo</label>
 		<input type="text" class="form-control" name="concepto" id="concepto" >
 	</div>
+
+	<div class="form-group col-xs-2">
+		<label for="status">Estatus</label>
+		<select type="text" class="form-control" name="status" id="status" >
+			<option value="1" selected>Activo</option>
+			<option value="2">Cancelado</option>		
+		</select>		
+	</div>
 	
+		
 	<div class="row">
 
 		<div class=" form-group col-xs-2">
@@ -191,8 +200,6 @@
 			<?php } ?>
 		</select>
 	</div >
-
-	<button onclick="apoyo.add();" class="btn btn-primary pull-right" id="btn-save3">Agregar >></button>
 </form>
 
 <!--INICIO IMPRIMIBLES -->

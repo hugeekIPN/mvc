@@ -23,8 +23,4 @@
 		<label for="abono">Abono</label>
 		<input type="text" class="form-control" name="abono2" id="abono2" value="" disabled="" value="0">
 	</div>
-	<div class=" input form-group col-xs-4">
-		<label for="saldo">Saldo capturado:</label>
-		<input type="text" class="form-control" name="saldo" id="saldo" value="<?= $saldo; ?>" disabled>
-	</div>
 </form>

@@ -801,3 +801,6 @@ div.subir-archivos{
 		padding: 0;
 	}
 }
+
+/*botones fijos en form captura */
+.btn-fixed { position: fixed; bottom: 0px; right: 0px; }
