@@ -10,7 +10,6 @@ require_once "controller/especieController.php";
 require_once 'controller/cargoController.php';
 require_once 'controller/saldoController.php';
 require_once 'controller/apoyoController.php';
-require_once 'controller/archivoController.php';
 
 sessionController::startSession();
 

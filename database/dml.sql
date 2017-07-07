@@ -38,8 +38,8 @@ VALUES(1,"México","MX");
 -- -----------------------------------------------------
 -- CATALOGO DE ESTADOS
 -- -----------------------------------------------------
-INSERT INTO estado(id_estado,nombre,id_pais)
-VALUES (1,"Aguascalientes",1),
+INSERT INTO estado(nombre,id_pais)
+VALUES ("Aguascalientes",1),
 ("Baja California",1),
 ("Baja California Sur",1),
 ("Campeche",1),
@@ -153,10 +153,9 @@ VALUES(1,"ACADEMIA DE MUSICA DEL PALACIO DE MINERIA, A.C.","AMP850419U45","55109
 -- -----------------------------------------------------
 -- APOYOS
 -- -----------------------------------------------------
-INSERT INTO apoyosgastos(id_apoyo,concepto,folio,referencia,id_proveedor,id_frecuencia_apoyo,id_estado,id_moneda,id_evento)
+INSERT INTO apoyosgastos(id_apoyo,concepto,referencia,id_proveedor,id_frecuencia_apoyo,id_estado,id_moneda,id_evento)
 VALUES (1
-	,"Suministro gasolina vehículo programa de conservación mariposa monarca"
-	,"123folio"
+	,"Suministro gasolina vehículo programa de conservación mariposa monarca"	
 	,"123referencia"
 	,1 -- proveedor
 	,1 -- frecuencia
@@ -165,10 +164,9 @@ VALUES (1
 	,1 -- evento
 	);
 
-INSERT INTO apoyosgastos(id_apoyo,concepto,folio,referencia,id_proveedor,id_frecuencia_apoyo,id_estado,id_moneda,id_evento)
+INSERT INTO apoyosgastos(id_apoyo,concepto,referencia,id_proveedor,id_frecuencia_apoyo,id_estado,id_moneda,id_evento)
 VALUES (3
-	,"Saldo honorarios por la emisión de dictamenes del imss e infonavit 2003"
-	,"123folio"
+	,"Saldo honorarios por la emisión de dictamenes del imss e infonavit 2003"	
 	,"123referencia"
 	,1 -- proveedor
 	,1 -- frecuencia

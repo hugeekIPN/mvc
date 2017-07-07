@@ -13,18 +13,11 @@ $('#tabla-apoyos tbody').on('click','tr',function(){
 * apoyor inputs vista apoyo.php
 **/
 apoyo.elem ={
-    idApoyo:      $("#id-apoyo"),
-    id_apoyo_gasto: $("#id_apoyo_gasto"),
     status:    $("#status"),
-    tipo:    $("#tipo"),
     concepto:    $("#concepto"),
     abono:        $("#abono"),
     abono2:        $("#abono2"),
-    reflibretaana:      $("#reflibretaana"),
-    mescaptura:       $("#mescaptura"),
     fechacaptura:          $("#fechacaptura"),
-    fecharecibo:    $("#fecharecibo"),
-    mescontableana:       $("#mescontableana"),
     folio_apoyo:         $("#folio_apoyo"),
     frecuencia:         $("#frecuencia"),
     evento:            $("#evento"),
@@ -56,16 +49,12 @@ apoyo.elem ={
     idSaldo:         $("#saldo"),
     tabla_eventos_div : $("#tabla_eventos_div"),
     archivo_up_pdf:          $("#archivo_up_pdf"),
-    archivo_up_xml:          $("#archivo_up_xml"),
-    
-    anio:            $("#anio"),
-    formulario:     $("#formulario-apoyo"),
-   // cont_datos:     $("#datos-apoyos"),
-    btn_nuevo:      $("#btn-new"),
-    btn_editar:     $("#btn-edit"),
+    archivo_up_xml:          $("#archivo_up_xml"),    
+ 
     btn_save:       $("#btn-save"),
-    btn_save2:       $("#btn-save2"),
-    btn_borrar:     $("#btn-delete"),
+    btn_add:       $("#btn-add"),
+    btn_update: $("#btn-update"),
+    btn_delete:     $("#btn-delete"),
 };
 
 apoyo.loadTable = function(){
@@ -73,18 +62,15 @@ apoyo.loadTable = function(){
 }
 
 apoyo.verApoyo = function(idApoyo){
-    var elementos = apoyo.elem;
-    //*var action = "getapoyo";
+    var elementos = apoyo.elem;    
     $("#datable").hide();
     $("#contenedor-apoyos").show();
-    elementos.idApoyo.val(idApoyo);
-    //utilerias.removeErrorMessages();
+    utilerias.removeErrorMessages();
     $.ajax({
         type:   "post",
         url:    "ajax.php",
         data:   {
-            action:"getApoyo",
-            //*action: action,
+            action:"getApoyo",            
             idApoyo:  idApoyo
         },
         success: function(result){
@@ -93,19 +79,11 @@ apoyo.verApoyo = function(idApoyo){
 			if(res.status == "error"){
 				utilerias.displayErrorServerMessage(elem.msj_server, res.message);
 			}else{
-                //mostramos y ocultamos los botones
-                elementos.btn_save.text("Actualizar");
-                elementos.btn_save2.text("Actualizar");
-                elementos.tabla_eventos_div.hide();
-                elementos.btn_save.show();
-                elementos.btn_save.attr('onclick','apoyo.updateApoyo();');
-                elementos.btn_save2.attr('onclick','apoyo.updateApoyo();');
-                elementos.btn_borrar.show();
-                elementos.id_apoyo_gasto.val(res.id_apoyo);
+                elementos.btn_save.hide();                
                 elementos.status.val(res.estatus);
                 elementos.concepto.val(res.concepto);
                 elementos.abono.val(res.importe);
-                elementos.reflibretaana.val(res.referencia_anamaria);
+
                 elementos.mescaptura.val(res.mes_captura_anamaria);
                 elementos.fechacaptura.val(res.fecha_captura_anamaria);
                 elementos.mescontableana.val(res.mes_contable_anamaria);

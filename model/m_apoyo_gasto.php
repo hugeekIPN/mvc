@@ -21,10 +21,10 @@ class m_apoyo_gasto{
         $query = $this->db->select(
                 "SELECT 
                  a.id_apoyo
-                 ,a.concepto
+                 ,textoCorto(a.concepto) as concepto
                  ,a.referencia
                  ,e.nombre
-                 ,p.razon_social
+                 ,textoCorto(p.razon_social) as razon_social
                  ,date(a.fecha_creacion)
                  ,estatus(a.estatus)
                  FROM apoyosgastos as a
@@ -53,7 +53,7 @@ class m_apoyo_gasto{
         ,a.estatus
         ,a.concepto
         ,a.importe
-        ,a.importe_ext
+        ,importe(a.importe,a.tipo_cambio) as importe_real
         ,a.tipo_cambio        
         ,a.observaciones
         ,a.referencia

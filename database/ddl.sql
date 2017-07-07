@@ -231,8 +231,7 @@ CREATE TABLE IF NOT EXISTS `apoyosgastos` (
   ,`estatus` BIT(1) DEFAULT 0  COMMENT  '0 activo, 1 cancelado'
   ,`concepto` VARCHAR(512)
   ,`importe` DECIMAL(11,2) DEFAULT 0
-  ,`importe_ext` DECIMAL(11,2) DEFAULT 0  
-  ,`tipo_cambio` DECIMAL(11,2) DEFAULT 0
+  ,`tipo_cambio` DECIMAL(11,2) DEFAULT 1
   -- ,`folio` VARCHAR(16) NULL COMMENT 'folio automatico,\n' (El folio es el id)
   ,`observaciones` VARCHAR(512)
   ,`referencia` VARCHAR(32)  COMMENT 'numero de referencia'
@@ -321,3 +320,28 @@ CREATE FUNCTION estatus(n BIT(1))
     RETURN s;
   END //
 DELIMITER ;
+
+
+DROP FUNCTION IF EXISTS importe;
+DELIMITER //
+CREATE FUNCTION importe(n DECIMAL(11,2), tipoCambio DECIMAL(11,2))
+  RETURNS DECIMAL(11,2)
+  BEGIN    
+    RETURN n*tipoCambio;
+  END //
+DELIMITER ;
+
+
+DROP FUNCTION IF EXISTS textoCorto;
+DELIMITER //
+CREATE FUNCTION textoCorto(s VARCHAR(512))
+  RETURNS VARCHAR(50)
+  BEGIN    
+    DECLARE temp VARCHAR(50) DEFAULT s;
+    IF LENGTH(s)>50 THEN
+      SET temp = CONCAT(SUBSTR(s,1,40),'...',SUBSTR(s,-7,7));
+    END IF;
+    RETURN temp;
+  END //
+DELIMITER ;
+

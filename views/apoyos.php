@@ -120,13 +120,12 @@
 
 		<!-- formularios -->				
 		<?php include 'forms/capturaForm.php'; ?>
-		<?php include 'forms/libretaFlujoForm.php'; ?>	
 
 		<div class="btn-fixed">
-		<button class="btn btn-primary">Guardar</button>
-		<button class="btn btn-primary">Agregar</button>
-		<button class="btn btn-primary">Actualizar</button>
-		<button class="btn btn-danger" onclick="apoyo.deleteApoyo();"  id="btn-delete">Eliminar</button>
+			<button id="btn-save" class="btn btn-primary">Guardar</button>
+			<button id="btn-add" class="btn btn-primary">Agregar</button>
+			<button id="btn-update" class="btn btn-primary">Actualizar</button>
+			<button id="btn-delete" class="btn btn-danger" onclick="apoyo.deleteApoyo();" >Eliminar</button>
 		</div>
 
 	</div>

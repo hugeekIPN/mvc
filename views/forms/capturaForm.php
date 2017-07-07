@@ -8,8 +8,8 @@
 	<div class="form-group col-xs-2">
 		<label for="status">Estatus</label>
 		<select type="text" class="form-control" name="status" id="status" >
-			<option value="1" selected>Activo</option>
-			<option value="2">Cancelado</option>		
+			<option value="0" selected>Activo</option>
+			<option value="1">Cancelado</option>		
 		</select>		
 	</div>
 	
@@ -233,3 +233,35 @@
 		</button>
 	</div>
 </div><!-- Fin de imprimibles -->
+
+
+
+
+<!-- LIBRETA FLUJO FORM -->
+
+<form id="formulario-libretaflujo">
+	<h3 class="h3form">Libreta Flujo </h3>
+	
+	<div class="form-group col-xs-3">
+		<label for="mescontableflujo">Mes contable</label>
+		<input type="text" id="mescontableflujo" name="mescontableflujo" class="form-control" >
+	</div>
+	<div class=" form-group col-xs-3">
+		<label for="
+		">Fecha de documento de salida</label>
+		<input type="text" id="fechadoctosalida" name="fechadoctosalida" class="form-control" placeholder="Click">
+	</div >
+	
+	<div class=" input form-group col-xs-3">
+		<label for="documentosalida">Documento Salida</label>
+		<input type="text" class="form-control" name="documentosalida" id="documentosalida" value="">
+	</div>
+	<div class=" input form-group col-xs-3">
+		<label for="poliza">Póliza</label>
+		<input type="text" class="form-control" name="poliza" id="poliza" value="">
+	</div>
+	<div class=" input form-group col-xs-4">
+		<label for="abono">Abono</label>
+		<input type="text" class="form-control" name="abono2" id="abono2" value="" disabled="" value="0">
+	</div>
+</form>
