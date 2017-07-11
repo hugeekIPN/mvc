@@ -13,12 +13,12 @@ $('#tabla-apoyos tbody').on('click','tr',function(){
 * apoyor inputs vista apoyo.php
 **/
 apoyo.elem ={
+    folio:         $("#folio_apoyo"),
     status:    $("#status"),
     concepto:    $("#concepto"),
     abono:        $("#abono"),
     abono2:        $("#abono2"),
-    fechacaptura:          $("#fechacaptura"),
-    folio_apoyo:         $("#folio_apoyo"),
+    fechacaptura:          $("#fechacaptura"),    
     frecuencia:         $("#frecuencia"),
     evento:            $("#evento"),
     proveedor:          $("#proveedor"),
@@ -83,16 +83,15 @@ apoyo.verApoyo = function(idApoyo){
                 elementos.status.val(res.estatus);
                 elementos.concepto.val(res.concepto);
                 elementos.abono.val(res.importe);
-
-                elementos.mescaptura.val(res.mes_captura_anamaria);
-                elementos.fechacaptura.val(res.fecha_captura_anamaria);
-                elementos.mescontableana.val(res.mes_contable_anamaria);
-                elementos.folio_apoyo.val(res.folio);
-                elementos.frecuencia.val(res.frecuencia);
+                elementos.folio.val(res.id_apoyo);                
+                elementos.fechacaptura.val(res.fecha_creacion);
+                elementos.frecuencia.val(res.id_frecuencia_apoyo);
                 elementos.evento.val(res.id_evento);
-                elementos.proveedor.val(res.id_proveedor);
-                elementos.donatario.val(res.id_donatario);
-                elementos.fecharecibo.val(res.fecha_recibo);
+                if(res.tipo_proveedor)                
+                    elementos.proveedor.val(res.id_proveedor);
+                else
+                    elementos.donatario.val(res.id_proveedor);                
+                elementos.fecharecibo.val(res.fecha_referencia);
 
                 if(res.tipo_apoyo=="2"){  // especie
                     elementos.unidad.val(res.unidad);
@@ -180,42 +179,9 @@ apoyo.verApoyo = function(idApoyo){
                 elementos.poliza.val(res.poliza);
                 elementos.idSaldo.val(res.saldo);
 
-
-
-                apoyo.showArchivos(res.archivos);
-                //alert(res.archivos[1].id_archivos);
-
             }
         }
     });
-
-
-    apoyo.showArchivos = function(archivos){
-        var tabla = $("#tabla-archivos");
-
-        var fila = '<tr class="success">'
-                        +'<td  id="id_upload">1</td>'
-                        +'<td id="u_pdf"><button class="btn btn-primary">Subir</button></td>'
-                        +'<td id="u_xml"><a href="#">Archivo.xml</a><button class="btn btn-primary">Subir</button></td>'
-                        +'<td id="actualizar_fila_u"><button class="btn btn-primary">Actualizar</button></td>'
-                        +'<td id="borrar_fila_u"><button class="btn btn-danger">Eliminar</button></td>'
-                    +'</tr>';
-
-        $("#tbodyid").empty();  // Limpia contenido de tbody de
-
-        archivos.forEach(function(a){
-            buttonPdf = '<button class="btn btn-primary">Subir</button>';
-            buttonXml ='<button class="btn btn-primary">Subir</button>';
-            pdf = (a.pdf)? a.pdf : buttonPdf;
-            xml = (a.xml)? a.xml : buttonXml;
-            tabla.append('<tr class="success">'
-                        +'<td  id="id_upload">'+a.id_archivos+'</td>'
-                        +'<td id="u_pdf"><a href="archivos/pdf/'+pdf+'" target="_blank">'+pdf+'</a></td>'
-                        +'<td id="u_xml"><a href="archivos/xml/'+xml+'" target="_blank">'+xml+'</a></td>'
-                        +'<td id="borrar_fila_u"><button class="btn btn-danger" onclick="apoyo.deleteArchivo('+a.id_archivos+');">Eliminar</button></td>'
-                    +'</tr>');
-        })
-    }
 };
 
 apoyo.add = function(editMode){
@@ -350,7 +316,7 @@ apoyo.editapoyo = function () {
                 }else{
                 //mostramos y ocultamos los botones
                 elementos.btn_save.attr('onclick','apoyo.updateApoyo();');
-                elementos.btn_save2.attr('onclick','apoyo.updateApoyo();');
+                
                 elementos.btn_save.show();
                 elementos.btn_editar.hide();
                 elementos.idapoyo.val(res.id_apoyo);
@@ -502,25 +468,6 @@ apoyo.pais = function (){
     }
 };
 
-
-
-apoyo.validaArchivos = function () {
-     var data = apoyo.elem;
-    var valid = true;
-    utilerias.removeErrorMessages();
-    
-    
-    if ($.trim(data.archivo_up_pdf.val())=="") {
-        valid = false;
-        utilerias.displayErrorMessage(data.archivo_up_pdf,"Se debe ingresar un PDF");
-    }
-    if ($.trim(data.archivo_up_xml.val())=="") {
-        valid = false;
-        utilerias.displayErrorMessage(data.archivo_up_xml,"Se debe ingresar un XML");
-    }
-
-    return valid;
-};
 
 apoyo.tipoApoyo = function () {
      var data = apoyo.elem;

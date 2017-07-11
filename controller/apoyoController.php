@@ -8,6 +8,7 @@ include_once("model/m_proveedor.php");
 include_once("model/m_saldo.php");
 include_once("model/m_archivos.php");
 include_once("model/m_especie.php");
+include_once("model/m_frecuencia.php");
 
 /**
  * 
@@ -23,6 +24,7 @@ class ApoyoGastoController {
     public $modelSaldo;
     public $modelArchivo;
     public $modelEspecie;
+    public $modelFrecuencia;
 
     public function __construct($idApoyo, $idEvento, $idProveedor) {
         $this->idApoyo = $idApoyo;
@@ -34,6 +36,7 @@ class ApoyoGastoController {
         $this->modelProveedor = new m_proveedor();
         $this->modelSaldo = new m_saldo();
         $this->modelArchivo = new m_archivo();
+        $this->modelFrecuenca = new m_frecuencia();
     }
 
     public function index() {
@@ -76,25 +79,25 @@ class ApoyoGastoController {
         $usuario = sessionController::get('username');;
         $titulo = "Apoyos";
           
-         $eventos = $this->modelEvento->getAllEventos();
-        
-         $proveedores = $this->modelProveedor->getAll(1);
-         $donatarios = $this->modelProveedor->getAll(2);
+        $eventos = $this->modelEvento->getAllEventos();
+        $frecuencia = $this->modelFrecuenca->getFrecuencia();
 
-         $apoyo =  $this->model->getAllApoyosGastos_type(1);
-         $gasto =  $this->model->getAllApoyosGastos_type(2);
+        $proveedores = $this->modelProveedor->getAll(0);
+        $donatarios = $this->modelProveedor->getAll(1);
+        $especies = $this->modelEspecie->getAllEspecies();
 
-         $especies = $this->modelEspecie->getAllEspecies();
+        $saldo = $this->modelSaldo->getUltimoSaldo();
+        $saldo = $saldo? $saldo['saldo'] : 0;
 
-         $saldo = $this->modelSaldo->getUltimoSaldo();
-         $saldo = $saldo? $saldo['saldo'] : 0;
-         
-        
+        $login = new loginController();
 
+        if($login->_isLoggedIn()){
             require_once("views/templates/header.php");
             require_once("views/templates/nav.php");
             require_once("views/apoyos.php"); // Cual es?
             require_once("views/templates/footer.php");
+        }else
+            require_once("views/login.php");
     }
 
 

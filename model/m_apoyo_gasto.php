@@ -60,9 +60,9 @@ class m_apoyo_gasto{
         ,a.mes_contable
         ,a.docto_salida
         ,a.poliza
-        ,a.fecha_referencia
-        ,a.fecha_docto_salida
-        ,a.fecha_creacion
+        ,date(a.fecha_referencia) as fecha_referencia
+        ,date(a.fecha_docto_salida) as fecha_docto_salida
+        ,date(a.fecha_creacion) as fecha_creacion
         ,a.ultima_modificacion
         ,p.id_proveedor
         ,p.tipo as tipo_proveedor

@@ -29,12 +29,9 @@
 		<div class=" form-group col-xs-2">
 			<label for="frecuencia">Frecuencia</label>
 			<select type="text" class="form-control" name="frecuencia" id="frecuencia" >
-				<option value="6">Anual</option>
-				<option value="5">Bimestral</option>
-				<option value="4">Mensual</option>
-				<option value="3">Quincenal</option>
-				<option value="2">Semanal</option>
-				<option value="1">Único</option>
+				<?php foreach($frecuencia as $f): ?>
+				<option value="<?= $f['id_frecuencia_apoyo']; ?>"><?= $f['nombre']?></option>
+				<?php endforeach; ?>
 			</select>
 		</div>
 
