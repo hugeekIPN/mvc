@@ -5,9 +5,8 @@ include_once("loginController.php");
 include_once("model/m_apoyo_gasto.php");
 include_once "model/m_evento.php";
 include_once("model/m_proveedor.php");
-include_once("model/m_saldo.php");
-include_once("model/m_archivos.php");
 include_once("model/m_especie.php");
+include_once("model/m_frecuencia.php");
 
 /**
  * 
@@ -23,6 +22,7 @@ class ApoyoGastoController {
     public $modelSaldo;
     public $modelArchivo;
     public $modelEspecie;
+    public $modelFrecuencia;
 
     public function __construct($idApoyo, $idEvento, $idProveedor) {
         $this->idApoyo = $idApoyo;
@@ -32,8 +32,7 @@ class ApoyoGastoController {
         $this->modelEspecie = new m_especie();
         $this->idProveedor = $idProveedor;
         $this->modelProveedor = new m_proveedor();
-        $this->modelSaldo = new m_saldo();
-        $this->modelArchivo = new m_archivo();
+        $this->modelFrecuenca = new m_frecuencia();
     }
 
     public function index() {
@@ -76,25 +75,28 @@ class ApoyoGastoController {
         $usuario = sessionController::get('username');;
         $titulo = "Apoyos";
           
-         $eventos = $this->modelEvento->getAllEventos();
+        $eventos = $this->modelEvento->getAllEventos();
+        $frecuencia = $this->modelFrecuenca->getFrecuencia();
+
+        $proveedores = $this->modelProveedor->getAll(0);
+        $donatarios = $this->modelProveedor->getAll(1);
+        $especies = $this->modelEspecie->getAllEspecies();
+        $unidades = $this->modelEspecie->getUnidad();
+        $paises = $this->model->getPaises();
+        $estadosMex = $this->model->getEstados(1);
+        $estadosEua = $this->model->getEstados(2);
+        $monedas = $this->model->getMonedas();
         
-         $proveedores = $this->modelProveedor->getAll(1);
-         $donatarios = $this->modelProveedor->getAll(2);
+        $login = new loginController();
+        $saldo=0;
 
-         $apoyo =  $this->model->getAllApoyosGastos_type(1);
-         $gasto =  $this->model->getAllApoyosGastos_type(2);
-
-         $especies = $this->modelEspecie->getAllEspecies();
-
-         $saldo = $this->modelSaldo->getUltimoSaldo();
-         $saldo = $saldo? $saldo['saldo'] : 0;
-         
-        
-
+        if($login->_isLoggedIn()){
             require_once("views/templates/header.php");
             require_once("views/templates/nav.php");
             require_once("views/apoyos.php"); // Cual es?
             require_once("views/templates/footer.php");
+        }else
+            require_once("views/login.php");
     }
 
 
@@ -149,6 +151,10 @@ class ApoyoGastoController {
 
         if($result){
             $result["status"] = "success";
+            if($result['id_especie_apoyo']){
+                $especie = $this->model->getEspecie($result['id_especie_apoyo']);
+                $result['especie_descripcion'] = $especie['descripcion'];
+            }
         }else{
             $result = array(
                 "status" => "error",

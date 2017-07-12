@@ -5,8 +5,9 @@
 
 
 DROP TABLE IF EXISTS `usuarios` ;
-DROP TABLE IF EXISTS `apoyosgastos` ;
 DROP TABLE IF EXISTS `especie_apoyo` ;
+DROP TABLE IF EXISTS `unidades`;
+DROP TABLE IF EXISTS `apoyosgastos` ;
 DROP TABLE IF EXISTS `frecuencia_apoyo` ;
 DROP TABLE IF EXISTS `cuenta_bancaria` ;
 DROP TABLE IF EXISTS `proveedores` ;
@@ -80,6 +81,7 @@ CREATE TABLE IF NOT EXISTS cargo
   ,PRIMARY KEY(id_cargo)
 )ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
+
 -- -----------------------------------------------------
 -- CATALOGO DE ESPECIES
 -- -----------------------------------------------------
@@ -94,7 +96,7 @@ CREATE TABLE IF NOT EXISTS `especies` (
 -- -----------------------------------------------------
 -- CATALOGO DE PROGRAMAS
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `programas` (
+CREATE TABLE IF NOT ENGINEXISTS `programas` (
   `id_programa` INT UNSIGNED NOT NULL AUTO_INCREMENT
   ,`nombre` VARCHAR(128)
   ,`descripcion` VARCHAR(512)
@@ -203,25 +205,6 @@ CREATE TABLE IF NOT EXISTS `frecuencia_apoyo` (
 )ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
 
-
--- -----------------------------------------------------
--- RELACION DE ESPECIE Y APOYOS
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `especie_apoyo` (
-  `id_especie_apoyo` INT UNSIGNED NOT NULL AUTO_INCREMENT
-  ,id_especie INT UNSIGNED NOT NULL
-  ,`cantidad` INT NULL 
-  ,`unidad` VARCHAR(64) NULL COMMENT 'Unidad en la que se cuantificará el apoyo\n'
-  ,`fecha_creacion` DATETIME DEFAULT CURRENT_TIMESTAMP
-  ,`ultima_modificacion` DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-  ,PRIMARY KEY (`id_especie_apoyo`)  
-  ,CONSTRAINT `fk_especie_apoyo`
-    FOREIGN KEY (`id_especie`)
-    REFERENCES `especies` (`id_especie`)
-    ON DELETE CASCADE
-    ON UPDATE CASCADE
-)ENGINE=InnoDB  DEFAULT CHARSET=utf8;
-
 -- -----------------------------------------------------
 -- TABLA PARA REGISTRAR UN APOYO
 -- ----------------------------------------------------
@@ -247,7 +230,7 @@ CREATE TABLE IF NOT EXISTS `apoyosgastos` (
 
   -- llaves foraneas
   ,`id_proveedor` INT UNSIGNED COMMENT 'aplica para proveedor y donatario'
-  ,id_especie_apoyo INT UNSIGNED
+  
   ,id_frecuencia_apoyo INT UNSIGNED NOT NULL
   ,id_estado INT UNSIGNED NOT NULL
   ,`id_moneda` INT UNSIGNED NOT NULL COMMENT '0 mn 1 usd 2 euros'
@@ -256,11 +239,6 @@ CREATE TABLE IF NOT EXISTS `apoyosgastos` (
   ,CONSTRAINT `fk_apoyo_proveedor`
     FOREIGN KEY (`id_proveedor`)
     REFERENCES `proveedores` (`id_proveedor`)
-    ON DELETE NO ACTION
-    ON UPDATE CASCADE
-  ,CONSTRAINT `fk_especies_apoyo`
-    FOREIGN KEY (`id_especie_apoyo`)
-    REFERENCES `especie_apoyo` (`id_especie_apoyo`)
     ON DELETE NO ACTION
     ON UPDATE CASCADE
   ,CONSTRAINT `fk_frecuencia_apoyo`
@@ -282,6 +260,38 @@ CREATE TABLE IF NOT EXISTS `apoyosgastos` (
     FOREIGN KEY (`id_evento`)
     REFERENCES `eventos` (`id_evento`)
     ON DELETE NO ACTION
+    ON UPDATE CASCADE
+)ENGINE=InnoDB  DEFAULT CHARSET=utf8;
+
+-- -----------------------------------------------------
+-- UNIDADES PARA ESPECIES
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `unidades`(
+  id_unidad INT NOT NULL PRIMARY KEY AUTO_INCREMENT
+  ,nombre VARCHAR(32)
+);
+
+-- -----------------------------------------------------
+-- RELACION DE ESPECIE Y APOYOS
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `especie_apoyo` (
+  `id_apoyo` INT UNSIGNED NOT NULL 
+  ,id_especie INT UNSIGNED NOT NULL
+  ,`cantidad` INT NULL 
+  ,`id_unidad` INT NOT NULL
+  ,`fecha_creacion` DATETIME DEFAULT CURRENT_TIMESTAMP
+  ,`ultima_modificacion` DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+  ,PRIMARY KEY (`id_apoyo`)
+  ,CONSTRAINT `fk_unidad`
+    FOREIGN KEY (`id_unidad`)
+    REFERENCES `unidades`(`id_unidad`)
+  ,CONSTRAINT `fk_apoyo`
+    FOREIGN KEY (`id_apoyo`)
+    REFERENCES `apoyosgastos`(`id_apoyo`)  
+  ,CONSTRAINT `fk_especie_apoyo`
+    FOREIGN KEY (`id_especie`)
+    REFERENCES `especies` (`id_especie`)
+    ON DELETE CASCADE
     ON UPDATE CASCADE
 )ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 

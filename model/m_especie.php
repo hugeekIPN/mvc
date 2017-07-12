@@ -26,6 +26,24 @@ class m_especie{
             return null;
     }
 
+
+    /**
+    * Regresa las unidades
+    **/
+    public function getUnidad($id=null){
+        if($id){
+            $query = "select * from unidades where id_unidad = :id";
+
+            $result = $this->db->select($query,['id'=>$id]);
+            if($result)
+                $result = $result[0];
+        }else{
+            $query = "select * from unidades";
+            $result = $this->db->select($query,[]);
+        }
+        return $result;
+    }
+
     /**
     * Guarda un nuevo especie
     * @param Arreglo con los datos del especie
@@ -74,7 +92,7 @@ class m_especie{
     * Obtiene todos los especies de la base de datos
     **/
     public function getAllEspecies(){
-        $query = "SELECT * from especies ORDER BY id_especie DESC";
+        $query = "SELECT * from especies";
         $result = $this->db->select($query, array());
         if(count($result)>0)
             return $result;
