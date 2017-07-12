@@ -240,4 +240,9 @@ class m_apoyo_gasto{
         return $result;
     }
 
+    public function getMonedas(){
+        $query = "select * from moneda";
+        return $this->db->select($query,[]);
+    }
+
 }

@@ -85,6 +85,7 @@ class ApoyoGastoController {
         $paises = $this->model->getPaises();
         $estadosMex = $this->model->getEstados(1);
         $estadosEua = $this->model->getEstados(2);
+        $monedas = $this->model->getMonedas();
         
         $login = new loginController();
         $saldo=0;
