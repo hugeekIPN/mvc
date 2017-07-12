@@ -18,14 +18,15 @@ apoyo.elem ={
     concepto:    $("#concepto"),
     abono:        $("#abono"),
     abono2:        $("#abono2"),
-    fechacaptura:          $("#fechacaptura"),    
+    fechacaptura:          $("#fechacaptura"), 
+    fecha_referencia : $("#fecha_referencia"),   
     frecuencia:         $("#frecuencia"),
     evento:            $("#evento"),
     proveedor:          $("#proveedor"),
     donatario:          $("#donatario"),
-    especie:             $("#id_especie"),
+    tipo_apoyo: $("#tipo_apoyo"),
+    especie:             $("#id_especie"),    
     especie_div:          $("#especie_div"),
-    Tipodeapoyo:          $("#Tipodeapoyo"),
     cantidad:             $("#cantidad"),
     cantidad_div:          $("#cantidad_div"),
     otra_especie:          $("#otra_especie"),
@@ -33,6 +34,8 @@ apoyo.elem ={
     unidad:                 $("#unidad"),
     unidad_div:             $("#unidad_div"),
     paises:                 $("#paises"),
+
+    
     estadooregion:          $("#estadooregion"),
     estado:                 $("#estado"),
     numerodefactura:         $("#numerodefactura"),
@@ -41,6 +44,7 @@ apoyo.elem ={
     referencia_apoyo:      $("#referencia_apoyo"),
     observaciones:         $("#observaciones"),
     descripcionapoyo:      $("#descripcionapoyo"),
+    Tipodeapoyo:          $("#Tipodeapoyo"),
 
     mescontableflujo:          $("#mescontableflujo"),
     fechadoctosalida:          $("#fechadoctosalida"),
@@ -91,7 +95,17 @@ apoyo.verApoyo = function(idApoyo){
                     elementos.proveedor.val(res.id_proveedor);
                 else
                     elementos.donatario.val(res.id_proveedor);                
-                elementos.fecharecibo.val(res.fecha_referencia);
+
+                if(res.id_especie){
+                    elementos.especie.val(res.id_especie);
+                    elementos.cantidad.val(res.cantidad_especie);
+                    elementos.unidad.val(res.unidad_especie);
+
+                }
+                else
+                    elementos.especie.val(1);
+
+                elementos.fecha_referencia.val(res.fecha_referencia);
 
                 if(res.tipo_apoyo=="2"){  // especie
                     elementos.unidad.val(res.unidad);

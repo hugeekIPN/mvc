@@ -67,10 +67,10 @@
 
 
 	<div class=" form-group col-xs-2">
-		<label for="Tipodeapoyo">Tipo de Apoyo</label>
-		<select type="text" class="form-control" name="Tipodeapoyo" id="Tipodeapoyo" onchange="apoyo.tipoApoyo();">
-			<option value="2">Especie</option>
-			<option value="1">Importe</option>
+		<label for="tipo_apoyo">Tipo de Apoyo</label>
+		<select type="text" class="form-control" name="Tipodeapoyo" id="tipo_apoyo">
+			<option value="0">Especie</option>
+			<option selected value="1">Importe</option>
 		</select>
 	</div >
 
@@ -91,14 +91,10 @@
 	<div class=" form-group col-xs-2" id="unidad_div">
 		<label for="unidad">Unidad</label>
 		<select type="text" class="form-control" name="unidad" id="unidad" onchange="apoyo.otro();">
-			<option value="Otro">otro</option>
-			<option value="1">bolsa</option>
-			<option value="2">caja</option>
-			<option value="3">gr.</option>
-			<option value="4">kg.</option>
-			<option value="5">lts.</option>
-			<option value="6">pza.</option>
-			<option value="7">ton.</option>
+		<?php foreach($unidades as $unidad): ?>
+			<option value="<?= $unidad['id_unidad']; ?>"><?= $unidad['nombre']; ?></option>
+		<?php endforeach; ?>
+			<option value="0">Otro</option>
 		</select>
 	</div >
 	<div class=" form-group col-xs-2" id="otra_especie_div">
@@ -108,11 +104,11 @@
 
 	<div class=" form-group col-xs-1">
 		<label for="paises">País</label>
-		<select type="text" class="form-control" name="paises" id="paises" onchange="apoyo.pais();" >
-			<option value="">Lista de paises</option>
-			<option value="México">México</option>
-			<option value="EUA">EUA</option>
-			<option value="Otro">Otro</option>
+		<select type="text" class="form-control" name="paises" id="paises" onchange="apoyo.pais();" >			
+			<?php foreach($paises as $pais):?>
+				<option value="<?= $pais['id_pais']; ?>"><?=$pais['nombre'];?></option>
+			<?php endforeach; ?>
+			<option value="0">otro</option>
 		</select>
 
 		<input type="hidden" class="form-control" name="otro_text" id="otro_text" >
@@ -122,43 +118,22 @@
 	<div class=" form-group col-xs-3">
 		<label for="estadooregion">Estado o Región</label>
 		<select type="text" class="form-control" name="estadooregion" id="estadooregion" >
-			<option value="">Listado de estados y regiones</option>
-			<option value="Aguascalientes">Aguascalientes</option>
-			<option value="Baja California">Baja California</option>
-			<option value="Baja California Sur">Baja California Sur</option>
-			<option value="Campeche">Campeche</option>
-			<option value="Chiapas">Chiapas</option>
-			<option value="Chihuahua">Chihuahua</option>
-			<option value="Coahuila">Coahuila</option>
-			<option value="Colima">Colima</option>
-			<option value="Ciudad de México" selected>Ciudad de México</option>
-			<option value="Durango">Durango</option>
-			<option value="Estado de México">Estado de México</option>
-			<option value="Guanajuato">Guanajuato</option>
-			<option value="Guerrero">Guerrero</option>
-			<option value="Hidalgo">Hidalgo</option>
-			<option value="Jalisco">Jalisco</option>
-			<option value="Michoacán">Michoacán</option>
-			<option value="Morelos">Morelos</option>
-			<option value="Nayarit">Nayarit</option>
-			<option value="Nuevo León">Nuevo León</option>
-			<option value="Oaxaca">Oaxaca</option>
-			<option value="Puebla">Puebla</option>
-			<option value="Querétaro">Querétaro</option>
-			<option value="Quintana Roo">Quintana Roo</option>
-			<option value="San Luis Potosí">San Luis Potosí</option>
-			<option value="Sinaloa">Sinaloa</option>
-			<option value="Sonora">Sonora</option>
-			<option value="Tabasco">Tabasco</option>
-			<option value="Tamaulipas">Tamaulipas</option>
-			<option value="Tlaxcala">Tlaxcala</option>
-			<option value="Veracruz">Veracruz</option>
-			<option value="Yucatán">Yucatán</option>
-			<option value="Zacatecas">Zacatecas</option>
+			<?php foreach($estadosMex as $estado): ?>
+				<option value="<?= $estado['id_estado']; ?>"><?= $estado['nombre'];?></option>
+			<?php endforeach; ?>
 		</select>
 
 		<input type="hidden" class="form-control" name="estado" id="estado" >
 	</div >
+
+	<div class="form-group col-xs-3">
+		<label for="estadosEua">Estado o Región</label>
+		<select class="form-control" id="estadosEua">
+			<?php foreach($estadosEua as $estado): ?>
+				<option value="<?= $estado['id_estado']; ?>"><?= $estado['nombre'];?></option>
+			<?php endforeach; ?>
+		</select>
+	</div>
 
 	<div class=" form-group col-xs-2">
 		<label for="numerodefactura">Número de referencia</label>
@@ -178,8 +153,8 @@
 	</div >
 	
 	<div class=" form-group col-xs-3">
-		<label for="fecharecibo">Fecha de referencia</label>
-		<input type="text" id="fecharecibo" class="form-control" placeholder="Click">
+		<label for="fecha_referencia">Fecha de referencia</label>
+		<input type="text" id="fecha_referencia" class="form-control" placeholder="Click">
 	</div >
 	<div class=" form-group col-xs-6">
 		<label for="observaciones">Observaciones</label>

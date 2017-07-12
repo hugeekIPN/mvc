@@ -3,7 +3,6 @@
 include_once("sessionController.php");
 include_once("loginController.php");
 include_once("model/m_cargo.php");
-include_once("model/m_saldo.php");
 
 class cargoController {
     private $idCargo;
@@ -13,8 +12,6 @@ class cargoController {
     public function __construct($idCargo) {
         $this->idCargo= $idCargo;
         $this->model = new m_cargo();
-
-        $this->modelSaldo = new m_saldo();
         
     }
 

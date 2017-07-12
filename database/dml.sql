@@ -34,7 +34,8 @@ VALUES(1,'unico')
 -- CATALOGO DE PAISES
 -- -----------------------------------------------------
 INSERT INTO pais(id_pais,nombre,acronimo)
-VALUES(1,"México","MX");
+VALUES(1,"México","MX")
+,(2,"Estados Unidos","EE.UU.");
 -- -----------------------------------------------------
 -- CATALOGO DE ESTADOS
 -- -----------------------------------------------------
@@ -149,6 +150,17 @@ VALUES(1,"ACADEMIA DE MUSICA DEL PALACIO DE MINERIA, A.C.","AMP850419U45","55109
 ,(2,"GRUPO ZAMACONA, S.A. DE C.V.","unrfc","1234567890")
 ,(3,"HIM IMPLANTES COCLEARES","00133009914","1234567890");
 
+-- -----------------------------------------------------
+-- PROVEEDORES
+-- -----------------------------------------------------
+INSERT INTO unidades(id_unidad,nombre)
+VALUES(1,"bolsa")
+,(2,"caja")
+,(3,"gr")
+,(4,"kg")
+,(5,"lts")
+,(6,"pza")
+,(7,"ton");
 
 -- -----------------------------------------------------
 -- APOYOS
@@ -163,14 +175,57 @@ VALUES (1
 	,1 -- moneda
 	,1 -- evento
 	);
+INSERT INTO apoyosgastos(id_apoyo,concepto,referencia,id_proveedor,id_frecuencia_apoyo,id_estado,id_moneda,id_evento)
+VALUES (2
+	,"Donativo en efectivo para apoyo al 20 movimiento azteca"	
+	,"123referencia"
+	,2 -- proveedor
+	,2 -- frecuencia
+	,1 -- estado
+	,1 -- moneda
+	,1 -- evento
+	);
 
 INSERT INTO apoyosgastos(id_apoyo,concepto,referencia,id_proveedor,id_frecuencia_apoyo,id_estado,id_moneda,id_evento)
 VALUES (3
 	,"Saldo honorarios por la emisión de dictamenes del imss e infonavit 2003"	
 	,"123referencia"
-	,1 -- proveedor
+	,3 -- proveedor
 	,1 -- frecuencia
 	,1 -- estado
 	,1 -- moneda
 	,1 -- evento
 	);
+
+-- -----------------------------------------------------
+-- ESPECIES
+-- -----------------------------------------------------
+INSERT INTO especies(id_especie,descripcion)
+VALUES(1,"Agua botella de 1.5 lts.")
+,(2,"Alimentos")
+,(3,"Vestidos")
+,(8,"Mantas")
+,(13,"Medicamentos")
+,(14,"Computadoras")
+,(15,"Lentes")
+,(16,"Bicicletas")
+,(18,"Gasolina")
+,(20,"Colchonetas")
+,(21,"Hamacas")
+,(22,"Impresoras")
+,(23,"Sabanas")
+,(24,"Toallas")
+,(25,"Cobertores")
+,(26,"Teléfonos celulares")
+,(27,"Archiveros")
+,(28,"Escritorios")
+,(29,"Sillas")
+,(30,"Sillones")
+,(31,"Catres")
+,(32,"Conmutador");
+
+-- -----------------------------------------------------
+-- RELACION APOYO CON ESPECIE
+-- -----------------------------------------------------
+INSERT INTO especie_apoyo(id_apoyo,id_especie,cantidad,id_unidad)
+VALUES(1,1,10,2);

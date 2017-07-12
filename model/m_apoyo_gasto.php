@@ -69,7 +69,6 @@ class m_apoyo_gasto{
         ,p.razon_social
         ,e.nombre as evento
         ,e.id_evento
-        ,a.id_especie_apoyo
         ,f.id_frecuencia_apoyo 
         ,f.nombre as frecuencia
         ,a.id_estado
@@ -87,9 +86,30 @@ class m_apoyo_gasto{
 
         $data = $this->db->select($query,["id"=>$id_apoyo,"tipo"=>$tipo]);
 
-        if($data)
+        if($data){
             $result = $data[0];
+            $query = "SELECT
+                a.id_especie
+                ,e.descripcion                
+                ,a.cantidad
+                ,u.id_unidad
+                ,u.nombre                            
+                FROM especie_apoyo as a
+                INNER JOIN especies as e ON a.id_especie = e.id_especie
+                INNER JOIN unidades as u on a.id_unidad = u.id_unidad
+                WHERE a.id_apoyo = :id";
 
+            $especieApoyo = $this->db->select($query,['id'=>$id_apoyo]);
+            if($especieApoyo){
+                $especieApoyo = $especieApoyo[0];
+                $result['id_especie'] = $especieApoyo['id_especie'];
+                $result['descripcion_especie'] = $especieApoyo['descripcion'];
+                $result['cantidad_especie'] = $especieApoyo['cantidad'];
+                $result['unidad_especie'] = $especieApoyo['nombre'];
+            }else{
+                $result['id_especie'] = null;
+            }
+        }
         return $result;
     }
 
@@ -202,6 +222,22 @@ class m_apoyo_gasto{
         else
             return 0;
     }
-}
 
-?>
+    public function getPaises(){
+        $query = "select * from pais";
+        return $this->db->select($query,[]);
+    }
+
+
+    public function getEstados($idPais=null){
+        if($idPais){
+            $query = "select * from estado where id_pais = :id";
+            $result = $this->db->select($query,['id'=>$idPais]);
+        }else{
+            $query = "select * from estado";
+            $result = $this->db->select($query,[]);
+        }
+        return $result;
+    }
+
+}

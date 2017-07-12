@@ -5,8 +5,6 @@ include_once("loginController.php");
 include_once("model/m_apoyo_gasto.php");
 include_once "model/m_evento.php";
 include_once("model/m_proveedor.php");
-include_once("model/m_saldo.php");
-include_once("model/m_archivos.php");
 include_once("model/m_especie.php");
 include_once("model/m_frecuencia.php");
 
@@ -34,8 +32,6 @@ class ApoyoGastoController {
         $this->modelEspecie = new m_especie();
         $this->idProveedor = $idProveedor;
         $this->modelProveedor = new m_proveedor();
-        $this->modelSaldo = new m_saldo();
-        $this->modelArchivo = new m_archivo();
         $this->modelFrecuenca = new m_frecuencia();
     }
 
@@ -85,11 +81,13 @@ class ApoyoGastoController {
         $proveedores = $this->modelProveedor->getAll(0);
         $donatarios = $this->modelProveedor->getAll(1);
         $especies = $this->modelEspecie->getAllEspecies();
-
-        $saldo = $this->modelSaldo->getUltimoSaldo();
-        $saldo = $saldo? $saldo['saldo'] : 0;
-
+        $unidades = $this->modelEspecie->getUnidad();
+        $paises = $this->model->getPaises();
+        $estadosMex = $this->model->getEstados(1);
+        $estadosEua = $this->model->getEstados(2);
+        
         $login = new loginController();
+        $saldo=0;
 
         if($login->_isLoggedIn()){
             require_once("views/templates/header.php");
@@ -152,6 +150,10 @@ class ApoyoGastoController {
 
         if($result){
             $result["status"] = "success";
+            if($result['id_especie_apoyo']){
+                $especie = $this->model->getEspecie($result['id_especie_apoyo']);
+                $result['especie_descripcion'] = $especie['descripcion'];
+            }
         }else{
             $result = array(
                 "status" => "error",
