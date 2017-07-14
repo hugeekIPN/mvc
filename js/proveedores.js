@@ -88,8 +88,9 @@ Proveedores.verProveedor = function (proveedorId){
             $("#vista-colonia").text(res.colonia);
 			$("#vista-calle").text(res.calle);
             $("#vista-delega").text(res.delegacion);
-              //   $("#vista-pais").text(res.pais);           
-            $("#vista-entidad").text(res.entidad);
+          
+            $("#vista-pais").text(res.nombre_pais);          
+            $("#vista-entidad").text(res.nombre_estado);
             $("#vista-cp").text(res.cp);
             $("#vista-contacto").text(res.contacto);
             $("#vista-correo").text(res.correo_contacto);
