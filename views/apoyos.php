@@ -103,15 +103,16 @@
 <!-- cotenedor para el form de apoyos-->
 <div class="contenedor_apoyos" id="contenedor-apoyos">
 
-	<!-- para errores del back  -->
-	<div class="">
-		<div id="mensajes-server"></div>
-	</div>   
+	   
 
 	<!-- contenedor formulario -->
 	<div id="cont-formulario-apoyo" class="form_apoyos">
 
 		<h1 class="titulo_centrado">Capturar Apoyos <SPAN style="font-size: 16px;">SALDO ACTUAL:<?= number_format($saldo,2); ?></SPAN>
+		<!-- para errores del back  -->
+		<div class="">
+			<div id="mensajes-server"></div>
+		</div>
 
 		<input type="hidden" name="tipo" id="tipo" value="1">
 
@@ -122,9 +123,9 @@
 		<?php include 'forms/capturaForm.php'; ?>
 
 		<div class="btn-fixed">
-			<button id="btn-save" class="btn btn-primary">Guardar</button>
-			<button id="btn-add" class="btn btn-primary">Agregar</button>
-			<button id="btn-update" class="btn btn-primary">Actualizar</button>
+			<button id="btn-save" class="btn btn-primary" onclick="apoyo.add();">Guardar</button>
+			<button id="btn-add" class="btn btn-primary" onclick="apoyo.add();">Agregar</button>
+			<button id="btn-update" class="btn btn-primary" onclick="apoyo.add(true)">Actualizar</button>
 			<button id="btn-delete" class="btn btn-danger" onclick="apoyo.deleteApoyo();" >Eliminar</button>
 		</div>
 

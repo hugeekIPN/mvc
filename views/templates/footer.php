@@ -27,7 +27,7 @@
                 $( "#datepicker2" ).datepicker({ dateFormat: 'yy-mm-dd'});
                 $( "#fechacaptura" ).datepicker({ dateFormat: 'yy-mm-dd'});
                 $("#fechadoctosalida").datepicker({ dateFormat: 'yy-mm-dd'});
-                $("#fecharecibo").datepicker({ dateFormat: 'yy-mm-dd'});
+                $("#fecha_referencia").datepicker({ dateFormat: 'yy-mm-dd'});
                 $( "#datepicker4" ).datepicker({ dateFormat: 'yy-mm-dd'});
                 $( "#datepicker5" ).datepicker({ dateFormat: 'yy-mm-dd'});
                 $( "#datepicker6" ).datepicker({ dateFormat: 'yy-mm-dd'});

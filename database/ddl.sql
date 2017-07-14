@@ -223,9 +223,10 @@ CREATE TABLE IF NOT EXISTS `apoyosgastos` (
   ,`docto_salida` VARCHAR(64)
   ,`poliza` VARCHAR(32)
 
-  ,`fecha_referencia` DATETIME DEFAULT CURRENT_TIMESTAMP
-  ,`fecha_docto_salida` DATETIME DEFAULT CURRENT_TIMESTAMP
+  ,`fecha_referencia` DATE 
+  ,`fecha_docto_salida` DATE 
   ,`fecha_creacion` DATETIME DEFAULT CURRENT_TIMESTAMP
+  ,`fecha_cambio` DATETIME DEFAULT CURRENT_TIMESTAMP
   ,`ultima_modificacion` DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP    
 
   -- llaves foraneas

@@ -10,44 +10,42 @@ $('#tabla-apoyos tbody').on('click','tr',function(){
 
 
 /**
-* apoyos inputs vista apoyo.php
+* inputs de la vista apoyo.php
 **/
 apoyo.elem ={
     folio:         $("#folio_apoyo"),
-    status:    $("#status"),
+    estatus:    $("#status"),
     concepto:    $("#concepto"),
-    fechacaptura:          $("#fechacaptura"),  
+    fechaCaptura:          $("#fechacaptura"),  
     frecuencia:         $("#frecuencia"),
     evento:            $("#evento"),
     proveedor:          $("#proveedor"),
     donatario:          $("#donatario"),
-    tipo_apoyo: $("#tipo_apoyo"),
+    tipoApoyo: $("#tipo_apoyo"),
     especie:             $("#id_especie"),    
     cantidad:             $("#cantidad"),
-    otra_especie:          $("#otra_especie"),
+    otraUnidad:          $("#otra_unidad"),
     unidad:                 $("#unidad"),
-    paises:                 $("#paises"), 
-    otroPais: $("#otroPais"),   
+    pais:                 $("#paises"), 
     estadosMex:          $("#estadosMex"),
     estadosEua: $("#estadosEua"),    
     otroEstado:                 $("#otroEstado"),
     abono:        $("#abono"),    
     moneda:         $("#moneda_apoyo"),
     numeroReferencia: $("#numeroReferencia"),
-    fecha_referencia : $("#fecha_referencia"),  
-    numeroReferencia:      $("#numeroReferencia"),
+    fechaReferencia : $("#fecha_referencia"),
     observaciones:         $("#observaciones"),
     // campos libreta flujo
     mesContable:          $("#mescontable"),
     fechaDoctoSalida:          $("#fechadoctosalida"),
-    documentoSalida:           $("#documentosalida"),     
+    doctoSalida:           $("#documentosalida"),     
     poliza:          $("#poliza"),   
     abono2:        $("#abono2"),
     //botones fijos
-    btn_save:       $("#btn-save"),
-    btn_add:       $("#btn-add"),
-    btn_update: $("#btn-update"),
-    btn_delete:     $("#btn-delete"),
+    btnSave:       $("#btn-save"),
+    btnAdd:       $("#btn-add"),
+    btnUpdate: $("#btn-update"),
+    btnDelete:     $("#btn-delete"),
 };
 
 /**
@@ -80,7 +78,7 @@ apoyo.verApoyo = function(idApoyo){
                 elementos.concepto.val(res.concepto);
                 elementos.abono.val(res.importe);
                 elementos.folio.val(res.id_apoyo);                
-                elementos.fechacaptura.val(res.fecha_creacion);
+                elementos.fechaCaptura.val(res.fecha_creacion);
                 elementos.frecuencia.val(res.id_frecuencia_apoyo);
                 elementos.evento.val(res.id_evento);
                 if(res.tipo_proveedor)                
@@ -181,7 +179,7 @@ apoyo.verApoyo = function(idApoyo){
                 elementos.observaciones.val(res.observaciones);
                 elementos.mescontableflujo.val(res.mes_contabel_libretaflujo);
                 elementos.fechadoctosalida.val(res.fecha_docto_salida);
-                elementos.documentosalida.val(res.docto_salida);
+                elementos.doctoSalida.val(res.docto_salida);
                 elementos.poliza.val(res.poliza);
                 elementos.idSaldo.val(res.saldo);
 
@@ -190,6 +188,9 @@ apoyo.verApoyo = function(idApoyo){
     });
 };
 
+/**
+* Funcion para guardar y actualizar apoyos
+**/
 apoyo.add = function(editMode){
 	var data = apoyo.elem;
 	var action = "addApoyo";
@@ -197,49 +198,12 @@ apoyo.add = function(editMode){
     var idApoyo = 0;
     var forUpdate = false;
     
-    if (editMode == true)
+    if (editMode == true){
         forUpdate = true;
-    
-    var paises = data.paises.val();
-    var estado = null;
-
-    if(paises=="México"){
-         estado = data.estadosMex.val();  
-    }else{
-        if(paises=="Otro"){
-           paises = document.getElementById('otro_text').value;
-           estado = document.getElementById("estado").value;  
-        }else{
-            estado = document.getElementById("estado").value;  
-        }
+        action = "updateApoyo";
     }
 
-    var tipo = data.Tipodeapoyo.val();
-    var cantidad = null;
-    var unidad = null;
-
-
-    if(tipo=="2"){
-         cantidad = data.cantidad.val(); 
-         unidad = data.unidad.val();
-
-         if(unidad=="Otro"){
-            unidad = data.otra_especie.val();
-         } 
-    }
-
-    var importe = null;
-    var importe_ext = null;
-    var moneda = data.moneda_apoyo.val();
-
-    if(moneda == "1"){
-         
-        if(data.abono.val()) importe = data.abono.val(); else  importe = "0.00";
-    }else{
-        if(data.abono.val()) importe_ext = data.abono.val(); else  importe_ext = "0.00";
-    }
-
-	if((apoyo.validaDatos(data))){
+	if(apoyo.validaDatos(data,forUpdate)){
         if ( editMode ) {
             action = "updateApoyo";
             idApoyo = data.idApoyo.val();
@@ -250,45 +214,36 @@ apoyo.add = function(editMode){
             url: "ajax.php",
             dataType: "json",
             data: {
-                    idApoyo : data.idApoyo.val(),
-                    id_saldo: data.idSaldo.val(),
-                    estatus: data.status.val(),
-                    tipo: data.tipo.val(), // APOYO
+                    idApoyo : data.folio.val(),
+                    estatus: data.estatus.val(),
                     concepto: data.concepto.val(),
-
-                    importe:  importe,
-                    importe_ext:  importe_ext,
-                    
-                    mes_captura_anamaria: data.mescaptura.val(),
-                    fecha_captura_anamaria: data.fechacaptura.val(),
-                    mes_contable_anamaria: data.mescontableana.val(),
-                    folio: data.folio_apoyo.val(),
+                    fechaCaptura: data.fechaCaptura.val(),
                     frecuencia: data.frecuencia.val(),
-                    id_especie: data.especie.val(),
-                    id_proveedor: data.proveedor.val(),
-                    id_donatario: data.donatario.val(),
-                    id_evento: data.evento.val(),
-                    tipo_apoyo:    data.Tipodeapoyo.val(),
-                    unidad:    unidad,
-                    cantidad: cantidad,
-                    pais:       paises,
-                    entidad:    estado,
-                    factura:    data.numerodefactura.val(), 
-                    // data.importe_apoyo.val(),
-                    moneda: data.moneda_apoyo.val(),
-                    referencia: data.referencia_apoyo.val(),
-                    fecha_recibo: data.fecharecibo.val(),
-                    observaciones: data.observaciones.val(),
-                    mes_contabel_libretaflujo: data.mescontableflujo.val(),
-                    fecha_docto_salida:  data.fechadoctosalida.val(),
-                    docto_salida:    data.documentosalida.val(),
-                    poliza:  data.poliza.val(),
-
+                    evento: data.evento.val(),
+                    proveedor: data.proveedor.val(),
+                    donatario: data.donatario.val(),
+                    tipoApoyo: data.tipoApoyo.val(),
+                    espcecie: data.especie.val(),
+                    cantidad: data.cantidad.val(),
+                    otraUnidad: data.otraUnidad.val(),
+                    unidad: data.unidad.val(),
+                    pais: data.pais.val(),
+                    estado: apoyo.getEstado(),
+                    abono: data.abono.val(),
+                    moneda: data.moneda.val(),
+                    numeroReferencia: data.numeroReferencia.val(),
+                    fechaReferencia: data.fechaReferencia.val(),
+                    observaciones: $.trim(data.observaciones.val()),
+                    // campos lireta flujo
+                    mesContable : data.mesContable.val(),
+                    fechaDoctoSalida: data.fechaDoctoSalida.val(),
+                    doctoSalida: data.doctoSalida.val(),
+                    poliza: data.poliza.val(),
                     action: action
                 },
                 success: function(result){
                 if(result.status == "error"){
-                    utilerias.displayErrorServerMessage(elem.msj_server, result.message);
+                    utilerias.displayErrorServerMessage($("#mensajes-server"), result.message);
                      
                     
                 }else{  
@@ -341,30 +296,86 @@ apoyo.editapoyo = function () {
 };
 
 
-
+/**
+* Valida datos del formulario para nuevos apoyos
+**/
 apoyo.validaDatos = function (data) {
     var valid = true;
     utilerias.removeErrorMessages();
     
     
-    if ($.trim(data.concepto.val())=="") {
+    if (!$.trim(data.concepto.val())) {
         valid = false;
-        utilerias.displayErrorMessage(data.concepto,"Se debe ingresar un concepto");
+        utilerias.displayErrorMessage(data.concepto,"Se debe ingresar una descripcion");
     }
 
-    if ($.trim(data.proveedor.val())=="" && $.trim(data.donatario.val())=="") {
+    //proveedor xor donatario
+    if ( ((data.proveedor.val()!=0) && (data.donatario.val()!=0) )
+        ||((data.proveedor.val()==0) && (data.donatario.val()==0)) ){
         valid = false;
-        utilerias.displayErrorMessage(data.proveedor,"Debe existir un proveedor o un donatario");
-    }
+        utilerias.displayErrorMessage(data.proveedor,"Se debe seleccionar o un proveedor o un donatario");
+        utilerias.displayErrorMessage(data.donatario,"");
+    }   
     
-    if ($.trim(data.evento.val())=="") {
+    if (!$.trim(data.evento.val()) ) {
         valid = false;
         utilerias.displayErrorMessage(data.evento,"Debe ingresar un evento");
+    }
+
+    //especie seleccionada
+    if(data.tipoApoyo.val()==0 && !(data.cantidad.val()>0)){
+        if(data.unidad.val()==0 && !$.trim(data.otraUnidad.val()) ){ 
+            utilerias.displayErrorMessage(data.otraUnidad,"Debes especificar una unidad para la especie seleccionada");
+            $("#div_otro").show();
+        }
+        utilerias.displayErrorMessage(data.cantidad,"Debe ingresar un número");
+        valid = false; 
+    }
+
+    if(!$.trim(data.numeroReferencia.val())){
+        valid = false;
+        utilerias.displayErrorMessage(data.numeroReferencia,"Debe ingresar un numero de referencia");
+    }
+
+    if(!utilerias.isValidDate(data.fechaReferencia.val())){
+        valid = false;
+        utilerias.displayErrorMessage(data.fechaReferencia,"Formato de fecha no válido.");
+    }
+
+    if(!utilerias.isValidDate(data.fechaCaptura.val())){
+        valid = false;
+        utilerias.displayErrorMessage(data.fechaCaptura,"Formato de fecha no válido.");
+    }    
+
+    if(!(data.abono.val()>=0)){
+        valid=false;
+        utilerias.displayErrorMessage(data.abono,"Debes ingresar un importe");
+    }    
+
+    if($.trim(data.fechaDoctoSalida.val()) 
+        && !utilerias.isValidDate(data.fechaDoctoSalida.val())){
+        valid = false;
+        utilerias.displayErrorMessage(data.fechaDoctoSalida,"Formato de fecha no válido");
     }
 
     return valid;
 };
 
+/**
+* Obtiene el id del estado dependiendo del pais que esta seleccionado
+**/
+apoyo.getEstado = function(){
+    var pais = apoyo.elem.pais.val();
+    var estado = 0;
+    if(pais == 1){
+        estado = apoyo.elem.estadosMex.val();
+    }else if(pais == 2){
+        estado = apoyo.elem.estadosEua.val();
+        }else
+            estado = apoyo.elem.otroEstado.val();
+
+    return estado;
+};
 
 apoyo.deleteApoyo = function () {
     var elementos = apoyo.elem;
@@ -398,8 +409,6 @@ apoyo.updateApoyo = function () {
 
 apoyo.abono = function(){
     var data = apoyo.elem;
-
-    data.importe_apoyo.val(data.abono.val());
     data.abono2.val(data.abono.val());
 };
 
@@ -407,14 +416,16 @@ apoyo.abono = function(){
 * Regresa el formulario a su estado original
 **/
 apoyo.nuevo = function(){
-    $("#formulario-captura-apoyos")[0].reset()
+    $("#formulario-captura-apoyos")[0].reset();
+    apoyo.elem.fechaCaptura.val($.datepicker.formatDate('yy-mm-dd', new Date()));
+    apoyo.elem.fechaReferencia.val($.datepicker.formatDate('yy-mm-dd', new Date()));
 };
 
 /**
 * cuando se selecciona un pais
 **/
 apoyo.pais = function (){
-    var pais = apoyo.elem.paises.val();
+    var pais = apoyo.elem.pais.val();
     if(pais =="1"){ //mex
         $("#estadosMexDiv").show();
         $("#estadosEuaDiv").hide();
@@ -772,29 +783,3 @@ apoyo.verCheque = function(){
     
     window.open('index.php?op=cheque&abono='+abono+'&concepto='+concepto+'&nombre='+nombre+'&descripcion='+descripcion,'_blank');
 };
-
-
-
-/*
-
-            var f = $(this);
-            var formData = new FormData(document.getElementById("formArchivos"));
-            formData.append("action", "nuevoArchivo");
-            //formData.append(f.attr("name"), $(this)[0].files[0]);
-            
-            $.ajax({
-
-                url: "ajax.php",
-                type: "post",
-                dataType: "html",
-                data: formData,
-                cache: false,
-                contentType: false,
-                 processData: false
-            })
-                .done(function(res){
-                    $("#mensaje").html("Respuesta: " + res);
-                });
-        });
- });
-*/

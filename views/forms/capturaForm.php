@@ -18,12 +18,12 @@
 
 		<div class=" form-group col-xs-2">
 			<label for="folio_apoyo">Folio</label>
-			<input type="text" class="form-control" name="folio_apoyo" id="folio_apoyo" >
+			<input type="text" class="form-control" name="folio_apoyo" id="folio_apoyo" disabled>
 		</div>
 
 		<div class="form-group col-xs-2">
 			<label for="fechacaptura">Fecha de Captura</label>
-			<input type="text" id="fechacaptura" name="fechacaptura" class="form-control" placeholder="Fecha">
+			<input type="text" id="fechacaptura" name="fechacaptura" class="form-control" placeholder="YYYY-MM-DD">
 		</div>
 
 		<div class=" form-group col-xs-2">
@@ -69,7 +69,7 @@
 	<div class=" form-group col-xs-2">
 		<label for="tipo_apoyo">Tipo de Apoyo</label>
 		<select type="text" class="form-control" name="Tipodeapoyo" id="tipo_apoyo">
-			<option value="0" onclick="$('.especie').show();">Especie</option>
+			<option value="0" onclick="$('.especie:not(#div_otro)').show();">Especie</option>
 			<option selected value="1" onclick="$('.especie').hide();">Importe</option>
 		</select>
 	</div >
@@ -97,9 +97,9 @@
 			<option value="0" onclick="$('#div_otro').show();">Otro</option>
 		</select>
 	</div >
-	<div class=" form-group col-xs-2" hidden id="div_otro">
-		<label for="otra_especie">Otro:</label>
-		<input type="text" class="form-control" name="otra_especie" id="otra_especie">
+	<div class=" form-group col-xs-2 especie" hidden id="div_otro">
+		<label for="otra_unidad">Otro:</label>
+		<input type="text" class="form-control" name="otra_unidad" id="otra_unidad">
 	</div>
 
 	<div class=" form-group col-xs-1">
@@ -111,11 +111,6 @@
 			<option value="0">otro</option>
 		</select>
 	</div >
-
-	<div class=" form-group col-xs-2" hidden id="otroPaisDiv">
-		<label for="otroPais">Otro país</label>
-		<input type="text" class="form-control" id="otroPais" >
-	</div>
 
 	<div class=" form-group col-xs-3" id="estadosMexDiv">
 		<label for="estadosMex">Estado o Región</label>
@@ -146,11 +141,11 @@
 	</div>
 	<div class=" form-group col-xs-3">
 		<label for="fecha_referencia">Fecha de referencia</label>
-		<input type="text" id="fecha_referencia" class="form-control" placeholder="Click">
+		<input type="text" id="fecha_referencia" class="form-control" placeholder="YYYY-MM-DD">
 	</div >
 	<div class=" form-group col-xs-2">
 		<label for="abono">Importe</label>
-		<input type="text" onblur="apoyo.abono();" class="form-control" name="abono" id="abono" value="0.00" >
+		<input type="number" onblur="apoyo.abono();" class="form-control" name="abono" id="abono" value="0.00" >
 	</div>
 	<div class=" form-group col-xs-2">
 		<label for="moneda_apoyo">Moneda</label>
@@ -210,7 +205,7 @@
 	<div class=" form-group col-xs-3">
 		<label for="
 		">Fecha de documento de salida</label>
-		<input type="text" id="fechadoctosalida" name="fechadoctosalida" class="form-control" placeholder="Click">
+		<input type="text" id="fechadoctosalida" name="fechadoctosalida" class="form-control" placeholder="YYYY-MM-DD">
 	</div >
 	
 	<div class=" input form-group col-xs-3">

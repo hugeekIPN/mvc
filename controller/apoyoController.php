@@ -71,6 +71,9 @@ class ApoyoGastoController {
     }
 
 
+    /**
+    * Carga la pagina de apoyos
+    **/
     public function viewPage(){
         $usuario = sessionController::get('username');;
         $titulo = "Apoyos";
@@ -100,6 +103,9 @@ class ApoyoGastoController {
     }
 
 
+    /**
+    * Funcion para agregar un nuevo apoyo
+    **/
     public function nuevoApoyoGasto($postData) {
         $result = array();
         $errors = $this->validaDatos($postData);
@@ -362,18 +368,40 @@ class ApoyoGastoController {
         return $result;
     }
 
+    /**
+    * Valida datos para agregar un nuevo apoyo
+    **/
     private function validaDatos($data) {
         $errors = array();
-
-        $importe = $data['importe'];
+        $estatus = $data['estatus'];        
         $concepto = $data['concepto'];
-        $proveedor = $data['id_proveedor'];
-        $donatario = $data['id_donatario'];
-        $evento = $data['id_evento'];
+        $fechaCaptura = $data['fechaCaptura'];
+        $frecuencia = $data['frecuencia'];
+        $evento = $data['evento'];
+        $proveedor = $data['proveedor'];
+        $donatario = $data['donatario'];
+        $tipoApoyo = $data['tipoApoyo'];
+        $especie = $data['especie'];
+        $cantidad = $data['cantidad'];
+        $unidad = $data['unidad'];
+        $otraUnidad = $data['otraUnidad'];
+        $pais = $data['pais'];
+        $estado = $data['estado'];
+        $abono = $data['abono'];
+        $moneda = $data['moneda'];
+        $numeroReferencia = $data['numeroReferencia'];
+        $fechaReferencia = $data['fechaReferencia'];
+        $observaciones = $data['observaciones'];
+        //campos libreta flujo
+        $fechaDoctoSalida = $data['fechaDoctoSalida'];  
 
-        if ($this->esVacio($concepto)) {
-            $errors[] = "Debe ingresar un concepto";
-        }
+
+        if (!$data['concepto']) 
+            $errors[] = "Se debe proporcionar una descripcion";
+        
+        if(!$estatus) $errors[] = "Estatus no válido";
+
+        if($fechaCaptura && )
 
 
         if ($this->esVacio($donatario) && $this->esVacio($proveedor)) {
@@ -397,6 +425,16 @@ class ApoyoGastoController {
             return true;
         else
             return false;
+    }
+
+
+    /**
+    * verifica si una fecha es válida,
+    * @param String "YYYY-MM-DD" representa una fecha
+    **/
+    private function isValidDate($date){
+        $temp = explode('-',$date);
+        return checkdate($temp[1], $temp[2], $temp[1]);
     }
 
     
