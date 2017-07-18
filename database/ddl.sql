@@ -96,7 +96,7 @@ CREATE TABLE IF NOT EXISTS `especies` (
 -- -----------------------------------------------------
 -- CATALOGO DE PROGRAMAS
 -- -----------------------------------------------------
-CREATE TABLE IF NOT ENGINEXISTS `programas` (
+CREATE TABLE IF NOT EXISTS `programas` (
   `id_programa` INT UNSIGNED NOT NULL AUTO_INCREMENT
   ,`nombre` VARCHAR(128)
   ,`descripcion` VARCHAR(512)
@@ -210,7 +210,7 @@ CREATE TABLE IF NOT EXISTS `frecuencia_apoyo` (
 -- ----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `apoyosgastos` (
   `id_apoyo` INT UNSIGNED NOT NULL AUTO_INCREMENT
-  ,`tipo` BIT(1) DEFAULT 0 COMMENT '0-Apoyo\n1-Gasto\n'
+  ,`categoria` BIT(1) DEFAULT 0 COMMENT '0-Apoyo\n1-Gasto\n'
   ,`estatus` BIT(1) DEFAULT 0  COMMENT  '0 activo, 1 cancelado'
   ,`concepto` VARCHAR(512)
   ,`importe` DECIMAL(11,2) DEFAULT 0
@@ -310,11 +310,6 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
   ,PRIMARY KEY (`id_usuario`)
 )ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
-CREATE TABLE IF NOT EXISTS `test` (
-  `id` INT UNSIGNED NOT NULL AUTO_INCREMENT
-  ,`bit` bit(1)
-  ,PRIMARY KEY (`id`)
-)ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
 -- -----------------------------------------------------
 -- Funciones

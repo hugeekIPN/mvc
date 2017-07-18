@@ -131,23 +131,21 @@ class ApoyoGastoController {
         return $result;
     }
 
-    
+    /**
+    * Funcion para obtener detalles de un apoyo
+    **/
     public function getApoyoGasto() {
         
         $result = $this->model->getApoyoById($this->idApoyo);
 
         if($result){
             $result["status"] = "success";
-            if($result['id_especie_apoyo']){
-                $especie = $this->model->getEspecie($result['id_especie_apoyo']);
-                $result['especie_descripcion'] = $especie['descripcion'];
-            }
+            
         }else{
             $result = array(
                 "status" => "error",
                 "message" => "No se encontró el apoyo");
         }
-
         return $result;
     }
 

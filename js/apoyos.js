@@ -60,6 +60,7 @@ apoyo.verApoyo = function(idApoyo){
     $("#datable").hide();
     $("#contenedor-apoyos").show();
     utilerias.removeErrorMessages();
+    
     $.ajax({
         type:   "post",
         url:    "ajax.php",
@@ -73,23 +74,27 @@ apoyo.verApoyo = function(idApoyo){
 			if(res.status == "error"){
 				utilerias.displayErrorServerMessage(elem.msj_server, res.message);
 			}else{
-                data.btn_save.hide();                
-                data.status.val(res.estatus);
-                data.concepto.val(res.concepto);
-                data.abono.val(res.importe);
-                data.folio.val(res.id_apoyo);                
-                data.fechaCaptura.val(res.fecha_creacion);
-                data.frecuencia.val(res.id_frecuencia_apoyo);
-                data.evento.val(res.id_evento);
-                if(res.tipo_proveedor)                
-                    data.proveedor.val(res.id_proveedor);
-                else
-                    data.donatario.val(res.id_proveedor);                
+                data.btnAdd.show();
+                data.btnSave.hide();
+                data.btnUpdate.show();
 
-                if(res.id_especie){
-                   data.especie.val(res.id_especie);
-                   data.cantidad.val(res.cantidad_especie);
-                   data.unidad.val(res.unidad_especie);
+                data.estatus.val(res.estatus);
+                data.concepto.val(res.concepto);
+                data.abono.val(res.importeReal);
+                data.folio.val(res.idApoyo);                
+                data.fechaCaptura.val(res.fechaCaptura);
+                data.frecuencia.val(res.idFrecuencia);
+                data.evento.val(res.idEvento);
+                if(res.tipoProveedor)                
+                    data.proveedor.val(res.idProveedor);
+                else
+                    data.donatario.val(res.idProveedor);                
+
+                //apoyo en especie
+                if(res.idEspecie){                    
+                   data.especie.val(res.idEspecie);
+                   data.cantidad.val(res.cantidad);
+                   data.unidad.val(res.unidad);
 
                 }
                 else
@@ -423,6 +428,8 @@ apoyo.nuevo = function(){
     apoyo.elem.fechaCaptura.val($.datepicker.formatDate('yy-mm-dd', new Date()));
     apoyo.elem.fechaReferencia.val($.datepicker.formatDate('yy-mm-dd', new Date()));
     apoyo.elem.btnAdd.hide();
+    apoyo.elem.btnUpdate.hide();
+    apoyo.elem.btnSave.show();
 };
 
 /**

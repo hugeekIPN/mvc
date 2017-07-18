@@ -16,7 +16,7 @@ class m_apoyo_gasto{
     
     * @return arrray indexado con los datos necesarios para el dataTable
     **/
-    public function getApoyosForTable($tipo=0){
+    public function getApoyosForTable($categoria=0){
         $result = [];
         $query = $this->db->select(
                 "SELECT 
@@ -30,8 +30,8 @@ class m_apoyo_gasto{
                  FROM apoyosgastos as a
                  INNER JOIN proveedores as p ON a.id_proveedor = p.id_proveedor   
                  INNER JOIN eventos as e ON a.id_evento = e.id_evento
-                 WHERE a.tipo = :tipo "
-                 ,["tipo"=>$tipo]
+                 WHERE a.categoria = :categoria "
+                 ,["categoria"=>$categoria]
                  ,PDO::FETCH_NUM);
             if($query)
                 $result = $query;
@@ -48,34 +48,34 @@ class m_apoyo_gasto{
         $result= [];
 
         $query = "SELECT 
-        a.id_apoyo
-        ,a.tipo
-        ,a.estatus
+        a.id_apoyo as idApoyo
+        ,a.categoria
+        ,a.estatus 
         ,a.concepto
         ,a.importe
-        ,importe(a.importe,a.tipo_cambio) as importe_real
-        ,a.tipo_cambio        
-        ,a.observaciones
+        ,importe(a.importe,a.tipo_cambio) as importeReal
+        ,a.tipo_cambio as tipoCambio       
+        ,a.observaciones 
         ,a.referencia
-        ,a.mes_contable
-        ,a.docto_salida
+        ,a.mes_contable as mesContable
+        ,a.docto_salida as doctoSalida
         ,a.poliza
-        ,date(a.fecha_referencia) as fecha_referencia
-        ,date(a.fecha_docto_salida) as fecha_docto_salida
-        ,date(a.fecha_creacion) as fecha_creacion
-        ,a.ultima_modificacion
-        ,p.id_proveedor
-        ,p.tipo as tipo_proveedor
-        ,p.razon_social
+        ,date(a.fecha_referencia) as fechaReferencia
+        ,date(a.fecha_docto_salida) as fechaDoctoSalida
+        ,date(a.fecha_creacion) as fechaCaptura
+        ,a.ultima_modificacion as ultimaModificacion
+        ,p.id_proveedor as idProveedor
+        ,p.tipo as tipoProveedor
+        ,p.razon_social as razonSocial
         ,e.nombre as evento
-        ,e.id_evento
-        ,f.id_frecuencia_apoyo 
+        ,e.id_evento as idEvento
+        ,f.id_frecuencia_apoyo idFrecuencia 
         ,f.nombre as frecuencia
-        ,a.id_estado
-        ,st.nombre
-        ,a.id_moneda
+        ,a.id_estado as idEstado
+        ,st.nombre as nombreEstado
+        ,a.id_moneda as idMoneda
         ,m.acronimo
-        ,m.nombre
+        ,m.nombre as nombreMoneda
         FROM apoyosgastos as a
         INNER JOIN proveedores as p ON a.id_proveedor = p.id_proveedor   
         INNER JOIN eventos as e ON a.id_evento = e.id_evento        
@@ -102,12 +102,12 @@ class m_apoyo_gasto{
             $especieApoyo = $this->db->select($query,['id'=>$id_apoyo]);
             if($especieApoyo){
                 $especieApoyo = $especieApoyo[0];
-                $result['id_especie'] = $especieApoyo['id_especie'];
-                $result['descripcion_especie'] = $especieApoyo['descripcion'];
-                $result['cantidad_especie'] = $especieApoyo['cantidad'];
-                $result['unidad_especie'] = $especieApoyo['nombre'];
+                $result['idEspecie'] = $especieApoyo['id_especie'];
+                $result['descripcionEspecie'] = $especieApoyo['descripcion'];
+                $result['cantidad'] = $especieApoyo['cantidad'];
+                $result['unidad'] = $especieApoyo['nombre'];
             }else{
-                $result['id_especie'] = null;
+                $result['idEspecie'] = null;
             }
         }
         return $result;
