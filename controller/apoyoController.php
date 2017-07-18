@@ -35,46 +35,11 @@ class ApoyoGastoController {
         $this->modelFrecuenca = new m_frecuencia();
     }
 
-    public function index() {
-
-        $login = new loginController();
-
-        if ($login->_isLoggedIn()) {
-            $usuario = sessionController::get('username');
-            $titulo = "Apoyos";
-            require_once("views/templates/header.php");
-            require_once("views/templates/nav.php");
-            require_once("views/apoyos.php");
-            require_once("views/templates/footer.php");
-        } else {
-            require_once("views/login.php");
-        }
-    }
-
-    /**
-    * Funcion para obtener todos los apoyos
-    * sirve para poblar el datatable mediante ajax, en el ajax se envía como json
-    * @return array con todos los apoyos registrados
-    **/
-    public function getApoyosForTable(){
-        /*
-        Se obtienen los sig datos del model:
-         id_apoyo
-         concepto
-         referencia (es lo mismo que numero de referencia)
-         nombre del evento
-         razon social proveedor
-         fecha de captura
-         estatus (activo,cancelado)
-        */
-        return [ "data" => $this->model->getApoyosForTable() ];
-    }
-
 
     /**
     * Carga la pagina de apoyos
     **/
-    public function viewPage(){
+    public function index(){
         $usuario = sessionController::get('username');;
         $titulo = "Apoyos";
           
@@ -104,11 +69,32 @@ class ApoyoGastoController {
 
 
     /**
+    * Funcion para obtener todos los apoyos
+    * sirve para poblar el datatable mediante ajax, en el ajax se envía como json
+    * @return array con todos los apoyos registrados
+    **/
+    public function getApoyosForTable(){
+        /*
+        Se obtienen los sig datos del model:
+         id_apoyo
+         concepto
+         referencia (es lo mismo que numero de referencia)
+         nombre del evento
+         razon social proveedor
+         fecha de captura
+         estatus (activo,cancelado)
+        */
+        return [ "data" => $this->model->getApoyosForTable() ];
+    }
+
+
+
+    /**
     * Funcion para agregar un nuevo apoyo
     **/
     public function nuevoApoyoGasto($postData) {
         $result = array();
-        $errors = $this->validaDatos($postData);
+        $errors = $this->validaDatos($postData);        
 
         if ($errors) {
             $message = implode("<br>", $errors);
@@ -116,32 +102,26 @@ class ApoyoGastoController {
             $result = array(
                 "status" => "error",
                 "message" => $message);
-        } else {
+        } else {      
 
-            if(!($postData['importe']))          
-                $postData['importe'] = 0;
-            if(!($postData['id_proveedor']))          
-                $postData['id_proveedor'] = 0;
-            if(!($postData['id_donatario']))          
-                $postData['id_donatario'] = 0;
-            
+            $idApoyo = $this->model->addApoyoGasto($postData);
 
-               $saldo = $this->modelSaldo->getUltimoSaldo();
-                $saldo = $saldo? $saldo['saldo'] : 0;
+            //se seleccionó apoyo en especie
+            if($postData['tipoApoyo'] == 0){
+                //se seleccionó otra unidad
+                if($postData['unidad'] == 0){
+                    $postData['unidad'] = $this->model->addUnidad($postData['otraUnidad']);
+                }
 
-                $nuevoSaldo = $saldo - $postData['importe'];  /// ABONO
-                $idNuevoSaldo = $this->modelSaldo->nuevoSaldo($nuevoSaldo);
-                $postData['id_saldo'] = $idNuevoSaldo;
+                $newData =[
+                'idApoyo' => $idApoyo,
+                'idEspecie' => $postData['especie'],
+                'cantidad' => $postData['cantidad'],
+                'idUnidad' => $postData['unidad']
+                ];
 
-
-            $idUltimoApoyo = $this->model->getUltimoApoyo();
-            $ultimaRef = $idUltimoApoyo?  $idUltimoApoyo['referencia_anamaria'] : 0;
-            $idUltimoApoyo = $idUltimoApoyo? $idUltimoApoyo['id_apoyo'] : 0;
-            
-            $postData['referencia_anamaria'] = $ultimaRef +1;
-
-
-            $this->model->nuevoApoyoGasto($postData);
+                $this->model->addEspecieApoyo($newData);
+            }
 
             $result = array(
                 "status" => "success",
@@ -151,6 +131,7 @@ class ApoyoGastoController {
         return $result;
     }
 
+    
     public function getApoyoGasto() {
         
         $result = $this->model->getApoyoById($this->idApoyo);
@@ -393,24 +374,49 @@ class ApoyoGastoController {
         $fechaReferencia = $data['fechaReferencia'];
         $observaciones = $data['observaciones'];
         //campos libreta flujo
-        $fechaDoctoSalida = $data['fechaDoctoSalida'];  
-
+        $mesContable = $data['mesContable'];
+        $fechaDoctoSalida = $data['fechaDoctoSalida'];
+        $doctoSalida = $data['doctoSalida'];
+        $poliza = $data['poliza'];
 
         if (!$data['concepto']) 
             $errors[] = "Se debe proporcionar una descripcion";
         
-        if(!$estatus) $errors[] = "Estatus no válido";
+        if($estatus<0 || $estatus>1) $errors[] = "Estatus no válido";
 
-        if($fechaCaptura && )
+        if($fechaCaptura &&  !$this->isValidDate($fechaCaptura))
+            $errors[] = "Formato de fecha de captura incorrecto";
 
+        if(!$frecuencia)
+            $errors[] = "Frecuencia no válida";
 
-        if ($this->esVacio($donatario) && $this->esVacio($proveedor)) {
-            $errors[] = "Debe ingresar un proveedor o un donatario";
-        }
-
-        if ($this->esVacio($evento)) {
+        if (!$evento) 
             $errors[] = "Debe ingresar un evento";
+
+        if(!($proveedor xor $donatario))
+            $errors[] = "Debes seleccionar o un proveedor o un donatario";
+
+        if($tipoApoyo == 0){
+            if(!$especie)
+                $errors[] = "Especie no válida";
+
+            if(!($cantidad>0))
+                $errors[] = "Cantidad no válida";
+
+            if($unidad == 0 && !$otraUnidad)
+                $errors[] = "Debe especificar una unidad";
         }
+        
+        if(!$pais) $errors[] = "Pais no válido";
+
+        if(!$estado) $errors[] = "Estado no válido";
+
+        if(!($abono>=0)) $errors[] = "Importe no válido";
+
+        if(!$moneda) $errors = "Tipo de moneda no válida";
+
+        if($fechaDoctoSalida && !$this->isValidDate($fechaDoctoSalida))
+            $errors[] = "Fecha de documento de salida no válido";
 
         return $errors;
     }

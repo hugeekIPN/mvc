@@ -310,7 +310,11 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
   ,PRIMARY KEY (`id_usuario`)
 )ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
-
+CREATE TABLE IF NOT EXISTS `test` (
+  `id` INT UNSIGNED NOT NULL AUTO_INCREMENT
+  ,`bit` bit(1)
+  ,PRIMARY KEY (`id`)
+)ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
 -- -----------------------------------------------------
 -- Funciones

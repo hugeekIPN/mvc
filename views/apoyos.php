@@ -109,16 +109,18 @@
 	<div id="cont-formulario-apoyo" class="form_apoyos">
 
 		<h1 class="titulo_centrado">Capturar Apoyos <SPAN style="font-size: 16px;">SALDO ACTUAL:<?= number_format($saldo,2); ?></SPAN>
-		<!-- para errores del back  -->
-		<div class="">
-			<div id="mensajes-server"></div>
-		</div>
+		
 
 		<input type="hidden" name="tipo" id="tipo" value="1">
 
 		<button class="btn btn-sm btn-danger pull-right" id="close">X</button>
 		</h1>
 
+		<!-- para errores del back  -->
+		<div class="">
+			<div id="mensajes-server"></div>
+		</div>
+		
 		<!-- formularios -->				
 		<?php include 'forms/capturaForm.php'; ?>
 

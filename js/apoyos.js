@@ -56,7 +56,7 @@ apoyo.loadTable = function(){
 }
 
 apoyo.verApoyo = function(idApoyo){
-    var elementos = apoyo.elem;    
+    var data = apoyo.elem;    
     $("#datable").hide();
     $("#contenedor-apoyos").show();
     utilerias.removeErrorMessages();
@@ -73,81 +73,81 @@ apoyo.verApoyo = function(idApoyo){
 			if(res.status == "error"){
 				utilerias.displayErrorServerMessage(elem.msj_server, res.message);
 			}else{
-                elementos.btn_save.hide();                
-                elementos.status.val(res.estatus);
-                elementos.concepto.val(res.concepto);
-                elementos.abono.val(res.importe);
-                elementos.folio.val(res.id_apoyo);                
-                elementos.fechaCaptura.val(res.fecha_creacion);
-                elementos.frecuencia.val(res.id_frecuencia_apoyo);
-                elementos.evento.val(res.id_evento);
+                data.btn_save.hide();                
+                data.status.val(res.estatus);
+                data.concepto.val(res.concepto);
+                data.abono.val(res.importe);
+                data.folio.val(res.id_apoyo);                
+                data.fechaCaptura.val(res.fecha_creacion);
+                data.frecuencia.val(res.id_frecuencia_apoyo);
+                data.evento.val(res.id_evento);
                 if(res.tipo_proveedor)                
-                    elementos.proveedor.val(res.id_proveedor);
+                    data.proveedor.val(res.id_proveedor);
                 else
-                    elementos.donatario.val(res.id_proveedor);                
+                    data.donatario.val(res.id_proveedor);                
 
                 if(res.id_especie){
-                    elementos.especie.val(res.id_especie);
-                    elementos.cantidad.val(res.cantidad_especie);
-                    elementos.unidad.val(res.unidad_especie);
+                   data.especie.val(res.id_especie);
+                   data.cantidad.val(res.cantidad_especie);
+                   data.unidad.val(res.unidad_especie);
 
                 }
                 else
-                    elementos.especie.val(1);
+                    data.especie.val(1);
 
-                elementos.fecha_referencia.val(res.fecha_referencia);
+                data.fecha_referencia.val(res.fecha_referencia);
 
                 if(res.tipo_apoyo=="2"){  // especie
-                    elementos.unidad.val(res.unidad);
-                    elementos.cantidad.val(res.cantidad);
-                    elementos.especie.val(res.id_especie);
-                    elementos.especie.show();
-                    elementos.especie_div.show();
-                    elementos.unidad.show();
-                    elementos.unidad_div.show();
-                    elementos.cantidad.show();
-                    elementos.cantidad_div.show();
+                    data.unidad.val(res.unidad);
+                    data.cantidad.val(res.cantidad);
+                    data.especie.val(res.id_especie);
+                    data.especie.show();
+                    data.especie_div.show();
+                    data.unidad.show();
+                    data.unidad_div.show();
+                    data.cantidad.show();
+                    data.cantidad_div.show();
 
                     var unidad = res.unidad;
 
                     if(isNaN(unidad)){
-                        elementos.unidad.val("Otro");
-                        elementos.otra_especie.val(res.unidad);
-                        elementos.otra_especie.show();
-                        elementos.otra_especie_div.show();
+                        data.unidad.val("Otro");
+                        data.otra_especie.val(res.unidad);
+                        data.otra_especie.show();
+                        data.otra_especie_div.show();
                     }else{
-                       elementos.otra_especie.hide();
-                        elementos.otra_especie_div.hide();     
+                       data.otra_especie.hide();
+                        data.otra_especie_div.hide();     
                     }
                     
                 }else{
-                    elementos.especie.hide();
-                    elementos.especie_div.hide();
-                    elementos.unidad.hide();
-                    elementos.unidad_div.hide();
-                    elementos.cantidad.hide();
-                    elementos.cantidad_div.hide();
-                    elementos.otra_especie.hide();
-                    elementos.otra_especie_div.hide();
+                    data.especie.hide();
+                    data.especie_div.hide();
+                    data.unidad.hide();
+                    data.unidad_div.hide();
+                    data.cantidad.hide();
+                    data.cantidad_div.hide();
+                    data.otra_especie.hide();
+                    data.otra_especie_div.hide();
                 }
-                     elementos.Tipodeapoyo.val(res.tipo_apoyo);
+                     data.Tipodeapoyo.val(res.tipo_apoyo);
 
                 if(res.pais=="México"){
-                    elementos.paises.val(res.pais);  
-                    elementos.estadosMex.show();
-                    elementos.estadosMex.val(res.entidad);
+                    data.paises.val(res.pais);  
+                    data.estadosMex.show();
+                    data.estadosMex.val(res.entidad);
 
                     document.getElementById('otro_text').type = 'hidden';
                 }else{
                     if(res.pais=="EUA"){
-                        elementos.estadosMex.hide();
-                        elementos.paises.val(res.pais);
+                       data.estadosMex.hide();
+                       data.paises.val(res.pais);
                         document.getElementById('otro_text').type = 'hidden';
                         document.getElementById('estado').type = 'text'; 
                         document.getElementById("estado").value= res.entidad;                           
                     }else{
-                        elementos.paises.val("Otro");
-                        elementos.estadosMex.hide();
+                        data.paises.val("Otro");
+                        data.estadosMex.hide();
                         document.getElementById('otro_text').type = 'text';
                         document.getElementById('otro_text').value= res.pais;
                         document.getElementById('estado').type = 'text';
@@ -157,31 +157,31 @@ apoyo.verApoyo = function(idApoyo){
 
                 }
                 
-                elementos.numerodefactura.val(res.factura);
+                data.numerodefactura.val(res.factura);
 
                 if(res.importe== "0.00" ){
-                    elementos.importe_apoyo.val(res.importe_ext);
-                    elementos.abono.val(res.importe_ext);
-                    elementos.abono2.val(res.importe_ext);
+                    data.importe_apoyo.val(res.importe_ext);
+                    data.abono.val(res.importe_ext);
+                    data.abono2.val(res.importe_ext);
                 }else{
                     if(res.importe_ext != "" || res.importe_ext != null){
-                        elementos.importe_apoyo.val(res.importe);
-                        elementos.abono.val(res.importe);
-                        elementos.abono2.val(res.importe); 
+                        data.importe_apoyo.val(res.importe);
+                        data.abono.val(res.importe);
+                        data.abono2.val(res.importe); 
                     }else{
-                        elementos.importe_apoyo.val(res.importe_ext);
-                        elementos.abono.val(res.importe_ext);
-                        elementos.abono2.val(res.importe_ext);
+                        data.importe_apoyo.val(res.importe_ext);
+                        data.abono.val(res.importe_ext);
+                        data.abono2.val(res.importe_ext);
                     }                    
                 }      
-                elementos.moneda_apoyo.val(res.moneda);
-                elementos.referencia_apoyo.val(res.referencia);
-                elementos.observaciones.val(res.observaciones);
-                elementos.mescontableflujo.val(res.mes_contabel_libretaflujo);
-                elementos.fechadoctosalida.val(res.fecha_docto_salida);
-                elementos.doctoSalida.val(res.docto_salida);
-                elementos.poliza.val(res.poliza);
-                elementos.idSaldo.val(res.saldo);
+                data.moneda_apoyo.val(res.moneda);
+                data.referencia_apoyo.val(res.referencia);
+                data.observaciones.val(res.observaciones);
+                data.mescontableflujo.val(res.mes_contabel_libretaflujo);
+                data.fechadoctosalida.val(res.fecha_docto_salida);
+                data.doctoSalida.val(res.docto_salida);
+                data.poliza.val(res.poliza);
+                data.idSaldo.val(res.saldo);
 
             }
         }
@@ -223,7 +223,7 @@ apoyo.add = function(editMode){
                     proveedor: data.proveedor.val(),
                     donatario: data.donatario.val(),
                     tipoApoyo: data.tipoApoyo.val(),
-                    espcecie: data.especie.val(),
+                    especie: data.especie.val(),
                     cantidad: data.cantidad.val(),
                     otraUnidad: data.otraUnidad.val(),
                     unidad: data.unidad.val(),
@@ -244,9 +244,10 @@ apoyo.add = function(editMode){
                 success: function(result){
                 if(result.status == "error"){
                     utilerias.displayErrorServerMessage($("#mensajes-server"), result.message);
-                     
+                    window.scrollTo(0,0);
                     
                 }else{  
+                        window.scrollTo(0,0);
                          utilerias.displaySuccessMessage($("#mensajes-server"),result.message);
                          location.reload();
                      }
@@ -255,8 +256,9 @@ apoyo.add = function(editMode){
 	}
 };
 
+/*
 apoyo.editapoyo = function () {
-    var elementos =  apoyo.elem;
+    var data =  apoyo.elem;
     var idapoyo = $("#view-id-apoyo").text();
     
     // utilerias.removeErrorMessages();
@@ -276,24 +278,25 @@ apoyo.editapoyo = function () {
                     utilerias.displayErrorServerMessage(elem.msj_server, res.message);
                 }else{
                 //mostramos y ocultamos los botones
-                elementos.btn_save.attr('onclick','apoyo.updateApoyo();');
+                data.btn_save.attr('onclick','apoyo.updateApoyo();');
                 
-                elementos.btn_save.show();
-                elementos.btn_editar.hide();
-                elementos.idapoyo.val(res.id_apoyo);
-                elementos.mesContable.val(res.mes_contable);
-                elementos.fecha_docSalida.val(res.fecha_docto_salida);
-                elementos.docSalida.val(res.docto_salida);
-                elementos.concepto.val(res.concepto);
-                elementos.apoyo.val(res.apoyo);
-                elementos.saldo.val(res.saldo);
+                data.btn_save.show();
+                data.btn_editar.hide();
+                data.idapoyo.val(res.id_apoyo);
+                data.mesContable.val(res.mes_contable);
+                data.fecha_docSalida.val(res.fecha_docto_salida);
+                data.docSalida.val(res.docto_salida);
+                data.concepto.val(res.concepto);
+                data.apoyo.val(res.apoyo);
+                data.saldo.val(res.saldo);
                 
-                elementos.formulario.show();
-                elementos.cont_datos.hide();
+                data.formulario.show();
+                data.cont_datos.hide();
             }
         }
     });
 };
+*/
 
 
 /**
@@ -331,12 +334,12 @@ apoyo.validaDatos = function (data) {
         utilerias.displayErrorMessage(data.cantidad,"Debe ingresar un número");
         valid = false; 
     }
-
+    /*
     if(!$.trim(data.numeroReferencia.val())){
         valid = false;
         utilerias.displayErrorMessage(data.numeroReferencia,"Debe ingresar un numero de referencia");
     }
-
+    */
     if(!utilerias.isValidDate(data.fechaReferencia.val())){
         valid = false;
         utilerias.displayErrorMessage(data.fechaReferencia,"Formato de fecha no válido.");
@@ -413,12 +416,13 @@ apoyo.abono = function(){
 };
 
 /**
-* Regresa el formulario a su estado original
+* click en el boton nuevo
 **/
 apoyo.nuevo = function(){
     $("#formulario-captura-apoyos")[0].reset();
     apoyo.elem.fechaCaptura.val($.datepicker.formatDate('yy-mm-dd', new Date()));
     apoyo.elem.fechaReferencia.val($.datepicker.formatDate('yy-mm-dd', new Date()));
+    apoyo.elem.btnAdd.hide();
 };
 
 /**
@@ -450,10 +454,12 @@ apoyo.pais = function (){
             }
 };
 
-
+/**
+* Evento al seleccionar tipo de apoyo, unidad o especie
+**/
 apoyo.tipoApoyo = function () {
-
-    
+    if(apoyo.elem.unidad == 0)
+        apoyo.elem.otraUnidad.show();   
 };
 
 apoyo.otro = function () {

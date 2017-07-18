@@ -76,7 +76,7 @@ $option=isset($_REQUEST['op']) ?  $_REQUEST['op']: null;
         $proveedor->cheque();
         break;   
     case 'apoyos':
-        $apoyo->viewPage();
+        $apoyo->index();
         break;
 
     // json con todos los apoyos, es para el dataTable

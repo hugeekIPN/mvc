@@ -198,8 +198,7 @@ switch ($action) {
       /// CRUD APOYOSGASTOS
     case 'addApoyo';
         $apoyo = new ApoyoGastoController(null,null,null);
-        //echo json_encode($apoyo->nuevoApoyoGasto($_POST));
-        echo json_encode("{'status':'success','message':'hola'}");
+        echo json_encode($apoyo->nuevoApoyoGasto($_POST));
         break;
     case 'getApoyo';
         $apoyo = new ApoyoGastoController($_POST['idApoyo'], null,null);

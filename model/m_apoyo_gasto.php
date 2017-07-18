@@ -119,38 +119,36 @@ class m_apoyo_gasto{
     * @param Arreglo con los datos del apoyo_gasto
     * @return true si logra guardar los datos
     **/
-    public function nuevoApoyoGasto($data)
-    {             
-        return $this->db->insert('apoyosgastos',  array ( 
-            'tipo'         => $data['tipo'], 
-            'estatus'      => $data['estatus'],
-            'concepto'      => $data['concepto'],
-            'importe'         => $data['importe'],
-            'importe_ext'         => $data['importe_ext'],
-            'moneda'         => $data['moneda'], 
-            //'tipo_cambio'         => $data['tipo_cambio'], 
-            
-            'folio'         => $data['folio'],
-            'frecuencia'         => $data['frecuencia'],
-            'id_especie'         => $data['id_especie'],
-            'id_evento'         => $data['id_evento'],
-            'id_proveedor'         => $data['id_proveedor'],
-            'tipo_apoyo'         => $data['tipo_apoyo'], 
-            'pais'         => $data['pais'], 
-            'entidad'         => $data['entidad'], 
-            'observaciones'         => $data['observaciones'],
-            'referencia'         => $data['referencia'], 
-            'unidad'         => $data['unidad'],
-            'cantidad'      => $data['cantidad'],
-            'mes_contable'         => $data['mes_contabel_libretaflujo'],
-            'fecha_referencia'     => $data['fecha_recibo'],
-            'fecha_docto_salida'         => $data['fecha_docto_salida'], 
-            'docto_salida'         => $data['docto_salida'], 
-            'poliza'         => $data['poliza']
+    public function addApoyoGasto($data)
+    {   
+        $newData = [
+            'concepto' => $data['concepto'], 
+            'id_frecuencia_apoyo' => $data['frecuencia'],
+            'importe' => $data['abono'],            
+            'id_evento' => $data['evento'],
+            'observaciones' => $data['observaciones'],
+            'referencia' => $data['numeroReferencia'],
+            'mes_contable' => $data['mesContable'],
+            'docto_salida' =>$data['doctoSalida'],
+            'poliza' => $data['poliza'],
+            'fecha_referencia'=> $data['fechaReferencia'],          
+            'fecha_docto_salida' => $data['fechaDoctoSalida'],
+            'fecha_creacion' => $data['fechaCaptura'],
+            'id_frecuencia_apoyo' => $data['frecuencia'],
+            'id_estado' => $data['estado'],
+            'id_moneda' => $data['moneda'],
+            'id_evento' => $data['evento']
+        ];
 
-        ));
-        
-          
+        if($data['estatus'])
+            $newData['estatus'] = 1;
+
+        if($data['proveedor']) 
+            $newData['id_proveedor'] = $data['proveedor'];
+        else
+            $newData['id_proveedor'] = $data['donatario'];
+
+        return $this->db->insertLastId('apoyosgastos', $newData);
     }
 
     /**
@@ -244,5 +242,26 @@ class m_apoyo_gasto{
         $query = "select * from moneda";
         return $this->db->select($query,[]);
     }
+
+    public function addUnidad($unidad){
+        return $this->db->insertLastId('unidades',['nombre' => $unidad]);
+    }
+
+    /**
+    * Inserta datos en la relacion especie apoyo. 
+    * Este caso es para cuando se selecciona un apoyo en especie
+    **/
+    public function addEspecieApoyo($data){
+        return $this->db->insertLastId('especie_apoyo',
+            [
+            'id_apoyo' => $data['idApoyo'],
+            'id_especie' => $data['idEspecie'],
+            'cantidad' =>$data['cantidad'],
+            'id_unidad' => $data['idUnidad']
+            ]
+        );
+    }
+
+
 
 }
