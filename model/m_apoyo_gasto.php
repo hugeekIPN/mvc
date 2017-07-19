@@ -72,6 +72,8 @@ class m_apoyo_gasto{
         ,f.id_frecuencia_apoyo idFrecuencia 
         ,f.nombre as frecuencia
         ,a.id_estado as idEstado
+        ,pais.id_pais as idPais
+        ,pais.nombre as pais
         ,st.nombre as nombreEstado
         ,a.id_moneda as idMoneda
         ,m.acronimo
@@ -81,6 +83,7 @@ class m_apoyo_gasto{
         INNER JOIN eventos as e ON a.id_evento = e.id_evento        
         INNER JOIN frecuencia_apoyo AS f ON f.id_frecuencia_apoyo = a.id_frecuencia_apoyo
         INNER JOIN estado AS st ON st.id_estado = a.id_estado
+        INNER JOIN pais as pais on st.id_pais = pais.id_pais
         INNER JOIN moneda AS m ON m.id_moneda = a.id_moneda
         WHERE a.id_apoyo = :id AND p.tipo = :tipo ";
 
@@ -106,6 +109,7 @@ class m_apoyo_gasto{
                 $result['descripcionEspecie'] = $especieApoyo['descripcion'];
                 $result['cantidad'] = $especieApoyo['cantidad'];
                 $result['unidad'] = $especieApoyo['nombre'];
+                $result['idUnidad'] = $especieApoyo['id_unidad'];
             }else{
                 $result['idEspecie'] = null;
             }
@@ -131,8 +135,8 @@ class m_apoyo_gasto{
             'mes_contable' => $data['mesContable'],
             'docto_salida' =>$data['doctoSalida'],
             'poliza' => $data['poliza'],
-            'fecha_referencia'=> $data['fechaReferencia'],          
-            'fecha_docto_salida' => $data['fechaDoctoSalida'],
+            'fecha_referencia'=> $data['fechaReferencia']?:null,          
+            'fecha_docto_salida' => $data['fechaDoctoSalida']?:null,
             'fecha_creacion' => $data['fechaCaptura'],
             'id_frecuencia_apoyo' => $data['frecuencia'],
             'id_estado' => $data['estado'],
@@ -191,17 +195,6 @@ class m_apoyo_gasto{
             return array();
     }
 
-    public function getApoyoEventos($evento, $anio) 
-    {
-        $result = $this->db->select(
-                    "SELECT a.id_apoyo, a.concepto, e.nombre, a.factura  FROM apoyosgastos as a INNER JOIN eventos as e ON a.id_evento=e.id_evento WHERE a.id_evento = :id and year(a.fecha_recibo) = :anio",  array ("anio" => $anio, "id" => $evento)
-                  );
-        if ( count($result) > 0 )
-            return $result;
-        else
-            return null;
-    }
-
 
     public function getAllApoyosGastos_type($type){
         $query = "SELECT * from apoyosgastos as a INNER JOIN  eventos as e ON a.id_evento= e.id_evento WHERE a.tipo=".$type;
@@ -232,17 +225,28 @@ class m_apoyo_gasto{
             $query = "select * from estado where id_pais = :id";
             $result = $this->db->select($query,['id'=>$idPais]);
         }else{
-            $query = "select * from estado";
-            $result = $this->db->select($query,[]);
+            if($idPais==0){
+                $query = "select * from estado where id_pais > 2";
+                $result = $this->db->select($query,[]);
+            }else{
+                $query = "select * from estado";
+                $result = $this->db->select($query,[]);
+            }            
         }
         return $result;
     }
 
+    /**
+    * Obtiene todas las monedas registradas
+    **/
     public function getMonedas(){
         $query = "select * from moneda";
         return $this->db->select($query,[]);
     }
 
+    /**
+    * Agrega una nueva unidad para especies
+    **/
     public function addUnidad($unidad){
         return $this->db->insertLastId('unidades',['nombre' => $unidad]);
     }
@@ -262,6 +266,26 @@ class m_apoyo_gasto{
         );
     }
 
+
+    /**
+    * Elimina una relacion de especie_apoyo
+    * @param el id del apoyo
+    **/
+    public function deleteEspecieApoyo($idApoyo){
+        return $this->db->delete("especie_apoyo", "id_apoyo = :id", array( "id" => $idApoyo));  
+    }
+
+
+    /**
+    * Actuliza una relacion especie apoyo
+    **/
+    public function updateEspecieApoyo($data,$idApoyo){
+        return $this->db->update("especie_apoyo", 
+                    $data, 
+                    "id_apoyo = :id",
+                    array( "id" => $idApoyo )
+               );
+    }
 
 
 }

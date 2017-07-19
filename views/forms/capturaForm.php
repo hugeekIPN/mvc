@@ -108,7 +108,6 @@
 			<?php foreach($paises as $pais):?>
 				<option value="<?= $pais['id_pais']; ?>"><?=$pais['nombre'];?></option>
 			<?php endforeach; ?>
-			<option value="0">otro</option>
 		</select>
 	</div >
 
@@ -121,10 +120,18 @@
 		</select>		
 	</div >
 
-	<div class=" form-group col-xs-3" hidden id="otroEstadoDiv">
+	<div class=" form-group col-xs-3"  id="otroEstadoDiv">
 		<label for="otroEstado">Estado o región</label>
-		<input type="text" class="form-control" id="otroEstado" >
+		<select type="text" class="form-control" id="otroEstado">	
+		</select>
 	</div>
+
+	<!-- TODOS LOS ESTADOS QUE NO SON MEXICO Y EUA (siempre van ocultos) -->
+	<select hidden id="estados">
+		<?php foreach($estados as $estado): ?>
+				<option class="<?= $estado['id_pais']; ?>" value="<?= $estado['id_estado']; ?>"><?= $estado['nombre'];?></option>
+			<?php endforeach; ?>
+	</select>
 
 	<div class="form-group col-xs-3" hidden id="estadosEuaDiv">
 		<label for="estadosEua">Estado o Región</label>
@@ -145,7 +152,7 @@
 	</div >
 	<div class=" form-group col-xs-2">
 		<label for="abono">Importe</label>
-		<input type="number" onblur="apoyo.abono();" class="form-control" name="abono" id="abono" value="0.00" >
+		<input type="number" onblur="$('#abono2').val($(this).val());" class="form-control" name="abono" id="abono" value="0.00" >
 	</div>
 	<div class=" form-group col-xs-2">
 		<label for="moneda_apoyo">Moneda</label>

@@ -223,8 +223,8 @@ CREATE TABLE IF NOT EXISTS `apoyosgastos` (
   ,`docto_salida` VARCHAR(64)
   ,`poliza` VARCHAR(32)
 
-  ,`fecha_referencia` DATE 
-  ,`fecha_docto_salida` DATE 
+  ,`fecha_referencia` DATE DEFAULT NULL
+  ,`fecha_docto_salida` DATE DEFAULT NULL
   ,`fecha_creacion` DATETIME DEFAULT CURRENT_TIMESTAMP
   ,`fecha_cambio` DATETIME DEFAULT CURRENT_TIMESTAMP
   ,`ultima_modificacion` DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP    
