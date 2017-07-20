@@ -23,7 +23,7 @@
 
 		<div class="form-group col-xs-2">
 			<label for="fechacaptura">Fecha de Captura</label>
-			<input type="text" id="fechacaptura" name="fechacaptura" class="form-control" placeholder="YYYY-MM-DD">
+			<input type="text" id="fechacaptura" name="fechacaptura" class="form-control datepicker" placeholder="YYYY-MM-DD">
 		</div>
 
 		<div class=" form-group col-xs-2">
@@ -148,7 +148,7 @@
 	</div>
 	<div class=" form-group col-xs-3">
 		<label for="fecha_referencia">Fecha de referencia</label>
-		<input type="text" id="fecha_referencia" class="form-control" placeholder="YYYY-MM-DD">
+		<input type="text" id="fecha_referencia" class="form-control datepicker" placeholder="YYYY-MM-DD">
 	</div >
 	<div class=" form-group col-xs-2">
 		<label for="abono">Importe</label>
@@ -212,7 +212,7 @@
 	<div class=" form-group col-xs-3">
 		<label for="
 		">Fecha de documento de salida</label>
-		<input type="text" id="fechadoctosalida" name="fechadoctosalida" class="form-control" placeholder="YYYY-MM-DD">
+		<input type="text" id="fechadoctosalida" name="fechadoctosalida" class="form-control datepicker" placeholder="YYYY-MM-DD">
 	</div >
 	
 	<div class=" input form-group col-xs-3">

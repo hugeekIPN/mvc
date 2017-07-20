@@ -1,12 +1,76 @@
 var apoyo = {};
 
-apoyo.tabla = $('#tabla-apoyos').DataTable( {
-    ajax: "index.php?op=getApoyos"
-} );
 
-$('#tabla-apoyos tbody').on('click','tr',function(){
-    apoyo.verApoyo($(this).find('td').first().text());
-});
+
+
+//Rango de fechas
+$.fn.dataTable.ext.search.push(
+    function( settings, data, dataIndex ) {
+        var min = $('#fechaMin').val();
+        var max = $('#fechaMax').val();
+        var date = data[5]; // use data for the date column
+ 
+        if ( ( !utilerias.isValidDate( min ) && !utilerias.isValidDate( max ) ) ||
+             ( !utilerias.isValidDate( min ) && date <= max ) ||
+             ( min <= date   && !utilerias.isValidDate( max ) ) ||
+             ( min <= date   && date <= max ) )
+        {
+            return true;
+        }
+        return false;
+    }
+);
+
+$(document).ready(function() {
+
+    apoyo.tabla = $('#tabla-apoyos').DataTable( {
+        ajax: "index.php?op=getApoyos"
+    } );
+
+    $('#tabla-apoyos tbody').on('click','tr',function(){
+        apoyo.verApoyo($(this).find('td').first().text());
+    });
+     
+    // Event listener to the two range filtering inputs to redraw on input
+    // $('#fechaMin, #fechaMax').keyup( function() {
+    //     apoyo.tabla.draw();
+    // } );
+
+    $("#todos").click(function(){
+        apoyo.tabla.column(6).search(".",true,false).draw();
+    });
+
+    $("#activos").click(function(){
+        apoyo.tabla.column(6).search("Activo",false,false).draw();
+    });
+
+    $("#cancelados").click(function(){
+        apoyo.tabla.column(6).search("Cancelado",false,false).draw();
+    });
+
+
+
+    //filtro activo por año
+    $("#anio").change(function(){
+        apoyo.tabla.column(5).search($(this).val(),false,false).draw();
+    });
+
+    //busqueda por folio
+    $("#folio").keyup(function(){
+        if($.trim($(this).val()))
+            apoyo.tabla.column(0).search("^"+$(this).val()+"$",true,false).draw();
+        else{
+            apoyo.tabla.column(0).search( '.',true,false ).draw();
+        }
+    });
+
+    //rango de fechas
+    $('#fechaMin, #fechaMax').change( function() {
+        apoyo.tabla.draw();
+    } );
+
+
+} );
 
 
 /**

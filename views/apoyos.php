@@ -14,9 +14,9 @@
 			</section>
 		</div>
 		<section class="filtros col-xs-4 radios " >
-			<label class="radio-inline"><input value="0" type="radio" name="optradio" checked>Todos</label>
-			<label class="radio-inline"><input value="1" type="radio" name="optradio">Activo</label>
-			<label class="radio-inline"><input value="2" type="radio" name="optradio">Cancelado</label>
+			<label class="radio-inline"><input id="todos" value="0" type="radio" name="optradio" checked>Todos</label>
+			<label class="radio-inline"><input id="activos" value="1" type="radio" name="optradio">Activo</label>
+			<label class="radio-inline"><input id="cancelados" value="2" type="radio" name="optradio">Cancelado</label>
 		</section>
 
 		<section class="filtros col-xs-4">
@@ -27,10 +27,10 @@
 		<section class="filtros col-xs-4 fechas">
 			<span class="rango_fechas pull-left">Rango de Fechas</span>
 			<div class="form-group col-xs-3">
-				<input type="text" id="datepicker" class="form-control" placeholder="Inicio">
+				<input  type="text" id="fechaMin" class="form-control datepicker" placeholder="Inicio">
 			</div>
 			<div class="form-group col-xs-3">
-				<input type="text" id="datepicker2" class="form-control" placeholder="Fin">
+				<input  type="text" id="fechaMax" class="form-control datepicker" placeholder="Fin">
 			</div>
 
 		</section>
@@ -44,7 +44,7 @@
 			<label for="anio_filtro">Filtro Activo:</label>
 		</div>
 		<div class="form-group col-xs-2">			
-			<select type="text" class="form-control" name="anio" id="anio" onchange="apoyo.filtro();">
+			<select type="text" class="form-control" name="anio" id="anio">
 				<?php $anio= date("Y"); 
 				for($a=2000; $a<=$anio; $a++)
 					{ ?>
@@ -86,10 +86,10 @@
 		<h4 class="generar_reportes col-xs-4"> Rango de fechas para generar reporte:</h4>
 
 		<div class="form-group col-xs-3">
-			<input type="text" id="datepicker3" class="form-control" placeholder="Inicio">
+			<input class="datepicker" type="text" id="datepicker3" class="form-control" placeholder="Inicio">
 		</div>
 		<div class="form-group col-xs-3">
-			<input type="text" id="datepicker4" class="form-control" placeholder="Fin">
+			<input class="datepicker" type="text" id="datepicker4" class="form-control" placeholder="Fin">
 		</div>
 		<div class="reporte form-group col-xs-2">
 			<button class="btn btn-primary"> Generar reporte</button>
@@ -164,7 +164,7 @@
 				</div>
 				<br/>
 				<label for="fecha_cambio"> Fecha de cambio: </label>
-				<input class="input" type="text" id="fecha_cambio" name="fecha_cambio">	
+				<input class="datepicker" class="input" type="text" id="fecha_cambio" name="fecha_cambio">	
 				<br/>
 				<label for="fecha_cambio"> Firma: </label>
 
@@ -217,7 +217,7 @@
 				</div>
 				<br/>
 				<label for="fecha_cambio"> Fecha de cambio: </label>
-				<input class="input" type="text" id="fecha_cambio" name="fecha_cambio">	
+				<input class="input datepicker" type="text" id="fecha_cambio" name="fecha_cambio">	
 				<br/>
 				<label for="fecha_cambio"> Firma: </label>
 
