@@ -44,8 +44,7 @@ apoyo.elem ={
     //botones fijos
     btnSave:       $("#btn-save"),
     btnAdd:       $("#btn-add"),
-    btnUpdate: $("#btn-update"),
-    btnDelete:     $("#btn-delete"),
+    btnUpdate: $("#btn-update")
 };
 
 /**
@@ -55,6 +54,10 @@ apoyo.loadTable = function(){
     apoyo.tabla.ajax.reload();
 }
 
+/**
+** Detalle de un apoyo
+** Muestra todos los datos seleccionados en la tabla
+**/
 apoyo.verApoyo = function(idApoyo){
     var data = apoyo.elem;    
     $("#datable").hide();
@@ -73,7 +76,7 @@ apoyo.verApoyo = function(idApoyo){
 			var res = JSON.parse(result);
             
 			if(res.status == "error"){
-				utilerias.displayErrorServerMessage(elem.msj_server, res.message);
+				utilerias.displayErrorServerMessage($("#mensajes-server"), res.message);
 			}else{
                 data.btnAdd.show();
                 data.btnSave.hide();
@@ -86,7 +89,8 @@ apoyo.verApoyo = function(idApoyo){
                 data.fechaCaptura.val(res.fechaCaptura);
                 data.frecuencia.val(res.idFrecuencia);
                 data.evento.val(res.idEvento);
-                if(res.tipoProveedor)                
+
+                if(res.tipoProveedor==0)                
                     data.proveedor.val(res.idProveedor);
                 else
                     data.donatario.val(res.idProveedor);                
@@ -108,15 +112,11 @@ apoyo.verApoyo = function(idApoyo){
                     data.estadosMex.val(res.idEstado);
                 else if(res.idPais==2){
                         data.estadosEua.val(res.idEstado);
-                        $("#estadosMexDiv").hide();
-                        $("#estadosEuaDiv").show();
                     }else{
                         $("#estados option."+res.idPais).clone().appendTo($("#otroEstado").empty());
                         data.otroEstado.val(res.idEstado);
-                        $("#estadosMexDiv").hide();
-                        $("#estadosEuaDiv").hide();
-                        $("#otroEstadoDiv").show();
                     }
+                apoyo.pais();
 
                 data.abono.val(res.importe);
                 data.moneda.val(res.idMoneda);
@@ -218,13 +218,16 @@ apoyo.validaDatos = function (data) {
     }
 
     //especie seleccionada
-    if(data.tipoApoyo.val()==0 && !(data.cantidad.val()>0)){
+    if(data.tipoApoyo.val()==0 ){
         if(data.unidad.val()==0 && !$.trim(data.otraUnidad.val()) ){ 
             utilerias.displayErrorMessage(data.otraUnidad,"Debes especificar una unidad para la especie seleccionada");
             $("#div_otro").show();
+            valid = false;
         }
-        utilerias.displayErrorMessage(data.cantidad,"Debe ingresar un número");
-        valid = false; 
+        if (!(data.cantidad.val()>0)) {
+            utilerias.displayErrorMessage(data.cantidad,"Debe ingresar un número");
+            valid = false; 
+        }
     }
     /*
     if(!$.trim(data.numeroReferencia.val())){
@@ -272,30 +275,6 @@ apoyo.getEstado = function(){
     return estado;
 };
 
-apoyo.deleteApoyo = function () {
-    var elementos = apoyo.elem;
-    var idApoyo = elementos.idApoyo.val();
-    var c = confirm('Está seguro de realizar la operación');
-    if (c) {
-        $.ajax({
-            type: "post",
-            url: "ajax.php",
-            dataType: "json",
-            data: {
-                action: "deleteApoyo",
-                idApoyo: idApoyo
-            },
-           success: function(result){
-                if(result.status == "error"){
-                    utilerias.displayErrorServerMessage(elem.msj_server, result.message);
-                }else{
-                    utilerias.displaySuccessMessage($("#mensajes-server"),result.message);
-                    location.reload();
-                }
-           }
-        });
-    }
-};
 
 /**
 * click en el boton nuevo

@@ -19,8 +19,6 @@ class ApoyoGastoController {
     public $model;
     public $modelEvento;
     public $modelProveedor;
-    public $modelSaldo;
-    public $modelArchivo;
     public $modelEspecie;
     public $modelFrecuencia;
 
@@ -184,12 +182,14 @@ class ApoyoGastoController {
                 $newData['id_evento'] = $data['evento'];
 
             //select proveedor o donatario
-            if($data['proveedor'])  
+            if($data['donatario']) {
+                if($currentApoyo['idProveedor'] != $data['donatario'])
+                    $newData['id_proveedor'] = $data['donatario'];                
+            }
+            else{                
                 if($currentApoyo['idProveedor'] != $data['proveedor'])
                     $newData['id_proveedor'] = $data['proveedor'];
-            else
-                if($currentApoyo['idProveedor'] != $data['donatario'])
-                    $newData['id_proveedor'] = $data['proveedor'];
+            }  
 
             //select especie o importe
             if($data['tipoApoyo']){ //importe
@@ -276,7 +276,7 @@ class ApoyoGastoController {
 
 
 
- public function updateImporte_ApoyoGasto($data) {
+    public function updateImporte_ApoyoGasto($data) {
         $result = array();
         $errors = false;
 
@@ -330,33 +330,7 @@ class ApoyoGastoController {
 
         return $result;
     }
-    /**
-     * FALTA VALIDAR RELACIONES
-     * */
-    public function deleteApoyoGasto() {
-        $currentApoyo = $this->model->getApoyoGasto($this->idApoyo);    
-        $saldo = $this->modelSaldo->getUltimoSaldo();
-            $saldo = $saldo? $saldo['saldo'] : 0;
 
-          $actualizaSaldo = $saldo + $currentApoyo['importe']; 
-          $idSaldoCapturado = $currentApoyo['id_saldo']; 
-         $this->modelArchivo-> deleteArchivo_Apoyo($this->idApoyo);
-
-        if ($this->model->deleteApoyoGasto($this->idApoyo)) {
-
-                $this->modelSaldo->nuevoSaldo($actualizaSaldo);
-                $this->modelSaldo->deleteSaldo($idSaldoCapturado);
-
-                $result = array(
-                    "status" => "success",
-                    "message"=> "Registro eliminado");
-        }else{
-            $result = array(
-                "status" => "error",
-                "message"=> "No se pudo realizar la operación");
-        }
-        return $result;
-    }
 
     /**
     * Valida datos para agregar un nuevo apoyo
@@ -429,19 +403,6 @@ class ApoyoGastoController {
 
         return $errors;
     }
-
-    /**
-     * Verifica si un arreglo o un string es vacio
-     * */
-    private function esVacio($in) {
-        if (is_array($in))
-            return empty($in);
-        elseif ($in == '')
-            return true;
-        else
-            return false;
-    }
-
 
     /**
     * verifica si una fecha es válida,

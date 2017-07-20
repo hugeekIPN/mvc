@@ -127,8 +127,7 @@
 		<div class="btn-fixed">
 			<button id="btn-save" class="btn btn-primary" onclick="apoyo.add();">Guardar</button>
 			<button id="btn-add" class="btn btn-primary" onclick="apoyo.add();">Agregar</button>
-			<button id="btn-update" class="btn btn-primary" onclick="apoyo.add(true)">Actualizar</button>
-			<button id="btn-delete" class="btn btn-danger" onclick="apoyo.deleteApoyo();" >Eliminar</button>
+			<button id="btn-update" class="btn btn-primary" onclick="apoyo.add(true)">Actualizar</button>			
 		</div>
 
 	</div>

@@ -85,7 +85,7 @@ class m_apoyo_gasto{
         INNER JOIN estado AS st ON st.id_estado = a.id_estado
         INNER JOIN pais as pais on st.id_pais = pais.id_pais
         INNER JOIN moneda AS m ON m.id_moneda = a.id_moneda
-        WHERE a.id_apoyo = :id AND p.tipo = :tipo ";
+        WHERE a.id_apoyo = :id AND a.categoria = :tipo ";
 
         $data = $this->db->select($query,["id"=>$id_apoyo,"tipo"=>$tipo]);
 
@@ -195,31 +195,17 @@ class m_apoyo_gasto{
             return array();
     }
 
-
-    public function getAllApoyosGastos_type($type){
-        $query = "SELECT * from apoyosgastos as a INNER JOIN  eventos as e ON a.id_evento= e.id_evento WHERE a.tipo=".$type;
-        $result = $this->db->select($query, array());
-        if(count($result)>0)
-            return $result;
-        else
-            return array();
-    }
-
-    public function getUltimoApoyo(){
-        $query = "SELECT * from apoyosgastos order by id_apoyo desc limit 1";
-        $result = $this->db->select($query, array());
-        if(count($result)>0)
-            return $result[0];
-        else
-            return 0;
-    }
-
+    /**
+    ** Obtiene todos los paises registrados
+    **/
     public function getPaises(){
         $query = "select * from pais";
         return $this->db->select($query,[]);
     }
 
-
+    /**
+    ** Obtiene todos los estados
+    **/
     public function getEstados($idPais=null){
         if($idPais){
             $query = "select * from estado where id_pais = :id";

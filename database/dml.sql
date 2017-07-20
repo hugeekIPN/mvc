@@ -151,7 +151,15 @@ VALUES(1,"ACADEMIA DE MUSICA DEL PALACIO DE MINERIA, A.C.","AMP850419U45","55109
 ,(3,"HIM IMPLANTES COCLEARES","00133009914","1234567890");
 
 -- -----------------------------------------------------
--- PROVEEDORES
+-- DONATOARIOS solo son de prueba
+-- -----------------------------------------------------
+INSERT INTO proveedores(id_proveedor,razon_social,rfc,telefono,tipo)
+VALUES(4,"donador ACADEMIA DE MUSICA DEL PALACIO DE MINERIA, A.C.","AMP850419U45","55109821",1)
+,(5,"donador GRUPO ZAMACONA, S.A. DE C.V.","unrfc","1234567890",1)
+,(6,"donador de pruebaHIM IMPLANTES COCLEARES","00133009914","1234567890",1);
+
+-- -----------------------------------------------------
+-- UNIDADES
 -- -----------------------------------------------------
 INSERT INTO unidades(id_unidad,nombre)
 VALUES(1,"bolsa")

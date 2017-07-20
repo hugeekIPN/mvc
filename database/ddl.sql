@@ -149,7 +149,7 @@ CREATE TABLE IF NOT EXISTS `eventos` (
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `proveedores` (
   `id_proveedor`  INT UNSIGNED NOT NULL AUTO_INCREMENT
-  ,`razon_social` VARCHAR(32)  
+  ,`razon_social` VARCHAR(128)  
   ,`rfc` VARCHAR(32)
   ,`telefono` VARCHAR(16)
   ,`calle` VARCHAR(255)
