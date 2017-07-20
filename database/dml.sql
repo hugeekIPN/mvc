@@ -140,6 +140,7 @@ VALUES(1,1,"este es un subprogramas","descripcion del subprograma de prueba");
 -- -----------------------------------------------------
 INSERT INTO eventos(id_evento,nombre,subprogramas_idsubprogramas,descripcion)
 VALUES(1,"nombre del evento",1,"descripcion del evento");
+VALUES(2,"otro evento",1,"descripcion del evento");
 
 
 -- -----------------------------------------------------
@@ -169,6 +170,20 @@ VALUES(1,"bolsa")
 ,(5,"lts")
 ,(6,"pza")
 ,(7,"ton");
+
+-- -----------------------------------------------------
+-- DOCUMENTO DE SALIDA
+-- -----------------------------------------------------
+INSERT INTO documento_salida(id_documento_salida,nombre)
+VALUES(1,"SPEUA")
+-- documento de salida para apoyos gastos
+,(2,"Pago Interbancario")
+,(3,"Traspaso")
+,(4,"Cargo en cuenta")
+-- documento de salida para cargos
+,(5,"Depósito")
+,(6,"Depósito en factura")
+,(7,"Desinversión");
 
 -- -----------------------------------------------------
 -- APOYOS

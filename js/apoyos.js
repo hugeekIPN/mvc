@@ -1,8 +1,5 @@
 var apoyo = {};
 
-
-
-
 //Rango de fechas
 $.fn.dataTable.ext.search.push(
     function( settings, data, dataIndex ) {
@@ -21,6 +18,9 @@ $.fn.dataTable.ext.search.push(
     }
 );
 
+/**
+** DATATABLE
+**/
 $(document).ready(function() {
 
     apoyo.tabla = $('#tabla-apoyos').DataTable( {
@@ -47,8 +47,6 @@ $(document).ready(function() {
     $("#cancelados").click(function(){
         apoyo.tabla.column(6).search("Cancelado",false,false).draw();
     });
-
-
 
     //filtro activo por año
     $("#anio").change(function(){
@@ -311,7 +309,7 @@ apoyo.validaDatos = function (data) {
 
     if(!(data.abono.val()>=0)){
         valid=false;
-        utilerias.displayErrorMessage(data.abono,"Debes ingresar un importe");
+        utilerias.displayErrorMessage(data.abono,"Debes ingresar un importe válido");
     }    
 
     if($.trim(data.fechaDoctoSalida.val()) 

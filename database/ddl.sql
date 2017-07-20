@@ -7,6 +7,7 @@
 DROP TABLE IF EXISTS `usuarios` ;
 DROP TABLE IF EXISTS `especie_apoyo` ;
 DROP TABLE IF EXISTS `unidades`;
+DROP TABLE IF EXISTS `documento_salida`;
 DROP TABLE IF EXISTS `apoyosgastos` ;
 DROP TABLE IF EXISTS `frecuencia_apoyo` ;
 DROP TABLE IF EXISTS `cuenta_bancaria` ;
@@ -156,7 +157,7 @@ CREATE TABLE IF NOT EXISTS `proveedores` (
   ,`colonia` VARCHAR(255)
   ,`cp` VARCHAR(5)
   ,`delegacion` VARCHAR(128) 
-  ,`tipo` BIT(1) DEFAULT 0 COMMENT '0- Proveedor\n1- Donatario\n'
+  ,`tipo` TINYINT(1) DEFAULT 0 COMMENT '0- Proveedor\n1- Donatario\n'
   ,`contacto` VARCHAR(128) NULL
   ,`correo_contacto` VARCHAR(128) NULL
   ,`fecha_creacion` DATETIME DEFAULT CURRENT_TIMESTAMP
@@ -206,12 +207,23 @@ CREATE TABLE IF NOT EXISTS `frecuencia_apoyo` (
 
 
 -- -----------------------------------------------------
+-- DOCUMENTO DE SALIDA
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `documento_salida`(
+  `id_documento_salida` INT UNSIGNED NOT NULL
+  ,`nombre` VARCHAR(32)
+  ,`fecha_creacion` DATETIME DEFAULT CURRENT_TIMESTAMP
+  ,`ultima_modificacion` DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+  , PRIMARY KEY(`id_documento_salida`)
+)ENGINE=InnoDB  DEFAULT CHARSET=utf8;
+
+-- -----------------------------------------------------
 -- TABLA PARA REGISTRAR UN APOYO
 -- ----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `apoyosgastos` (
   `id_apoyo` INT UNSIGNED NOT NULL AUTO_INCREMENT
-  ,`categoria` BIT(1) DEFAULT 0 COMMENT '0-Apoyo\n1-Gasto\n'
-  ,`estatus` BIT(1) DEFAULT 0  COMMENT  '0 activo, 1 cancelado'
+  ,`categoria` TINYINT(1) DEFAULT 0 COMMENT '0-Apoyo\n1-Gasto\n'
+  ,`estatus` TINYINT(1) DEFAULT 0  COMMENT  '0 activo, 1 cancelado'
   ,`concepto` VARCHAR(512)
   ,`importe` DECIMAL(11,2) DEFAULT 0
   ,`tipo_cambio` DECIMAL(11,2) DEFAULT 1
@@ -220,7 +232,6 @@ CREATE TABLE IF NOT EXISTS `apoyosgastos` (
   ,`referencia` VARCHAR(32)  COMMENT 'numero de referencia'
   -- campos libreta flujo
   ,`mes_contable` VARCHAR(16)
-  ,`docto_salida` VARCHAR(64)
   ,`poliza` VARCHAR(32)
 
   ,`fecha_referencia` DATE DEFAULT NULL
@@ -231,12 +242,17 @@ CREATE TABLE IF NOT EXISTS `apoyosgastos` (
 
   -- llaves foraneas
   ,`id_proveedor` INT UNSIGNED COMMENT 'aplica para proveedor y donatario'
-  
+  ,id_documento_salida INT UNSIGNED
   ,id_frecuencia_apoyo INT UNSIGNED NOT NULL
   ,id_estado INT UNSIGNED NOT NULL
   ,`id_moneda` INT UNSIGNED NOT NULL COMMENT '0 mn 1 usd 2 euros'
   ,`id_evento` INT UNSIGNED NOT NULL
   ,PRIMARY KEY (`id_apoyo`)
+  ,CONSTRAINT `fk_docto_salida`
+    FOREIGN KEY (`id_documento_salida`)
+    REFERENCES `documento_salida` (`id_documento_salida`)
+    ON DELETE NO ACTION
+    ON UPDATE CASCADE
   ,CONSTRAINT `fk_apoyo_proveedor`
     FOREIGN KEY (`id_proveedor`)
     REFERENCES `proveedores` (`id_proveedor`)
@@ -304,7 +320,7 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
   ,`email` VARCHAR(128)
   ,`nombre` VARCHAR(64)
   ,`password` VARCHAR(32) NOT NULL
-  ,`estatus` BIT(1) DEFAULT 0 COMMENT '0 acctivo' 
+  ,`estatus` TINYINT(1) DEFAULT 0 COMMENT '0 acctivo' 
   ,`fecha_creacion` DATETIME DEFAULT CURRENT_TIMESTAMP
   ,`ultima_modificacion` DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
   ,PRIMARY KEY (`id_usuario`)
@@ -317,11 +333,11 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
 
 
 /**
-*
+* Obtiene en strin el status
 **/
 DROP FUNCTION IF EXISTS estatus;
 DELIMITER //
-CREATE FUNCTION estatus(n BIT(1))
+CREATE FUNCTION estatus(n TINYINT(1))
   RETURNS VARCHAR(9)
   BEGIN
     DECLARE s VARCHAR(9) DEFAULT 'Activo';
@@ -331,7 +347,10 @@ CREATE FUNCTION estatus(n BIT(1))
   END //
 DELIMITER ;
 
-
+/**
+* Obtiene el importe*tipo_cambio
+* Representa el importe real
+**/
 DROP FUNCTION IF EXISTS importe;
 DELIMITER //
 CREATE FUNCTION importe(n DECIMAL(11,2), tipoCambio DECIMAL(11,2))
@@ -342,6 +361,9 @@ CREATE FUNCTION importe(n DECIMAL(11,2), tipoCambio DECIMAL(11,2))
 DELIMITER ;
 
 
+/**
+* Obtiene una cadena corta si la longitud de la misma excede los 50 caracteres
+**/
 DROP FUNCTION IF EXISTS textoCorto;
 DELIMITER //
 CREATE FUNCTION textoCorto(s VARCHAR(512))
