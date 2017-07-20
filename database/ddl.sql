@@ -74,12 +74,17 @@ CREATE TABLE IF NOT EXISTS cargo
   id_cargo INT UNSIGNED NOT NULL AUTO_INCREMENT
   ,mes_contable VARCHAR(16)
   ,fecha_docto_salida DATETIME DEFAULT CURRENT_TIMESTAMP
-  ,docto_salida VARCHAR(64)
+  ,id_documento_salida INT UNSIGNED
   ,concepto VARCHAR(512)
   ,cargo DECIMAL(11,2)
   ,`fecha_creacion` DATETIME DEFAULT CURRENT_TIMESTAMP
   ,`ultima_modificacion` DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP  
   ,PRIMARY KEY(id_cargo)
+  ,CONSTRAINT `fk_docto_salida_cargo`
+    FOREIGN KEY (`id_documento_salida`)
+    REFERENCES `documento_salida` (`id_documento_salida`)
+    ON DELETE NO ACTION
+    ON UPDATE CASCADE
 )ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
 

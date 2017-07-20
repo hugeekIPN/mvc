@@ -8,26 +8,32 @@ class m_cargo {
         $this ->db=Database::getInstance();
     }
     
-    public function nuevoCargo($data){
-               
+    /**
+    ** Agrega un nuevo cargo a la base
+    **/
+    public function nuevoCargo($data){               
         $this->db->insert('cargo',array(
             'mes_contable'       => $data['mesContable'],
             'fecha_docto_salida'   => $data['fecha_docSalida'],
-            'docto_salida'         => $data['docSalida'],
+            'id_documentoto_salida'         => $data['docSalida'],
             'concepto'          => $data['concepto'],
             'cargo'             => $data['cargo'],
-            'id_saldo'             => $data['saldo']
-        ));
-        
+        ));        
         return true;
-    }
-    
+    }   
+
+    /**
+    **/
     public function getCargo($idCargo)
     {
         $result = $this->db->select(
-            "SELECT *  
-            FROM cargo as c
-            INNER JOIN saldo as s ON c.id_saldo = s.id_saldo
+            "SELECT 
+            mes_contable as mesContable
+            ,fecha_docto_salida as fecha_docto_salida
+            ,id_documento_salida as doctoSalida
+            ,concepto
+            ,cargo
+            FROM cargo
             WHERE id_cargo = :id",array("id" => $idCargo));   
 
         if ( $result )
