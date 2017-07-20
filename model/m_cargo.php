@@ -23,13 +23,16 @@ class m_cargo {
     }   
 
     /**
+    ** Obtiene cargo por id
     **/
     public function getCargo($idCargo)
     {
         $result = $this->db->select(
             "SELECT 
-            mes_contable as mesContable
-            ,fecha_docto_salida as fecha_docto_salida
+            id_cargo as idCargo
+            ,mes_contable as mesContable
+            ,date(fecha_docto_salida) as fechaDoctoSalida
+            ,date(fecha_creacion) as fechaCaptura
             ,id_documento_salida as doctoSalida
             ,concepto
             ,cargo
@@ -44,7 +47,15 @@ class m_cargo {
     }
     
     public function getAllCargos(){
-        $query  = "SELECT * FROM cargo as c INNER JOIN saldo as s ON c.id_saldo = s.id_saldo";
+        $query  = "SELECT 
+            id_cargo as idCargo
+            ,mes_contable as mesContable
+            ,date(fecha_docto_salida) as fechaDoctoSalida
+            ,date(fecha_creacion) as fechaCaptura
+            ,id_documento_salida as doctoSalida
+            ,concepto
+            ,cargo
+            FROM cargo";
         $result = $this->db->select($query,array());
         if(count($result)>0)
             return $result;
@@ -66,14 +77,5 @@ class m_cargo {
         return $this->db->delete("cargo","id_cargo = :id", array("id" => $idCargo));
          
     }
-
-    public function update_Saldo($updateData,$idSaldo) {
-         return $this->db->update("saldo", 
-                    $updateData, 
-                    "id_saldo = :id",
-                    array( "id" => $idSaldo)
-               );
-    }
-    
 
 }

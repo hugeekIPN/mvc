@@ -14,8 +14,8 @@ INSERT INTO moneda(id_moneda,acronimo,nombre,descripcion) VALUES
 -- -----------------------------------------------------
 -- CARGO INICIAL
 -- -----------------------------------------------------
-INSERT INTO cargo(id_cargo,concepto,cargo,fecha_creacion,ultima_modificacion)
-VALUES(1,'cargo inicial',100000.00,'0000-00-00','0000-00-00')
+INSERT INTO cargo(id_cargo,concepto,cargo)
+VALUES(1,'cargo inicial',100000.00)
 ;
 
 -- -----------------------------------------------------

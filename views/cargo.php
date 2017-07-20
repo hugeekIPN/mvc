@@ -1,38 +1,47 @@
 <p class="titulos" style="margin-left:20%; margin-top: 20px; margin-bottom: 10px;">Saldo actual: $ <?php  echo number_format($saldo, 2); ?>  M.N.</p>
-<div class="container col-xs-12 container-proveedor "onload="oCurrentValue.innerText = estado.isContentEditable;">
-    <div class="form-group col-xs-8 izq">
-        <div class="col-xs-12 registros">
-            <div class="cont">
-                <table id="example3" class="display" cellspacing="0" width="100%" class="table-hover">
-                    <thead>
-                        <tr>
-                            <th>ID Cargo</th>
-                            <th>Mes Contable</th>
-                            <th>Fecha Docto.Salida</th>
-                            <th>Concepto</th>
-                            <th>Cargo</th>
-                        </tr>
-                    </thead>
-                   <tbody>
-                    <?php foreach ($cargo as $cargos): ?>
-                        <tr onclick="cargo.verCargos(<?=$cargos['id_cargo']; ?>);">
-                            <td><?= $cargos['id_cargo']; ?></td>
-                            <td><?= $cargos['mes_contable']; ?></td>
-                            <td><?= date('d-m-Y',strtotime($cargos['fecha_docto_salida'])); ?></td>
-                            <td><?= $cargos['concepto']; ?></td>
-                            <td>$<?= $cargos['cargo']; ?></td>
-                  
-                        </tr>	
-                    <?php endforeach; ?>
-                    </tbody>
-                </table>
-            </div>
-        </div>
 
+    <div class="iconos_h col-xs-2">
+        <section class="nuevo ">
+            <button id="btn-add-apoyo" onclick="">
+                <img src="assets/iconos/Recurso 11.png" alt="Agregar un nuevo apoyo">
+                <small>Nuevo</small>
+            </button>
+        </section>
     </div>
 
+    <div class="col-xs-12">
+    <div class="cont">
+        <table id="example3" class="display" cellspacing="0" width="100%" class="table-hover">
+            <thead>
+                <tr>
+                    <th>Id Cargo</th>
+                    <th>Mes Contable</th>
+                    <th>Fecha Docto.Salida</th>
+                    <th>Concepto</th>
+                    <th>Fecha Captura</th>
+                    <th>Cargo</th>
+                </tr>
+            </thead>
+           <tbody>
+            <?php foreach ($cargos as $cargo): ?>
+                <tr onclick="cargo.verCargos(<?=$cargo['idCargo']; ?>);">
+                    <td><?= $cargo['idCargo']; ?></td>
+                    <td><?= $cargo['mesContable']; ?></td>
+                    <td><?= $cargo['fechaDoctoSalida']; ?></td>
+                    <td><?= $cargo['concepto']; ?></td>
+                    <td><?= $cargo['fechaCaptura']; ?></td>
+                    <td>$<?= $cargo['cargo']; ?></td>
+          
+                </tr>	
+            <?php endforeach; ?>
+            </tbody>
+        </table>
+    </div>
+    </div>
+  
+
     <!-- contenedor derecho -->
-    <div class="form-group col-xs-4 der">
+    <div class="form-group col-xs-4 der" hidden>
         <!-- contenedor formulario y visualizacion de datos en texto plano  -->
         <div class="datos datos2 col-xs-10 eventos">
             <div class="input">

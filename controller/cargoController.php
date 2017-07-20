@@ -15,6 +15,9 @@ class cargoController {
         
     }
 
+    /**
+    ** Carga la pagina de cargos
+    **/
     public function index() {
 
         $login = new loginController();
@@ -24,14 +27,12 @@ class cargoController {
             $usuario = sessionController::get('username');
             $titulo = "cargos";
 
-            $cargo = $this->model->getAllCargos();
+            $cargos = $this->model->getAllCargos();
             
             
-            $saldo = $this->modelSaldo->getUltimoSaldo();
-            $saldo = $saldo? $saldo['saldo'] : 0;
+            $saldo = 0;
             
             require_once("views/templates/header.php");
-
             require_once("views/templates/nav.php");
             require_once("views/cargo.php");
             require_once("views/templates/footer.php");
