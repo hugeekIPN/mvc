@@ -395,7 +395,7 @@ class ApoyoGastoController {
 
         if(!$estado) $errors[] = "Estado no válido";
 
-        if(!($abono>=0)) $errors[] = "Importe no válido";
+        if(!is_numeric($abono)) $errors[] = "Importe no válido";
 
         if(!$moneda) $errors = "Tipo de moneda no válida";
 

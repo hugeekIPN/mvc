@@ -14,8 +14,8 @@ class m_cargo {
     public function nuevoCargo($data){               
         $this->db->insert('cargo',array(
             'mes_contable'       => $data['mesContable'],
-            'fecha_docto_salida'   => $data['fecha_docSalida'],
-            'id_documentoto_salida'         => $data['docSalida'],
+            'fecha_docto_salida'   => $data['fechaDoctoSalida'],
+            'id_documento_salida'         => $data['doctoSalida'],
             'concepto'          => $data['concepto'],
             'cargo'             => $data['cargo'],
         ));        
@@ -71,11 +71,14 @@ class m_cargo {
                );
         
     }
-    
-    public function deleteCargo($idCargo) {
-        
-        return $this->db->delete("cargo","id_cargo = :id", array("id" => $idCargo));
-         
+
+    /**
+    **Obtiene docto de salida para apoyos
+    **/
+    public function getDoctoSalida(){
+        $query = "SELECT * FROM documento_salida WHERE id_documento_salida>4";
+        return $this->db->select($query); 
     }
+
 
 }

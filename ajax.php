@@ -178,10 +178,6 @@ switch ($action) {
         $cargo = new cargoController($_POST['idCargo']);
         echo json_encode($cargo->updateCargo($_POST));
         break;
-    case 'deleteCargo':
-        $cargo = new cargoController($_POST['idCargo']);
-        echo json_encode($cargo->deleteCargo($_POST));
-        break;
     
     /// FIN CRUD ESPECIES
     

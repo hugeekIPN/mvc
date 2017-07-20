@@ -28,6 +28,7 @@ class cargoController {
             $titulo = "cargos";
 
             $cargos = $this->model->getAllCargos();
+            $doctoSalida = $this->model->getDoctoSalida();
             
             
             $saldo = 0;
@@ -53,27 +54,17 @@ class cargoController {
                 "message" => $message);
         } else {
 
-            $idSaldo = $this->realizarCargo($postData['cargo']);
-            $postData['saldo'] = $idSaldo;
-
             $this->model->nuevoCargo($postData);
 
             $result = array(
                 "status" => "success",
-                "message" => "Registros exitosos");
+                "message" => "Registro exitoso");
         }
         
         return $result;
     }
 
-    private function realizarCargo($cargo = 0){
-        $saldo = $this->modelSaldo->getUltimoSaldo();
-        $saldo = $saldo? $saldo['saldo'] : 0;
-        $nuevoSaldo = $saldo + $cargo;
-        $idNuevoSaldo = $this->modelSaldo->nuevoSaldo($nuevoSaldo);
 
-        return $idNuevoSaldo;
-    }
     
     public function getCargo() {
         $result = $this->model->getCargo($this->idCargo);
@@ -108,8 +99,8 @@ class cargoController {
          if ($currentcargo['mes_contable'] != $data['mesContable']) {
              $newData['mes_contable'] = $data['mesContable'];
          }
-         $newData['fecha_docto_salida'] = $data['fecha_docSalida'];
-         $newData['docto_salida'] = $data['docSalida'];
+         $newData['fecha_docto_salida'] = $data['fechaDoctoSalida'];
+         $newData['docto_salida'] = $data['doctoSalida'];
          $newData['concepto'] = $data['concepto'];
          $newData['cargo'] = $data['cargo'];
          $newData['id_saldo'] = $currentcargo['id_saldo'];
@@ -146,61 +137,31 @@ class cargoController {
          return $result;
     }
 
-    public function deleteCargo(){
-        $result = array();
-        
-        $saldo = $this->modelSaldo->getUltimoSaldo();
-        $saldo = $saldo? $saldo['saldo'] : 0;
-        
-        $currentcargo = $this->model->getCargo($this->idCargo);
-        $NewSaldo =   $saldo - $currentcargo['cargo'];
-        $idSaldo_cargo = $currentcargo['id_saldo'];
-        
-        if ($this->model->deleteCargo($this->idCargo)) {
-            $this->modelSaldo->deleteSaldo($idSaldo_cargo);
-                $this->modelSaldo->nuevoSaldo($NewSaldo);  // Actualizamos saldo --nuevo registro
-                $result = array(
-                    "status" => "success",
-                    "message"=> "Registro eliminado");
-        }else{
-            $result = array(
-                "status" => "error",
-                "message"=> "No se pudo realizar la operación");
-        }
-        return $result;
-    }
-    
-    private function validaDatos($data){
-        
+    private function validaDatos($data){        
 		$errors = array();
 		$mesContable		= $data['mesContable'];
-		$fecha_docSalida 		= $data['fecha_docSalida'];
-        $docSalida = $data['docSalida'];
+		$fechaDoctoSalida 		= $data['fechaDoctoSalida'];
+        $doctoSalida = $data['doctoSalida'];
         $concepto = $data['concepto'];
         $cargo = $data['cargo'];
     
-		if ($this->esVacio($mesContable)) {
-			$errors[] = "Mes Contable no puede ser vacío";
-		}       
-        
+		if (!trim($mesContable)) {
+			$errors[] = "Mes contable no puede ser vacío";
+		}
             
-        if ($this->esVacio($fecha_docSalida) ) {
+        if (!$this->isValidDate($fechaDoctoSalida) ) {
 			$errors[] = "Fecha documento de salida, no puede ser vacía";
-		}  
-        
-        if ($this->esVacio($docSalida) ) {
-			$errors[] = "Documento de salida, no puede ser vacío";
-		} 
-        
-        if ($this->esVacio($concepto) ) {
-			$errors[] = "El concepto no puede ser vacío";
-		} 
-        
-        if ($this->esVacio($cargo) ) {
-			$errors[] = "El cargo no puede ser vacío";
+		}          
+        if ($doctoSalida<5) {
+			$errors[] = "Documento de salida no válido";
 		}
         
-        
+        if (!trim($concepto) ) {
+			$errors[] = "El concepto no puede ser vacío";
+		}         
+        if (!is_numeric($cargo) ) {
+			$errors[] = "El cargo no puede ser vacío";
+		}        
 		return $errors;
 
 	}
@@ -212,17 +173,15 @@ class cargoController {
         return $this->model->getCargo(2);
     }
     
-    private function esVacio($in)
-    {
-        if (is_array($in)) {
-            return empty($in);
-        } elseif ($in == '') {
-            return true;
-        } else {
-            return false;
-        }
-
+    /**
+    * verifica si una fecha es válida,
+    * @param String "YYYY-MM-DD" representa una fecha
+    **/
+    private function isValidDate($date){
+        $temp = explode('-',$date);
+        return checkdate($temp[1], $temp[2], $temp[1]);
     }
+
 	
 }
 

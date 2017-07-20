@@ -346,6 +346,7 @@ apoyo.nuevo = function(){
     $('.especie').hide();
     $("#estadosEuaDiv").hide();
     $("#otroEstadoDiv").hide();
+    utilerias.removeErrorMessages();
     apoyo.elem.fechaCaptura.val($.datepicker.formatDate('yy-mm-dd', new Date()));
     apoyo.elem.fechaReferencia.val($.datepicker.formatDate('yy-mm-dd', new Date()));
     apoyo.elem.btnAdd.hide();
