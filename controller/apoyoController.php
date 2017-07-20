@@ -53,6 +53,7 @@ class ApoyoGastoController {
         $estadosEua = $this->model->getEstados(2);
         $estados = $this->model->getEstados(0); //estados que no son de EU ni de mex
         $monedas = $this->model->getMonedas();
+        $doctoSalida = $this->model->getDoctoSalida();
         
         $login = new loginController();
         $saldo=0;
@@ -258,7 +259,7 @@ class ApoyoGastoController {
                 $newData['fecha_docto_salida'] = $data['fechaDoctoSalida'];
 
             if($currentApoyo['doctoSalida'] != $data['doctoSalida'])
-                $newData['docto_salida'] = $data['doctoSalida'];
+                $newData['id_documento_salida'] = $data['doctoSalida'];
 
             if($currentApoyo['poliza'] != $data['poliza'])
                 $newData['poliza'] = $data['poliza'];

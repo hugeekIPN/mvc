@@ -34,9 +34,6 @@
 			</div>
 
 		</section>
-		<section class="filtros col-xs-2">
-			<button type="button" class="btn btn-primary btn-lg">Buscar</button>
-		</section>
 	</div>
 	<br/>
 	<div class="row col-xs-12">

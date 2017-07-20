@@ -175,8 +175,8 @@ VALUES(1,"bolsa")
 -- DOCUMENTO DE SALIDA
 -- -----------------------------------------------------
 INSERT INTO documento_salida(id_documento_salida,nombre)
-VALUES(1,"SPEUA")
 -- documento de salida para apoyos gastos
+VALUES(1,"SPEUA")
 ,(2,"Pago Interbancario")
 ,(3,"Traspaso")
 ,(4,"Cargo en cuenta")

@@ -377,3 +377,4 @@ CREATE FUNCTION textoCorto(s VARCHAR(512))
   END //
 DELIMITER ;
 
+

@@ -217,7 +217,12 @@
 	
 	<div class=" input form-group col-xs-3">
 		<label for="documentosalida">Documento Salida</label>
-		<input type="text" class="form-control" name="documentosalida" id="documentosalida" value="">
+		<select type="text" class="form-control" name="documentosalida" id="documentosalida" >
+			<option value="0">Seleccionar</option>
+			<?php foreach($doctoSalida as $docto): ?>
+				<option value="<?= $docto['id_documento_salida']; ?>"><?= $docto['nombre'];?></option>
+			<?php endforeach; ?>
+		</select>
 	</div>
 	<div class=" input form-group col-xs-3">
 		<label for="poliza">Póliza</label>

@@ -23,7 +23,7 @@ class m_apoyo_gasto{
                  a.id_apoyo
                  ,textoCorto(a.concepto) as concepto
                  ,a.referencia
-                 ,e.nombre
+                 ,textoCorto(e.nombre)
                  ,textoCorto(p.razon_social) as razon_social
                  ,date(a.fecha_creacion)
                  ,estatus(a.estatus)
@@ -58,7 +58,7 @@ class m_apoyo_gasto{
         ,a.observaciones 
         ,a.referencia
         ,a.mes_contable as mesContable
-        ,a.docto_salida as doctoSalida
+        ,IFNULL(a.id_documento_salida,0)as doctoSalida
         ,a.poliza
         ,date(a.fecha_referencia) as fechaReferencia
         ,date(a.fecha_docto_salida) as fechaDoctoSalida
@@ -113,6 +113,11 @@ class m_apoyo_gasto{
             }else{
                 $result['idEspecie'] = null;
             }
+
+            //verificamos si tiene docto salida asociado
+            if($data['doctoSalida']){
+                
+            }
         }
         return $result;
     }
@@ -133,7 +138,7 @@ class m_apoyo_gasto{
             'observaciones' => $data['observaciones'],
             'referencia' => $data['numeroReferencia'],
             'mes_contable' => $data['mesContable'],
-            'docto_salida' =>$data['doctoSalida'],
+            'id_documento_salida' =>$data['doctoSalida'],
             'poliza' => $data['poliza'],
             'fecha_referencia'=> $data['fechaReferencia']?:null,          
             'fecha_docto_salida' => $data['fechaDoctoSalida']?:null,
@@ -271,6 +276,14 @@ class m_apoyo_gasto{
                     "id_apoyo = :id",
                     array( "id" => $idApoyo )
                );
+    }
+
+    /**
+    **Obtiene docto de salida para apoyos
+    **/
+    public function getDoctoSalida(){
+        $query = "SELECT * FROM documento_salida WHERE id_documento_salida<5";
+        return $this->db->select($query); 
     }
 
 
