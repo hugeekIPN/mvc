@@ -10,10 +10,10 @@ cargo.elem ={
     concepto:       $("#inputConcepto"),
     cargo:          $("#inputCargo"),    
     formulario:     $("#formulario-cargo"),
-    btnAdd:      $("#btn-new"),
-    btnUpdate:     $("#btn-edit"),
-    btnSave:       $("#btn-save"),
-    btnCancel:     $("#btn-delete"),
+    btnAdd:      $("#btnAdd"),
+    btnUpdate:     $("#btnUpdate"),
+    btnSave:       $("#btnSave"),
+    btnCancel:     $("#btnCancel"),
 };
 
 /**
@@ -48,8 +48,10 @@ cargo.add = function(editMode){
             },
             success: function(result){
                 if(result.status == "error"){
+                    window.scrollTo(0,0);
                     utilerias.displayErrorServerMessage($("#mensajes-server"), result.message);
-                }else{                      
+                }else{                   
+                    window.scrollTo(0,0);   
                   utilerias.displaySuccessMessage($("#mensajes-server"),result.message);
                   location.reload();
               }
@@ -62,19 +64,18 @@ cargo.add = function(editMode){
 /**
 ** Funcion para ver detalles de cargo
 **/
-cargo.editCargo = function () {
-    var elementos =  cargo.elem;
-    var idCargo = $("#view-id-cargo").text();
-    
-    // utilerias.removeErrorMessages();
-    
+cargo.editCargo = function (idCargo) {
+    var elementos =  cargo.elem;  
+    cargo.nuevo();      
+    elementos.btnAdd.show();
+    elementos.btnUpdate.show();
+    elementos.btnSave.hide();
     $.ajax({
         type:   "post",
         url:    "ajax.php",
         data:   {
             action:"getCargo",
-            //*action: action,
-            idCargo:  idCargo
+            idCargo : idCargo
         },
         success: function(result){
             var res = JSON.parse(result);
@@ -82,20 +83,12 @@ cargo.editCargo = function () {
             if(res.status == "error"){
                 utilerias.displayErrorServerMessage(elem.msj_server, res.message);
             }else{
-                //mostramos y ocultamos los botones
-                elementos.btnSave.attr('onclick','cargo.updateCargo();');
-                elementos.btnSave.show();
-                elementos.btn_editar.hide();
-                elementos.idCargo.val(res.id_cargo);
-                elementos.mesContable.val(res.mes_contable);
-                elementos.fechaDoctoSalida.val(res.fecha_docto_salida);
-                elementos.doctoSalida.val(res.docto_salida);
+                elementos.idCargo.val(res.idCargo);
+                elementos.mesContable.val(res.mesContable);
+                elementos.fechaDoctoSalida.val(res.fechaDoctoSalida);
+                elementos.doctoSalida.val(res.doctoSalida);
                 elementos.concepto.val(res.concepto);
                 elementos.cargo.val(res.cargo);
-                elementos.saldo.val(res.saldo);
-                
-                elementos.formulario.show();
-                elementos.cont_datos.hide();
             }
         }
     });

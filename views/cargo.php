@@ -25,7 +25,7 @@
                 </thead>
                 <tbody>
                     <?php foreach ($cargos as $cargo): ?>
-                        <tr onclick="cargo.verCargos(<?=$cargo['idCargo']; ?>);">
+                        <tr onclick="cargo.editCargo(<?=$cargo['idCargo']; ?>);">
                             <td><?= $cargo['idCargo']; ?></td>
                             <td><?= $cargo['mesContable']; ?></td>
                             <td><?= $cargo['fechaDoctoSalida']; ?></td>

@@ -33,7 +33,7 @@ class m_cargo {
             ,mes_contable as mesContable
             ,date(fecha_docto_salida) as fechaDoctoSalida
             ,date(fecha_creacion) as fechaCaptura
-            ,id_documento_salida as doctoSalida
+            ,IFNULL(id_documento_salida,0) as doctoSalida
             ,concepto
             ,cargo
             FROM cargo

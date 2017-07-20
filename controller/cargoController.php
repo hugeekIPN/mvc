@@ -67,9 +67,7 @@ class cargoController {
 
     
     public function getCargo() {
-        $result = $this->model->getCargo($this->idCargo);
-        $fechaDoc = $result['fecha_docto_salida'];
-        $result['fecha_docto_salida'] = date('d-m-Y',strtotime($fechaDoc));
+        $result = $this->model->getCargo($this->idCargo);        
         if ($result) {
             $result['status'] = "success";
         } else {
@@ -93,46 +91,31 @@ class cargoController {
              "message"=> $message);
      } else {
          
-         $currentcargo = $this->model->getCargo($this->idCargo);
+         $currentCargo = $this->model->getCargo($this->idCargo);
          $newData = array();
          
-         if ($currentcargo['mes_contable'] != $data['mesContable']) {
+         if ($currentCargo['mesContable'] != $data['mesContable']) {
              $newData['mes_contable'] = $data['mesContable'];
          }
-         $newData['fecha_docto_salida'] = $data['fechaDoctoSalida'];
-         $newData['docto_salida'] = $data['doctoSalida'];
-         $newData['concepto'] = $data['concepto'];
-         $newData['cargo'] = $data['cargo'];
-         $newData['id_saldo'] = $currentcargo['id_saldo'];
-
-         /* Actualiza saldo */
-         $saldo = $this->modelSaldo->getUltimoSaldo();
-         $saldo = $saldo? $saldo['saldo'] : 0;
-         $NewSaldo = ( $saldo - $currentcargo['cargo']) + $data['cargo'];
-         /* Actualiza saldo */
+         if($currentCargo['fechaDoctoSalida']!= $data['fechaDoctoSalida'])
+            $newData['fecha_docto_salida'] = $data['fechaDoctoSalida'];
+        if($currentCargo['doctoSalida']!=$data['doctoSalida'])
+            $newData['id_documento_salida'] = $data['doctoSalida'];
          
-         /* Actualiza saldo CAPTURADO */ 
-         $saldoArray = array(); 
-         $saldoArray['saldo'] = ( $currentcargo['saldo'] - $currentcargo['cargo']) + $data['cargo'];
-         /* Actualiza saldo CAPTURADO */
+        if($currentCargo['concepto']!=$data['concepto'])
+            $newData['concepto'] = $data['concepto'];
+
+        if($currentCargo['cargo']!= $data)
+            $newData['cargo'] = $data['cargo'];         
+
 
          if($newData){
-
-             $update= $this->model->updateCargo($newData, $this->idCargo);
-	          
-
-            if($update){
-                 $this->model->update_Saldo($saldoArray, $currentcargo['id_saldo']);
-                 $this->modelSaldo->nuevoSaldo($NewSaldo);
-                $result = array(
-                    "status" => "success",
-                    "message" => "Registro actualizado");
-
-                 }else{
-                    $result = array(
-                    "status" => "error");
-                }
+            $this->model->updateCargo($newData, $this->idCargo);
             }
+            $result = array(
+                "status" => "success",
+                "message" => "Registro actualizado");
+
         }
          return $result;
     }
