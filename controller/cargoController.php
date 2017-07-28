@@ -3,15 +3,18 @@
 include_once("sessionController.php");
 include_once("loginController.php");
 include_once("model/m_cargo.php");
+include_once("model/ReportesModel.php");
 
 class cargoController {
     private $idCargo;
     private $modelSaldo;
     private $model;
+    private $reportesModel;
 
     public function __construct($idCargo) {
         $this->idCargo= $idCargo;
         $this->model = new m_cargo();
+        $this->reportesModel = new ReportesModel();
         
     }
 
@@ -31,7 +34,7 @@ class cargoController {
             $doctoSalida = $this->model->getDoctoSalida();
             
             
-            $saldo = 0;
+            $saldo = $this->reportesModel->getSaldo();
             
             require_once("views/templates/header.php");
             require_once("views/templates/nav.php");

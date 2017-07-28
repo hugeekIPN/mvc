@@ -383,3 +383,16 @@ CREATE FUNCTION textoCorto(s VARCHAR(512))
 DELIMITER ;
 
 
+/**
+** Obtiene el saldo actual
+**/
+DROP FUNCTION IF EXISTS saldo;
+DELIMITER //
+CREATE FUNCTION saldo()
+  RETURNS DECIMAL(11,2)
+  BEGIN
+  DECLARE temp DECIMAL(11,2) DEFAULT 0;
+    SET temp = (select sum(cargo) - (select sum(importe(importe,tipo_cambio)) from apoyosgastos) from cargo);
+    RETURN temp;
+  END //
+DELIMITER;
