@@ -338,7 +338,7 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
 
 
 /**
-* Obtiene en strin el status
+* Obtiene en string el status
 **/
 DROP FUNCTION IF EXISTS estatus;
 DELIMITER //
@@ -395,4 +395,4 @@ CREATE FUNCTION saldo()
     SET temp = (select sum(cargo) - (select sum(importe(importe,tipo_cambio)) from apoyosgastos) from cargo);
     RETURN temp;
   END //
-DELIMITER;
+DELIMITER ;

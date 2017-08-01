@@ -133,8 +133,7 @@ class m_apoyo_gasto{
         $newData = [
             'concepto' => $data['concepto'], 
             'id_frecuencia_apoyo' => $data['frecuencia'],
-            'importe' => $data['abono'],            
-            'id_evento' => $data['evento'],
+            'importe' => $data['abono'],
             'observaciones' => $data['observaciones'],
             'referencia' => $data['numeroReferencia'],
             'mes_contable' => $data['mesContable'],

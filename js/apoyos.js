@@ -1,6 +1,6 @@
 var apoyo = {};
 
-//Rango de fechas
+//busqueda por rango de fechas
 $.fn.dataTable.ext.search.push(
     function( settings, data, dataIndex ) {
         var min = $('#fechaMin').val();

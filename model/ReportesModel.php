@@ -20,7 +20,8 @@ class ReportesModel
 
 	public function reporteFlujo($fechaInicio, $fechaFin){
 		$query = "SELECT
-				a.mes_contable as mesContable
+				a.id_apoyo as id
+				,a.mes_contable as mesContable
 				,a.fecha_referencia as fechaReferencia
 				,a.referencia 
 				,a.fecha_docto_salida as fechaDoctoSalida
@@ -34,6 +35,7 @@ class ReportesModel
 				INNER JOIN documento_salida as d on a.id_documento_salida=d.id_documento_salida
 			UNION 
 				SELECT
+				id_cargo as id
 				mes_contable as mesContable
 				,null as fechaReferencia
 				,null as referencia
