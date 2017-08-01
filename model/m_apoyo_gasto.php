@@ -137,7 +137,7 @@ class m_apoyo_gasto{
             'observaciones' => $data['observaciones'],
             'referencia' => $data['numeroReferencia'],
             'mes_contable' => $data['mesContable'],
-            'id_documento_salida' =>$data['doctoSalida'],
+            'id_documento_salida' =>$data['doctoSalida']?:null,
             'poliza' => $data['poliza'],
             'fecha_referencia'=> $data['fechaReferencia']?:null,          
             'fecha_docto_salida' => $data['fechaDoctoSalida']?:null,

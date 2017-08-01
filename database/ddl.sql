@@ -240,14 +240,14 @@ CREATE TABLE IF NOT EXISTS `apoyosgastos` (
   ,`poliza` VARCHAR(32)
 
   ,`fecha_referencia` DATE DEFAULT NULL
-  ,`fecha_docto_salida` DATE DEFAULT NULL
+  ,`fecha_docto_salida` DATETIME DEFAULT NULL
   ,`fecha_creacion` DATETIME DEFAULT CURRENT_TIMESTAMP
   ,`fecha_cambio` DATETIME DEFAULT CURRENT_TIMESTAMP
   ,`ultima_modificacion` DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP    
 
   -- llaves foraneas
   ,`id_proveedor` INT UNSIGNED COMMENT 'aplica para proveedor y donatario'
-  ,id_documento_salida INT UNSIGNED
+  ,id_documento_salida INT UNSIGNED 
   ,id_frecuencia_apoyo INT UNSIGNED NOT NULL
   ,id_estado INT UNSIGNED NOT NULL
   ,`id_moneda` INT UNSIGNED NOT NULL COMMENT '0 mn 1 usd 2 euros'
