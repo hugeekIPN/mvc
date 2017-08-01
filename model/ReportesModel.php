@@ -33,10 +33,11 @@ class ReportesModel
 				,saldo() as saldo
 				FROM apoyosgastos as a
 				INNER JOIN documento_salida as d on a.id_documento_salida=d.id_documento_salida
+				WHERE a.fecha_docto_salida BETWEEN $fechaInicio AND $fechaFin
 			UNION 
 				SELECT
 				id_cargo as id
-				mes_contable as mesContable
+				,mes_contable as mesContable
 				,null as fechaReferencia
 				,null as referencia
 				,fecha_docto_salida as fechaDoctoSalida
@@ -48,6 +49,7 @@ class ReportesModel
 				,saldo() as saldo
 				FROM cargo
 				INNER JOIN documento_salida as doc on cargo.id_documento_salida=doc.id_documento_salida
+				WHERE fecha_docto_salida BETWEEN $fechaInicio AND $fechaFin
 			ORDER BY fechaDoctoSalida
 			 ";
 	}
