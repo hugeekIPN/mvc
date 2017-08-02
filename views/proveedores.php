@@ -129,7 +129,7 @@
 					  <label class="control-label titulos" for="inputDelegacionYMunicipioProveedores">Delegación y Municipio:</label>
 					  <input required type="text" class="form-control" id="inputDelegacionYMunicipioProveedores">
 					</div>
-                     <div class="form-group ">
+                     <div class="form-group" id="inputEstadoProveedoresDiv">
 					  <label class="control-label titulos" for="inputEstadoProveedores">Estado:</label>
                                                                                        
                         <select name="state" class="form-control" id="inputEstadoProveedores">
@@ -169,13 +169,69 @@
                                                  
                         <input type="hidden" class="form-control" id="inputEstadoProveedores_text">                         
                     </div>                                                                      
-                                                                                                  
+                         
+                    <div class="form-group" id="inputEstadosEUA" style="display: none;">
+					  <label class="control-label titulos" for="inputEstadosEUA">Estado:</label>                                                   
+                        <select name="state" class="form-control" id="inputEstadosEUA">
+                        <option value="33">Alabama</option>
+                        <option value="34">Alaska</option>
+                        <option value="35">Arizona</option>
+                        <option value="36">Arkansas</option>
+                        <option value="37">California</option>
+                        <option value="38">Carolina del Norte</option>
+                        <option value="39">Carolina del Sur</option>
+                        <option value="40">Colorado</option>
+                        <option value="41">Connecticut</option>
+                        <option value="42">Dakota del Norte</option>
+                        <option value="43">Dakota del Sur</option>
+                        <option value="44">Delaware</option>
+                        <option value="45">Florida</option>
+                        <option value="46">Georgia</option>
+                        <option value="47">Hawaii</option>
+                        <option value="48">Idaho</option>
+                        <option value="49">Illinois</option>
+                        <option value="50">Indiana</option>
+                        <option value="51">Iowa</option>
+                        <option value="52">Kansas</option>
+                        <option value="53">Kentucky</option>
+                        <option value="54">Louisiana</option>
+                        <option value="55">Maine</option>
+                        <option value="56">Maryland</option>
+                        <option value="57">Massachusetts</option>
+                        <option value="58">Míchigan</option>
+                        <option value="59">Minnesota</option>
+                        <option value="60">Misisipi</option>
+                        <option value="61">Misuri</option>
+                        <option value="62">Montana</option>
+                        <option value="63">Nebraska</option>
+                        <option value="64">Nevada</option>
+                        <option value="65">Nueva Jersey</option>
+                        <option value="66" selected>Nueva York</option>
+                        <option value="67">Nuevo Hampshire</option>
+                        <option value="68">Nuevo México</option>
+                        <option value="69">Ohio</option>
+                        <option value="70">Oklahoma</option>
+                        <option value="71">Oregón</option>
+                        <option value="72">Pensilvania</option>
+                        <option value="73">Rhode Island</option>
+                        <option value="74">Tennessee</option>
+                        <option value="75">Texas</option>
+                        <option value="76">Utah</option>
+                        <option value="77">Vermont</option>
+                        <option value="78">Virginia</option>
+                        <option value="79">Virginia Occidental</option>
+                        <option value="80">Washington</option>
+                        <option value="81">Wisconsin</option>
+                        <option value="82">Wyoming</option>
+                        </select>                       
+                    </div>   
+
 					<div class="form-group">
 					  <label class="control-label titulos" for="inputPaisProveedores">País:</label>
 					  <select class="form-control" id="inputPaisProveedores"  onchange="Proveedores.pais();">
-                            <option value="México">México</option>
-                            <option value="EUA">EUA</option>
-                            <option value="Otro">Otro</option>
+                            <option value="1">México</option>
+                            <option value="2">EUA</option>
+                            <option value="3">Otro</option>
                       </select>
                       <input required type="hidden" class="form-control" id="otro_text">
 					</div>

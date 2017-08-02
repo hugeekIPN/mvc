@@ -99,6 +99,7 @@ Proveedores.verProveedor = function (proveedorId){
 			//mostramos los datos en el contenedor
 			$("#vista-datos").show();
             $("#vista-datos2").show();
+            
 			//cambiamos a visible el boton editar
 			// $("#btn-edit-proveedor").show();
 		}
@@ -109,20 +110,25 @@ Proveedores.pais = function (){
     var elem= Proveedores.elementos;
     var valor = document.getElementById("inputPaisProveedores").value;  
     
-    if(valor=="México"){ 
+    if(valor=="1"){  /// Mèxico
+        $("#inputEstadoProveedoresDiv").show();
+        $("#inputEstadosEUA").hide();
         document.getElementById('inputEstadoProveedores_text').type = 'hidden';
         document.getElementById('otro_text').type = 'hidden';
         elem.estado.show();
     }else{
-       if(valor=="Otro"){ 
-             document.getElementById('inputEstadoProveedores_text').type = 'text';
-              document.getElementById('otro_text').type = "text";
-
+       if(valor=="2"){ /// EUA
+            $("#inputEstadoProveedoresDiv").hide();
+            $("#inputEstadosEUA").show();
+            document.getElementById('otro_text').type = 'hidden';
             elem.estado.hide();
-         } else{
-                document.getElementById('otro_text').type = 'hidden';
-                document.getElementById('inputEstadoProveedores_text').type = 'text';
-                elem.estado.hide();
+         } else{  /// Otro
+            $("#inputEstadoProveedoresDiv").show();
+            $("#inputEstadosEUA").hide();
+            document.getElementById('inputEstadoProveedores_text').type = 'text';
+            document.getElementById('otro_text').type = "text";
+            
+            elem.estado.hide();
          }
     }
 };
@@ -137,11 +143,12 @@ Proveedores.addproveedor = function (editMode) {
     var pais = document.getElementById("inputPaisProveedores").value;
     var estado = null;
 
-    if(pais=="México"){
+    if(pais=="1"){
          estado = data.estado.val();  
     }else{
             estado = Proveedores.idEstado(data.estado_text.val());
             /// si existe devuelve id de estado, sino insertalo y devuelve id
+            // => 33 <= 82 eua
     }
     
     if ( editMode == true)
@@ -268,23 +275,23 @@ Proveedores.editproveedor = function(){
             data.colonia.val(res.colonia);  
             data.calle.val(res.calle);
             
-            if(res.estado <= "32")
+            if(res.id_estado <= "32")
                 {
                    elem.estado.show();
                    document.getElementById('inputEstadoProveedores_text').type = 'hidden';
-                   data.estado.val(res.entidad); 
-                   data.pais.val(res.pais);   
+                   data.estado.val(res.id_estado); 
+                   data.pais.val(res.id_pais);   
                 }else{
-                    if(res.estado >"32"){
+                    if(res.id_estado <= "82"){
                         document.getElementById('inputEstadoProveedores_text').type = 'text';
                         elem.estado.hide();
-                        data.estado_text.val(res.entidad);
-                        data.pais.val(res.pais); 
+                        data.estado_text.val(res.nombre_estado);
+                        data.pais.val(res.nombre_pais); 
 
                     }else{
                          document.getElementById('inputEstadoProveedores_text').type = 'text';
-                         data.estado.val(res.entidad);
-                         data.otro_text.val(res.pais);
+                         data.estado.val(res.nombre_estado);
+                         data.otro_text.val(res.nombre_pais);
                          document.getElementById('otro_text').type = 'text';
                          elem.estado.hide();
                          
@@ -292,6 +299,7 @@ Proveedores.editproveedor = function(){
                     }
                 }
 
+            $("#inputEstadoProveedores").show();
             
             data.contacto.val(res.contacto);   
             data.correo_contacto.val(res.correo_contacto);   

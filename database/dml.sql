@@ -146,19 +146,35 @@ VALUES(2,"otro evento",1,"descripcion del evento");
 -- -----------------------------------------------------
 -- PROVEEDORES
 -- -----------------------------------------------------
-INSERT INTO proveedores(id_proveedor,razon_social,rfc,telefono)
-VALUES(1,"ACADEMIA DE MUSICA DEL PALACIO DE MINERIA, A.C.","AMP850419U45","55109821")
-,(2,"GRUPO ZAMACONA, S.A. DE C.V.","unrfc","1234567890")
-,(3,"HIM IMPLANTES COCLEARES","00133009914","1234567890");
+INSERT INTO proveedores(id_proveedor,razon_social,rfc,telefono, id_estado)
+VALUES(1,"ACADEMIA DE MUSICA DEL PALACIO DE MINERIA, A.C.","AMP850419U45","55109821",30)
+,(2,"GRUPO ZAMACONA, S.A. DE C.V.","unrfc","1234567890", 35)
+,(3,"HIM IMPLANTES COCLEARES","00133009914","1234567890", 1);
 
+-- -----------------------------------------------------
+-- CUENTAS BANCARIAS
+-- -----------------------------------------------------
+
+INSERT INTO cuenta_bancaria(id_proveedor,clabe,banco)
+VALUES(1,"CLABE1234","INBURSA")
+,(2,"CLABE2345","SANTANDER")
+,(3,"CLABE3456","BANAMEX");
 -- -----------------------------------------------------
 -- DONATOARIOS solo son de prueba
 -- -----------------------------------------------------
-INSERT INTO proveedores(id_proveedor,razon_social,rfc,telefono,tipo)
-VALUES(4,"donador ACADEMIA DE MUSICA DEL PALACIO DE MINERIA, A.C.","AMP850419U45","55109821",1)
-,(5,"donador GRUPO ZAMACONA, S.A. DE C.V.","unrfc","1234567890",1)
-,(6,"donador de pruebaHIM IMPLANTES COCLEARES","00133009914","1234567890",1);
+INSERT INTO proveedores(id_proveedor,razon_social,rfc,telefono,tipo, id_estado)
+VALUES(4,"donador ACADEMIA DE MUSICA DEL PALACIO DE MINERIA, A.C.","AMP850419U45","55109821",1, 23)
+,(5,"donador GRUPO ZAMACONA, S.A. DE C.V.","unrfc","1234567890",1, 82)
+,(6,"donador de pruebaHIM IMPLANTES COCLEARES","00133009914","1234567890",1, 60);
 
+-- -----------------------------------------------------
+-- CUENTAS BANCARIAS
+-- -----------------------------------------------------
+
+INSERT INTO cuenta_bancaria(id_proveedor,clabe,banco)
+VALUES(4,"CLABE4567","SCOTIABANK")
+,(5,"CLABE5678","BANCOMER")
+,(6,"CLABE6789","INBURSA");
 -- -----------------------------------------------------
 -- UNIDADES
 -- -----------------------------------------------------
