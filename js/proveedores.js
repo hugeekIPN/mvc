@@ -146,9 +146,12 @@ Proveedores.addproveedor = function (editMode) {
     if(pais=="1"){
          estado = data.estado.val();  
     }else{
+        if(pais=="2"){
+            estado = document.getElementById("inputEstadosEUA").value;
+        }else{
+             /// si existe devuelve id de estado, sino insertalo y devuelve id
             estado = Proveedores.idEstado(data.estado_text.val());
-            /// si existe devuelve id de estado, sino insertalo y devuelve id
-            // => 33 <= 82 eua
+        } 
     }
     
     if ( editMode == true)
